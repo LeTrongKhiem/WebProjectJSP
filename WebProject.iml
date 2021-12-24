@@ -29,6 +29,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="normalize" level="application" />
+    <orderEntry type="library" name="api" level="application" />
     <orderEntry type="library" name="Maven: com.microsoft.sqlserver:mssql-jdbc:9.2.1.jre8" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:jsp-api:2.0" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.4" level="project" />
@@ -48,5 +49,6 @@
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Maven: javax.json:javax.json-api:1.1.4" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish:javax.json:1.0.2" level="project" />
   </component>
 </module>

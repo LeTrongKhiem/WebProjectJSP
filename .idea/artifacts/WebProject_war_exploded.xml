@@ -33,6 +33,7 @@
           <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.2" />
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
           <element id="library" level="project" name="Maven: javax.json:javax.json-api:1.1.4" />
+          <element id="library" level="project" name="Maven: org.glassfish:javax.json:1.0.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">

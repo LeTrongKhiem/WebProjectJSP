@@ -8,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
@@ -19,7 +20,24 @@ import java.util.Map;
 public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        HttpSession session = request.getSession();
+        List<String> userLogged = (List<String>) getServletContext().getAttribute("userLogged");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        ServletContext context = getServletContext();
+        String urlRQ = (String) context.getAttribute("url");
+        Map<String, User> listUser = (Map<String, User>) session.getAttribute("listUser");
+        //check login
+        if (listUser.containsKey(email) && listUser.get(email).equals(password)) { //check login
+            User user = listUser.get(email);//get 1 user
+            session.setAttribute("user", user);//save user
+            session.setMaxInactiveInterval(3000 * 60);
+            userLogged.add(email);
+            context.setAttribute("userLogged", userLogged);
+            session.setAttribute("email", email);
+            String encodedURL = response.encodeRedirectURL(urlRQ);
+            response.sendRedirect(encodedURL);
+        }
     }
 
     @Override
@@ -39,7 +57,7 @@ public class LoginController extends HttpServlet {
         //check login
         if (!listUser.containsKey(email) || !listUser.get(email).getPassword().equals(passwordHash)) {
             valid = false;
-            error = "Tài khoản hoặc mật khẩu không chính xác";
+            error = "Tài khoản hoặc mật khẩu không chính xác!!";
         }
         //check capcha google
         if (valid) {
@@ -61,7 +79,23 @@ public class LoginController extends HttpServlet {
             String encodedURL = response.encodeRedirectURL(urlRQ);
             response.sendRedirect(encodedURL);
         } else if (!valid) {
-
+            request.setCharacterEncoding("UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            PrintWriter out = response.getWriter();
+            if (error != null) {//check error login
+                request.setAttribute("errorAccount", error);
+                request.setAttribute("email", email);
+                request.setAttribute("pass", passwordHash);
+                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/dangnhap.jsp");
+                requestDispatcher.forward(request, response);
+            } else if (errorCC != null) {//check error capcha
+                request.setAttribute("errorCC", errorCC);
+                request.setAttribute("email", email);
+                request.setAttribute("pass", passwordHash);
+                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/dangnhap.jsp");
+                requestDispatcher.forward(request, response);
+            }
+            valid = true;
         }
 
 

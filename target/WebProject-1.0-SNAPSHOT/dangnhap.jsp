@@ -1,11 +1,18 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.webproject.BEAN.User" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="com.example.webproject.DAO.UserDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="common/taglib.jsp" %>
 <%
     String error = (String) request.getAttribute("error");
+    Map<String, User> listUser = UserDAO.getInstance().listUser();
+    session.setAttribute("listUser", listUser);
 %>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,8 +20,6 @@
     <title>Đăng nhập</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <%--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"--%>
-    <%--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">--%>
     <link rel="stylesheet" href="<c:url value='assets/font/fontawesome-free-5.15.3-web/css/all.min.css'/>">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="<c:url value= './assets/img/logo3.png'/>">
@@ -32,26 +37,32 @@
     <%@include file="/header.jsp" %>
     <%--  header  --%>
     <div class="v2-login-area">
-        <form class="form-signin" action="LoginController" method="post">
-            <%
-                if (error != null) {
-            %>
-            <div class="alert alert-danger" role="alert">
-                <%=error %>
-            </div>
-            <%
-                }
-            %>
-            <input type="hidden" name="_token" value="fzKzNPdwVMjvEWLv8wsimORTg4y92ecaAdAMObx9">
+        <form class="form-signin" action="LoginController" method="post" name="formdn" id="formdn">
             <div class="form-signin-heading text-center">
                 <h1 class="sign-title">Đăng nhập</h1>
             </div>
             <div class="v2-login-wrap">
-                <input type="text" class="form-control" value="" placeholder="Tên đăng nhập/Email/Số điện thoại"
+                <input type="text" id="email" class="form-control" value="<%
+                    if (request.getAttribute("email")!=null && !request.getAttribute("email").equals("")) {
+                        out.print(request.getAttribute("email"));
+                    }
+                %>" placeholder="Tên đăng nhập/Email/Số điện thoại"
                        autofocus="" name="email" required="">
                 <input type="password" class="form-control" placeholder="Mật khẩu" id="password" name="password"
-                       required="">
-                <div class="g-recaptcha" style="" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                       required="" value="<%
+                     if (request.getAttribute("pass")!=null && !request.getAttribute("pass").equals("")) {
+                        out.print("");
+                    }
+                       %>">
+                <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                <p id="errorLogin" style="color: red"><%
+                    if (request.getAttribute("errorAccount") != null && !request.getAttribute("errorAccount").equals("")) {
+                        out.print(request.getAttribute("errorAccount"));
+                    } else if (request.getAttribute("errorCC") != null && !request.getAttribute("errorCC").equals("")) {
+                        out.print(request.getAttribute("errorCC"));
+                    }
+                %></p>
+
                 <button class="btn btn-lg btn-login" type="submit">Đăng nhập</button>
             </div>
             <div class="v2-login-bottom">
@@ -59,7 +70,7 @@
                                                                                            class="v2-register-now"> ( Đăng ký ngay )</a>
                     </span>
                 <span class="v2-right">
-                    <a class="v2-remember-password" href="https://mobilecity.vn/quen-mat-khau"> Quên mật khẩu ?</a>
+                    <a class="v2-remember-password" href=""> Quên mật khẩu ?</a>
                 </span>
             </div>
         </form>
@@ -68,13 +79,32 @@
     <%@include file="/footer.jsp" %>
     <%--    footer --%>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<%--<script type="text/javascript">--%>
+<%--    $(document).ready(function () {--%>
+<%--        $('#formdn').on('submit', function () {--%>
+<%--            <% List<String> userLogged = (List<String>) application.getAttribute("userLogged");//get user login--%>
+<%--            %>--%>
+<%--            var arrUserlogged = new Array();--%>
+<%--            <%--%>
+<%--                for (int i = 0; i<userLogged.size(); i++) {--%>
+<%--            %>--%>
+<%--            arrUserlogged[<%=i%>] = '<%=userLogged.get(i)%>';--%>
+<%--            <%}%>--%>
+<%--            for (var k = 0; k < arrUserlogged.length; k++) {--%>
+<%--                if ($('#email').val() === arrUserlogged[k]) {   --%>
+<%--                    $('#errorLogin').html('Tài khoản đã được đăng nhập');--%>
+<%--                    return false;--%>
+<%--                }--%>
+<%--            }--%>
+<%--            return true;--%>
+<%--        });--%>
+<%--        $('#formdn').on('keydown', function () {--%>
+<%--            $('#errorLogin').html();--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
 
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<script>
-    $(document).ready(function () {
-
-    })
-</script>
 </html>

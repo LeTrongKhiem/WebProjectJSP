@@ -29,7 +29,7 @@ public class VerifyUtils {
             conn.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
             // Dữ liệu sẽ gửi tới server.
-            String postParams = "secret=" + MyConstrants.SECRET_KEY + "&response=" + gRecaptchaResponse;
+            String postParams = "secret=" + MyConstants.SECRET_KEY + "&response=" + gRecaptchaResponse;
 
             // Send Request
             conn.setDoOutput(true);

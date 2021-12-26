@@ -81,30 +81,30 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#formdn').on('submit', function () {
-            <% List<String> userLogged = (List<String>) application.getAttribute("userLogged");//get user login
-            %>
-            var arrUserlogged = new Array();
-            <%
-                for (int i = 0; i<userLogged.size(); i++) {
-            %>
-            arrUserlogged[<%=i%>] = '<%=userLogged.get(i)%>';
-            <%}%>
-            for (var k = 0; k < arrUserlogged.length; k++) {
-                if ($('#email').val() === arrUserlogged[k]) {
-                    $('#errorLogin').html('Tài khoản đã được đăng nhập');
-                    return false;
-                }
-            }
-            return true;
-        });
-        $('#formdn').on('keydown', function () {
-            $('#errorLogin').html();
-        });
-    });
-</script>
+<%--<script type="text/javascript">--%>
+<%--    $(document).ready(function () {--%>
+<%--        $('#formdn').on('submit', function () {--%>
+<%--            <% List<String> userLogged = (List<String>) application.getAttribute("userLogged");//get user login--%>
+<%--            %>--%>
+<%--            var arrUserlogged = new Array();--%>
+<%--            <%--%>
+<%--                for (int i = 0; i<userLogged.size(); i++) {--%>
+<%--            %>--%>
+<%--            arrUserlogged[<%=i%>] = '<%=userLogged.get(i)%>';--%>
+<%--            <%}%>--%>
+<%--            for (var k = 0; k < arrUserlogged.length; k++) {--%>
+<%--                if ($('#email').val() === arrUserlogged[k]) {--%>
+<%--                    $('#errorLogin').html('Tài khoản đã được đăng nhập');--%>
+<%--                    return false;--%>
+<%--                }--%>
+<%--            }--%>
+<%--            return true;--%>
+<%--        });--%>
+<%--        $('#formdn').on('keydown', function () {--%>
+<%--            $('#errorLogin').html();--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>
 
 </body>
 </html>

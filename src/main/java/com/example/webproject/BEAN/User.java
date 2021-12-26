@@ -11,10 +11,26 @@ public class User {
     private String password;
     private String re_password;
     private int role;
+    private String code;
 
 
     public User() {
     }
+
+    public User(String name, String email, String phone, String gender, String date, String month, String year, String password, String re_password, int role, String code) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.date = date;
+        this.month = month;
+        this.year = year;
+        this.password = password;
+        this.re_password = re_password;
+        this.role = role;
+        this.code = code;
+    }
+
 
     public User(String name, String email, String phone, String gender, String date, String month, String year, String password, String re_password) {
         this.name = name;
@@ -27,6 +43,7 @@ public class User {
         this.password = password;
         this.re_password = re_password;
     }
+
 
     public int getRole() {
         return role;
@@ -106,5 +123,13 @@ public class User {
 
     public void setRe_password(String re_password) {
         this.re_password = re_password;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

@@ -2,6 +2,7 @@ package com.example.webproject.controller;
 
 import com.example.webproject.BEAN.User;
 import com.example.webproject.DAO.UserDAO;
+import com.example.webproject.service.SendEmail;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -12,6 +13,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @WebServlet(name = "RegisterController", value = "/RegisterController")
 public class RegisterController extends HttpServlet {
@@ -37,25 +39,34 @@ public class RegisterController extends HttpServlet {
         String re_password = request.getParameter("re_password");
         String re_passwordHash = hashPassword(re_password);
 
+        //change code by hashPassword
+        String code;
+        Random random = new Random();
+        random.nextInt(999999);
+        code = hashPassword("" + random);
+
         User user = new User(name, email, phone, gender, date, month, year, passwordHash, re_passwordHash);
+        user.setCode(code);
+        //create DAO file
+
+
         Map<String, User> listUser = (Map<String, User>) session.getAttribute("listUser");
         if (listUser == null) {
             listUser = new HashMap<String, User>();
         }
         listUser.put(user.getEmail(), user);
-        UserDAO.getInstance().register(user);
-        session.setAttribute("listUser", listUser);
-        response.sendRedirect("dangnhap.jsp");
-//        if (UserDAO.getInstance().addUser(user)) {
-////            HttpSession session = request.getSession();
-//            session.setAttribute("user", user);
-//            request.setAttribute("success", "Đăng kí thành công");
-//            response.sendRedirect("dangnhap.jsp");
-//        } else {
-//            System.out.println("Error");
-//            request.setAttribute("error", "Register Failed. Username exists!!!");
-//            request.getRequestDispatcher("dangky.jsp").forward(request, response);
-//        }
+//        UserDAO.getInstance().register(user);
+        UserDAO userDAO = new UserDAO();
+        String str = userDAO.registerUser(user);
+        if (str.equals("Success")) {
+            response.sendRedirect("verify.jsp");
+            request.setAttribute("email", email);
+            session.setAttribute("listUser", listUser);
+        } else {
+            response.sendRedirect("index.jsp");
+        }
+//        session.setAttribute("listUser", listUser);
+//        response.sendRedirect("dangnhap.jsp");
     }
 
     public String hashPassword(String password) {

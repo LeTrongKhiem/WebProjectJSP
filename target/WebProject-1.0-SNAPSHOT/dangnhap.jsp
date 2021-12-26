@@ -93,7 +93,7 @@
 <%--            arrUserlogged[<%=i%>] = '<%=userLogged.get(i)%>';--%>
 <%--            <%}%>--%>
 <%--            for (var k = 0; k < arrUserlogged.length; k++) {--%>
-<%--                if ($('#email').val() === arrUserlogged[k]) {   --%>
+<%--                if ($('#email').val() === arrUserlogged[k]) {--%>
 <%--                    $('#errorLogin').html('Tài khoản đã được đăng nhập');--%>
 <%--                    return false;--%>
 <%--                }--%>

@@ -41,7 +41,7 @@
                     <div class="header-nav__item">
                         <ul class="header-nav__logs-list">
                             <li class="header-nav__log-item">
-                                <a href="trangbaohanh.jsp" class="header-nav__log-link">Tra cứu bảo hành</a>
+                                <a href="./trangbaohanh.jsp" class="header-nav__log-link">Tra cứu bảo hành</a>
                             </li>
                             <li class="header-nav__log-item">
                                 <a href="./dangnhap.jsp" class="header-nav__log-link">Đăng nhập</a>
@@ -79,7 +79,7 @@
 
                     <!-- Menu Mobile -->
                     <li class="header-menu__item">
-                        <a href="mobile.jsp" class="header-menu__item-link">
+                        <a href="./mobile.jsp" class="header-menu__item-link">
                             <i class="header-menu__item-icon fas fa-mobile-alt"></i>
                             <p class="header-menu__item-name">Điện thoại</p>
                         </a>

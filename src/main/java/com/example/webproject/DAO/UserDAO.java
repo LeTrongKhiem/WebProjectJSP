@@ -2,6 +2,7 @@ package com.example.webproject.DAO;
 
 import com.example.webproject.BEAN.User;
 import com.example.webproject.DB.DBConnection;
+import com.example.webproject.service.SendEmail;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -28,7 +29,7 @@ public class UserDAO implements ObjectDAO {
     public User getInfoUser(String emailUser) {
         User user = new User();
         try {
-            ResultSet resultSet = new DBConnection().selectData("select * from dangky where Email = '" + emailUser + "'");
+            ResultSet resultSet = new DBConnection().selectData("select * from dangky(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK) where Email = '" + emailUser + "'");
 
             while (resultSet.next()) {
                 String name = resultSet.getString(1);
@@ -102,6 +103,37 @@ public class UserDAO implements ObjectDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String registerUser(User user) {
+        Connection connection = DBConnection.getConnection();
+        try {
+            String sql = "insert into dangky(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK, Code) values (?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getEmail());
+            statement.setString(3, user.getPhone());
+            if (user.getGender().equals("1")) {
+                statement.setString(4, "Nam");
+            } else {
+                statement.setString(4, "Nữ");
+            }
+            statement.setString(5, user.getDate());
+            statement.setString(6, user.getMonth());
+            statement.setString(7, user.getYear());
+            statement.setString(8, user.getPassword());
+            statement.setString(9, user.getRe_password());
+            statement.setString(10, user.getCode());
+            int i = statement.executeUpdate();
+            if (i != 0) {
+                SendEmail sendEmail = new SendEmail(user.getEmail(), user.getCode());
+                sendEmail.sendEmail();
+                return "Success";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "Error";
     }
 
     @Override

@@ -29,7 +29,7 @@ public class UserDAO implements ObjectDAO {
     public User getInfoUser(String emailUser) {
         User user = new User();
         try {
-            ResultSet resultSet = new DBConnection().selectData("select * from dangky(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK) where Email = '" + emailUser + "'");
+            ResultSet resultSet = new DBConnection().selectData("select * from `user`(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK) where Email = '" + emailUser + "'");
 
             while (resultSet.next()) {
                 String name = resultSet.getString(1);
@@ -52,7 +52,7 @@ public class UserDAO implements ObjectDAO {
     @Override
     public boolean checkLogin(String email, String password) {
         try {
-            ResultSet resultSet = new DBConnection().selectData("select * from dangky where Email = '" + email + "'");
+            ResultSet resultSet = new DBConnection().selectData("select * from `user` where Email = '" + email + "'");
 
             while (resultSet.next()) {
                 if (resultSet.getString("Email").equals(email) && resultSet.getString("MatKhau").equals(password)) {
@@ -69,7 +69,7 @@ public class UserDAO implements ObjectDAO {
     public boolean addUser(Object obj) { //add user to database
         User user = (User) obj;
         try {
-            String sql = "insert into dangky(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK) values ('" + user.getName() + "', '" + user.getEmail() + "','"
+            String sql = "insert into `user`(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK) values ('" + user.getName() + "', '" + user.getEmail() + "','"
                     + user.getPhone() + "','" + user.getGender() + "', '" + user.getDate() + "','"
                     + user.getMonth() + "','" + user.getYear() + "', '" + user.getPassword() + "','" + user.getRe_password() + "')";
             new DBConnection().executeSQL(sql);
@@ -83,7 +83,7 @@ public class UserDAO implements ObjectDAO {
     public void register(User user) {
         Connection connection = DBConnection.getConnection();
         try {
-            String sql = "insert into dangky(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK) values (?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into `user`(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK) values (?,?,?,?,?,?,?,?,?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, user.getName());
             statement.setString(2, user.getEmail());
@@ -108,7 +108,7 @@ public class UserDAO implements ObjectDAO {
     public String registerUser(User user) {
         Connection connection = DBConnection.getConnection();
         try {
-            String sql = "insert into dangky(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK, Code) values (?,?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into `user`(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK, Code) values (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, user.getName());
             statement.setString(2, user.getEmail());
@@ -139,7 +139,7 @@ public class UserDAO implements ObjectDAO {
     @Override
     public boolean editPassword(User user) {//method edit password user
         Connection connection = DBConnection.getConnection();
-        String sql = "update dangky set MatKhau='" + user.getPassword() + "' where Email = '" + user.getEmail() + "'";
+        String sql = "update `user` set MatKhau='" + user.getPassword() + "' where Email = '" + user.getEmail() + "'";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.executeUpdate();
@@ -153,7 +153,7 @@ public class UserDAO implements ObjectDAO {
         Map<String, User> list = new HashMap<>();
         Connection connection = DBConnection.getConnection();
         try {
-            String sql = "select HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, Matkhau, NhapLaiMK from dangky";
+            String sql = "select HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, Matkhau, NhapLaiMK from `user`";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -199,7 +199,7 @@ public class UserDAO implements ObjectDAO {
         List<String> listEmail = new ArrayList<>();
         Connection connection = DBConnection.getConnection();
         try {
-            String sql = "select Email from dangky";
+            String sql = "select Email from `user`";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -212,12 +212,13 @@ public class UserDAO implements ObjectDAO {
     }
 
     public static void main(String[] args) {//test
-        User user = new User("khiem", "khiem200111@gmail.com", "0123456", "Nam", "16", "04", "2001", "123456", "123456");
+        User user = new User("khiem", "khiem2001@gmail.com", "0123456", "Nam", "16", "04", "2001", "123456", "123456");
 //        System.out.println(new UserDAO().addUser(user));
 //        System.out.println(new UserDAO().checkLogin("lekhiem2001@gmail.com", "letrongkhiem2001"));
 //        System.out.println(UserDAO.getInstance().listUser());
 //        System.out.println(UserDAO.getInstance().login("khiem@gmail.com", "123456"));
 //        System.out.println(UserDAO.getInstance().getListEmail());
 //        new UserDAO().register(user);
+        System.out.println(UserDAO.getInstance().registerUser(user));
     }
 }

@@ -54,13 +54,14 @@ public class RegisterController extends HttpServlet {
         if (listUser == null) {
             listUser = new HashMap<String, User>();
         }
-        listUser.put(user.getEmail(), user);
 //        UserDAO.getInstance().register(user);
         UserDAO userDAO = new UserDAO();
         String str = userDAO.registerUser(user);
         if (str.equals("Success")) {
+            listUser.put(user.getEmail(), user);
             response.sendRedirect("verify.jsp");
             request.setAttribute("email", email);
+            session.setAttribute("email", email);
             session.setAttribute("listUser", listUser);
         } else {
             response.sendRedirect("index.jsp");

@@ -19,12 +19,12 @@ public class ActivationAccount extends HttpServlet {
 
         Connection connection = DBConnection.getConnection();
         try {
-            PreparedStatement statement = connection.prepareStatement("select Email, `Code`, Active from dangky where Email = ? and `Code` = ? and Active = '0'");
+            PreparedStatement statement = connection.prepareStatement("select Email, `Code`, Active from `user` where Email = ? and `Code` = ? and Active = '0'");
             statement.setString(1, email);
             statement.setString(2, code);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                PreparedStatement statement1 = connection.prepareStatement("update dangky set Active = '1' where Email = ? and `Code` = ?");
+                PreparedStatement statement1 = connection.prepareStatement("update `user` set Active = '1' where Email = ? and `Code` = ?");
                 statement1.setString(1, email);
                 statement1.setString(2, code);
                 int i = statement1.executeUpdate();

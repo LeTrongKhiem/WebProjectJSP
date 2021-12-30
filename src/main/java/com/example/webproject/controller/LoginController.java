@@ -35,8 +35,9 @@ public class LoginController extends HttpServlet {
             userLogged.add(email);
             context.setAttribute("userLogged", userLogged);
             session.setAttribute("email", email);
-            String encodedURL = response.encodeRedirectURL(urlRQ);
-            response.sendRedirect(encodedURL);
+//            String encodedURL = response.encodeRedirectURL(urlRQ);
+//            response.sendRedirect(encodedURL);
+            response.sendRedirect("index.jsp");
         }
     }
 
@@ -73,11 +74,12 @@ public class LoginController extends HttpServlet {
             session.setMaxInactiveInterval(3000 * 60);
             Cookie userCookie = new Cookie("user", URLEncoder.encode(user.getName(), "UTF-8"));
             userLogged.add(email);
-            context.setAttribute("userLogged", userLogged);//them vao tai khoan da dang nhap
+//            context.setAttribute("userLogged", userLogged);//them vao tai khoan da dang nhap
             session.setAttribute("email", email);
             response.addCookie(userCookie);
-            String encodedURL = response.encodeRedirectURL(urlRQ);
-            response.sendRedirect(encodedURL);
+//            String encodedURL = response.encodeRedirectURL(urlRQ);
+//            response.sendRedirect(encodedURL);
+            response.sendRedirect("index.jsp");
         } else if (!valid) {
             request.setCharacterEncoding("UTF-8");
             response.setCharacterEncoding("UTF-8");

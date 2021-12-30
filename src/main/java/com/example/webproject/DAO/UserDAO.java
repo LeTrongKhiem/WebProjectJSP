@@ -153,7 +153,7 @@ public class UserDAO implements ObjectDAO {
         Map<String, User> list = new HashMap<>();
         Connection connection = DBConnection.getConnection();
         try {
-            String sql = "select HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, Matkhau, NhapLaiMK from `user`";
+            String sql = "select HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, Matkhau, NhapLaiMK from `user` where Active='1'";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -215,10 +215,10 @@ public class UserDAO implements ObjectDAO {
         User user = new User("khiem", "khiem2001@gmail.com", "0123456", "Nam", "16", "04", "2001", "123456", "123456");
 //        System.out.println(new UserDAO().addUser(user));
 //        System.out.println(new UserDAO().checkLogin("lekhiem2001@gmail.com", "letrongkhiem2001"));
-//        System.out.println(UserDAO.getInstance().listUser());
+        System.out.println(UserDAO.getInstance().listUser());
 //        System.out.println(UserDAO.getInstance().login("khiem@gmail.com", "123456"));
 //        System.out.println(UserDAO.getInstance().getListEmail());
 //        new UserDAO().register(user);
-        System.out.println(UserDAO.getInstance().registerUser(user));
+//        System.out.println(UserDAO.getInstance().registerUser(user));
     }
 }

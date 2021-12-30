@@ -31,6 +31,16 @@
     <link rel="stylesheet" href="<c:url value= './assets/css/dangnhap.css'/>">
 
 </head>
+<style>
+    .gg-button {
+        width: 250px;
+        height: 32px;
+        background-color: #4385f5;
+        border: 2px;
+        border-radius: 10px;
+        font-size: 20px;
+    }
+</style>
 <body>
 <div class="main">
     <%--  header  --%>
@@ -55,7 +65,7 @@
                     }
                        %>">
                 <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
-                <p id="errorLogin" style="color: red"><%
+                <p id="errorLogin" style="color: red; font-size: 16px; text-align: center"><%
                     if (request.getAttribute("errorAccount") != null && !request.getAttribute("errorAccount").equals("")) {
                         out.print(request.getAttribute("errorAccount"));
                     } else if (request.getAttribute("errorCC") != null && !request.getAttribute("errorCC").equals("")) {
@@ -71,8 +81,12 @@
                     </span>
                 <span class="v2-right">
                     <a class="v2-remember-password" href=""> Quên mật khẩu ?</a>
-                </span>
+                </span> <br>
+
             </div>
+<%--            <a href="" type="submit" class="gg-button"><i class="fab fa-google-plus-g"></i>Đăng nhập với--%>
+<%--                Google--%>
+<%--            </a>--%>
         </form>
     </div>
     <%--    footer --%>

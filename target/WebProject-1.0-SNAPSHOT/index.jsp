@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="common/taglib.jsp" %>
@@ -21,6 +23,12 @@
 </head>
 
 <body>
+<%
+    if (application.getAttribute("userLogged") == null) {
+        List<String> ds = new ArrayList<>();
+        application.setAttribute("userLogged", ds);
+    }
+%>
 <div class="main">
 
     <%--  header  --%>

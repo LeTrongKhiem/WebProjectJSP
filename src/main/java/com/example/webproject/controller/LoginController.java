@@ -71,10 +71,10 @@ public class LoginController extends HttpServlet {
         if (valid) {//add cookie user
             User user = listUser.get(email);
             session.setAttribute("user", user);
-            session.setMaxInactiveInterval(3000 * 60);
+            session.setMaxInactiveInterval(30 * 60);
             Cookie userCookie = new Cookie("user", URLEncoder.encode(user.getName(), "UTF-8"));
             userLogged.add(email);
-//            context.setAttribute("userLogged", userLogged);//them vao tai khoan da dang nhap
+            context.setAttribute("userLogged", userLogged);//them vao tai khoan da dang nhap
             session.setAttribute("email", email);
             response.addCookie(userCookie);
 //            String encodedURL = response.encodeRedirectURL(urlRQ);
@@ -100,16 +100,6 @@ public class LoginController extends HttpServlet {
             valid = true;
         }
 
-
-//        User user = UserDAO.getInstance().getInfoUser(email);
-//        if (UserDAO.getInstance().checkLogin(email, password)) {
-//            HttpSession session = request.getSession();
-//            session.setAttribute("user", user);
-//            response.sendRedirect("index.jsp");
-//        } else {
-//            request.setAttribute("error", "Username or Password is incorrect");
-//            request.getRequestDispatcher("dangnhap.jsp").forward(request, response);
-//        }
     }
 
     public String hashPassword(String password) {

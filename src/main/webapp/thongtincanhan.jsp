@@ -51,7 +51,7 @@
             <div class="col-md-9 personal-info">
                 <h3>Thông tin cá nhân</h3>
 
-                <form class="form-horizontal" role="form">
+                <form class="form-horizontal" role="form" action="ChangePasswordController" method="post">
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Họ Tên:</label>
                         <div class="col-lg-8">
@@ -61,7 +61,7 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Địa chỉ:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" value="">
+                            <input class="form-control" type="text" value="${sessionScope.user.address}" name="address">
                         </div>
                     </div>
                     <div class="form-group">
@@ -83,33 +83,55 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Mật khẩu:</label>
+                        <label class="col-lg-3 control-label">Mật khẩu mới:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="password" value="">
+                            <input class="form-control" type="password" value="" name="newPass" id="newPass">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Xác nhận mật khẩu:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="password">
+                            <input class="form-control" type="password" name="confirmPass" id="confirmPass">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label"></label>
                         <div class="col-lg-8">
-                            <input type="button" class="btn btn-primary btn-save" value="Cập nhật">
+                            <button type="submit" class="btn-save"
+                                    style="width: 150px; height: 40px; font-size: 1.6rem">Cập nhật
+                            </button>
                             <span></span>
                             <input type="reset" class="btn btn-default" value="Thoát">
+                        </div>
+                    </div>
+                    <p><font size="2" color="red" id="repassError"></font></p>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"></label>
+                        <div class="col-lg-8">
+                            <span><%
+                                if (request.getAttribute("changePass") != null) {
+                                    out.print(request.getAttribute("changePass"));
+                                }
+                            %></span>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
 </div>
 <%--    footer --%>
 <%@include file="/footer.jsp" %>
 <%--    footer --%>
+<script>
+    if ($('#newPass').val().length < 5) {
+        $('#passError').html('Mật khẩu phải nhiều hơn 6 kí tự');
+        return false;
+    }
+    if ($('#newPass').val() !== $('#confirmPass').val()) {
+        $('#repassError').html('Mật khẩu nhập lại không chính xác!');
+        return false;
+    }
+</script>
 </body>
 </html>

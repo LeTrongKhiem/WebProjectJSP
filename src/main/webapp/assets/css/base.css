@@ -7,6 +7,7 @@
     --header-height: 170px;
     --header-nav-min-height: 62px;
     --nav-mobile-width: 300px;
+    --border-color: #dbdbdb;
 }
 
 ::-webkit-scrollbar {

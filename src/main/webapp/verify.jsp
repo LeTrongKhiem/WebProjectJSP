@@ -36,9 +36,7 @@
             <div class="form-signin-heading text-center">
                 <h1 class="sign-title" style="font-size: 29px; text-align: center">Cảm ơn bạn đã đăng kí tài khoản tại
                     Website</h1>
-                <p style="font-size: 13px; text-align: center">Email xác minh đã được gửi vào email: <a href=""><%
-                    out.print(request.getAttribute("email"));
-                %></a>
+                <p style="font-size: 13px; text-align: center">Email xác minh đã được gửi vào email: <a href="">${sessionScope.user.email}</a>
                     .Vui lòng kiểm tra trong hòm thư</p>
             </div>
             <div class="v2-login-wrap">

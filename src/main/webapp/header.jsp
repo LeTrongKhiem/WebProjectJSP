@@ -8,16 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
-<style>
-    .header__navbar--icon .cart-quantity {
-        position: absolute;
-        top: -7px;
-        font-size: 15px;
-        right: 30%;
-        /* left: 110px; */
-        color: goldenrod;
-    }
-</style>
+
 <div class="header">
     <div class="header-nav">
         <div class="grid wide no-margin">
@@ -57,10 +48,10 @@
                                         </a>
                                     </li>
                                     <li class="header__navbar-items header__navbar-user header__navbar-items--separate">
-                                    <li class="header__navbar-items">
-                                        <a href="#" class="header__navbar-items-link">
-                                            <i class="header__navbar--icon fas fa-shopping-cart"><p
-                                                    class="cart-quantity">(0)</p></i>
+                                    <li class="header__navbar-items header__navbar-user header__cart-wrap">
+                                        <a href="#" class="header__navbar-items-link ">
+                                            <i class="header__navbar--icon fas fa-shopping-cart"></i>
+                                            <span class="header__card-notice">3</span>
                                         </a>
                                     </li>
                                     <li class="header__navbar-items header__navbar-user header__navbar-items--separate">

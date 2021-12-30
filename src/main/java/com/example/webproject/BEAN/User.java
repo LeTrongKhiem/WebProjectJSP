@@ -12,7 +12,7 @@ public class User {
     private String re_password;
     private int role;
     private String code;
-
+    private String address;
 
     public User() {
     }
@@ -34,6 +34,19 @@ public class User {
 
     public User(String name, String email, String phone, String gender, String date, String month, String year, String password, String re_password) {
         this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.date = date;
+        this.month = month;
+        this.year = year;
+        this.password = password;
+        this.re_password = re_password;
+    }
+
+    public User(String name, String address, String email, String phone, String gender, String date, String month, String year, String password, String re_password) {
+        this.name = name;
+        this.address = address;
         this.email = email;
         this.phone = phone;
         this.gender = gender;
@@ -131,5 +144,14 @@ public class User {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

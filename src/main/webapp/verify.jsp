@@ -36,18 +36,22 @@
             <div class="form-signin-heading text-center">
                 <h1 class="sign-title" style="font-size: 29px; text-align: center">Cảm ơn bạn đã đăng kí tài khoản tại
                     Website</h1>
-                <p style="font-size: 13px; text-align: center">Email xác minh đã được gửi vào email: <a href="">${sessionScope.user.email}</a>
+                <p style="font-size: 13px; text-align: center">Email xác minh đã được gửi vào email: <a
+                        href="">${sessionScope.user.email}</a>
                     .Vui lòng kiểm tra trong hòm thư</p>
             </div>
             <div class="v2-login-wrap">
-                <a href="./dangnhap.jsp">
+                <a href="#">
                     <button class="btn btn-lg btn-login" type="submit">Xác nhận</button>
                 </a>
 
             </div>
             <div class="v2-login-bottom" style="margin-left: 72px">
-                    <span class="v2-center"><span class="v2-hide">Bạn chưa nhận được mã</span><a href=""
-                                                                                                 class="v2-register-now"> ( Gửi lại mã )</a>
+                    <span class="v2-left"><span class="v2-hide">Bạn chưa nhận được mã</span><a href=""
+                                                                                               class="v2-register-now"> ( Gửi lại mã )</a>
+                    </span>
+                <span class="v2-right">
+                        <a class="v2-remember-password" href="./dangnhap.jsp"> Đăng nhập ngay</a>
                     </span>
             </div>
         </form>

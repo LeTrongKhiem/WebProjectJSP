@@ -8,7 +8,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
+<style>
+    .header__cart-wrap {
+        position: relative;
+        display: inline-block;
+        padding: 0 12px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
 
+    .header__card-notice {
+        position: absolute;
+        top: -10px;
+        right: -4px;
+        padding: 2px 4px;
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+        border-radius: 10px;
+        border: 2px solid red;
+        color: #fff;
+        background-color: red;
+    }
+</style>
 <div class="header">
     <div class="header-nav">
         <div class="grid wide no-margin">

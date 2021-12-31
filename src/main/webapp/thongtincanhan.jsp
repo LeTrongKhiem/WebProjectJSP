@@ -35,7 +35,6 @@
 <div class="container">
     <h2 class="container-heading">Tài khoản</h2>
     <div class="grid wide">
-
         <div class="row">
             <div class="col-lg-3 user-profile-left">
                 <div class="text-center user-info">
@@ -113,6 +112,11 @@
                                     out.print(request.getAttribute("changePass"));
                                 }
                             %></span>
+<%--                            <%String action = request.getParameter("action"); %>--%>
+<%--                            <%if (action.equals("doimk")) { %>--%>
+<%--                            <center><h2 style="color: #BDBDBD">Cập nhật thông tin thành công ! <span--%>
+<%--                                    class="glyphicon glyphicon-alert"></span></h2></center>--%>
+<%--                            <%} %>--%>
                         </div>
                     </div>
                 </form>
@@ -123,6 +127,7 @@
 <%--    footer --%>
 <%@include file="/footer.jsp" %>
 <%--    footer --%>
+<script src="<c:url value='./js/tool.js'/>"></script>
 <script>
     if ($('#newPass').val().length < 5) {
         $('#passError').html('Mật khẩu phải nhiều hơn 6 kí tự');

@@ -34,7 +34,7 @@ public class ChangePasswordController extends HttpServlet {
             request.setAttribute("changePass", "Cập nhật thông tin thành công. Vui lòng đăng xuất và đăng nhập lại bằng mật khẩu quý khách vừa thay đổi!");
 
         }
-//        response.sendRedirect("thongtincanhan.jsp");
+//        response.sendRedirect("thongtincanhan.jsp?action=doimk");
         request.getRequestDispatcher("thongtincanhan.jsp").forward(request, response);
     }
 

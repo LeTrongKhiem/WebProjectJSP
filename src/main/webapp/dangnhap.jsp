@@ -80,13 +80,13 @@
                                                                                            class="v2-register-now"> ( Đăng ký ngay )</a>
                     </span>
                 <span class="v2-right">
-                    <a class="v2-remember-password" href=""> Quên mật khẩu ?</a>
+                    <a class="v2-remember-password" href="quenmatkhau.jsp"> Quên mật khẩu ?</a>
                 </span> <br>
 
             </div>
-<%--            <a href="" type="submit" class="gg-button"><i class="fab fa-google-plus-g"></i>Đăng nhập với--%>
-<%--                Google--%>
-<%--            </a>--%>
+            <%--            <a href="" type="submit" class="gg-button"><i class="fab fa-google-plus-g"></i>Đăng nhập với--%>
+            <%--                Google--%>
+            <%--            </a>--%>
         </form>
     </div>
     <%--    footer --%>

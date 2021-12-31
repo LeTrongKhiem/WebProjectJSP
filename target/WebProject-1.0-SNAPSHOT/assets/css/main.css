@@ -1544,7 +1544,7 @@
     transform: translateY(-50%);
 }
 
-.header__cart-wrap{
+.header__cart-wrap {
     position: relative;
     display: inline-block;
     padding: 0 12px;
@@ -1552,7 +1552,7 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-.header__card-notice{
+.header__card-notice {
     position: absolute;
     top: -10px;
     right: -4px;

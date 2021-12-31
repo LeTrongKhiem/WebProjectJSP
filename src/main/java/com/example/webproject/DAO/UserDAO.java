@@ -139,7 +139,7 @@ public class UserDAO implements ObjectDAO {
     @Override
     public boolean editPassword(User user) {//method edit password user
         Connection connection = DBConnection.getConnection();
-        String sql = "update `user` set MatKhau='" + user.getPassword() + "', DiaChi = '" + user.getAddress() + "' where Email = '" + user.getEmail() + "'";
+        String sql = "update `user` set MatKhau='" + user.getPassword() + "', DiaChi = '" + user.getAddress() + "', NhapLaiMK = '" + user.getRe_password() + "' where Email = '" + user.getEmail() + "'";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.executeUpdate();

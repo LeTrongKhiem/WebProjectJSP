@@ -150,7 +150,7 @@
 
                     <!-- Menu Mobile -->
                     <li class="header-menu__item">
-                        <a href="./mobile.jsp" class="header-menu__item-link">
+                        <a href="productlist.jsp" class="header-menu__item-link">
                             <i class="header-menu__item-icon fas fa-mobile-alt"></i>
                             <p class="header-menu__item-name">Điện thoại</p>
                         </a>
@@ -163,7 +163,7 @@
                                         <div class="row">
                                             <div class="col l-4 m-4">
                                                 <div class="header-sub-menu__item">
-                                                    <a href="mobile.jsp" class="header-sub-menu__link">
+                                                    <a href="productlist.jsp" class="header-sub-menu__link">
                                                         <i
                                                                 class="header-sub-menu__icon fas fa-angle-double-right"></i>
                                                         Apple
@@ -998,7 +998,7 @@
 
                     <!-- Menu news -->
                     <li class="header-menu__item">
-                        <a href="" class="header-menu__item-link">
+                        <a href="./tintuc.jsp" class="header-menu__item-link">
                             <i class="header-menu__item-icon fas fa-newspaper"></i>
                             <p class="header-menu__item-name">Tin tức</p>
                         </a>
@@ -1124,7 +1124,16 @@
                         <a href="#" class="header-mobile-sub-nav__item-link">Apple</a>
                     </li>
                     <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Samsung</a>
+                        <a href="#" class="header-mobile-sub-nav__item-link">MSI</a>
+                    </li>
+                    <li class="header-mobile-sub-nav__item">
+                        <a href="#" class="header-mobile-sub-nav__item-link">HP</a>
+                    </li>
+                    <li class="header-mobile-sub-nav__item">
+                        <a href="#" class="header-mobile-sub-nav__item-link">Asus</a>
+                    </li>
+                    <li class="header-mobile-sub-nav__item">
+                        <a href="#" class="header-mobile-sub-nav__item-link">Dell</a>
                     </li>
                 </ul>
             </li>

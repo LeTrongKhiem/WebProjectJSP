@@ -58,5 +58,6 @@
     <orderEntry type="library" name="Maven: io.leangen.geantyref:geantyref:1.3.13" level="project" />
     <orderEntry type="library" name="Maven: com.github.ben-manes.caffeine:caffeine:3.0.3" level="project" />
     <orderEntry type="library" name="twitter-bootstrap" level="application" />
+    <orderEntry type="library" name="all" level="application" />
   </component>
 </module>

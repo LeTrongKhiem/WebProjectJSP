@@ -40,44 +40,4 @@ public class ProductListDAOImpl implements ProductListDAO {
         }
         return null;
     }
-
-    @Override
-    public void insert(ProductList product) {
-
-    }
-
-    @Override
-    public void edit(ProductList product) {
-
-    }
-
-    @Override
-    public void delete(int id) {
-
-    }
-
-    @Override
-    public ProductList get(int id) {
-        return null;
-    }
-
-    @Override
-    public List<ProductList> getAll() {
-        return null;
-    }
-
-    @Override
-    public List<ProductList> search(String username) {
-        return null;
-    }
-
-    @Override
-    public List<ProductList> seachByCategory(int cate_id) {
-        return null;
-    }
-
-    @Override
-    public List<ProductList> seachByName(String productName) {
-        return null;
-    }
 }

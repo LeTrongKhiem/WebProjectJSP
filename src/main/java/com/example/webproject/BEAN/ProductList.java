@@ -6,19 +6,19 @@ public class ProductList {
     private String linkSP;
     private String ten;
     private long gia;
-    private String tenThuongHieu;
+    private String tenDanhMuc;
     private String loaiSP;
 
     public ProductList() {
     }
 
-    public ProductList(String id, String link_hinhanh, String linkSP, String ten, long gia, String tenThuongHieu, String loaiSP) {
+    public ProductList(String id, String link_hinhanh, String linkSP, String ten, long gia, String tenDanhMuc, String loaiSP) {
         this.id = id;
         this.link_hinhanh = link_hinhanh;
         this.linkSP = linkSP;
         this.ten = ten;
         this.gia = gia;
-        this.tenThuongHieu = tenThuongHieu;
+        this.tenDanhMuc = tenDanhMuc;
         this.loaiSP = loaiSP;
     }
 
@@ -62,12 +62,12 @@ public class ProductList {
         this.gia = gia;
     }
 
-    public String getTenThuongHieu() {
-        return tenThuongHieu;
+    public String getTenDanhMuc() {
+        return tenDanhMuc;
     }
 
-    public void setTenThuongHieu(String tenThuongHieu) {
-        this.tenThuongHieu = tenThuongHieu;
+    public void setTenDanhMuc(String tenDanhMuc) {
+        this.tenDanhMuc = tenDanhMuc;
     }
 
     public String getLoaiSP() {
@@ -86,7 +86,7 @@ public class ProductList {
                 ", linkSP='" + linkSP + '\'' +
                 ", ten='" + ten + '\'' +
                 ", gia=" + gia +
-                ", tenThuongHieu='" + tenThuongHieu + '\'' +
+                ", tenThuongHieu='" + tenDanhMuc + '\'' +
                 ", loaiSP='" + loaiSP + '\'' +
                 '}';
     }

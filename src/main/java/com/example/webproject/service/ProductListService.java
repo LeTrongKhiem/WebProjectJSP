@@ -1,19 +1,23 @@
 package com.example.webproject.service;
 
+import com.example.webproject.BEAN.ProductList;
+
 import java.util.List;
 
-public class ProductListService implements IProduct{
-    private static ProductListService instance;
+public interface ProductListService {
+    void insert(ProductList product);
 
-    public static ProductListService getInstance() {
-        if (instance == null) {
-            instance = new ProductListService();
-        }
-        return instance;
-    }
+    void edit(ProductList product);
 
-    @Override
-    public List<Object> getAll() {
-        return null;
-    }
+    void delete(int id);
+
+    ProductList get(int id);
+
+    List<ProductList> getAll();
+
+    List<ProductList> search(String username);
+
+    List<ProductList> seachByCategory(int cate_id);
+
+    List<ProductList> seachByName(String productName);
 }

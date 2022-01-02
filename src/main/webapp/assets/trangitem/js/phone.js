@@ -124,16 +124,16 @@ $(document).ready(function () {
       j++;
       $(".rating-star").append(
         '<i class="fa start fa-star" data-value="' +
-          j +
-          '" aria-hidden="true"></i>'
+        j +
+        '" aria-hidden="true"></i>'
       );
     }
     for (var i = 0; i < 5 - value_star; i++) {
       j++;
       $(".rating-star").append(
         '<i class="fa start fa-star-o" data-value="' +
-          j +
-          '" aria-hidden="true"></i>'
+        j +
+        '" aria-hidden="true"></i>'
       );
     }
   });
@@ -455,9 +455,8 @@ function showInfoVariantSync(
     button_add_to_cart = `<a href="javascript::" data-product_type="phone_variants" class="buy add-to-cart v2-buy"><div class="icon"></div><span>THÊM VÀO GIỎ HÀNG</span></a>`;
     button_out_stock = `<a href="javascript::"  class="buy-now disabled">Hết hàng</a>`;
     button_register = `<a href="#" class="buy register" data-product_type="phone_variants">ĐẶT HÀNG TRƯỚC</a>`;
-    button_chat = `<a href="${
-      $(".mobilecity-messenger").attr("href") ?? "javascript:;"
-    }" target="_blank" class="chat">CHAT TƯ VẤN</a>`;
+    button_chat = `<a href="${$(".mobilecity-messenger").attr("href") ?? "javascript:;"
+      }" target="_blank" class="chat">CHAT TƯ VẤN</a>`;
     button_pre_order = `<a href="javascript:;" data-product_id="${phone_id}" data-variant_id="0" data-service_product_id="0" class="pre-order">ĐẶT HÀNG TRƯỚC</a>`;
     message_not_sync = `<p class="message">Phiên bản hiện tại đang tạm hết hàng, quý khách vui lòng liên hệ để được tư vấn hoặc đặt hàng trước hoặc chọn phiên bản khác!</p>`;
     message_stop_business = `<p class="message">Sản phẩm đã ngừng kinh doanh, quý khách vui lòng liên hệ để được tư vấn hoặc tham khảo sản phẩm tương tự!</p>`;
@@ -492,46 +491,7 @@ function showInfoVariantSync(
     showButtonAndMessage() {
       this.getInstock();
     }
-    getInstock() {
-      let pv = this;
-      let is_stock = 0;
-      loadAjax(
-        "/ajax/check-instock-all-location",
-        {
-          product_id: pv.phone_variant_ids,
-          product_type: "phone_variants",
-          only_total: 0,
-        },
-        {
-          beforeSend: function () {},
-          success: function (result) {
-            if (!result.success) {
-              pv.div_button.html(pv.button_chat + pv.button_pre_order);
-              pv.error = 1;
-              updateIsStockProduct(phone_id, 0);
-            } else {
-              pv.instocks = result.data;
-              let status_message_tmp = pv.status_message_in_stock;
-              if (pv.instocks.length <= 0) {
-                status_message_tmp = pv.status_message_out_stock;
-              }
-              pv.div_status_box.find("span").html(status_message_tmp);
-              pv.mixInstockDataAndVariant();
-              pv.updateButtonBuy();
-              pv.div_status_box.show();
-              pv.updateAttributeInstock(false);
-              if (pv.isInstock()) {
-                is_stock = 1;
-              }
-              updateIsStockProduct(phone_id, is_stock);
-            }
-            $(".attribute-group, .warranty-list").show();
-            $(".price-product").show();
-          },
-          error: function (error) {},
-        }
-      );
-    }
+
     updateButtonBuy() {
       $(".store-list li .status-stock")
         .removeClass("instock")
@@ -824,7 +784,7 @@ function showInfoVariantSync(
         btn.attr(
           "data-service_product_id",
           this.div_product.find(".warranty-item.active").data("warranty_id") ??
-            0
+          0
         );
         this.removeRequiredAttribute();
         $(".buy-box-v2 .pre-order")
@@ -962,9 +922,8 @@ function showInfoVariantNotSync(
     div_product = $(".product-content-box");
     div_button = $(".buy-box-v2");
     div_message = $(".product-messsage");
-    button_chat = `<a href="${
-      $(".mobilecity-messenger").attr("href") ?? "javascript:;"
-    }" target="_blank" class="chat">CHAT TƯ VẤN</a>`;
+    button_chat = `<a href="${$(".mobilecity-messenger").attr("href") ?? "javascript:;"
+      }" target="_blank" class="chat">CHAT TƯ VẤN</a>`;
     button_pre_order = `<a href="javascript:;" data-product_id="${phone_id}" data-variant_id="0" data-service_product_id="0" class="pre-order">ĐẶT HÀNG TRƯỚC</a>`;
     message_not_sync = `<p class="message">Sản phẩm hiện tại đang tạm hết hàng, quý khách vui lòng liên hệ để được tư vấn hoặc tham khảo sản phẩm tương tự!</p>`;
     color_selected_id = 0;
@@ -1171,52 +1130,4 @@ function responsiveRelatedProduct() {
     }
   }
 }
-function showRelatedProduct(phone_id) {
-  loadAjaxGet(`/ajax/phone-get-list-related-phone/${phone_id}`, {
-    success: function (result) {
-      if (!result.success) {
-        showRelatedFit(phone_id);
-        return;
-      }
-      let content = result.data;
-      if (result.data != "") {
-        $(".phone-related-box .product-related-list").html(content);
-      } else {
-      }
-      showRelatedFit(phone_id);
-    },
-    error: function (error) {
-      showRelatedFit(phone_id);
-    },
-  });
-}
-function showRelatedFit(phone_id) {
-  loadAjaxGet(`/ajax/phone-get-list-related-fitting/${phone_id}`, {
-    success: function (result) {
-      if (!result.success) {
-        responsiveRelatedProduct();
-        return;
-      }
-      let content = result.data;
-      if (result.data != "") {
-        $(".fit-related-box .product-related-list").html(content);
-      } else {
-        $(".fit-related-box").hide();
-      }
-      responsiveRelatedProduct();
-    },
-    error: function (error) {
-      responsiveRelatedProduct();
-    },
-  });
-}
-function updateIsStockProduct(phone_id, is_stock) {
-  $.ajax({
-    url: "/ajax/update-is-stock-product",
-    type: "POST",
-    data: { phone_id: phone_id, is_stock: is_stock },
-    success: function (result) {
-      return true;
-    },
-  });
-}
+

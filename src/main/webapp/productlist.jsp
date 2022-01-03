@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.example.webproject.DAO.daoimpl.ProductListDAOImpl" %>
+<%@ page import="com.example.webproject.BEAN.ProductList" %><%--
   Created by LeTrongKhiem.
   User: User
   Date: 03-Dec-21
@@ -29,6 +30,9 @@
 </head>
 
 <body>
+<%
+    ProductListDAOImpl productListDAO = new ProductListDAOImpl();
+%>
 <div class="main">
 
     <%--  header  --%>
@@ -194,23 +198,38 @@
                 <div class="container-product">
                     <div class="row no-gutters phone-products">
                         <!-- Thêm từng điện thoại vào -->
+                        <%for (ProductList productList : ProductListDAOImpl.getInstance().getListProductByCategory(request.getParameter("madanhmuc"))) {%>
+                        <%--                        <jsp:useBean id="productList" scope="request" type="java.util.List">--%>
+                        <%--                            <c:forEach items="${productList}" var="prl">--%>
                         <div class="col l-2-4 l-3-m m-4 c-6">
                             <div class="container-product__item">
                                 <div class="container-product__item-heading">
-                                    <div class="container-product__item-img" style="background-image: url('./assets/img/dssp/iphone-xi.jpg');"></div>
+                                    <div class="container-product__item-img"
+                                         style="background-image: url('<%=productList.getLink_hinhanh()%>');"></div>
 
                                     <div class="container-product-guarantee">
                                         <a href="trangitem.jsp" class="container-product__item-link">
                                             <div class="container-product-guarantee__heading">
-                                                <img src="https://mobilecity.vn/public/assets/img/icon-mobilecity-care.png" alt="Guarantee" class="container-product-guarantee__heading-img">
-                                                <h3 class="container-product-guarantee__heading-text">Mobile Care</h3>
+                                                <img src="https://mobilecity.vn/public/assets/img/icon-mobilecity-care.png"
+                                                     alt="Guarantee"
+                                                     class="container-product-guarantee__heading-img">
+                                                <h3 class="container-product-guarantee__heading-text">TGMobile
+                                                    Care</h3>
                                             </div>
 
                                             <ul class="container-product-guarantee__list">
-                                                <li class="container-product-guarantee__item">BH 12 tháng nguồn, màn hình</li>
-                                                <li class="container-product-guarantee__item">Đổi mới 30 ngày đầu tiên</li>
-                                                <li class="container-product-guarantee__item">Tặng ốp lưng, dán cường lực</li>
-                                                <li class="container-product-guarantee__item">Hỗ trợ phần mềm trọn đời máy</li>
+                                                <li class="container-product-guarantee__item">BH 12 tháng nguồn,
+                                                    màn hình
+                                                </li>
+                                                <li class="container-product-guarantee__item">Đổi mới 30 ngày
+                                                    đầu tiên
+                                                </li>
+                                                <li class="container-product-guarantee__item">Tặng ốp lưng, dán
+                                                    cường lực
+                                                </li>
+                                                <li class="container-product-guarantee__item">Hỗ trợ phần mềm
+                                                    trọn đời máy
+                                                </li>
                                             </ul>
                                         </a>
                                         <a href="" class="container-product-guarantee__btn">Bảo hành vàng</a>
@@ -219,13 +238,13 @@
                                 <div class="container-product__item-wrap">
                                     <div class="container-product__item-info">
                                         <a href="#" class="container-product__item-name">
-                                            iphone 11
+                                            <%=productList.getTen()%>
                                         </a>
                                         <i class="container-product__item-sale-icon fas fa-gift"></i>
                                     </div>
                                     <div class="container-product__item-buy">
                                 <span class="container-product__item-price">
-                                    11.000.000
+                                    <%=productList.getGia()%>
                                 </span>
                                         <a href="" class="container-product__item-btn">MUA</a>
                                     </div>
@@ -250,11 +269,18 @@
                                     </li>
                                 </ul>
                                 <ul class="container-product-marker__list">
-                                    <li class="container-product-marker__item container-product-marker__item--new">Mới</li>
-                                    <li class="container-product-marker__item container-product-marker__item--hot">Hot</li>
+                                    <li class="container-product-marker__item container-product-marker__item--new">
+                                        Mới
+                                    </li>
+                                    <li class="container-product-marker__item container-product-marker__item--hot">
+                                        Hot
+                                    </li>
                                 </ul>
                             </div>
                         </div>
+                        <%--                            </c:forEach>--%>
+                        <%--                        </jsp:useBean>--%>
+                        <%}%>
                     </div>
                 </div>
             </div>

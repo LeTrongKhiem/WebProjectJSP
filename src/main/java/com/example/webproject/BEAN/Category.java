@@ -4,14 +4,16 @@ public class Category {
     private String maDanhMuc;
     private String tenDanhMuc;
     private String danhMucCha;
+    private String icon;
 
     public Category() {
     }
 
-    public Category(String maDanhMuc, String tenDanhMuc, String danhMucCha) {
+    public Category(String maDanhMuc, String tenDanhMuc, String danhMucCha, String icon) {
         this.maDanhMuc = maDanhMuc;
         this.tenDanhMuc = tenDanhMuc;
         this.danhMucCha = danhMucCha;
+        this.icon = icon;
     }
 
     public String getMaDanhMuc() {
@@ -36,5 +38,13 @@ public class Category {
 
     public void setDanhMucCha(String danhMucCha) {
         this.danhMucCha = danhMucCha;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

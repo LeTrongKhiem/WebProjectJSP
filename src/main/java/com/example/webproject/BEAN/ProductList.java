@@ -3,21 +3,23 @@ package com.example.webproject.BEAN;
 public class ProductList {
     private String id;
     private String link_hinhanh;
-    private String linkSP;
+    private Category category;
     private String ten;
     private long gia;
+    private String maDanhMuc;
     private String tenDanhMuc;
     private String loaiSP;
 
     public ProductList() {
     }
 
-    public ProductList(String id, String link_hinhanh, String linkSP, String ten, long gia, String tenDanhMuc, String loaiSP) {
+    public ProductList(String id, String link_hinhanh, Category category, String ten, long gia, String maDanhMuc, String tenDanhMuc, String loaiSP) {
         this.id = id;
         this.link_hinhanh = link_hinhanh;
-        this.linkSP = linkSP;
+        this.category = category;
         this.ten = ten;
         this.gia = gia;
+        this.maDanhMuc = maDanhMuc;
         this.tenDanhMuc = tenDanhMuc;
         this.loaiSP = loaiSP;
     }
@@ -38,12 +40,12 @@ public class ProductList {
         this.link_hinhanh = link_hinhanh;
     }
 
-    public String getLinkSP() {
-        return linkSP;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setLinkSP(String linkSP) {
-        this.linkSP = linkSP;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getTen() {
@@ -78,16 +80,11 @@ public class ProductList {
         this.loaiSP = loaiSP;
     }
 
-    @Override
-    public String toString() {
-        return "ProductList{" +
-                "id='" + id + '\'' +
-                ", link_hinhanh='" + link_hinhanh + '\'' +
-                ", linkSP='" + linkSP + '\'' +
-                ", ten='" + ten + '\'' +
-                ", gia=" + gia +
-                ", tenThuongHieu='" + tenDanhMuc + '\'' +
-                ", loaiSP='" + loaiSP + '\'' +
-                '}';
+    public String getMaDanhMuc() {
+        return maDanhMuc;
+    }
+
+    public void setMaDanhMuc(String maDanhMuc) {
+        this.maDanhMuc = maDanhMuc;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.webproject.DAO.daoimpl;
 
+import com.example.webproject.BEAN.Category;
 import com.example.webproject.BEAN.ProductList;
 import com.example.webproject.DAO.ProductListDAO;
 import com.example.webproject.DB.DBConnection;
@@ -7,6 +8,7 @@ import com.example.webproject.DB.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductListDAOImpl implements ProductListDAO {
@@ -21,23 +23,34 @@ public class ProductListDAOImpl implements ProductListDAO {
         return instance;
     }
 
-    public ProductList layDTbangThuongHieu(String thuongHieu, String loaiSP) {
+    @Override
+    public ArrayList<ProductList> getListProductByCategory(String categoryId) {
+        Connection connection = DBConnection.getConnection();
+        String sql = "select * from danhsachsp where MaDanhMuc = '" + categoryId + "'";
+        ArrayList<ProductList> list = new ArrayList<>();
         try {
-            String sql = "select * from danhsachsp where TenThuongHieu = ? and LoaiSP = ?";
-//            ResultSet resultSet = DBConnection.getInstance().selectData(sql);
-            Connection connection = DBConnection.getConnection();
-            statement = connection.prepareStatement(sql);
-            statement.setString(1, thuongHieu);
-            statement.setString(2, loaiSP);
-            resultSet = statement.executeQuery();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                ProductList productList = new ProductList(resultSet.getString("Id"), resultSet.getString("Link_hinhanh"),
-                        resultSet.getString("Linksp"), resultSet.getString("Ten"), resultSet.getLong("Gia"),
-                        resultSet.getString("TenThuongHieu"), resultSet.getString("LoaiSP"));
+                ProductList productList = new ProductList();
+                productList.setId(resultSet.getString("id"));
+                Category category = new Category(resultSet.getString("MaDanhMuc"), "", "", "");
+                productList.setCategory(category);
+                productList.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                productList.setTen(resultSet.getString("Ten"));
+                productList.setGia(resultSet.getLong("Gia"));
+                productList.setMaDanhMuc(resultSet.getString("MaDanhMuc"));
+                productList.setTenDanhMuc(resultSet.getString("TenDanhMuc"));
+                productList.setLoaiSP(resultSet.getString("LoaiSP"));
+                list.add(productList);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return list;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new ProductListDAOImpl().getListProductByCategory("100002").size());
     }
 }

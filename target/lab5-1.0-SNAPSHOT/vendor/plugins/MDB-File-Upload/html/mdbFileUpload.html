@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap - File Uplad Plugin</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="../css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/addons/mdb-file-upload.css">
+</head>
+
+<body>
+
+  <div class="flyout">
+    <!--Navbar-->
+    <nav class="navbar navbar-dark fixed-top navbar-expand-md scrolling-navbar unique-color-dark">
+      <a class="navbar-brand" href="#">
+        <img id="MDB-logo" src="https://mdbootstrap.com/wp-content/uploads/2018/06/logo-mdb-jquery-small.png" alt="MDB Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="basicExampleNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Demo
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!--/.Navbar-->
+
+    <main style="margin-top: 4rem;">
+      <div>
+        <div class="edge-header unique-color">
+        </div>
+        <div class="container free-bird">
+          <div class="row">
+            <div class="col-md-10 mx-auto float-none white z-depth-1 py-2 px-2">
+              <div class="card-body">
+                <div class="text-center">
+                  <h2 class="h2-responsive mb-4">MDB UPLOADFILE PLUGIN</h2>
+                  <p>Standard file inputs usually leave a lot to wish for in terms of design, but MDB takes care of
+                    that
+                    by enhancing them with Material Design best practices.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container col-md-6 mx-auto my-5">
+          <section class="py-3">
+            <h2 class="secondary-heading mb-3">
+              Default Bootstrap file input
+            </h2>
+            <p>Default styling for Bootstrap File Input component</p>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+              </div>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+              </div>
+            </div>
+          </section>
+          <hr />
+
+          <section class="pt-5">
+            <h2 class="secondary-heading mb-3">
+              Material file input
+            </h2>
+
+            <p>Material Design styling for File Input component</p>
+            <div class="file-upload-wrapper">
+              <div class="input-group mb-3">
+                <input type="file" id="input-file-now" class="file_upload" />
+              </div>
+
+              <p>You can add a default value</p>
+              <div class="input-group mb-3">
+                <input type="file" id="input-file-now-custom-1" class="file_upload" data-default-file="https://mdbootstrap.com/img/Others/documentation/3.jpg" />
+              </div>
+
+              <p>You can set the height</p>
+              <div class="input-group mb-3">
+                <input type="file" id="input-file-now-custom-2" class="file_upload" data-height="500" />
+              </div>
+
+              <p>You can combine options</p>
+              <div class="input-group mb-3">
+                <input type="file" id="input-file-now-custom-3" class="file_upload" data-height="500" data-default-file="https://mdbootstrap.com/img/Others/documentation/3.jpg" />
+              </div>
+
+              <p>You can disabled the input</p>
+              <div class="input-group mb-3">
+                <input type="file" id="input-file-now-disabled-1" class="file_upload" disabled="disabled" />
+              </div>
+
+              <p>Also with a default file</p>
+              <div class="input-group mb-3">
+                <input type="file" id="input-file-now-disabled-2" class="file_upload" disabled="disabled"
+                  data-default-file="https://mdbootstrap.com/img/Others/documentation/1.jpg" />
+              </div>
+
+              <p>You can add a max file size</p>
+              <div class="input-group mb-3">
+                <input type="file" id="input-file-max-fs" class="file_upload" data-max-file-size="2M" />
+              </div>
+
+              <p>You can disable remove button</p>
+              <div class="input-group mb-3">
+                <input type="file" id="input-file-disable-remove" data-default-file="https://static.superiorwallpapers.com/images/lthumbs/2015-06/8623_Sweet-cat-with-tongue-out.jpg"
+                  class="file_upload" data-show-remove="false" />
+              </div>
+            </div>
+          </section>
+        </div>
+
+    </main>
+    <footer class="page-footer mt-4 unique-color-dark">
+      <p class="footer-copyright mb-0 py-3 text-center">© 2019 Copyright: <a href="https://www.MDBootstrap.com">
+          MDBootstrap.com </a></p>
+    </footer>
+  </div>
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
+  <script type="text/javascript" src="../js/addons/datatables.min.js"></script>
+  <script type="text/javascript" src="../js/addons/mdb-file-upload.min.js"></script>
+  <script>
+    $('.file_upload').file_upload();
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.jdbi:jdbi3-core:3.24.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jdbi/jdbi3-core/3.24.1/jdbi3-core-3.24.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jdbi/jdbi3-core/3.24.1/jdbi3-core-3.24.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jdbi/jdbi3-core/3.24.1/jdbi3-core-3.24.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

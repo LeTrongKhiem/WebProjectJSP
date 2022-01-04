@@ -1,0 +1,37 @@
+.vector-map-label {
+  position: absolute;
+  display: none;
+  border: solid 1px #CDCDCD;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 5px;
+  background: #292929;
+  color: white;
+  font-size: smaller;
+  letter-spacing: 1px;
+  padding: 5px;
+}
+
+.vector-map-zoom-in-btn, .vector-map-zoom-out-btn {
+  position: absolute;
+  left: 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: #292929;
+  padding: 3px;
+  color: white;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  line-height: 10px;
+  text-align: center;
+}
+
+.vector-map-zoom-in-btn {
+  top: 10px;
+}
+
+.vector-map-zoom-out-btn {
+  top: 30px;
+}

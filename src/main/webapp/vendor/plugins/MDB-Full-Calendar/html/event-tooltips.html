@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="../css/style.css" rel="stylesheet">
+  <!-- FullCalendar -->
+  <link rel="stylesheet" href="../css/addons/fullcalendar.min.css">
+</head>
+
+<body>
+
+  <!--Main layout-->
+  <main>
+    <div class="container-fluid">
+
+      <!-- Section: Calendar -->
+      <section>
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="text-center">MDBootstrap Full Calendar Plugin - Events with tooltips</h2>
+          </div>
+          <div class="col-md-12 mx-auto" id="calendar"></div>
+        </div>
+      </section>
+      <!-- /.Section: Calendar -->
+    </div>
+  </main>
+  <!--Main layout-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
+  <!-- Moment -->
+  <script type="text/javascript" src="../js/addons/moment.min.js"></script>
+  <!-- Fullcalendar -->
+  <script type="text/javascript" src="../js/addons/fullcalendar.min.js"></script>
+
+  <script>
+    var dateInput;
+    $(document).ready(function () {
+      $('#calendar').fullCalendar({
+        defaultView: 'month',
+        defaultDate: '2018-10-12',
+
+        eventRender: function (eventObj, $el) {
+          $el.popover({
+            title: eventObj.title,
+            content: eventObj.description,
+            trigger: 'hover',
+            placement: 'top',
+            container: 'body'
+          });
+        },
+
+        events: [{
+            title: 'All Day Event',
+            description: 'description for All Day Event',
+            start: '2018-11-01'
+          },
+          {
+            title: 'Long Event',
+            description: 'description for Long Event',
+            start: '2018-10-07',
+            end: '2018-11-10'
+          },
+          {
+            id: 999,
+            title: 'Repeating Event',
+            description: 'description for Repeating Event',
+            start: '2018-11-09T16:00:00'
+          },
+          {
+            id: 999,
+            title: 'Repeating Event',
+            description: 'description for Repeating Event',
+            start: '2018-11-16T16:00:00'
+          },
+          {
+            title: 'Conference',
+            description: 'description for Conference',
+            start: '2018-11-11',
+            end: '2018-11-13'
+          },
+          {
+            title: 'Meeting',
+            description: 'description for Meeting',
+            start: '2018-11-12T10:30:00',
+            end: '2018-11-12T12:30:00'
+          },
+          {
+            title: 'Lunch',
+            description: 'description for Lunch',
+            start: '2018-11-12T12:00:00'
+          },
+          {
+            title: 'Meeting',
+            description: 'description for Meeting',
+            start: '2018-11-12T14:30:00'
+          },
+          {
+            title: 'Birthday Party',
+            description: 'description for Birthday Party',
+            start: '2018-11-13T07:00:00'
+          },
+          {
+            title: 'Click for Google',
+            description: 'description for Click for Google',
+            url: 'http://google.com/',
+            start: '2018-11-28'
+          }
+        ]
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>

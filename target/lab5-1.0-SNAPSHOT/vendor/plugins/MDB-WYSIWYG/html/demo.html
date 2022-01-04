@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap - WYSIWYG</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="../css/style.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/wysiwyg.css">
+
+  <style>
+    body {
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container my-5">
+    <div class="col-md-8 mx-md-auto">
+      <div>
+
+        <textarea id="example">
+          <h1 style="text-align: center;">MDBootstrap</h1>
+          <p style="text-align: center;">WYSIWYG Editor</p>
+          <p style="text-align: center;"><img src="https://mdbootstrap.com/img/Marketing/free/main/jquery/mdb-jquery-free.jpg" target="_blank" class="img-fluid"></p>
+          <p style="text-align: center;"><a href="https://mdbootstrap.com" target="_blank" style="font-size: 1rem; text-align: left;">MDBootstrap.com</a>&nbsp;© 2018</p>
+          <p style="text-align: left;"><b>Features:</b></p>
+          <p style="text-align: left;">
+              <ul>
+                  <li>Changing block type</li>
+                  <li>Text formatting (bold, italic, strikethrough, underline)</li>
+                  <li>Setting text color</li>
+                  <li>Text aligning</li>
+                  <li>Inserting links</li>
+                  <li>Inserting pictures</li>
+                  <li>Creating a list (bulled or numbered)</li>
+              </ul>
+              <p><b>Options:</b></p>
+              <ul>
+                  <li>Translations</li>
+                  <li>Using your own color palette</li>
+                  <li>Disabling/enabling tooltips</li>
+              </ul>
+          </p>
+        </textarea>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
+
+  <script type="text/javascript" src="../js/wysiwyg.min.js"></script>
+
+  <script>
+    $('#example').mdbWYSIWYG();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+html,
+body {
+  margin: 0;
+  height: 100%; }
+
+.full-screen-scroller {
+  position: relative;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%; }
+  .full-screen-scroller .fss-mainview {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    vertical-align: bottom;
+    white-space: normal; }
+  .full-screen-scroller .fss-subview {
+    overflow: hidden;
+    height: 100%;
+    white-space: nowrap;
+    font-size: 0; }
+  .full-screen-scroller .fss-subview-item {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    vertical-align: bottom;
+    white-space: normal; }
+  .full-screen-scroller .fss-dotted-scrollspy {
+    position: fixed;
+    right: 20px;
+    top: 50vh;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    z-index: 1000; }
+    .full-screen-scroller .fss-dotted-scrollspy .fss-nav-item {
+      padding: 0.5rem; }
+      .full-screen-scroller .fss-dotted-scrollspy .fss-nav-item::after {
+        content: "";
+        display: block;
+        width: 0.5rem;
+        height: 0.5rem;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.54); }
+      .full-screen-scroller .fss-dotted-scrollspy .fss-nav-item:hover::after {
+        background: white; }
+      .full-screen-scroller .fss-dotted-scrollspy .fss-nav-item.active::after {
+        background: white; }
+    .full-screen-scroller .fss-dotted-scrollspy .fss-nav-btn {
+      background: transparent;
+      border: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: white;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.54);
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      outline: none;
+      cursor: pointer; }
+      .full-screen-scroller .fss-dotted-scrollspy .fss-nav-btn:hover {
+        color: white; }
+  .full-screen-scroller .fss-subview .fss-dotted-scrollspy {
+    position: absolute;
+    right: 50%;
+    top: calc(100% - 20px);
+    -webkit-transform: translate(50%, -100%);
+    -ms-transform: translate(50%, -100%);
+    transform: translate(50%, -100%);
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row; }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="../css/style.css" rel="stylesheet">
+  <!-- FullCalendar -->
+  <link rel="stylesheet" href="../css/addons/fullcalendar.min.css">
+</head>
+
+<body>
+
+  <!--Main layout-->
+  <main>
+    <div class="container-fluid">
+
+      <!-- Section: Calendar -->
+      <section>
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="text-center">MDBootstrap Full Calendar Plugin - Long Dynamic Events</h2>
+          </div>
+          <div class="col-md-12 mx-auto" id="calendar"></div>
+        </div>
+      </section>
+      <!-- /.Section: Calendar -->
+    </div>
+  </main>
+  <!--Main layout-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
+  <!-- Moment -->
+  <script type="text/javascript" src="../js/addons/moment.min.js"></script>
+  <!-- Fullcalendar -->
+  <script type="text/javascript" src="../js/addons/fullcalendar.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#calendar').fullCalendar({
+        header: {
+          left: 'prev,next today',
+          center: 'addEventButton',
+          right: 'month,agendaWeek,agendaDay,listWeek'
+        },
+        defaultDate: '2018-11-16',
+        navLinks: true,
+        editable: true,
+        eventLimit: true,
+        selectable: true,
+        events: [{
+            title: 'Simple static event',
+            start: '2018-11-16',
+            description: 'Super cool event'
+          },
+
+        ],
+        select: function (startDate, endDate) {
+          var dateStart = moment(startDate);
+          var dateEnd = moment(endDate);
+
+          if (dateStart.isValid() && dateEnd.isValid()) {
+            $('#calendar').fullCalendar('renderEvent', {
+              title: 'Long event',
+              start: dateStart,
+              end: dateEnd,
+              allDay: true
+            });
+          }
+        }
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>

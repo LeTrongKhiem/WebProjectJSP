@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>jQUery Color Picker</title>
+  <!-- Bootstrap core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="../css/addons/pickr.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<body class="container">
+
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Basic Example</h2>
+    </div>
+
+    <div class="col-md-4 mx-auto">
+      <div class="card">
+        <div class="card-body text-center d-flex justify-content-center align-items-center flex-column">
+          <p>Click the dark square to activate the Color Picker</p>
+          <div id="color-picker-1" class="mx-auto"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Using as button</h2>
+    </div>
+
+    <div class="col-md-4 mx-auto">
+      <div class="card">
+        <div class="card-body text-center d-flex justify-content-center align-items-center flex-column">
+          <p>Click the dark square to activate the Color Picker</p>
+          <button class="btn btn-primary btn-sm" id="color-picker-2">Open Picker</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Change color of the other elements</h2>
+    </div>
+
+    <div class="col-md-4 mx-auto">
+      <div class="card bg-color">
+        <div class="card-body text-center d-flex justify-content-center align-items-center flex-column">
+          <p>My background color will be changed</p>
+          <button id="color-picker-3" class="btn btn-outline-primary btn-sm">Color Picker</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mx-auto">
+      <div class="card">
+        <div class="card-body text-center d-flex justify-content-center align-items-center flex-column">
+          <p class="text-color">My text color will be changed</p>
+          <button id="color-picker-4" class="btn btn-outline-primary btn-sm">Color Picker</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Copy saved colors to clipboard</h2>
+    </div>
+
+    <div class="col-md-4 mx-auto">
+      <div class="card">
+        <div class="card-body text-center d-flex justify-content-center align-items-center flex-column">
+          <p>Click the "Save" button and check the results by pasting the clipboard in some place.</p>
+          <button id="color-picker-5" class="btn btn-primary btn-sm">Color Picker</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">List of actual color in every representation</h2>
+    </div>
+
+    <div class="col-md-4 mx-auto">
+      <div class="card">
+        <div class="card-body text-center d-flex justify-content-center align-items-center flex-column">
+          <p>Change actual color and check how every color representation is described in the list</p>
+          <button id="color-picker-6" class="btn btn-primary btn-sm">Color Picker</button>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mx-auto">
+      <div class="card">
+        <div class="card-body text-center d-flex justify-content-center align-items-center flex-column">
+          <ul class="list-group list-group-flush w-100">
+            <li class="list-group-item" id="hex"></li>
+            <li class="list-group-item" id="rgba"></li>
+            <li class="list-group-item" id="hsla"></li>
+            <li class="list-group-item" id="hsva"></li>
+            <li class="list-group-item" id="cmyk"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Change the site background color</h2>
+    </div>
+
+    <div class="col-md-4 mx-auto">
+      <div class="card">
+        <div class="card-body text-center d-flex justify-content-center align-items-center flex-column">
+          <p>Change the background color if this site dynamically by changing the color in Color Picker</p>
+          <button id="color-picker-7" class="btn btn-primary btn-sm">Color Picker</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Every Color Picker options</h2>
+    </div>
+
+    <div class="col-md-4 mx-auto">
+      <div class="card">
+        <div class="card-body text-center d-flex justify-content-center align-items-center flex-column">
+          <p>Check the every Color Picker option which you'll can change.</p>
+          <button id="color-picker-8" class="btn btn-primary btn-sm">Color Picker</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
+  <script src="../js/addons/pickr.min.js"></script>
+  <script type="text/javascript">
+    const pickr1 = new Pickr({
+      el: '#color-picker-1',
+      default: "303030",
+      components: {
+        preview: true,
+        opacity: true,
+        hue: true,
+
+        interaction: {
+          hex: true,
+          rgba: true,
+          hsla: true,
+          hsva: true,
+          cmyk: true,
+          input: true,
+          clear: true,
+          save: true
+        }
+      }
+    });
+
+  </script>
+
+  <script type="text/javascript">
+    const pickr2 = new Pickr({
+      el: '#color-picker-2',
+      useAsButton: true,
+      default: "123456",
+
+      components: {
+        preview: true,
+        opacity: true,
+        hue: true,
+
+        interaction: {
+          hex: true,
+          rgba: true,
+          hsla: true,
+          hsva: true,
+          cmyk: true,
+          input: true,
+          clear: true,
+          save: true
+        }
+      }
+    });
+
+  </script>
+
+  <script type="text/javascript">
+    const pickr3 = new Pickr({
+      el: '#color-picker-3',
+      useAsButton: true,
+      default: "303030",
+      components: {
+        preview: true,
+        opacity: true,
+        hue: true,
+
+        interaction: {
+          hex: true,
+          rgba: true,
+          hsla: true,
+          hsva: true,
+          cmyk: true,
+          input: true,
+          clear: true,
+          save: true
+        }
+      },
+
+      onChange(hsva, instance) {
+        $('.bg-color').css('background-color', hsva.toRGBA().toString());
+      }
+    });
+
+    const pickr4 = new Pickr({
+      el: '#color-picker-4',
+      default: "303030",
+      useAsButton: true,
+      components: {
+        preview: true,
+        opacity: true,
+        hue: true,
+
+        interaction: {
+          hex: true,
+          rgba: true,
+          hsla: true,
+          hsva: true,
+          cmyk: true,
+          input: true,
+          clear: true,
+          save: true
+        }
+      },
+
+      onChange(hsva, instance) {
+        $('.text-color').css('color', hsva.toRGBA().toString());
+      }
+    });
+
+  </script>
+
+  <script type="text/javascript">
+    let colorArray = [];
+    const pickr5 = new Pickr({
+      el: '#color-picker-5',
+      default: "030303",
+      useAsButton: true,
+      components: {
+        preview: true,
+        opacity: true,
+        hue: true,
+
+        interaction: {
+          hex: true,
+          rgba: true,
+          hsla: true,
+          hsva: true,
+          cmyk: true,
+          input: true,
+          clear: true,
+          save: true
+        }
+      },
+
+      onSave(hsva, instance) {
+        colorArray.push({
+          hex: hsva.toHEX().toString(),
+          rgba: hsva.toRGBA().toString(),
+          hsla: hsva.toHSLA().toString(),
+          hsva: hsva.toHSVA().toString(),
+          cmyk: hsva.toCMYK().toString()
+        });
+        copyToClipboard();
+      }
+    });
+
+    function copyToClipboard() {
+
+      const el = document.createElement('textarea');
+      colorArray.forEach(function (elem) {
+        el.value += '{';
+        el.value += 'hex: ' + "'" + elem.hex + "'" + ', ';
+        el.value += 'rgba: ' + "'" + elem.rgba + "'" + ', ';
+        el.value += 'hsla: ' + "'" + elem.hsla + "'" + ', ';
+        el.value += 'hsva: ' + "'" + elem.hsva + "'" + ', ';
+        el.value += 'cmyk: ' + "'" + elem.cmyk + "'";
+        el.value += '}, ';
+      });
+      $(el).attr('readonly', '');
+      $(el).css('position', 'absolute');
+      $(el).css('left', '-9999px');
+      $(el).appendTo(document.body);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    }
+
+  </script>
+
+  <script type="text/javascript">
+    const pickr6 = new Pickr({
+      el: '#color-picker-6',
+      useAsButton: true,
+
+      components: {
+        preview: true,
+        opacity: true,
+        hue: true,
+
+        interaction: {
+          hex: true,
+          rgba: true,
+          hsla: true,
+          hsva: true,
+          cmyk: true,
+          input: true,
+          clear: true,
+          save: true
+        }
+      },
+
+      onChange(hsva) {
+        let colorObject = {
+          hex: hsva.toHEX().toString(),
+          rgba: hsva.toRGBA().toString(),
+          hsla: hsva.toHSLA().toString(),
+          hsva: hsva.toHSVA().toString(),
+          cmyk: hsva.toCMYK().toString()
+        };
+        for (let col in colorObject) {
+          $('#' + col).text(col + ': ' + colorObject[col]);
+        }
+      }
+    });
+
+  </script>
+
+  <script type="text/javascript">
+    const pickr7 = new Pickr({
+      el: '#color-picker-7',
+      useAsButton: true,
+
+      components: {
+        preview: true,
+        opacity: true,
+        hue: true,
+
+        interaction: {
+          hex: true,
+          rgba: true,
+          hsla: true,
+          hsva: true,
+          cmyk: true,
+          input: true,
+          clear: true,
+          save: true
+        }
+      },
+
+      onChange(hsva) {
+        $(document.body).css('background-color', hsva.toHEX().toString());
+      }
+    });
+
+  </script>
+
+  <script type="text/javascript">
+    const pickr8 = new Pickr({
+
+      // Selector or element which will be replaced with the actual color-picker.
+      // Can be a HTMLElement.
+      el: '#color-picker-8',
+
+      // Using the 'el' Element as button, won't replace it with the pickr-button.
+      // If true, appendToBody will also be automatically true.
+      useAsButton: true,
+
+      // Start state. If true 'disabled' will be added to the button's classlist.
+      disabled: false,
+
+      // If set to false it would directly apply the selected color on the button and preview.
+      comparison: true,
+
+      // Default color
+      default: '#303030',
+
+      // Default color representation.
+      // Valid options are `HEX`, `RGBA`, `HSVA`, `HSLA` and `CMYK`.
+      defaultRepresentation: 'HEX',
+
+      // Option to keep the color picker always visible. You can still hide / show it via
+      // 'pickr.hide()' and 'pickr.show()'. The save button keeps his functionality, so if
+      // you click it, it will fire the onSave event.
+      showAlways: false,
+
+      // Defines a parent for pickr, if useAsButton is true and a parent is NOT defined
+      // 'body' will be used as fallback.
+      parent: null,
+
+      // Close pickr with this specific key.
+      // Default is 'Escape'. Can be the event key or code.
+      closeWithKey: 'Escape',
+
+      // Defines the position of the color-picker. Available options are
+      // top, left and middle relativ to the picker button.
+      // If clipping occurs, the color picker will automatically choose his position.
+      position: 'middle',
+
+      // Enables the ability to change numbers in an input field with the scroll-wheel.
+      // To use it set the cursor on a position where a number is and scroll, use ctrl to make steps of five
+      adjustableNumbers: true,
+
+      // Show or hide specific components.
+      // By default only the palette (and the save button) is visible.
+      components: {
+
+        preview: true, // Left side color comparison
+        opacity: true, // Opacity slider
+        hue: true, // Hue slider
+
+        // Bottom interaction bar, theoretically you could use 'true' as propery.
+        // But this would also hide the save-button.
+        interaction: {
+          hex: true, // hex option  (hexadecimal representation of the rgba value)
+          rgba: true, // rgba option (red green blue and alpha)
+          hsla: true, // hsla option (hue saturation lightness and alpha)
+          hsva: true, // hsva option (hue saturation value and alpha)
+          cmyk: true, // cmyk option (cyan mangenta yellow key )
+
+          input: true, // input / output element
+          clear: true, // Button which provides the ability to select no color,
+          save: true // Save button
+        },
+      },
+
+      // Button strings, brings the possibility to use a language other than English.
+      strings: {
+        save: 'Save', // Default for save button
+        clear: 'Clear' // Default for clear button
+      },
+
+      // User has changed the color
+      onChange(hsva, instance) {
+        hsva; // HSVa color object, if cleared null
+        instance; // Current Pickr instance
+      },
+
+      // User has clicked the save button
+      onSave(hsva, instance) {
+        // same as onChange
+      }
+    });
+
+  </script>
+</body>
+
+</html>

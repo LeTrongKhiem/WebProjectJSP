@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    ">
+  <!-- Bootstrap core CSS -->
+  <link href=" ../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../css/mdb.min.css" rel="stylesheet">
+  <!-- MDB Vector Map -->
+  <link href="../css/addons/mdb-vector-map.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="../css/style.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Start your project here-->
+  <div class="col-md-12">
+    <h1 class="animated fadeIn text-center map-title">MDBootstrap Vector Map</h1>
+    <div style="height: 100vh" id="world-map" class="animated fadeIn"></div>
+  </div>
+  <!-- /Start your project here-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
+
+  <!-- MDB Vector Map files -->
+  <script src="../js/addons/mdb-vector-map.min.js"></script>
+  <script src="../js/addons/maps/world/world_mill.js"></script>
+
+  <script>
+    $(function () {
+
+      colors = {};
+
+      colors['ca'] = '#A4D886';
+      colors['ru'] = '#FCECA2';
+      colors['cn'] = '#F9573B';
+      colors['us'] = '#87CEEB';
+      colors['jp'] = '#34BD0E';
+      colors['au'] = '#BCC7FC';
+      colors['kz'] = '#D4624E';
+      colors['de'] = '#34BD0E';
+
+      $('#world-map').vectorMap({
+        colors: colors,
+        hoverOpacity: 0.7, // opacity for :hover
+        hoverColor: false,
+        color: '#aaaaaa',
+        regionStyle: {
+          initial: {
+            fill: '#cbced4'
+          }
+        },
+        series: {
+          regions: [{
+            values: {
+              IN: '#5478ab',
+              DK: '#88b7d6',
+              PL: '#5478ab',
+              IQ: '#98c6e5',
+              PK: '#88b7d6',
+              RU: '#95c9ed',
+              CN: '#add8f5',
+              AU: '#5478ab',
+              AR: '#b6d4e9',
+              FR: '#9ccbeb',
+              NG: '#98c6e5',
+              CA: '#5478ab',
+              US: '#9ccbeb'
+            }
+          }]
+        }
+      });
+    });
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap - Filterr</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../css/mdb.min.css" rel="stylesheet">
+  <!-- Filter styles -->
+  <link href="../css/addons/mdb-filter.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="flyout">
+    <!--Navbar-->
+    <nav class="navbar navbar-dark fixed-top navbar-expand-md scrolling-navbar unique-color-dark">
+      <a class="navbar-brand" href="#">
+        <img id="MDB-logo" src="https://mdbootstrap.com/wp-content/uploads/2018/06/logo-mdb-jquery-small.png" alt="MDB Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="basicExampleNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Demo
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!--/.Navbar-->
+
+    <main style="margin-top: 4rem">
+      <div class="edge-header unique-color"></div>
+      <div class="container free-bird">
+        <div class="row">
+          <div class="col-md-10 mx-auto float-none white z-depth-1 py-2 px-2">
+            <div class="card-body">
+              <div class="text-center">
+                <h2 class="h2-responsive mb-4">MDB FILTER PLUGIN</h2>
+                <p>MDB Filter Plugin gallery is a great UI element perfect for introducing vistors to a number of images, which can be freely filtered depending on the category.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container my-5">
+
+        <section>
+          <h2 class="secondary-heading mb-3">Basic example</h2>
+          <div class="filter filter-basic">
+            <div class="filter-nav">
+              <button class="btn btn-success active" data-filter="">All</button>
+              <button class="btn btn-primary" data-filter="nature">Nature</button>
+              <button class="btn btn-primary" data-filter="food">Food</button>
+              <button class="btn btn-primary" data-filter="architecture">Architecture</button>
+            </div>
+            <div class="filter-gallery">
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(30).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(1).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(42).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(2).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(114).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(4).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(6).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(115).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(44).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(5).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(45).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(46).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(47).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(111).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(3).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(112).jpg" alt="image">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mt-5">
+          <h2 class="secondary-heading mb-3">Draggable gallery</h2>
+          <div class="filter filter-draggable">
+            <div class="filter-nav">
+              <button class="btn btn-success active" data-filter="">All</button>
+              <button class="btn btn-primary" data-filter="nature">Nature</button>
+              <button class="btn btn-primary" data-filter="food">Food</button>
+              <button class="btn btn-primary" data-filter="architecture">Architecture</button>
+            </div>
+            <div class="filter-gallery">
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(30).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(1).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(42).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(2).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(114).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(4).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(6).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(115).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(44).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(5).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(45).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(46).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(47).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(111).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(3).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(112).jpg" alt="image">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mt-5">
+          <h2 class="secondary-heading mb-3">Draggable gallery with mixed content (filled gaps)</h2>
+          <div class="filter filter-fillgaps">
+            <div class="filter-nav">
+              <button class="btn btn-success active" data-filter="">All</button>
+              <button class="btn btn-primary" data-filter="nature">Nature</button>
+              <button class="btn btn-primary" data-filter="food">Food</button>
+              <button class="btn btn-primary" data-filter="architecture">Architecture</button>
+              <button class="btn btn-primary" data-filter="people">People</button>
+            </div>
+            <div class="filter-gallery">
+              <div class="item" data-category="people">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(60).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(1).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(30).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(42).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(2).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item item-panoramic" data-category="people">
+                <div class="item-content">
+                  <img src="http://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(70).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="people">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(63).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(114).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(4).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(6).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(115).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(44).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(5).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(45).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(46).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="food">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(47).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(111).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="architecture">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(3).jpg" alt="image">
+                </div>
+              </div>
+              <div class="item" data-category="nature">
+                <div class="item-content">
+                  <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(112).jpg" alt="image">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mt-5">
+          <h2 class="secondary-heading mb-3">Filter gallery with lightbox</h2>
+          <div class="filter filter-lightbox">
+            <div class="filter-nav">
+              <button class="btn btn-success active" data-filter="">All</button>
+              <button class="btn btn-primary" data-filter="nature">Nature</button>
+              <button class="btn btn-primary" data-filter="food">Food</button>
+              <button class="btn btn-primary" data-filter="architecture">Architecture</button>
+            </div>
+            <div class="filter-gallery mdb-ligthbox">
+              <figure class="item" data-category="nature">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(30).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(30).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="architecture">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(1).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(1).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="food">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(42).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(42).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="architecture">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(2).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(2).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="nature">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(114).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(114).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="architecture">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(4).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(4).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="architecture">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(6).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(6).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="nature">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(115).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(115).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="food">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(44).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(44).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="architecture">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(5).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(5).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="food">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(45).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(45).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="food">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(46).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(46).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="food">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(47).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(47).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="nature">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(111).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(111).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="architecture">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(3).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(3).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+              <figure class="item" data-category="nature">
+                <div class="item-content">
+                  <a href="https://mdbootstrap.com/img/Photos/Lightbox/Original/img%20(112).jpg" data-size="1600x1067">
+                    <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(112).jpg" alt="image">
+                  </a>
+                </div>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <!-- Lightbox -->
+        <div id="mdb-lightbox-ui"></div>
+
+      </div>
+    </main>
+
+    <footer class="page-footer mt-4 unique-color-dark">
+      <p class="footer-copyright mb-0 py-3 text-center">© 2019 Copyright: <a href="https://www.MDBootstrap.com">MDBootstrap.com </a></p>
+    </footer>
+  </div>
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
+  <!-- MDB filter JavaScript -->
+  <script type="text/javascript" src="../js/addons/mdb-filter.min.js"></script>
+  <script>
+    $(function() {
+      // Basic filter
+      $('.filter-basic').mdbFilter();
+
+      // Draggable filter
+      $('.filter-draggable').mdbFilter({
+        draggable: true
+      });
+
+      // Filter with no gaps
+      $('.filter-fillgaps').mdbFilter({
+        draggable: true,
+        fillGaps: true
+      });
+
+      // Lightbox filter
+      $('#mdb-lightbox-ui').load('../mdb-addons/mdb-lightbox-ui.html');
+      $('.filter-lightbox').mdbFilter();
+    });
+  </script>
+
+</body>
+
+</html>

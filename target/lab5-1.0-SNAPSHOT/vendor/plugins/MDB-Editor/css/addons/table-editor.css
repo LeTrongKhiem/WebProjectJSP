@@ -1,0 +1,76 @@
+.bubble-main {
+  position: absolute;
+  width: 300px;
+  box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  background: #fff;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.d-flex-not-important {
+  display: flex;
+}
+
+.bubble-td-cursor {
+  cursor: pointer;
+}
+
+.bubble-input-delete-icon,
+.bubble-input-add-icon {
+  cursor: pointer;
+}
+
+.bubble-input-delete-icon:hover,
+.bubble-input-add-icon:hover {
+  transform: scale(1.1);
+}
+
+.disabled-table,
+.disabled-btn {
+  pointer-events: none;
+}
+
+.bubble-arrow,
+.bubble-arrow-rotate {
+  position: absolute;
+  border-top: 45px solid #fff;
+  border-right: 45px solid transparent;
+  border-bottom: 45px solid transparent;
+  border-left: 45px solid transparent;
+  transform: scale(.25);
+  z-index: 1051;
+  top: -34px;
+  left: 0px;
+}
+
+.bubble-arrow-rotate {
+  transform: rotate(-270deg);
+}
+
+.bubble-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .3);
+  z-index: 1049;
+}
+
+
+.tr-color-selected {
+  background-color: rgba(52, 181, 229, .3) !important;
+  transition: all .2s ease-in;
+}
+
+.closeByClick {
+  transition: opacity .15s linear;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .2);
+  z-index: 1090;
+}

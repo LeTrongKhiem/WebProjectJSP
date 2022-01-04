@@ -1,0 +1,87 @@
+.carousel-3d-body {
+  overflow-x: hidden; }
+
+.carousel-3d {
+  position: relative;
+  width: 60%;
+  height: 400px;
+  margin: 80px auto;
+  -webkit-perspective: 1000px;
+  perspective: 1000px; }
+  .carousel-3d .carousel-3d-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: translateZ(-288px);
+    transform: translateZ(-288px);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform 1s;
+    transition: -webkit-transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+    transition: transform 1s, -webkit-transform 1s; }
+  .carousel-3d .carousel-3d-item {
+    position: absolute;
+    width: 190px;
+    height: 120px;
+    -webkit-transition: opacity 1s, -webkit-transform 1s;
+    transition: opacity 1s, -webkit-transform 1s;
+    -o-transition: transform 1s, opacity 1s;
+    transition: transform 1s, opacity 1s;
+    transition: transform 1s, opacity 1s, -webkit-transform 1s; }
+    .carousel-3d .carousel-3d-item img {
+      width: 100% !important;
+      height: 100% !important;
+      -o-object-fit: cover !important;
+      object-fit: cover !important; }
+  .carousel-3d .carousel-3d-controls {
+    position: absolute;
+    left: 0;
+    top: -80px;
+    width: 100%;
+    height: 100%;
+    text-align: center; }
+    .carousel-3d .carousel-3d-controls a {
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      font-size: 26px; }
+
+@media (max-width: 768px) {
+  .carousel-3d {
+    -webkit-perspective: 200px;
+    perspective: 200px; }
+    .carousel-3d .carousel-3d-item {
+      position: absolute;
+      width: 95px;
+      height: 60px;
+      -webkit-transition: opacity 1s, -webkit-transform 1s;
+      transition: opacity 1s, -webkit-transform 1s;
+      -o-transition: transform 1s, opacity 1s;
+      transition: transform 1s, opacity 1s;
+      transition: transform 1s, opacity 1s, -webkit-transform 1s; }
+  .carousel-3d-vertical {
+    -webkit-perspective: 2000px;
+    perspective: 2000px; }
+    .carousel-3d-vertical .carousel-3d-controls {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 50%;
+      height: 50%;
+      text-align: center;
+      -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      transform: rotate(90deg); } }
+
+.carousel-3d-vertical .carousel-3d-controls {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg); }

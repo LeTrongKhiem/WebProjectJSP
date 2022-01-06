@@ -52,7 +52,7 @@ public class DBConnect {
 //    }
     public  Connection getConnection() {
     Connection connection = null;
-    String url = "jdbc:mysql://localhost:3306/dbweb";
+    String url = "jdbc:mysql://localhost:3306/dbweb1";
     String userName = "root";
     String pass = "";
     try {

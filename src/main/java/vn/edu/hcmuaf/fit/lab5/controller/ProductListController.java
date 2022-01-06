@@ -24,8 +24,9 @@ public class ProductListController extends HttpServlet {
         }else{
             index = Integer.parseInt(txt);
         }
-        ProductDAO dao = new ProductDAO();
+      ProductDAO dao = new ProductDAO();
         List<Product> list = dao.getTop(index);
+//        List<Product> lists = dao.getAllByLaptop();
         request.setAttribute("product", list);
         request.getRequestDispatcher("tranglaptop.jsp").forward(request,response);;
     }

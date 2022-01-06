@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.lab5.dao;
 
+import vn.edu.hcmuaf.fit.lab5.beans.PhoneProduct;
 import vn.edu.hcmuaf.fit.lab5.beans.Product;
 import vn.edu.hcmuaf.fit.lab5.db.DBConnect;
 import vn.edu.hcmuaf.fit.lab5.db.JDBIConnector;
@@ -20,14 +21,14 @@ public class ProductDAO {
 
     public List<Product> getAll() {
         return JDBIConnector.get().withHandle(handle -> {
-            return handle.createQuery("select * from thongtinlaptop")
+            return handle.createQuery("select * from danhsachsp")
                     .mapToBean(Product.class).stream().collect(Collectors.toList());
         });
     }
 
     public Product getById(String id) {
         return JDBIConnector.get().withHandle(handle -> {
-            return handle.createQuery("select * from thongtinlaptop where MaSP = ?")
+            return handle.createQuery("select * from danhsachsp where Id = ?")
                     .bind(0, id)
                     .mapToBean(Product.class).first();
         });
@@ -35,15 +36,17 @@ public class ProductDAO {
 
     public List<Product> getAllByLaptop() {
         ArrayList<Product> products = new ArrayList<>();
-        Statement stmt = DBConnect.getInstance().get();
-
+        String query ="select * from danhsachsp";
         try {
-            ResultSet rs = stmt.executeQuery("select * from thongtinlaptop");
+
+            conn = new DBConnect().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
-                product.setMaSP(rs.getString("MaSP"));
-                product.setTenSP(rs.getString("TenSP"));
-                product.setGiaSP(rs.getInt("GiaSP"));
+                product.setMaSP(rs.getString("MaSp"));
+                product.setTenSP(rs.getString("Ten"));
+                product.setGiaSP(rs.getInt("Gia"));
                 product.setLink_hinhanh(rs.getString("Link_hinhanh"));
                 products.add(product);
             }
@@ -96,10 +99,9 @@ public class ProductDAO {
             while (rs.next()) {
                 Product product = new Product();
                 product.setMaSP(rs.getString("MaSP"));
-                product.setTenSP(rs.getString("TenSP"));
-                product.setGiaSP(rs.getInt("GiaSP"));
+                product.setTenSP(rs.getString("Ten"));
+                product.setGiaSP(rs.getInt("Gia"));
                 product.setLink_hinhanh(rs.getString("Link_hinhanh"));
-
                 products.add(product);
             }
 
@@ -113,8 +115,8 @@ public class ProductDAO {
 
         Product product = null;
         ;
-        String query = "select * from thongtinlaptop\n"
-                + "where MaSP = ?";
+        String query = "select * from danhsachsp inner join  thongtindienthoai on danhsachsp.MaSp =thongtindienthoai.MaSP \n"
+                + "where thongtindienthoai.MaSP = ?";
 
         try {
             conn = new DBConnect().getConnection();
@@ -127,7 +129,55 @@ public class ProductDAO {
                 String tenSP = rs.getString("TenSP");
                 int giaSP = rs.getInt("GiaSP");
                 String link_hinhanh = rs.getString("Link_hinhanh");
-                product = new Product(maSP, tenSP, giaSP, 1, link_hinhanh);
+                String manHinh  = rs.getString("ManHinh");
+                String hdh = rs.getString("HeDH");
+                String camSau = rs.getString("CamSau");
+                String camTr = rs.getString("CamTruoc");
+                String CPU = rs.getString("CPU");
+                String RAM = rs.getString("RAM");
+                String boNhoTrong = rs.getString("BoNhoTrong");
+                String theSim = rs.getString("TheSim");
+                String pin = rs.getString("DungLuongPin");
+                String thietKe = rs.getString("ThietKe");
+                String imei = rs.getString("Imei");
+                String baiViet = rs.getString("BaiViet");
+                String noiDung = rs.getString("NoiDung");
+                String linkAnh2 = rs.getString("link_hinhanh");
+                String linkAnh3 = rs.getString("link_hinhanh");
+                product = new Product(maSP, tenSP, giaSP,manHinh,hdh,camSau,camTr,CPU,RAM,boNhoTrong,theSim,pin,thietKe,
+                        imei,baiViet,noiDung,link_hinhanh,linkAnh2,linkAnh3,1 );
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return product;
+    }
+    public PhoneProduct getPhoneByID(String id) {
+
+        PhoneProduct product = null;
+        ;
+        String query = "SELECT *\n" +
+                "FROM danhsachsp INNER JOIN thongtindienthoai on danhsachsp.MaSp = thongtindienthoai.MaSP\n" +
+                "WHERE danhsachsp.MaSp = ?";
+
+        try {
+            conn = new DBConnect().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                String maSP = rs.getString("MaSP");
+                String tenSP = rs.getString("TenSP");
+                int giaSP = rs.getInt("GiaSP");
+                String link_hinhanh = rs.getString("Link_hinhanh");
+                String manHinh  = rs.getString("ManHinh");
+                product = new PhoneProduct(maSP,tenSP,giaSP,"","",manHinh, "","",
+                        "","","","","","","","","",""
+                        ,link_hinhanh,"","");
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -138,7 +188,7 @@ public class ProductDAO {
 
     public List<Product> searchByName(String txtSearch) {
         ArrayList<Product> products = new ArrayList<>();
-        String query = "SELECT * FROM thongtinlaptop where TenSP LIKE ?";
+        String query = "SELECT * FROM danhsachsp where Ten LIKE ?";
         try {
             conn = new DBConnect().getConnection();
             ps = conn.prepareStatement(query);
@@ -146,9 +196,9 @@ public class ProductDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
-                product.setMaSP(rs.getString("MaSP"));
-                product.setTenSP(rs.getString("TenSP"));
-                product.setGiaSP(rs.getInt("GiaSP"));
+                product.setMaSP(rs.getString("Id"));
+                product.setTenSP(rs.getString("Ten"));
+                product.setGiaSP(rs.getInt("Gia"));
                 product.setLink_hinhanh(rs.getString("Link_hinhanh"));
                 products.add(product);
             }
@@ -161,7 +211,7 @@ public class ProductDAO {
     }
 
     public int getNumberPage() {
-        String query = "SELECT count(*) FROM thongtinlaptop";
+        String query = "SELECT count(*) FROM danhsachsp";
         try {
             conn = new DBConnect().getConnection();
             ps = conn.prepareStatement(query);
@@ -184,7 +234,7 @@ public class ProductDAO {
     }
 
     public int getNumberOfProduct() {
-        String query = "SELECT count(*) FROM thongtinlaptop";
+        String query = "SELECT count(*) FROM danhsachsp";
         try {
             conn = new DBConnect().getConnection();
             ps = conn.prepareStatement(query);
@@ -200,7 +250,12 @@ public class ProductDAO {
 
     public List<Product> getTop(int index) {
         ArrayList<Product> products = new ArrayList<>();
-        String query = "SELECT * FROM thongtinlaptop WHERE MaSP BETWEEN ? AND ?";
+        String query = "SELECT * FROM\n" +
+                "(SELECT t.*, \n" +
+                "       @rownum := @rownum + 1 AS rank\n" +
+                "  FROM  danhsachsp t, \n" +
+                "       (SELECT @rownum := 0)  r) where LoaiSP='DT' as x\n" +
+                " WHERE rank BETWEEN ? and ?";
         try {
             conn = new DBConnect().getConnection();
             ps = conn.prepareStatement(query);
@@ -210,8 +265,8 @@ public class ProductDAO {
             while (rs.next()) {
                 Product product = new Product();
                 product.setMaSP(rs.getString("MaSP"));
-                product.setTenSP(rs.getString("TenSP"));
-                product.setGiaSP(rs.getInt("GiaSP"));
+                product.setTenSP(rs.getString("Ten"));
+                product.setGiaSP(rs.getInt("Gia"));
                 product.setLink_hinhanh(rs.getString("Link_hinhanh"));
                 products.add(product);
             }
@@ -225,7 +280,7 @@ public class ProductDAO {
 
     public int count(String txtSearch) {
         ArrayList<Product> products = new ArrayList<>();
-        String query = "SELECT count(*) FROM thongtinlaptop where TenSP LIKE ?";
+        String query = "SELECT count(*) FROM danhsachsp where Ten LIKE ?";
         try {
             conn = new DBConnect().getConnection();
             ps = conn.prepareStatement(query);
@@ -244,7 +299,7 @@ public class ProductDAO {
     }
 
     public int countPage() {
-        String query = "SELECT count(*) FROM thongtinlaptop";
+        String query = "SELECT count(*) FROM danhsachsp";
         try {
             conn = new DBConnect().getConnection();
             ps = conn.prepareStatement(query);
@@ -264,9 +319,9 @@ public class ProductDAO {
         String query = "SELECT * FROM\n" +
                 "(SELECT t.*, \n" +
                 "       @rownum := @rownum + 1 AS rank\n" +
-                "  FROM  thongtinlaptop t, \n" +
+                "  FROM  danhsachsp t, \n" +
                 "       (SELECT @rownum := 0) r\n" +
-                " WHERE TenSP like ?) as x\n" +
+                " WHERE Ten like ?) as x\n" +
                 " WHERE rank BETWEEN ? and ?";
         try {
             conn = new DBConnect().getConnection();
@@ -278,8 +333,8 @@ public class ProductDAO {
             while (rs.next()) {
                 Product product = new Product();
                 product.setMaSP(rs.getString("MaSP"));
-                product.setTenSP(rs.getString("TenSP"));
-                product.setGiaSP(rs.getInt("GiaSP"));
+                product.setTenSP(rs.getString("Ten"));
+                product.setGiaSP(rs.getInt("Gia"));
                 product.setLink_hinhanh(rs.getString("Link_hinhanh"));
                 products.add(product);
             }
@@ -293,8 +348,9 @@ public class ProductDAO {
 
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
-        int count = dao.getNumberOfProduct();
-        System.out.println(count);
+
+        System.out.println(dao.getAllByLaptop());
+
     }
 
 }

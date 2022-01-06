@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.lab5.controller;
 
+import vn.edu.hcmuaf.fit.lab5.beans.PhoneProduct;
 import vn.edu.hcmuaf.fit.lab5.beans.Product;
 import vn.edu.hcmuaf.fit.lab5.dao.ProductDAO;
 import vn.edu.hcmuaf.fit.lab5.service.ProductService;
@@ -19,7 +20,8 @@ public class DetailController extends HttpServlet {
         String id = request.getParameter("id");
         ProductDAO dao = new ProductDAO();
 //        Product p = ProductService.getInstance().getById(id);
-        Product p =  dao.getById(id);
+        Product p =  dao.getLaptopByID(id);
+//        PhoneProduct p = dao.getPhoneByID(id);
         request.setAttribute("detail",p);
         request.getRequestDispatcher("trangitem.jsp").forward(request,response);
     }

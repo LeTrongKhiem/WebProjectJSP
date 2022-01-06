@@ -1337,10 +1337,10 @@
                                                 src="${detail.link_hinhanh}"
                                                 alt="iphone-xs-max-den" data-color="1"/></li>
                                         <li><img
-                                                src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w300/iphone-xs-max-trang.jpg"
+                                                src="${detail.link_hinhanh}"
                                                 alt="iphone-xs-max-trang" data-color="9"/></li>
                                         <li><img
-                                                src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w300/iphone-xs-max-vang.jpg"
+                                                src="${detail.link_hinhanh}"
                                                 alt="iphone-xs-max-vang" data-color="511"/></li>
                                     </div>
                                     <div class="product_slide v2-product-slide">
@@ -1808,68 +1808,53 @@
                             <tbody>
                             <tr>
                                 <td>Màn hình:</td>
-                                <td>Super Retina OLED, HDR10, 625 nits (HBM)<br/>
-                                    6.5 inches, 1242 x 2688 pixels, tỷ lệ 19.5:9<br/>
-                                    Kính chống xước, 3D Touch
+                                <td>
+                                    ${detail.manHinh}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Hệ điều hành:</td>
-                                <td>IOS 12</td>
+                                <td>${detail.hdh}</td>
                             </tr>
                             <tr>
                                 <td>Camera sau:</td>
-                                <td>12 MP, f/1.8, 26mm (góc rộng), dual pixel PDAF, OIS<br/>
-                                    12 MP, f/2.4, 52mm (chân dung), PDAF, OIS, 2x optical zoom<br/>
-                                    Quay phim <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                 data-cfemail="dce8979ceee8">[email&#160;protected]</a>/30/60fps, <a
-                                            href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                            data-cfemail="a392939b93d3e39093">[email&#160;protected]</a>/60/120/240fps
+                                <td>${detail.camSau}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Camera trước:</td>
-                                <td>7 MP, f/2.2, 32mm (tiêu chuẩn)<br/>
-                                    Quay phim <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                 data-cfemail="0435343c3474443734">[email&#160;protected]</a>/60fps,
-                                    gyro-EIS
+                                <td>
+                                    ${detail.camTr}
                                 </td>
                             </tr>
                             <tr>
                                 <td>CPU:</td>
-                                <td>Apple A12 Bionic (7 nm), 6 nhân<br/>
-                                    (2x2.5 GHz Vortex + 4x1.6 GHz Tempest)<br/>
-                                    GPU: Apple GPU, 4 nhân
+                                <td>${detail.CPU}
                                 </td>
                             </tr>
                             <tr>
                                 <td>RAM:</td>
-                                <td>4 GB</td>
+                                <td>${detail.RAM}</td>
                             </tr>
                             <tr>
                                 <td>Bộ nhớ trong:</td>
-                                <td>64-256-512 GB, NVMe<br/>
-                                    Thẻ nhớ: không
+                                <td>
+                                    ${detail.boNhoTrong}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Thẻ SIM:</td>
-                                <td>1 SIM - 2 SIM (tùy phiên bản thị trường), Dual SIM (Nano-SIM, dual stand-by)
-                                    thị
-                                    trường
-                                    Trung Quốc
+                                <td>${detail.theSim}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Dung lượng pin:</td>
-                                <td>Li-Ion 3174 mAh<br/>
-                                    Sạc nhanh 15W, 50% trong 30 phút (quảng cáo)<br/>
-                                    USB Power Delivery 2.0
+                                <td>${detail.pin}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Thiết kế:</td>
-                                <td>Thanh + Cảm ứng</td>
+                                <td>${detail.thietKe}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -1889,7 +1874,7 @@
                                 </tr>
                                 <tr>
                                     <td>Hệ điều hành:</td>
-                                    <td>IOS 12</td>
+                                    <td>${detail.hdh}</td>
                                 </tr>
                                 <tr>
                                     <td>Ngôn ngữ:</td>

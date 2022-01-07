@@ -36,7 +36,7 @@
     <%--  header  --%>
     <div class="container">
         <div class="grid wide">
-            <!-- Product Phone -->
+            <!-- PhoneProduct Phone -->
             <div class="row container__item">
                 <div class="col l-8 m-12 c-12">
                     <div class="banner">
@@ -184,7 +184,7 @@
                 </div>
             </div>
 
-            <!-- Product Tool -->
+            <!-- PhoneProduct Tool -->
             <div class="row container__item">
                 <div class="col l-12 m-12 c-12">
                     <div class="banner">
@@ -282,7 +282,7 @@
                 </div>
             </div>
 
-            <!-- Product Fix -->
+            <!-- PhoneProduct Fix -->
             <div class="row container__item">
                 <div class="col l-12 m-12 c-12">
                     <div class="banner">
@@ -401,7 +401,7 @@
                 </div>
             </div>
 
-            <!-- Product Unlock -->
+            <!-- PhoneProduct Unlock -->
             <div class="row container__item">
                 <div class="col l-12 m-12 c-12">
                     <div class="banner">

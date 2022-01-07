@@ -36,94 +36,9 @@
     <link rel="stylesheet" href="<c:url value='./assets/trangitem/libs/lightgallery.min.css'/>">
     <link rel="stylesheet" href="<c:url value='./assets/trangitem/pages/phone.css'/>">
     <link rel="stylesheet" href="<c:url value='./assets/trangitem/pages/popup_v2.css'/>">
-
-    <script type="application/ld+json">
-        {
-            "@graph": [
-                {
-                    "@context": "http://schema.org/",
-                    "@type": "Product",
-                    "sku": "953",
-                    "id": "953",
-                    "mpn": "MobileCity",
-                    "name": "iPhone XS Max Cũ (64GB, 256GB) - Fullbox",
-                    "description": "iPhone XS Max cũ (64GB, 256GB) chính hãng, giá rẻ nhất Hà Nội, Đà Nẵng, TP HCM. Bán iPhone XS Max cũ xách tay BH 12 tháng chính hãng.",
-                    "image": "https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/iphone-xs-max-vang.jpg",
-                    "brand": "Apple (iPhone) - Quốc tế",
-                    "aggregateRating": {
-                        "@type": "AggregateRating",
-                        "ratingValue": "5",
-                        "reviewCount": "1092"
-                    },
-                    "review": {
-                        "@type": "Review",
-                        "author": "Tran Le Hai",
-                        "reviewRating": {
-                            "@type": "Rating",
-                            "bestRating": "5",
-                            "ratingValue": "1",
-                            "worstRating": "1"
-                        }
-                    },
-                    "offers": {
-                        "@type": "AggregateOffer",
-                        "priceCurrency": "VND",
-                        "offerCount": 10,
-                        "price": "10150000",
-                        "lowPrice": "10150000",
-                        "highPrice": "11450000",
-                        "priceValidUntil": "2019-12-31",
-                        "availability": "http://schema.org/InStock",
-                        "warranty": {
-                            "@type": "WarrantyPromise",
-                            "durationOfWarranty": {
-                                "@type": "QuantitativeValue",
-                                "value": "6 tháng",
-                                "unitCode": "ANN"
-                            }
-                        },
-                        "itemCondition": "mới",
-                        "seller": {
-                            "@type": "Organization",
-                            "name": "MobileCity"
-                        }
-                    }
-                },
-                {
-                    "@context": "http://schema.org",
-                    "@type": "WebSite",
-                    "name": "MobileCity",
-                    "url": "https://mobilecity.vn"
-                }
-            ]
-        }
-    </script>
 </head>
 
 <body>
-<div id="fb-root"></div>
-<script>
-    setTimeout(function () {
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '545601995544225',
-                autoLogAppEvents: true,
-                xfbml: true,
-                version: 'v2.11'
-            });
-        };
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {
-                return;
-            }
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    }, 3000);
-</script>
 <%--  header  --%>
 <%@include file="/header.jsp" %>
 <%--  header  --%>
@@ -134,7 +49,7 @@
             <div class="breadcrumb">
                 <ul itemscope itemtype="http://schema.org/BreadcrumbList">
                     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="./mobile.html"><span itemprop="name">Điện thoại di
+                        <a itemprop="item" href="./productlist.jsp"><span itemprop="name">Điện thoại di
                                         động</span>
                             <i class="fa fa-angle-right" aria-hidden="true" style="margin: 0 5px"></i>
                         </a>
@@ -533,7 +448,7 @@
                                                         xem
                                                         chi
                                                         tiết <a
-                                                                href="https://mobilecity.vn/page/chinh-sach-bao-hanh.html"
+                                                                href=""
                                                                 target="_blank">Tại đây</a></p>
                                                 </div>
                                                 <div class="outline-tips">
@@ -554,7 +469,7 @@
                                                         tiết</a>)</span>
                                     </p>
                                     <p>Giao hàng tận nơi miễn phí trong 30 phút (<a
-                                            href="/page/chinh-sach-van-chuyen.html">Tìm hiểu
+                                            href="">Tìm hiểu
                                         thêm</a>)</p>
                                 </div>
                                 <div class="sale-box v2-promotion">
@@ -579,11 +494,11 @@
                                         </li>
                                         <li>
                                             <p>Giảm 100K khi mua BHV và đặt hàng tại: <a title=""
-                                                                                         href="https://bit.ly/mc42-voucher">Đây</a>
+                                                                                         href="">Đây</a>
                                             </p>
                                         </li>
                                         <li>
-                                            <p>Mua SHOPEE giá Rẻ: <a title="MobileCity Shopee" href=""
+                                            <p>Mua SHOPEE giá Rẻ: <a title="" href=""
                                                                      rel="nofollow" target="_blank">CLICK</a></p>
                                         </li>
                                     </ul>

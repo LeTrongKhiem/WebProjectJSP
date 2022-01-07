@@ -1,5 +1,7 @@
 <%@ page import="com.example.webproject.DAO.daoimpl.ProductListDAOImpl" %>
-<%@ page import="com.example.webproject.BEAN.ProductList" %><%--
+<%@ page import="com.example.webproject.BEAN.ProductList" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="com.example.webproject.BEAN.Product" %><%--
   Created by LeTrongKhiem.
   User: User
   Date: 03-Dec-21
@@ -28,10 +30,12 @@
     <link rel="stylesheet" href="<c:url value= './assets/css/responsive.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/mobile.css'/>">
 </head>
-
+<jsp:useBean id="a" class="com.example.webproject.DAO.daoimpl.ProductListDAOImpl" scope="request"></jsp:useBean>
 <body>
 <%
     ProductListDAOImpl productListDAO = new ProductListDAOImpl();
+    NumberFormat nf = NumberFormat.getInstance();
+    nf.setMinimumIntegerDigits(0);
 %>
 <div class="main">
 
@@ -199,14 +203,14 @@
                     <div class="row no-gutters phone-products">
                         <!-- Thêm từng điện thoại vào -->
                         <%for (ProductList productList : ProductListDAOImpl.getInstance().getListProductByCategory(request.getParameter("madanhmuc"))) {%>
-                        <%--                        <jsp:useBean id="productList" scope="request" type="java.util.List">--%>
-                        <%--                            <c:forEach items="${productList}" var="prl">--%>
+                        <%--                        <%for (Product productList : ProductListDAOImpl.getInstance().search(request.getParameter("txt"), Integer.parseInt(request.getParameter("index")))) {%>--%>
+                        <%--                        <jsp:useBean id="productList" scope="request" type="java.util.List"/>--%>
+                        <%--                        <c:forEach items="${productList}" var="prl">--%>
                         <div class="col l-2-4 l-3-m m-4 c-6">
                             <div class="container-product__item">
                                 <div class="container-product__item-heading">
                                     <div class="container-product__item-img"
                                          style="background-image: url('<%=productList.getLink_hinhanh()%>');"></div>
-
                                     <div class="container-product-guarantee">
                                         <a href="trangitem.jsp" class="container-product__item-link">
                                             <div class="container-product-guarantee__heading">
@@ -237,14 +241,17 @@
                                 </div>
                                 <div class="container-product__item-wrap">
                                     <div class="container-product__item-info">
-                                        <a href="#" class="container-product__item-name">
+                                        <a href="" class="container-product__item-name">
                                             <%=productList.getTen()%>
+                                            <%--                                            <%=productList.getTenSP()%>--%>
                                         </a>
                                         <i class="container-product__item-sale-icon fas fa-gift"></i>
                                     </div>
                                     <div class="container-product__item-buy">
                                 <span class="container-product__item-price">
-                                    <%=productList.getGia()%>
+<%--                                    <%=nf.format(productList.getGia())%> đ--%>
+                                     <%=ProductListDAOImpl.getInstance().dinhDang(productList.getGia())%>
+<%--                                    <%=nf.format(productList.getGiaSP())%> đ--%>
                                 </span>
                                         <a href="" class="container-product__item-btn">MUA</a>
                                     </div>
@@ -278,17 +285,29 @@
                                 </ul>
                             </div>
                         </div>
-                        <%--                            </c:forEach>--%>
+                        <%--                        </c:forEach>--%>
                         <%--                        </jsp:useBean>--%>
                         <%}%>
                     </div>
                 </div>
             </div>
-            <div class="col l-12 m-12 c-12">
-                <div class="container-view-more">
-                    <a href="#" class="container-btn-extend">Xem thêm điện thoại</a>
-                </div>
-            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <c:forEach begin="1" end="${endP}" var="i">
+                        <li class="page-item ${index==i?"active":""}"><a class=" page-link"
+                                                                         href="SearchController?index=${i}&txt=${txts}">${i}</a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </nav>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <c:forEach begin="1" end="${a.numberPage}" var="q">
+                        <li class="page-item " aria-current="page"><a class=" page-link"
+                                                                      href="PagingController?index=${q}">${q}</a></li>
+                    </c:forEach>
+                </ul>
+            </nav>
         </div>
     </div>
     <%--    footer --%>
@@ -297,10 +316,6 @@
     <!-- Button -->
     <a href="#" class="go-to-top">
         <i class="go-to-top__icon fas fa-chevron-circle-up"></i>
-    </a>
-
-    <a href="#" class="go-to-chat">
-        <i class="go-to-chat__icon fab fa-facebook-messenger"></i>
     </a>
 </div>
 

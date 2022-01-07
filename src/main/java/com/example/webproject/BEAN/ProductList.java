@@ -1,5 +1,7 @@
 package com.example.webproject.BEAN;
 
+import java.text.DecimalFormat;
+
 public class ProductList {
     private String id;
     private String link_hinhanh;
@@ -87,4 +89,7 @@ public class ProductList {
     public void setMaDanhMuc(String maDanhMuc) {
         this.maDanhMuc = maDanhMuc;
     }
+
+
+
 }

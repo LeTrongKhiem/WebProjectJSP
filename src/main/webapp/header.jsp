@@ -145,10 +145,12 @@
                     </div>
                 </a>
 
-                <div class="header-search hide-on-mobile-and-tablet">
-                    <input type="text" placeholder="Nhập tên sản phẩm..." class="header-search__input">
-                    <i class="header-search__icon fas fa-search"></i>
-                </div>
+                <form class="header-search hide-on-mobile-and-tablet" action="SearchController?index=1" method="post">
+                    <input value="${txts}" name="txt" type="text" placeholder="Nhập tên sản phẩm..."
+                           class="header-search__input">
+                    <button type="submit" style="background: #fff;border: none;"><i
+                            class="header-search__icon fas fa-search"></i></button>
+                </form>
 
                 <ul class="header-menu hide-on-mobile-and-tablet">
                     <%for (Category categoryParent : categoryDAO.getListCategoryParent()) {%>
@@ -167,7 +169,8 @@
                                             <%for (Category categoryChild : categoryDAO.getListCategoryChild(categoryParent.getMaDanhMuc())) {%>
                                             <div class="col l-4 m-4">
                                                 <div class="header-sub-menu__item">
-                                                    <a href="productlist.jsp?madanhmuc=<%=categoryChild.getMaDanhMuc()%>" class="header-sub-menu__link">
+                                                    <a href="ProductListController?madanhmuc=<%=categoryChild.getMaDanhMuc()%>"
+                                                       class="header-sub-menu__link">
                                                         <i
                                                                 class="header-sub-menu__icon fas fa-angle-double-right"></i>
                                                         <%=categoryChild.getTenDanhMuc()%>
@@ -346,7 +349,8 @@
 
                         <ul class="header-mobile-sub-nav__list" style="--num-row: 8;">
                             <li class="header-mobile-sub-nav__item">
-                                <a href="thongtincanhan.jsp" class="header-mobile-sub-nav__item-link">Tài khoản của tôi</a>
+                                <a href="thongtincanhan.jsp" class="header-mobile-sub-nav__item-link">Tài khoản của
+                                    tôi</a>
                             </li>
                             <li class="header-mobile-sub-nav__item">
                                 <a href="trangbaohanh.jsp" class="header-mobile-sub-nav__item-link">Tra cứu bảo hành</a>

@@ -1,6 +1,8 @@
 package com.example.webproject.DAO.daoimpl;
 
 import com.example.webproject.BEAN.Category;
+import com.example.webproject.BEAN.PhoneProduct;
+import com.example.webproject.BEAN.Product;
 import com.example.webproject.BEAN.ProductList;
 import com.example.webproject.DAO.ProductListDAO;
 import com.example.webproject.DB.DBConnection;
@@ -8,10 +10,12 @@ import com.example.webproject.DB.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductListDAOImpl implements ProductListDAO {
+    Connection connection = null;
     PreparedStatement statement;
     ResultSet resultSet;
     private static ProductListDAOImpl instance;
@@ -38,7 +42,8 @@ public class ProductListDAOImpl implements ProductListDAO {
                 productList.setCategory(category);
                 productList.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
                 productList.setTen(resultSet.getString("Ten"));
-                productList.setGia(resultSet.getLong("Gia"));
+                long gia = resultSet.getLong("Gia");
+                productList.setGia(gia);
                 productList.setMaDanhMuc(resultSet.getString("MaDanhMuc"));
                 productList.setTenDanhMuc(resultSet.getString("TenDanhMuc"));
                 productList.setLoaiSP(resultSet.getString("LoaiSP"));
@@ -50,7 +55,179 @@ public class ProductListDAOImpl implements ProductListDAO {
         return list;
     }
 
+    @Override
+    public PhoneProduct getProductDetail(String maSP) {
+        Connection connection = DBConnection.getConnection();
+        String sql = "";
+        PhoneProduct product = new PhoneProduct();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.first()) {
+                Category category = new Category(resultSet.getString("MaDanhMuc"), "", "", "");
+                product.setMaSP(resultSet.getString("MaSP"));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public int count(String txtSearch) {
+        ArrayList<PhoneProduct> products = new ArrayList<>();
+        String query = "SELECT count(*) FROM danhsachsp where Ten LIKE ?";
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, "%" + txtSearch + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+
+
+    }
+
+    public List<Product> search(String txtSearch, int index) {
+        ArrayList<Product> products = new ArrayList<>();
+        String query = "SELECT * FROM\n" +
+                "(SELECT t.*, \n" +
+                "       @rownum := @rownum + 1 AS rank\n" +
+                "  FROM  danhsachsp t, \n" +
+                "       (SELECT @rownum := 0) r\n" +
+                " WHERE Ten like ?) as x\n" +
+                " WHERE rank BETWEEN ? and ?";
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, "%" + txtSearch + "%");
+            statement.setInt(2, 10 * (index - 1) + 1);
+            statement.setInt(3, 10 * index);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setMaSP(resultSet.getString("Id"));
+                product.setTenSP(resultSet.getString("Ten"));
+                product.setGiaSP(resultSet.getInt("Gia"));
+                product.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                products.add(product);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return products;
+    }
+
+    public int getNumberPage() {
+        String query = "SELECT count(*) FROM thongtinlaptop";
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int total = resultSet.getInt(1);
+                int countPage = 0;
+                countPage = total / 10;
+                if (total % 10 != 0) {
+                    countPage++;
+                }
+                return countPage;
+            }
+
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
+    public Product getLaptopByID(String id) {
+
+        Product product = null;
+        ;
+        String query = "select * from danhsachsp inner join  thongtindienthoai on danhsachsp.Id =thongtindienthoai.MaSP \n"
+                + "where thongtindienthoai.MaSP = ?";
+
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, id);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String maSP = resultSet.getString("MaSP");
+                String tenSP = resultSet.getString("TenSP");
+                int giaSP = resultSet.getInt("GiaSP");
+                String link_hinhanh = resultSet.getString("Link_hinhanh");
+                String manHinh = resultSet.getString("ManHinh");
+                String hdh = resultSet.getString("HeDH");
+                String camSau = resultSet.getString("CamSau");
+                String camTr = resultSet.getString("CamTruoc");
+                String CPU = resultSet.getString("CPU");
+                String RAM = resultSet.getString("RAM");
+                String boNhoTrong = resultSet.getString("BoNhoTrong");
+                String theSim = resultSet.getString("TheSim");
+                String pin = resultSet.getString("DungLuongPin");
+                String thietKe = resultSet.getString("ThietKe");
+                String imei = resultSet.getString("Imei");
+                String baiViet = resultSet.getString("BaiViet");
+                String noiDung = resultSet.getString("NoiDung");
+                String linkAnh2 = resultSet.getString("link_hinhanh");
+                String linkAnh3 = resultSet.getString("link_hinhanh");
+                product = new Product(maSP, tenSP, giaSP, manHinh, hdh, camSau, camTr, CPU, RAM, boNhoTrong, theSim, pin, thietKe,
+                        imei, baiViet, noiDung, link_hinhanh, linkAnh2, linkAnh3, 1);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return product;
+    }
+
+    public List<Product> getTop(int index) {
+        ArrayList<Product> products = new ArrayList<>();
+        String query = "SELECT * FROM\n" +
+                "(SELECT t.*, \n" +
+                "       @rownum := @rownum + 1 AS rank\n" +
+                "  FROM  danhsachsp t, \n" +
+                "       (SELECT @rownum := 0)  r) where LoaiSP='DT' as x\n" +
+                " WHERE rank BETWEEN ? and ?";
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, 10 * (index - 1) + 1);
+            statement.setInt(2, 10 * index);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setMaSP(resultSet.getString("MaSP"));
+                product.setTenSP(resultSet.getString("Ten"));
+                product.setGiaSP(resultSet.getInt("Gia"));
+                product.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                products.add(product);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return products;
+    }
+
+    public String dinhDang(long a) {
+        DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
+        return decimalFormat.format(a);
+    }
+
     public static void main(String[] args) {
-        System.out.println(new ProductListDAOImpl().getListProductByCategory("100002").size());
+//        System.out.println(new ProductListDAOImpl().getListProductByCategory("100002").size());
     }
 }

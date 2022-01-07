@@ -1,5 +1,7 @@
 package com.example.webproject.BEAN;
 
+import java.text.DecimalFormat;
+
 public class Product {
     private String maSP;
     private String tenSP;
@@ -12,6 +14,11 @@ public class Product {
 
     public Product() {
 
+    }
+
+    public String dinhDang(long a) {
+        DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
+        return decimalFormat.format(a);
     }
 
     public Product(String maSP, String tenSP, int giaSP, String manHinh, String hdh, String camSau, String camTr, String CPU, String RAM, String boNhoTrong, String theSim, String pin, String thietKe, String imei, String baiViet, String noiDung, String link_hinhanh, String linkAnh2, String linkAnh3, int quantity) {

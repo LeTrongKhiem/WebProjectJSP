@@ -77,7 +77,7 @@
                     <jsp:useBean id="listCategory" scope="request" type="java.util.List"/>
                     <c:forEach items="${listCategory}" var="l">
                         <li class="container-nav__item">
-                            <a href="#"
+                            <a href="ProductListController?madanhmuc=${l.maDanhMuc}"
                                class="container-nav__item-link">${l.tenDanhMuc}
                             </a>
                         </li>
@@ -92,6 +92,7 @@
                     <div id="content" class=" row no-gutters">
                         <jsp:useBean id="product" scope="request" type="java.util.List"/>
                         <c:forEach var="i" items="${product}">
+                            <%--                            <%for (Product productList : ProductListDAOImpl.getInstance().search(request.getParameter("txt"), Integer.parseInt(request.getParameter("index")))) {%>--%>
                             <div class="product-laptop col l-2-4 l-3-m m-4 c-6">
                                 <div class="container-product__item">
                                     <div class="container-product__item-heading">
@@ -134,7 +135,8 @@
                                         </div>
                                         <div class="container-product__item-buy">
                                 <span class="container-product__item-price">
-                                        ${i.giaSP}
+                                        ${i.dinhDang(i.giaSP)}
+<%--                                    <%=ProductListDAOImpl.getInstance().dinhDang(productList.getGiaSP())%>--%>
                                 </span>
                                             <a href="cart-add?id=${i.maSP}" class="container-product__item-btn">MUA</a>
                                         </div>
@@ -156,6 +158,7 @@
                                     </ul>
                                 </div>
                             </div>
+                            <%--                            <%}%>--%>
                         </c:forEach>
                     </div>
                 </div>

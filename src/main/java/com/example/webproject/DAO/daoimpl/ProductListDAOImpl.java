@@ -6,6 +6,7 @@ import com.example.webproject.BEAN.Product;
 import com.example.webproject.BEAN.ProductList;
 import com.example.webproject.DAO.ProductListDAO;
 import com.example.webproject.DB.DBConnection;
+import org.codehaus.jackson.annotate.JsonSubTypes;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +19,7 @@ public class ProductListDAOImpl implements ProductListDAO {
     Connection connection = null;
     PreparedStatement statement;
     ResultSet resultSet;
+    ArrayList<ProductList> listF;
     private static ProductListDAOImpl instance;
 
     public static ProductListDAOImpl getInstance() {
@@ -75,7 +77,7 @@ public class ProductListDAOImpl implements ProductListDAO {
     }
 
     public int count(String txtSearch) {
-        ArrayList<PhoneProduct> products = new ArrayList<>();
+        ArrayList<Product> products = new ArrayList<>();
         String query = "SELECT count(*) FROM danhsachsp where Ten LIKE ?";
         try {
             Connection connection = DBConnection.getConnection();
@@ -127,10 +129,34 @@ public class ProductListDAOImpl implements ProductListDAO {
     }
 
     public int getNumberPage() {
-        String query = "SELECT count(*) FROM thongtinlaptop";
+        String query = "SELECT count(*) FROM danhsachsp";
         try {
             connection = new DBConnection().getConnection();
             statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int total = resultSet.getInt(1);
+                int countPage = 0;
+                countPage = total / 10;
+                if (total % 10 != 0) {
+                    countPage++;
+                }
+                return countPage;
+            }
+
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int getNumberPageProduct(String category) {
+        String query = "SELECT count(*) FROM danhsachsp where MaDanhMuc=?";
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, category);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int total = resultSet.getInt(1);
@@ -208,7 +234,7 @@ public class ProductListDAOImpl implements ProductListDAO {
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Product product = new Product();
-                product.setMaSP(resultSet.getString("MaSP"));
+                product.setMaSP(resultSet.getString("Id"));
                 product.setTenSP(resultSet.getString("Ten"));
                 product.setGiaSP(resultSet.getInt("Gia"));
                 product.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
@@ -222,6 +248,64 @@ public class ProductListDAOImpl implements ProductListDAO {
         return products;
     }
 
+    public List<Product> getTop(int index, String category) {
+        ArrayList<Product> products = new ArrayList<>();
+        String query = "SELECT * FROM\n" +
+                "(SELECT t.*, \n" +
+                "       @rownum := @rownum + 1 AS rank\n" +
+                "  FROM  danhsachsp t, \n" +
+                "       (SELECT @rownum := 0)  r) where LoaiSP='DT' and MaDanhMuc=? as x\n" +
+                " WHERE rank BETWEEN ? and ?";
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, category);
+            statement.setInt(2, 10 * (index - 1) + 1);
+            statement.setInt(3, 10 * index);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setMaSP(resultSet.getString("Id"));
+                product.setTenSP(resultSet.getString("Ten"));
+                product.setGiaSP(resultSet.getInt("Gia"));
+                product.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                products.add(product);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return products;
+    }
+
+    public List<ProductList> getProductType() {
+        String sql = "select * from danhsachsp where LoaiSP='DT'";
+        listF = new ArrayList<ProductList>();
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                ProductList productList = new ProductList();
+                productList.setId(resultSet.getString("id"));
+                Category category = new Category(resultSet.getString("MaDanhMuc"), "", "", "");
+                productList.setCategory(category);
+                productList.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                productList.setTen(resultSet.getString("Ten"));
+                long gia = resultSet.getLong("Gia");
+                productList.setGia(gia);
+                productList.setMaDanhMuc(resultSet.getString("MaDanhMuc"));
+                productList.setTenDanhMuc(resultSet.getString("TenDanhMuc"));
+                productList.setLoaiSP(resultSet.getString("LoaiSP"));
+                listF.add(productList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listF;
+    }
+
     public String dinhDang(long a) {
         DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
         return decimalFormat.format(a);
@@ -229,5 +313,10 @@ public class ProductListDAOImpl implements ProductListDAO {
 
     public static void main(String[] args) {
 //        System.out.println(new ProductListDAOImpl().getListProductByCategory("100002").size());
+//        System.out.println(new ProductListDAOImpl().getProductType());
+        ArrayList<ProductList> listF = (ArrayList<ProductList>) new ProductListDAOImpl().getProductType();
+        for (ProductList p : listF) {
+            System.out.println(p.getMaDanhMuc());
+        }
     }
 }

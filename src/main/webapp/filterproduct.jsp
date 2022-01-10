@@ -1,13 +1,15 @@
+<%--
+  Created by LeTrongKhiem.
+  User: User
+  Date: 10-Jan-22
+  Time: 2:47 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page import="com.example.webproject.DAO.daoimpl.ProductListDAOImpl" %>
 <%@ page import="com.example.webproject.BEAN.ProductList" %>
 <%@ page import="java.text.NumberFormat" %>
-<%@ page import="com.example.webproject.BEAN.Product" %><%--
-  Created by LeTrongKhiem.
-  User: User
-  Date: 03-Dec-21
-  Time: 7:40 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.example.webproject.BEAN.Product" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="common/taglib.jsp" %>
@@ -17,7 +19,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><dec:title default="Điện thoại Apple"/></title>
+    <title><dec:title default="Sản Phẩm"/></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
     <link rel="stylesheet" href="<c:url value='assets/font/fontawesome-free-5.15.3-web/css/all.min.css'/>">
@@ -76,28 +78,28 @@
                     <i class="container-filter__icon-down fas fa-chevron-down"></i>
                     <ul class="container-filter__price">
                         <li class="container-filter-item">
-                            Dưới 1 triệu
+                            <a href="FilterController?chongia=1">Dưới 1 triệu</a>
                         </li>
                         <li class="container-filter-item">
-                            Dưới 2 triệu
+                            <a href="FilterController?chongia=2">Dưới 2 triệu</a>
                         </li>
                         <li class="container-filter-item">
-                            Dưới 3 triệu
+                            <a href="FilterController?chongia=3">Dưới 3 triệu</a>
                         </li>
                         <li class="container-filter-item">
-                            Dưới 4 triệu
+                            <a href="FilterController?chongia=4">Dưới 4 triệu</a>
                         </li>
                         <li class="container-filter-item">
-                            Dưới 5 triệu
+                            <a href="FilterController?chongia=5">Dưới 5 triệu</a>
                         </li>
                         <li class="container-filter-item">
-                            Dưới 7 triệu
+                            <a href="FilterController?chongia=7">Dưới 7 triệu</a>
                         </li>
                         <li class="container-filter-item">
-                            Dưới 10 triệu
+                            <a href="FilterController?chongia=10">Dưới 10 triệu</a>
                         </li>
                         <li class="container-filter-item">
-                            Trên 10 triệu
+                            <a href="FilterController?chongia=11">Trên 10 triệu</a>
                         </li>
                     </ul>
                 </li>
@@ -209,15 +211,15 @@
                 <div class="container-product">
                     <div class="row no-gutters phone-products">
                         <!-- Thêm từng điện thoại vào -->
-                        <%for (ProductList productList : ProductListDAOImpl.getInstance().getListProductByCategory(request.getParameter("madanhmuc"))) {%>
-                        <%--                        <%for (Product productList : ProductListDAOImpl.getInstance().search(request.getParameter("txt"), Integer.parseInt(request.getParameter("index")))) {%>--%>
-                        <%--                        <jsp:useBean id="productList" scope="request" type="java.util.List"/>--%>
-                        <%--                        <c:forEach items="${productList}" var="prl">--%>
+                        <%
+                            ArrayList<ProductList> array = (ArrayList<ProductList>) session.getAttribute("list");
+                        %>
+                        <%for (int i = 0; i < array.size(); i++) {%>
                         <div class="col l-2-4 l-3-m m-4 c-6">
                             <div class="container-product__item">
                                 <div class="container-product__item-heading">
                                     <div class="container-product__item-img"
-                                         style="background-image: url('<%=productList.getLink_hinhanh()%>');"></div>
+                                         style="background-image: url('<%=array.get(i).getLink_hinhanh()%>');"></div>
                                     <div class="container-product-guarantee">
                                         <a href="trangitem.jsp" class="container-product__item-link">
                                             <div class="container-product-guarantee__heading">
@@ -249,7 +251,7 @@
                                 <div class="container-product__item-wrap">
                                     <div class="container-product__item-info">
                                         <a href="" class="container-product__item-name">
-                                            <%=productList.getTen()%>
+                                            <%=array.get(i).getTen()%>
                                             <%--                                            <%=productList.getTenSP()%>--%>
                                         </a>
                                         <i class="container-product__item-sale-icon fas fa-gift"></i>
@@ -257,7 +259,7 @@
                                     <div class="container-product__item-buy">
                                 <span class="container-product__item-price">
 <%--                                    <%=nf.format(productList.getGia())%> đ--%>
-                                     <%=ProductListDAOImpl.getInstance().dinhDang(productList.getGia())%>
+                                     <%=ProductListDAOImpl.getInstance().dinhDang(array.get(i).getGia())%>
 <%--                                    <%=nf.format(productList.getGiaSP())%> đ--%>
                                 </span>
                                         <a href="" class="container-product__item-btn">MUA</a>
@@ -292,8 +294,6 @@
                                 </ul>
                             </div>
                         </div>
-                        <%--                        </c:forEach>--%>
-                        <%--                        </jsp:useBean>--%>
                         <%}%>
                     </div>
                 </div>

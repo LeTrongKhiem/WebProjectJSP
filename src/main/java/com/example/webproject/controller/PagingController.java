@@ -15,8 +15,9 @@ public class PagingController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String txtSearch = request.getParameter("txt");
+        //String txtSearch = request.getParameter("txt");
         String txt = request.getParameter("index");
+        String madanhmuc = request.getParameter("madanhmuc");
         int index = 0;
         if (txt == null) {
             index = 1;
@@ -24,13 +25,14 @@ public class PagingController extends HttpServlet {
             index = Integer.parseInt(txt);
         }
         ProductListDAOImpl dao = new ProductListDAOImpl();
-        List<Product> list = dao.getTop(index);
+        List<Product> list = dao.getTop(index, madanhmuc);
         request.setAttribute("product", list);
-        request.getRequestDispatcher("trangdienthoai.jsp").forward(request, response);
+        request.setAttribute("madanhmuc", madanhmuc);
+        request.getRequestDispatcher("productlist.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doGet(request, response);
     }
 }

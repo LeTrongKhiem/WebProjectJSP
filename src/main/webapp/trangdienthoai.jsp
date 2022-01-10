@@ -19,9 +19,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang tìm kiếm</title>
-
-    <%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">--%>
-
     <link rel="stylesheet" href="<c:url value='assets/font/fontawesome-free-5.15.3-web/css/all.min.css'/>">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="<c:url value= './assets/img/logo3.png'/>">
@@ -38,6 +35,10 @@
 <style>
     .col {
         margin: 0 !important;
+    }
+    .paginationCenter {
+        margin: 10px 0 0 50%;
+        font-size: 18px;
     }
 </style>
 <%--<%--%>
@@ -163,31 +164,17 @@
                     </div>
                 </div>
             </div>
-            <%--            <div class="col l-12 m-12 c-12">--%>
-            <%--                &lt;%&ndash;                <div class="container-view-more">&ndash;%&gt;--%>
-            <%--                &lt;%&ndash;                    <button id="btn-loadMore" onclick="loadMore()" class="container-btn-extend">Xem thêm laptop</button>&ndash;%&gt;--%>
-            <%--                &lt;%&ndash;                </div>&ndash;%&gt;--%>
-            <%--                --%>
-            <%--            </div>--%>
             <nav aria-label="Page navigation example">
-                <ul class="pagination">
+                <ul class="pagination paginationCenter">
                     <c:forEach begin="1" end="${endP}" var="i">
-                        <li class="page-item"><a class=" page-link"
-                                                 href="SearchController?index=${i}&txt=${txts}">${i}</a>
+                        <li class="page-item ${index==i?"active":""}"><a class=" page-link"
+                                                                         href="search?index=${i}&txt=${txts}">${i}</a>
                         </li>
                     </c:forEach>
                 </ul>
             </nav>
 
 
-            <%--            <nav aria-label="Page navigation example">--%>
-            <%--                <ul class="pagination">--%>
-            <%--                    <c:forEach begin="1" end="${a.numberPage}" var="q">--%>
-            <%--                        <li class="page-item " aria-current="page"><a class=" page-link"--%>
-            <%--                                                                      href="PagingController?index=${q}">${q}</a></li>--%>
-            <%--                    </c:forEach>--%>
-            <%--                </ul>--%>
-            <%--            </nav>--%>
         </div>
     </div>
 

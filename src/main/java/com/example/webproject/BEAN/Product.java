@@ -11,6 +11,8 @@ public class Product {
     private int quantity;
     private int quantitySold;
     private String link_hinhanh;
+    Category maDanhMuc;
+
 
     public Product() {
 
@@ -43,6 +45,14 @@ public class Product {
         this.linkAnh3 = linkAnh3;
         this.quantity = quantity;
 
+    }
+
+    public Category getMaDanhMuc() {
+        return maDanhMuc;
+    }
+
+    public void setMaDanhMuc(Category maDanhMuc) {
+        this.maDanhMuc = maDanhMuc;
     }
 
     public String getMaSP() {

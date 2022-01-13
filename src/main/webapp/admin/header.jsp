@@ -48,7 +48,7 @@
             </li>
             <li class="sidenav-item">
                 <a class="sidenav-link" href="./quanlisanpham.jsp">
-                    <i class="fas fa-users fa-fw me-3"></i><span>Quản lí phụ kiện</span></a>
+                    <i class="fas fa-keyboard fa-fw me-3"></i><span>Quản lí phụ kiện</span></a>
             </li>
             <li class="sidenav-item">
                 <a class="sidenav-link" href="./quanlitintuc.jsp">
@@ -56,7 +56,7 @@
             </li>
             <li class="sidenav-item">
                 <a class="sidenav-link" href="./motasanpham.jsp">
-                    <i class="fas fa-money-bill fa-fw me-3"></i><span>Quản lí mô tả sản phẩm</span></a>
+                    <i class="fab fa-product-hunt fa-fw me-3"></i><span>Quản lí mô tả sản phẩm</span></a>
             </li>
         </ul>
     </nav>

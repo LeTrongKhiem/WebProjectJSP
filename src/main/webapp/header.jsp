@@ -155,7 +155,8 @@
                 <ul class="header-menu hide-on-mobile-and-tablet">
                     <%for (Category categoryParent : categoryDAO.getListCategoryParent()) {%>
                     <li class="header-menu__item">
-                        <a href="productlist.jsp" class="header-menu__item-link">
+                        <a href="ProductListController?madanhmuc=<%=categoryParent.getMaDanhMuc()%>"
+                           class="header-menu__item-link">
                             <i class="header-menu__item-icon <%=categoryParent.getIcon()%>"></i>
                             <p class="header-menu__item-name"><%=categoryParent.getTenDanhMuc()%>
                             </p>

@@ -1,5 +1,6 @@
 package com.example.webproject.DAO.daoimpl;
 
+import com.example.webproject.BEAN.Category;
 import com.example.webproject.BEAN.Product;
 import com.example.webproject.BEAN.ProductList;
 import com.example.webproject.DAO.FilterProduct;
@@ -23,7 +24,7 @@ public class FilterProductIpml implements FilterProduct {
         ArrayList<Product> list = new ArrayList<>();
         int price;
         for (int i = 0; i < listFilter.size(); i++) {
-            price = listFilter.get(i).getGiaSP();
+            price = (int) listFilter.get(i).getGiaSP();
             if (price < priceF) {
                 list.add(listFilter.get(i));
             }
@@ -43,6 +44,20 @@ public class FilterProductIpml implements FilterProduct {
         }
         listFilter = list;
     }
+
+    @Override
+    public void selectByCategory(String categoryF) {
+        ArrayList<Product> list = new ArrayList<>();
+        Category category;
+        for (int i = 0; i < listFilter.size(); i++) {
+            category = listFilter.get(i).getMaDanhMuc();
+            if (category.getMaDanhMuc().equalsIgnoreCase(categoryF)) {
+                list.add(listFilter.get(i));
+            }
+        }
+        listFilter = list;
+    }
+
 
     @Override
     public void sortByPrice(String price) {
@@ -68,11 +83,9 @@ public class FilterProductIpml implements FilterProduct {
         }
     }
 
+
     public static void main(String[] args) {
-        new FilterProductIpml().sortByPrice("caodenthap");
-        for (ProductList p : listProduct) {
-            System.out.println(p);
-        }
+
 
     }
 

@@ -75,7 +75,7 @@ public class SendEmail {
 
     public boolean sendMail(String to, String subject, String text) {
         String mailFrom = "tgmobile.cskh@gmail.com";
-        String passEmailFrom = "letrongkhiem19130102";
+        String passEmailFrom = "tvcoxysmnlzvqgun";
         Properties properties = new Properties();
 //        properties.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
 //        properties.put("mail.smtp.port", "587"); //TLS Port
@@ -108,6 +108,42 @@ public class SendEmail {
             return false;
         }
         return true;
+    }
+
+    public void sendMail1(String to, String subject, String text) {
+        String mailFrom = "tgmobile.cskh@gmail.com";
+        String passEmailFrom = "tvcoxysmnlzvqgun";
+        Properties properties = new Properties();
+//        properties.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+//        properties.put("mail.smtp.port", "587"); //TLS Port
+//        properties.put("mail.smtp.auth", "true"); //enable authentication
+//        properties.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
+        properties.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+        properties.put("mail.smtp.socketFactory.port", "465"); //SSL Port
+        properties.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
+        properties.put("mail.smtp.auth", "true"); //Enabling SMTP Authentication
+        properties.put("mail.smtp.port", "465"); //SMTP Port
+
+        Session session = Session.getDefaultInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(mailFrom, passEmailFrom);
+            }
+        });
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.addHeader("Content-type", "text/plan; charset=UTF-8");
+//            message.addHeader("format", "flowed");
+//            message.addHeader("Content-Transfer-Encoding", "8bit");
+            message.setFrom(new InternetAddress(mailFrom));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            message.setSubject(subject);
+            message.setText(text);
+            Transport.send(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void sendEmaildemo() {
@@ -151,6 +187,6 @@ public class SendEmail {
     }
 
     public static void main(String[] args) {
-        new SendEmail().sendEmaildemo();
+        new SendEmail().sendMail1("lekhiem2001@gmail.com", "demo", "demo");
     }
 }

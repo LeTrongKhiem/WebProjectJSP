@@ -17,6 +17,7 @@ public class ProductListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String madanhmuc = request.getParameter("madanhmuc");
+        String loaiSp = request.getParameter("loaisanpham");
         ArrayList<ProductList> list = ProductListDAOImpl.getInstance().getListProductByCategory(madanhmuc);
         request.setAttribute("productList", list);
         request.getRequestDispatcher("productlist.jsp").forward(request, response);

@@ -32,7 +32,7 @@ public class ProductListDAOImpl implements ProductListDAO {
     @Override
     public ArrayList<ProductList> getListProductByCategory(String categoryId) {
         Connection connection = DBConnection.getConnection();
-        String sql = "select * from danhsachsp where MaDanhMuc = '" + categoryId + "'";
+        String sql = "select * from `danhmuc` inner join danhsachsp on danhmuc.MaDanhMuc = danhsachsp.MaDanhMuc where danhsachsp.MaDanhMuc = '" + categoryId + "'";
         ArrayList<ProductList> list = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -40,7 +40,7 @@ public class ProductListDAOImpl implements ProductListDAO {
             while (resultSet.next()) {
                 ProductList productList = new ProductList();
                 productList.setId(resultSet.getString("id"));
-                Category category = new Category(resultSet.getString("MaDanhMuc"), "", "", "");
+                Category category = new Category(resultSet.getString("MaDanhMuc"), "", "DanhMucCha", "");
                 productList.setCategory(category);
                 productList.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
                 productList.setTen(resultSet.getString("Ten"));

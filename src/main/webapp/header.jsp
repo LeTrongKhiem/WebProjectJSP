@@ -1,7 +1,14 @@
-
+<%@ page import="com.example.webproject.DAO.daoimpl.CategoryDAOImpl" %>
+<%@ page import="com.example.webproject.BEAN.Category" %><%--
+  Created by LeTrongKhiem.
+  User: User
+  Date: 03-Dec-21
+  Time: 9:03 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%--<%@include file="/common/taglib.jsp" %>--%>
+<%@include file="/common/taglib.jsp" %>
 <style>
     .header__cart-wrap {
         position: relative;
@@ -24,6 +31,9 @@
         background-color: red;
     }
 </style>
+<%
+    CategoryDAOImpl categoryDAO = new CategoryDAOImpl();
+%>
 <div class="header">
     <div class="header-nav">
         <div class="grid wide no-margin">
@@ -135,207 +145,40 @@
                     </div>
                 </a>
 
-                <form action="search?index=1" method="post" class="header-search hide-on-mobile-and-tablet">
+                <form class="header-search hide-on-mobile-and-tablet" action="search?index=1" method="post">
                     <input value="${txts}" name="txt" type="text" placeholder="Nhập tên sản phẩm..."
                            class="header-search__input">
-                    <button type="submit"><i class="header-search__icon fas fa-search"></i></button>
+                    <button type="submit" style="background: #fff;border: none;"><i
+                            class="header-search__icon fas fa-search"></i></button>
                 </form>
 
                 <ul class="header-menu hide-on-mobile-and-tablet">
-
-                    <!-- Menu Mobile -->
+                    <%for (Category categoryParent : categoryDAO.getListCategoryParent()) {%>
                     <li class="header-menu__item">
-                        <a href="./mobile.jsp" class="header-menu__item-link">
-                            <i class="header-menu__item-icon fas fa-mobile-alt"></i>
-                            <p class="header-menu__item-name">Điện thoại</p>
+                        <a href="ProductListController?madanhmuc=<%=categoryParent.getMaDanhMuc()%>"
+                           class="header-menu__item-link">
+                            <i class="header-menu__item-icon <%=categoryParent.getIcon()%>"></i>
+                            <p class="header-menu__item-name"><%=categoryParent.getTenDanhMuc()%>
+                            </p>
                         </a>
-
                         <div class="header-sub-menu">
                             <div class="grid">
                                 <div class="row">
                                     <div class="col l-9 m-9">
                                         <h3 class="header-sub-menu__title">Hãng sản xuất</h3>
                                         <div class="row">
+                                            <%for (Category categoryChild : categoryDAO.getListCategoryChild(categoryParent.getMaDanhMuc())) {%>
                                             <div class="col l-4 m-4">
                                                 <div class="header-sub-menu__item">
-                                                    <a href="mobile.jsp" class="header-sub-menu__link">
+                                                    <a href="ProductListController?madanhmuc=<%=categoryChild.getMaDanhMuc()%>"
+                                                       class="header-sub-menu__link">
                                                         <i
                                                                 class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Apple
+                                                        <%=categoryChild.getTenDanhMuc()%>
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Samsung
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        OnePlus
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Xiaomi
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Oppo
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Vivo
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        ZTE (Nubia)
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Asus
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Nokia
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        LG
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Google
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Vsmart
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Meizu
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Sony
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        BlackBerry
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Lenovo
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Bkav
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Huawei
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Smartisan
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Meiigoo
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <%}%>
                                         </div>
                                     </div>
 
@@ -419,592 +262,14 @@
                             </div>
                         </div>
                     </li>
-
-                    <!-- Menu Tablet -->
-                    <li class="header-menu__item">
-                        <a href="" class="header-menu__item-link">
-                            <i class="header-menu__item-icon fas fa-laptop"></i>
-                            <p class="header-menu__item-name">Laptop</p>
-                        </a>
-
-                        <div class="header-sub-menu">
-                            <div class="grid">
-                                <div class="row">
-                                    <div class="col l-9 m-9">
-                                        <h3 class="header-sub-menu__title">Hãng sản xuất</h3>
-                                        <div class="row">
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Apple
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Samsung
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col l-3 m-3">
-                                        <h3 class="header-sub-menu__title">Mức giá</h3>
-                                        <div class="row">
-                                            <div class="col l-12 m-12">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Dưới 1 triệu
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-12 m-12">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Dưới 2 triệu
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-12 m-12">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Dưới 3 triệu
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-12 m-12">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Dưới 5 triệu
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-12 m-12">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Dưới 8 triệu
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-12 m-12">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Dưới 10 triệu
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-12 m-12">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Trên 10 triệu
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col l-12 m-12">
-                                        <div class="header-sub-menu__ranking">
-                                            <i class="header-sub-menu__ranking-icon fas fa-trophy"></i>
-                                            <a href="#" class="header-sub-menu__ranking-title">Xếp hạng điện
-                                                thoại</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <!-- Menu Tool -->
-                    <li class="header-menu__item">
-                        <a href="" class="header-menu__item-link">
-                            <i class="header-menu__item-icon fas fa-headphones-alt"></i>
-                            <p class="header-menu__item-name">Phụ kiện</p>
-                        </a>
-
-                        <div class="header-sub-menu header-sub-menu--m-size">
-                            <div class="grid">
-                                <div class="row">
-                                    <div class="col l-12 m-12">
-                                        <h3 class="header-sub-menu__title">Loại phụ kiện</h3>
-                                        <div class="row">
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Loa - Tai nghe
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Đồng hồ thông minh
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Pin - Sạc dự phòng
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Phụ kiện iPhone
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Đồ chơi công nghệ
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Phụ kiện Xiaomi
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Máy lọc không khí
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Phụ kiện Sony
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Phụ kiện Samsung
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Phụ kiện LG
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Phụ kiện Lenovo
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Phụ kiện iPad
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Phụ kiện Meizu
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Phụ kiện BlackBerry
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Phụ kiện Oppo
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Phụ kiện Pisen
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Phụ kiện Mark
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Phụ kiện khác
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <!-- Menu Fix -->
-                    <li class="header-menu__item">
-                        <a href="" class="header-menu__item-link">
-                            <i class="header-menu__item-icon fas fa-tools"></i>
-                            <p class="header-menu__item-name">Sửa chữa</p>
-                        </a>
-
-                        <div class="header-sub-menu header-sub-menu--m-size">
-                            <div class="grid">
-                                <div class="row">
-                                    <div class="col l-12 m-12">
-                                        <h3 class="header-sub-menu__title">Loại sản phẩm</h3>
-                                        <div class="row">
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        iPhone
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Samsung
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Xiaomi
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Oppo
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Realme
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Honor
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        iPad
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Sony
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        HTC
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        LG
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Asus
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        BlackBerry
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Vivo
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Mobiistar
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Huawei
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Sim ghép iPhone
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Hãng khác
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Linh kiện điện thoại
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <!-- Menu Unlock -->
-                    <li class="header-menu__item">
-                        <a href="" class="header-menu__item-link">
-                            <i class="header-menu__item-icon fas fa-unlock"></i>
-                            <p class="header-menu__item-name">Mở khóa</p>
-                        </a>
-
-                        <div class="header-sub-menu header-sub-menu--m-size">
-                            <div class="grid">
-                                <div class="row">
-                                    <div class="col l-12 m-12">
-                                        <h3 class="header-sub-menu__title">Hãng sản xuất</h3>
-                                        <div class="row">
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Unlock iPhone
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Unlock Samsung
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Unlock LG
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Unlock Sony
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Unlock HTC
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Unlock Huawei
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Unlock iPad
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col l-4 m-4">
-                                                <div class="header-sub-menu__item">
-                                                    <a href="#" class="header-sub-menu__link">
-                                                        <i
-                                                                class="header-sub-menu__icon fas fa-angle-double-right"></i>
-                                                        Unlock Xiaomi
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
+                    <%}%>
                     <!-- Menu news -->
                     <li class="header-menu__item">
-                        <a href="" class="header-menu__item-link">
+                        <a href="./tintuc.jsp" class="header-menu__item-link">
                             <i class="header-menu__item-icon fas fa-newspaper"></i>
                             <p class="header-menu__item-name">Tin tức</p>
                         </a>
                     </li>
-
-                    <%--                    <li class="header-menu__item">--%>
-                    <%--                        <a href="" class="header-menu__item-link">--%>
-                    <%--                            <i class="header-menu__item-icon fas fa-shopping-cart"></i>--%>
-                    <%--                            <p class="header-menu__item-name">Giỏ hàng</p>--%>
-                    <%--                        </a>--%>
-                    <%--                    </li>--%>
                 </ul>
 
                 <!-- Button search in mobile -->
@@ -1037,269 +302,30 @@
 
         <ul class="header-mobile-nav__list">
             <!-- Mobile -->
+            <%for (Category categoryParent : categoryDAO.getListCategoryParent()) {%>
             <li class="header-mobile-nav__item">
                 <label class="header-mobile-nav__item-select">
                     <i class="header-mobile-nav__icon-open fas fa-chevron-right"></i>
-                    Điện thoại
+                    <%=categoryParent.getTenDanhMuc()%>
                 </label>
 
                 <ul class="header-mobile-sub-nav__list" style="--num-row: 8;">
+                    <%for (Category categoryChild : categoryDAO.getListCategoryChild(categoryParent.getMaDanhMuc())) {%>
                     <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Apple</a>
+                        <a href="#" class="header-mobile-sub-nav__item-link"><%=categoryChild.getTenDanhMuc()%>
+                        </a>
                     </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Samsung</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">OnePlus</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Xiaomi</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Oppo</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Vivo</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">ZTE (Nubia)</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Asus</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Nokia</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">LG</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Google</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Vsmart</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Meizu</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Sony</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">BlackBerry</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Lenovo</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Bkav</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Huawei</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Smartisan</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Meiigo</a>
-                    </li>
+                    <%}%>
                 </ul>
             </li>
-
-            <!-- Tablet -->
-            <li class="header-mobile-nav__item">
-                <label class="header-mobile-nav__item-select">
-                    <i class="header-mobile-nav__icon-open fas fa-chevron-right"></i>
-                    Tablet
-                </label>
-
-                <ul class="header-mobile-sub-nav__list" style="--num-row: 2;">
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Apple</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Samsung</a>
-                    </li>
-                </ul>
-            </li>
-
-            <!-- Tool -->
-            <li class="header-mobile-nav__item">
-                <label class="header-mobile-nav__item-select">
-                    <i class="header-mobile-nav__icon-open fas fa-chevron-right"></i>
-                    Phụ kiện
-                </label>
-
-                <ul class="header-mobile-sub-nav__list" style="--num-row: 8;">
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Loa - Tai nghe</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Đồng hồ thông minh</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Pin - Sạc dự phòng</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Phụ kiện iPhone</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Đồ chơi công nghệ</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Phụ kiện Xiaomi</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Máy lọc không khí</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Phụ kiện Sony</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Phụ kiện Samsung</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Phụ kiện LG</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Phụ kiện Lenovo</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Phụ kiện Ipad</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Phụ kiện Meizu</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Phụ kiện BlackBerry</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Phụ kiện Oppo</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Phụ kiện Pisen</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Phụ kiện Mark</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Phụ kiện khác</a>
-                    </li>
-                </ul>
-            </li>
-
-            <!-- Fix -->
-            <li class="header-mobile-nav__item">
-                <label class="header-mobile-nav__item-select">
-                    <i class="header-mobile-nav__icon-open fas fa-chevron-right"></i>
-                    Sửa chữa
-                </label>
-
-                <ul class="header-mobile-sub-nav__list" style="--num-row: 8;">
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">iPhone</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Samsung</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Xiaomi</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Oppo</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Realme</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Honor</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">iPad</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Sony</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">HTC</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">LG</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Asus</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">BlackBerry</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Meizu</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Vivo</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Mobiistar</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Huawei</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Sim ghép iPhone</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Hãng khác</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Linh kiện điện thoại</a>
-                    </li>
-                </ul>
-            </li>
-
-            <!-- Unlock -->
-            <li class="header-mobile-nav__item">
-                <label class="header-mobile-nav__item-select">
-                    <i class="header-mobile-nav__icon-open fas fa-chevron-right"></i>
-                    Mở khóa
-                </label>
-
-                <ul class="header-mobile-sub-nav__list" style="--num-row: 4;">
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Unlock iPhone</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Unlock Samsung</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Unlock LG</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Unlock Sony</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Unlock HTC</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Unlock Huawei</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Unlock iPad</a>
-                    </li>
-                    <li class="header-mobile-sub-nav__item">
-                        <a href="#" class="header-mobile-sub-nav__item-link">Unlock Xiaomi</a>
-                    </li>
-                </ul>
-            </li>
-
+            <%}%>
             <!-- News -->
             <li class="header-mobile-nav__item">
-                <a href="#" class="header-mobile-nav__item-select">
+                <a href="./tintuc.jsp" class="header-mobile-nav__item-select">
                     <i class="header-mobile-nav__icon-open fas fa-chevron-right"></i>
                     Tin tức
                 </a>
             </li>
-
             <li class="header-mobile-nav__item pd-none" style="--num-row: 2;">
                 <a href="#" class="header-mobile-nav__item-link">Liên hệ</a>
             </li>
@@ -1309,12 +335,46 @@
             <li class="header-mobile-nav__item pd-none">
                 <a href="#" class="header-mobile-nav__item-link">Tra cứu bảo hành</a>
             </li>
-            <li class="header-mobile-nav__item pd-none">
-                <a href="#" class="header-mobile-nav__item-link">Đăng nhập</a>
-            </li>
-            <li class="header-mobile-nav__item pd-none">
-                <a href="#" class="header-mobile-nav__item-link">Đăng xuất</a>
-            </li>
+            <c:choose>
+                <c:when test="${sessionScope.user == null}">
+                    <li class="header-mobile-nav__item pd-none">
+                        <a href="./dangnhap.jsp" class="header-mobile-nav__item-link">Đăng nhập</a>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li class="header-mobile-nav__item">
+                        <label class="header-mobile-nav__item-select">
+                            <i class="header-mobile-nav__icon-open fas fa-chevron-right"></i>
+                                ${sessionScope.user.name}
+                        </label>
+
+                        <ul class="header-mobile-sub-nav__list" style="--num-row: 8;">
+                            <li class="header-mobile-sub-nav__item">
+                                <a href="thongtincanhan.jsp" class="header-mobile-sub-nav__item-link">Tài khoản của
+                                    tôi</a>
+                            </li>
+                            <li class="header-mobile-sub-nav__item">
+                                <a href="trangbaohanh.jsp" class="header-mobile-sub-nav__item-link">Tra cứu bảo hành</a>
+                            </li>
+                            <li class="header-mobile-sub-nav__item">
+                                <a href="#" class="header-mobile-sub-nav__item-link">Đơn đặt hàng</a>
+                            </li>
+                            <li class="header-mobile-sub-nav__item">
+                                <a href="#" class="header-mobile-sub-nav__item-link">Lịch sử mua hàng</a>
+                            </li>
+                            <li class="header-mobile-sub-nav__item">
+                                <a href="#" class="header-mobile-sub-nav__item-link">Lịch sử sửa chữa</a>
+                            </li>
+                            <li class="header-mobile-sub-nav__item">
+                                <a href="#" class="header-mobile-sub-nav__item-link">Sổ địa chỉ</a>
+                            </li>
+                            <li class="header-mobile-sub-nav__item">
+                                <a href="LogOutController" class="header-mobile-sub-nav__item-link">Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </li>
+                </c:otherwise>
+            </c:choose>
         </ul>
     </nav>
 </div>

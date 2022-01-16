@@ -180,20 +180,5 @@
     .footer-nav-mobile__list {
         display: flex;
     }
-    .pagination-item{
-        margin: 0;
-    }
-    .pagination-item__link{
-        --height:28px;
-        font-size: 1.6rem;
-        min-width: 36px;
-    } .pagination-item{
-          margin: 0;
-      }
-    .pagination-item__link{
-        --height:28px;
-        font-size: 1.6rem;
-        min-width: 36px;
-    }
 
 }

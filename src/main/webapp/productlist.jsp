@@ -1,10 +1,7 @@
-<%--
-  Created by LeTrongKhiem.
-  User: User
-  Date: 03-Dec-21
-  Time: 7:40 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.example.webproject.DAO.daoimpl.ProductListDAOImpl" %>
+<%@ page import="com.example.webproject.BEAN.ProductList" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="com.example.webproject.BEAN.Product" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="common/taglib.jsp" %>
@@ -20,15 +17,27 @@
     <link rel="stylesheet" href="<c:url value='assets/font/fontawesome-free-5.15.3-web/css/all.min.css'/>">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="<c:url value= './assets/img/logo3.png'/>">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value= './assets/css/base.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/main.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/grid.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/responsive.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/mobile.css'/>">
 </head>
-
+<jsp:useBean id="a" class="com.example.webproject.DAO.daoimpl.ProductListDAOImpl" scope="request"></jsp:useBean>
 <body>
+<%
+    ProductListDAOImpl productListDAO = new ProductListDAOImpl();
+    NumberFormat nf = NumberFormat.getInstance();
+    nf.setMinimumIntegerDigits(0);
+%>
+<style>
+    .col {
+        margin: 0 !important;
+
+    }
+</style>
 <div class="main">
 
     <%--  header  --%>
@@ -182,10 +191,10 @@
                     <i class="container-filter__icon-down fas fa-chevron-down"></i>
                     <ul class="container-filter__price">
                         <li class="container-filter-item">
-                            Giá cao đến thấp
+                            <a href="FilterController?locgia=caodenthap">Giá cao đến thấp</a>
                         </li>
                         <li class="container-filter-item">
-                            Giá thấp đến cao
+                            <a href="FilterController?locgia=thapdencao">Giá thấp đến cao</a>
                         </li>
                     </ul>
                 </li>
@@ -194,23 +203,38 @@
                 <div class="container-product">
                     <div class="row no-gutters phone-products">
                         <!-- Thêm từng điện thoại vào -->
+                        <%for (ProductList productList : ProductListDAOImpl.getInstance().getListProductByCategory(request.getParameter("madanhmuc"))) {%>
+                        <%--                        <%for (Product productList : ProductListDAOImpl.getInstance().search(request.getParameter("txt"), Integer.parseInt(request.getParameter("index")))) {%>--%>
+                        <%--                        <jsp:useBean id="productList" scope="request" type="java.util.List"/>--%>
+                        <%--                        <c:forEach items="${productList}" var="prl">--%>
                         <div class="col l-2-4 l-3-m m-4 c-6">
                             <div class="container-product__item">
                                 <div class="container-product__item-heading">
-                                    <div class="container-product__item-img" style="background-image: url('./assets/img/dssp/iphone-xi.jpg');"></div>
-
+                                    <div class="container-product__item-img"
+                                         style="background-image: url('<%=productList.getLink_hinhanh()%>');"></div>
                                     <div class="container-product-guarantee">
                                         <a href="trangitem.jsp" class="container-product__item-link">
                                             <div class="container-product-guarantee__heading">
-                                                <img src="https://mobilecity.vn/public/assets/img/icon-mobilecity-care.png" alt="Guarantee" class="container-product-guarantee__heading-img">
-                                                <h3 class="container-product-guarantee__heading-text">Mobile Care</h3>
+                                                <img src="https://mobilecity.vn/public/assets/img/icon-mobilecity-care.png"
+                                                     alt="Guarantee"
+                                                     class="container-product-guarantee__heading-img">
+                                                <h3 class="container-product-guarantee__heading-text">TGMobile
+                                                    Care</h3>
                                             </div>
 
                                             <ul class="container-product-guarantee__list">
-                                                <li class="container-product-guarantee__item">BH 12 tháng nguồn, màn hình</li>
-                                                <li class="container-product-guarantee__item">Đổi mới 30 ngày đầu tiên</li>
-                                                <li class="container-product-guarantee__item">Tặng ốp lưng, dán cường lực</li>
-                                                <li class="container-product-guarantee__item">Hỗ trợ phần mềm trọn đời máy</li>
+                                                <li class="container-product-guarantee__item">BH 12 tháng nguồn,
+                                                    màn hình
+                                                </li>
+                                                <li class="container-product-guarantee__item">Đổi mới 30 ngày
+                                                    đầu tiên
+                                                </li>
+                                                <li class="container-product-guarantee__item">Tặng ốp lưng, dán
+                                                    cường lực
+                                                </li>
+                                                <li class="container-product-guarantee__item">Hỗ trợ phần mềm
+                                                    trọn đời máy
+                                                </li>
                                             </ul>
                                         </a>
                                         <a href="" class="container-product-guarantee__btn">Bảo hành vàng</a>
@@ -218,16 +242,20 @@
                                 </div>
                                 <div class="container-product__item-wrap">
                                     <div class="container-product__item-info">
-                                        <a href="#" class="container-product__item-name">
-                                            iphone 11
+                                        <a href="detail?id=<%=productList.getId()%>" class="container-product__item-name">
+                                            <%=productList.getTen()%>
+
+                                            <%--                                            <%=productList.getTenSP()%>--%>
                                         </a>
                                         <i class="container-product__item-sale-icon fas fa-gift"></i>
                                     </div>
                                     <div class="container-product__item-buy">
                                 <span class="container-product__item-price">
-                                    11.000.000
+<%--                                    <%=nf.format(productList.getGia())%> đ--%>
+                                     <%=ProductListDAOImpl.getInstance().dinhDang(productList.getGia())%>
+<%--                                    <%=nf.format(productList.getGiaSP())%> đ--%>
                                 </span>
-                                        <a href="" class="container-product__item-btn">MUA</a>
+                                        <a href="cart-add?id=<%=productList.getId()%>" class="container-product__item-btn">MUA</a>
                                     </div>
                                 </div>
                                 <ul class="container-product__item-gifts-list">
@@ -250,19 +278,29 @@
                                     </li>
                                 </ul>
                                 <ul class="container-product-marker__list">
-                                    <li class="container-product-marker__item container-product-marker__item--new">Mới</li>
-                                    <li class="container-product-marker__item container-product-marker__item--hot">Hot</li>
+                                    <li class="container-product-marker__item container-product-marker__item--new">
+                                        Mới
+                                    </li>
+                                    <li class="container-product-marker__item container-product-marker__item--hot">
+                                        Hot
+                                    </li>
                                 </ul>
                             </div>
                         </div>
+                        <%--                        </c:forEach>--%>
+                        <%--                        </jsp:useBean>--%>
+                        <%}%>
                     </div>
                 </div>
             </div>
-            <div class="col l-12 m-12 c-12">
-                <div class="container-view-more">
-                    <a href="#" class="container-btn-extend">Xem thêm điện thoại</a>
-                </div>
-            </div>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <c:forEach begin="1" end="${a.getNumberPage()}" var="q">
+                        <li class="page-item "aria-current="page"><a class=" page-link" href="paging?index=${q}">${q}</a></li>
+                    </c:forEach>
+                </ul>
+            </nav>
         </div>
     </div>
     <%--    footer --%>
@@ -271,10 +309,6 @@
     <!-- Button -->
     <a href="#" class="go-to-top">
         <i class="go-to-top__icon fas fa-chevron-circle-up"></i>
-    </a>
-
-    <a href="#" class="go-to-chat">
-        <i class="go-to-chat__icon fab fa-facebook-messenger"></i>
     </a>
 </div>
 

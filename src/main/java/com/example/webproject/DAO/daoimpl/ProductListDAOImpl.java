@@ -1,17 +1,25 @@
 package com.example.webproject.DAO.daoimpl;
 
+import com.example.webproject.BEAN.Category;
+import com.example.webproject.BEAN.PhoneProduct;
+import com.example.webproject.BEAN.Product;
 import com.example.webproject.BEAN.ProductList;
 import com.example.webproject.DAO.ProductListDAO;
 import com.example.webproject.DB.DBConnection;
+import org.codehaus.jackson.annotate.JsonSubTypes;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductListDAOImpl implements ProductListDAO {
+    Connection connection = null;
     PreparedStatement statement;
     ResultSet resultSet;
+    ArrayList<ProductList> listF;
     private static ProductListDAOImpl instance;
 
     public static ProductListDAOImpl getInstance() {
@@ -21,23 +29,390 @@ public class ProductListDAOImpl implements ProductListDAO {
         return instance;
     }
 
-    public ProductList layDTbangThuongHieu(String thuongHieu, String loaiSP) {
+    @Override
+    public ArrayList<ProductList> getListProductByCategory(String categoryId) {
+        Connection connection = DBConnection.getConnection();
+        String sql = "select * from `danhmuc` inner join danhsachsp on danhmuc.MaDanhMuc = danhsachsp.MaDanhMuc where danhsachsp.MaDanhMuc = '" + categoryId + "'";
+        ArrayList<ProductList> list = new ArrayList<>();
         try {
-            String sql = "select * from danhsachsp where TenThuongHieu = ? and LoaiSP = ?";
-//            ResultSet resultSet = DBConnection.getInstance().selectData(sql);
-            Connection connection = DBConnection.getConnection();
-            statement = connection.prepareStatement(sql);
-            statement.setString(1, thuongHieu);
-            statement.setString(2, loaiSP);
-            resultSet = statement.executeQuery();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                ProductList productList = new ProductList(resultSet.getString("Id"), resultSet.getString("Link_hinhanh"),
-                        resultSet.getString("Linksp"), resultSet.getString("Ten"), resultSet.getLong("Gia"),
-                        resultSet.getString("TenThuongHieu"), resultSet.getString("LoaiSP"));
+                ProductList productList = new ProductList();
+                productList.setId(resultSet.getString("id"));
+                Category category = new Category(resultSet.getString("MaDanhMuc"), "", "DanhMucCha", "");
+                productList.setCategory(category);
+                productList.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                productList.setTen(resultSet.getString("Ten"));
+                long gia = resultSet.getLong("Gia");
+                productList.setGia(gia);
+                productList.setMaDanhMuc(resultSet.getString("MaDanhMuc"));
+                productList.setTenDanhMuc(resultSet.getString("TenDanhMuc"));
+                productList.setLoaiSP(resultSet.getString("LoaiSP"));
+                list.add(productList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public PhoneProduct getProductDetail(String maSP) {
+        Connection connection = DBConnection.getConnection();
+        String sql = "";
+        PhoneProduct product = new PhoneProduct();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Category category = new Category(resultSet.getString("MaDanhMuc"), "", "", "");
+                product.setMaSP(resultSet.getString("MaSP"));
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public int count(String txtSearch) {
+        ArrayList<Product> products = new ArrayList<>();
+        String query = "SELECT count(*) FROM danhsachsp where Ten LIKE ?";
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, "%" + txtSearch + "%");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+
+
+    }
+    public int getSoLuong(String id) {
+        String query = "SELECT quantity FROM kho\n" +
+                "WHERE Id =?";
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, id);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public List<Product> search(String txtSearch, int index) {
+        ArrayList<Product> products = new ArrayList<>();
+        String query = "SELECT * FROM\n" +
+                "(SELECT t.*, \n" +
+                "       @rownum := @rownum + 1 AS rank\n" +
+                "  FROM  danhsachsp t, \n" +
+                "       (SELECT @rownum := 0) r\n" +
+                " WHERE Ten like ?) as x\n" +
+                " WHERE rank BETWEEN ? and ?";
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, "%" + txtSearch + "%");
+            statement.setInt(2, 10 * (index - 1) + 1);
+            statement.setInt(3, 10 * index);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setMaSP(resultSet.getString("Id"));
+                product.setTenSP(resultSet.getString("Ten"));
+                product.setGiaSP(resultSet.getInt("Gia"));
+                product.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                products.add(product);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return products;
+    }
+
+    public int getNumberPage() {
+        String query = "SELECT count(*) FROM danhsachsp";
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int total = resultSet.getInt(1);
+                int countPage = 0;
+                countPage = total / 10;
+                if (total % 10 != 0) {
+                    countPage++;
+                }
+                return countPage;
+            }
+
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int getNumberPageProduct(String category) {
+        String query = "SELECT count(*) FROM danhsachsp where MaDanhMuc=?";
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, category);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int total = resultSet.getInt(1);
+                int countPage = 0;
+                countPage = total / 10;
+                if (total % 10 != 0) {
+                    countPage++;
+                }
+                return countPage;
+            }
+
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
+    public Product getLaptopByID(String id) {
+
+        Product product = null;
+        ;
+        String query = "select * from danhsachsp inner join  thongtindienthoai on danhsachsp.Id =thongtindienthoai.MaSP \n"
+                + "where thongtindienthoai.MaSP = ?";
+
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, id);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String maSP = resultSet.getString("MaSP");
+                String tenSP = resultSet.getString("TenSP");
+                int giaSP = resultSet.getInt("GiaSP");
+                String link_hinhanh = resultSet.getString("Link_hinhanh");
+                String manHinh = resultSet.getString("ManHinh");
+                String hdh = resultSet.getString("HeDH");
+                String camSau = resultSet.getString("CamSau");
+                String camTr = resultSet.getString("CamTruoc");
+                String CPU = resultSet.getString("CPU");
+                String RAM = resultSet.getString("RAM");
+                String boNhoTrong = resultSet.getString("BoNhoTrong");
+                String theSim = resultSet.getString("TheSim");
+                String pin = resultSet.getString("DungLuongPin");
+                String thietKe = resultSet.getString("ThietKe");
+                String imei = resultSet.getString("Imei");
+                String baiViet = resultSet.getString("BaiViet");
+                String noiDung = resultSet.getString("NoiDung");
+                String linkAnh2 = resultSet.getString("link_hinhanh");
+                String linkAnh3 = resultSet.getString("link_hinhanh");
+
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return product;
+    }
+
+    public List<Product> getTop(int index) {
+        ArrayList<Product> products = new ArrayList<>();
+        String query = "SELECT * FROM\n" +
+                "                (SELECT t.*, \n" +
+                "                       @rownum := @rownum + 1 AS rank\n" +
+                "                  FROM  danhsachsp t,\n" +
+                "                       (SELECT @rownum := 0)  r) as x\n" +
+                "                 WHERE rank BETWEEN ? and ?";
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, 10 * (index - 1) + 1);
+            statement.setInt(2, 10 * index);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setMaSP(resultSet.getString("Id"));
+                product.setTenSP(resultSet.getString("Ten"));
+                product.setGiaSP(resultSet.getInt("Gia"));
+                product.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                products.add(product);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return products;
+    }
+
+    public List<Product> getTop(int index, String category) {
+        ArrayList<Product> products = new ArrayList<>();
+        String query = "SELECT * FROM\n" +
+                "(SELECT t.*, \n" +
+                "       @rownum := @rownum + 1 AS rank\n" +
+                "  FROM  danhsachsp t, \n" +
+                "       (SELECT @rownum := 0)  r) where LoaiSP='DT' and MaDanhMuc=? as x\n" +
+                " WHERE rank BETWEEN ? and ?";
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, category);
+            statement.setInt(2, 10 * (index - 1) + 1);
+            statement.setInt(3, 10 * index);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setMaSP(resultSet.getString("Id"));
+                product.setTenSP(resultSet.getString("Ten"));
+                product.setGiaSP(resultSet.getInt("Gia"));
+                product.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                products.add(product);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return products;
+    }
+
+    public List<ProductList> getProductType() {
+        String sql = "select * from danhsachsp where LoaiSP='DT'";
+        listF = new ArrayList<ProductList>();
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                ProductList productList = new ProductList();
+                productList.setId(resultSet.getString("id"));
+                Category category = new Category(resultSet.getString("MaDanhMuc"), "", "", "");
+                productList.setCategory(category);
+                productList.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                productList.setTen(resultSet.getString("Ten"));
+                long gia = resultSet.getLong("Gia");
+                productList.setGia(gia);
+                productList.setMaDanhMuc(resultSet.getString("MaDanhMuc"));
+                productList.setTenDanhMuc(resultSet.getString("TenDanhMuc"));
+                productList.setLoaiSP(resultSet.getString("LoaiSP"));
+                listF.add(productList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listF;
+    }
+
+    public String dinhDang(long a) {
+        DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
+        return decimalFormat.format(a);
+    }
+    public Product getProductByID(String id) {
+
+        Product product = null;
+        ;
+        String query = "select *  from danhsachsp LEFT JOIN  thongtindienthoai on danhsachsp.Id =thongtindienthoai.MaSP\n" +
+                "                                LEFT JOIN  thongtinlaptop on danhsachsp.Id = thongtinlaptop.MaSP\n" +
+                "                                LEFT JOIN  thongtinphukien on danhsachsp.Id = thongtinphukien.MaSP\n" +
+                "                LEFT JOIN  motasp on danhsachsp.Id = motasp.Id\n" +
+                "                                WHERE danhsachsp.Id = ?";
+
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, id);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+
+                String maSP = resultSet.getString("Id");
+                String tenSP = resultSet.getString("Ten");
+                int giaSP = resultSet.getInt("Gia");
+                String link_hinhanh = resultSet.getString("Link_hinhanh");
+                String manHinh  = resultSet.getString("ManHinh");
+                String hdh = resultSet.getString("HDH");
+                String camSau = resultSet.getString("CamSau");
+                String camTr = resultSet.getString("CamTruoc");
+                String CPU = resultSet.getString("CPU");
+                String RAM = resultSet.getString("RAM");
+                String boNhoTrong = resultSet.getString("BoNhoTrong");
+                String theSim = resultSet.getString("TheSim");
+                String pin = resultSet.getString("DungLuongPin");
+                String thietKe = resultSet.getString("ThietKe");
+                String imei = resultSet.getString("Imei");
+                String baiViet = resultSet.getString("BaiViet");
+                String noiDung = resultSet.getString("NoiDung");
+                String linkAnh2 = resultSet.getString("link_hinhanh");
+                String linkAnh3 = resultSet.getString("link_hinhanh");
+                String oCung = resultSet.getString("Ocung");
+                String cardManHinh = resultSet.getString("CardManHinh");
+                String congKetNoi = resultSet.getString("CongKetNoi");
+                String dacBiet = resultSet.getString("DacBiet");
+                String kichThuocVaTrongLuong = resultSet.getString("KichThuocVaTrongLuong");
+                String thoiDiemRaMat = resultSet.getString("ThoiDiemRaMat");
+
+                product = new Product(maSP, tenSP, giaSP,manHinh,hdh,camSau,camTr,CPU,RAM,boNhoTrong,theSim,pin,thietKe,
+                        imei,baiViet,noiDung,linkAnh2,linkAnh3,oCung,cardManHinh,congKetNoi,dacBiet,kichThuocVaTrongLuong,thoiDiemRaMat,link_hinhanh );
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return product;
+    }
+    public String getLoaiSP(String id) {
+
+
+
+        String query = "select LoaiSP  from danhsachsp LEFT JOIN  thongtindienthoai on danhsachsp.MaSp =thongtindienthoai.MaSP\n" +
+                "                               LEFT JOIN  thongtinlaptop on danhsachsp.MaSp = thongtinlaptop.MaSP\n" +
+                "                               LEFT JOIN  thongtinphukien on danhsachsp.MaSp = thongtinphukien.MaSP\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t LEFT JOIN  motasp on danhsachsp.MaSp = motasp.MaSP\n" +
+                "                               WHERE danhsachsp.MaSp = ?";
+
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, id);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString(1);
+
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static void main(String[] args) {
+//        System.out.println(new ProductListDAOImpl().getListProductByCategory("100002").size());
+//        System.out.println(new ProductListDAOImpl().getProductType());
+        ArrayList<ProductList> listF = (ArrayList<ProductList>) new ProductListDAOImpl().getProductType();
+        for (ProductList p : listF) {
+//            System.out.println(p.getMaDanhMuc());
+        }
+        ProductListDAOImpl dao = new ProductListDAOImpl();
+        System.out.println(dao.getSoLuong("ip12"));
+
     }
 }

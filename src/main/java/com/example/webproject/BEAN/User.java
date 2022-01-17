@@ -1,6 +1,7 @@
 package com.example.webproject.BEAN;
 
 public class User {
+    private int id;
     private String name;
     private String email;
     private String phone;
@@ -57,6 +58,13 @@ public class User {
         this.re_password = re_password;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getRole() {
         return role;

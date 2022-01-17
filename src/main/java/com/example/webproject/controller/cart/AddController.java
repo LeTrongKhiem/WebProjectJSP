@@ -18,16 +18,17 @@ public class AddController extends HttpServlet {
         String id =  request.getParameter("id");
 //       Product product = ProductService.getInstance().getById(id);
         ProductListDAOImpl dao = new ProductListDAOImpl();
+        HttpSession session = request.getSession();
         Product product = dao.getProductByID(id);
-       if(product!=null){
-           HttpSession session = request.getSession();
-           Cart cart = (Cart) session.getAttribute("cart");
+        Cart cart = (Cart) session.getAttribute("cart");
+        if(product!=null){
            if(cart==null){
                cart = Cart.getInstance();
            }
            cart.put(product);
            session.setAttribute("cart",cart);
        }
+
        response.sendRedirect(request.getContextPath()+"/cart");
     }
 

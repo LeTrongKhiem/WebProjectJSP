@@ -1,9 +1,7 @@
 package com.example.webproject.controller;
 
 
-
-import com.example.webproject.BEAN.Order;
-import com.example.webproject.BEAN.Product;
+import com.example.webproject.BEAN.*;
 import com.example.webproject.DAO.OrderDAO;
 
 import javax.servlet.*;
@@ -17,40 +15,44 @@ import java.util.Map;
 
 @WebServlet(name = "OrderController", value = "/order")
 public class OrderController extends HttpServlet {
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        String name  = request.getParameter("name");
-        String address = request.getParameter("address");
-        String email = request.getParameter("email");
-        String phoneNumber = request.getParameter("phoneNumber");
-        HttpSession session = request.getSession();
-//        Cart cart =(Cart) session.getAttribute("cart");
-//        Collection<Product> list = (List<Product>) cart.getProductList();
-        OrderDAO orderDAO = new OrderDAO();
-        Map<String, Product> cart = (HashMap<String, Product>) session.getAttribute("cart");
 
-        int total = 0;
-        for(Map.Entry<String,Product> entry : cart.entrySet()){
-            total += entry.getValue().getQuantitySold()*entry.getValue().getGiaSP();
-
-        }
-        Order order = new Order(name,address,email,phoneNumber,total);
-        orderDAO.createOrder(order);
-        response.sendRedirect(request.getContextPath()+"/cart");
-
-
-
-    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request,response);
-
+        doPost(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request,response);
+        String name = request.getParameter("name");
+        String address = request.getParameter("address");
+        String email = request.getParameter("email");
+        String phoneNumber = request.getParameter("phoneNumber");
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        User user = (User) session.getAttribute("user");
+        HashMap<String, Product> list = (HashMap<String, Product>) cart.getProductsList();
+        OrderDAO orderDAO = new OrderDAO();
+        int total = 0;
+        for (Map.Entry<String, Product> entry : list.entrySet()) {
+            total += entry.getValue().getQuantitySold() * entry.getValue().getGiaSP();
+        }
+        Order order = new Order(user.getEmail(), name, address, email, phoneNumber, total);
+        order.setUser(user.getEmail());
+        order.setTotalPrice(total);
+        int orderID = orderDAO.createOrder(order);
+        try {
+            for (Map.Entry<String, Product> entry : list.entrySet()) {
+                orderDAO.createOrderDetail(new OrderDetail(orderID, entry.getValue().getMaSP(), entry.getValue().getQuantitySold(), entry.getValue().getQuantitySold() * entry.getValue().getGiaSP()));
+            }
+        } catch (Exception e) {
+
+        }
+
+
+        response.sendRedirect(request.getContextPath() + "/checkout-success.jsp");
+        session.removeAttribute("cart");
 
     }
+
+
 }

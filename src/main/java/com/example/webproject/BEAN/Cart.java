@@ -12,6 +12,14 @@ public class Cart implements Serializable {
 
     private Map<String, Product> productsList;
 
+    public Map<String, Product> getProductsList() {
+        return productsList;
+    }
+
+    public void setProductsList(Map<String, Product> productsList) {
+        this.productsList = productsList;
+    }
+
     public Cart() {
         productsList = new HashMap<>();
     }
@@ -90,6 +98,14 @@ public class Cart implements Serializable {
             product.setQuantitySold(quantity);
         }
         return product.getQuantitySold();
+    }
+    public boolean checkSoLuongKho(Product product){
+        ProductListDAOImpl dao = new ProductListDAOImpl();
+        Product product1 = productsList.get(product.getMaSP());
+        if(product1.getQuantitySold() < dao.getSoLuong(product.getMaSP())){
+            return  true;
+        }
+        return false;
     }
 
 

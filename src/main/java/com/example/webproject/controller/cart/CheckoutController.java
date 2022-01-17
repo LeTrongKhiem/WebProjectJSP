@@ -22,10 +22,12 @@ public class CheckoutController extends HttpServlet {
         session.setAttribute("cart", cart);
         if (user == null) {
             response.sendRedirect("dangnhap.jsp");
-        } else {
+        }else if(cart.getProductsList().size()==0) {
+            response.sendRedirect("index.jsp");
+        }
+        else {
             response.sendRedirect("thanhtoan.jsp");
         }
-
     }
 
     @Override

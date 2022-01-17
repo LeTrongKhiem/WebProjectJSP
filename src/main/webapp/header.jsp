@@ -1,11 +1,6 @@
 <%@ page import="com.example.webproject.DAO.daoimpl.CategoryDAOImpl" %>
-<%@ page import="com.example.webproject.BEAN.Category" %><%--
-  Created by LeTrongKhiem.
-  User: User
-  Date: 03-Dec-21
-  Time: 9:03 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.example.webproject.BEAN.Category" %>
+<%@ page import="com.example.webproject.BEAN.Cart" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
@@ -33,6 +28,9 @@
 </style>
 <%
     CategoryDAOImpl categoryDAO = new CategoryDAOImpl();
+%>
+<%
+    Cart cart = new Cart();
 %>
 <div class="header">
     <div class="header-nav">

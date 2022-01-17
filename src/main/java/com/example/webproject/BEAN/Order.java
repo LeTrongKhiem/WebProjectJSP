@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Order implements Serializable {
     private int orderID;
-    private User user;
-//  private List<OrderDetail> details;
+    private String  user;
+    private List<OrderDetail> details;
     private String name;
     private String address;
     private String email;
@@ -19,7 +19,7 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(int orderID, String name, String address, String email, String phoneNumber,double totalPrice, Date createdAt, Date updatedAt) {
+    public Order(int orderID, String name, String address, String email, String phoneNumber, double totalPrice, Date createdAt, Date updatedAt) {
         this.orderID = orderID;
         this.name = name;
         this.address = address;
@@ -29,7 +29,9 @@ public class Order implements Serializable {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
-    public Order( String name, String address, String email, String phoneNumber,double totalPrice) {
+
+    public Order(String user,String name, String address, String email, String phoneNumber, double totalPrice) {
+        this.user = user;
         this.name = name;
         this.address = address;
         this.email = email;
@@ -37,6 +39,7 @@ public class Order implements Serializable {
         this.totalPrice = totalPrice;
 
     }
+
     public int getOrderID() {
         return orderID;
     }
@@ -99,5 +102,21 @@ public class Order implements Serializable {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public List<OrderDetail> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<OrderDetail> details) {
+        this.details = details;
     }
 }

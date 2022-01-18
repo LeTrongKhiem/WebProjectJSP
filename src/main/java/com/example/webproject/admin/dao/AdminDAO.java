@@ -9,4 +9,5 @@ public interface AdminDAO {
     public String register(Admin admin);
     public Map<String, Admin> listAdmin();
     public List<String> getListEmail();
+    public Map<String, Admin> getListEmployee();
 }

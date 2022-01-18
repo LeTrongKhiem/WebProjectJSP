@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by LeTrongKhiem.
   User: User
   Date: 11-Jan-22
@@ -18,10 +19,10 @@
                 <a class="sidenav-link"><i class="fas fa-cogs fa-fw me-3"></i><span>Settings</span></a>
                 <ul class="sidenav-collapse">
                     <li class="sidenav-item">
-                        <a class="sidenav-link">Profile</a>
+                        <a class="sidenav-link" href="">Profile</a>
                     </li>
                     <li class="sidenav-item">
-                        <a class="sidenav-link">Account</a>
+                        <a class="sidenav-link" href="">Account</a>
                     </li>
                 </ul>
             </li>
@@ -75,7 +76,7 @@
             <!-- Search form -->
             <form class="d-none d-md-flex input-group w-auto my-auto">
                 <input autocomplete="off" type="search" class="form-control rounded"
-                       placeholder='Search (ctrl + "/" to focus)' style="min-width: 225px" />
+                       placeholder='Search (ctrl + "/" to focus)' style="min-width: 225px"/>
                 <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
             </form>
 
@@ -122,7 +123,7 @@
                                 <i class="fa fa-check text-success ms-2"></i></a>
                         </li>
                         <li>
-                            <hr class="dropdown-divider" />
+                            <hr class="dropdown-divider"/>
                         </li>
                         <li>
                             <a class="dropdown-item" href="#"><i class="poland flag"></i>Polski</a>
@@ -156,7 +157,7 @@
                     <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
                        id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                         <img src="./assets/img/avatar.jpg" class="rounded-circle"
-                             height="22" alt="" loading="lazy" />
+                             height="22" alt="" loading="lazy"/>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="#">My profile</a></li>

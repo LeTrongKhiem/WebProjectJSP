@@ -14,16 +14,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <title>Other Page Admin</title>
-    <!-- MDB icon -->
-    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon"/>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"/>
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"/>
     <!-- MDB ESSENTIAL -->
-    <link rel="stylesheet" href="<c:url value='../ventor/css/mdb.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='./ventor/css/mdb.min.css'/>">
     <!-- MDB PLUGINS -->
-    <link rel="stylesheet" href="<c:url value='../ventor/plugins/css/all.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='./ventor/plugins/css/all.min.css'/>">
     <!-- Custom styles -->
     <style>
         @media (min-width: 1400px) {
@@ -97,9 +94,9 @@
 </body>
 
 <!-- MDB ESSENTIAL -->
-<script type="text/javascript" src="<c:url value='../ventor/js/mdb.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='./ventor/js/mdb.min.js'/>"></script>
 <!-- MDB PLUGINS -->
-<script type="text/javascript" src="<c:url value='../ventor/plugins/js/all.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='./ventor/plugins/js/all.min.js'/>"></script>
 <!-- Sidenav -->
 <script type="text/javascript">
     const sidenav = document.getElementById("sidenav-1");

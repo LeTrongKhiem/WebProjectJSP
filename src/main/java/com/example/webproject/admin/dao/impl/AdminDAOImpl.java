@@ -95,6 +95,33 @@ public class AdminDAOImpl implements AdminDAO {
         return listEmail;
     }
 
+    @Override
+    public Map<String, Admin> getListEmployee() {
+        Map<String, Admin> list = new HashMap<>();
+        connection = DBConnection.getConnection();
+        try {
+            String sql = "select AdminId, MatKhau, HoTen, Email, SDT, NgayBD, Quyen, Role ,Address from `admin` where Active='1'";
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("AdminId");
+                String pass = resultSet.getString("MatKhau");
+                String name = resultSet.getString("HoTen");
+                String email = resultSet.getString("Email");
+                String phone = resultSet.getString("SDT");
+                Date bd = resultSet.getDate("NgayBD");
+                String quyen = resultSet.getString("Quyen");
+                int role = resultSet.getInt("Role");
+                String address = resultSet.getString("Address");
+                Admin admin = new Admin(id, pass, name, email, phone, bd, quyen, role, address);
+                list.put(email, admin);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
 //        Map<String, Admin> list = new AdminDAOImpl().listAdmin();
 //        for (Map.Entry<String, Admin> entry : list.entrySet()) {
@@ -104,8 +131,9 @@ public class AdminDAOImpl implements AdminDAO {
 //        for (String p : list) {
 //            System.out.println(p);
 //        }
-        Admin admin = new Admin("lekhiem", "le trong khiem", "lekhiem2001@gmail.com", "0372253243", "DN", "fnjewaflwegfer");
-
-        System.out.println(new AdminDAOImpl().register(admin));
+//        Admin admin = new Admin("lekhiem", "le trong khiem", "lekhiem2001@gmail.com", "0372253243", "DN", "fnjewaflwegfer");
+//
+//        System.out.println(new AdminDAOImpl().register(admin));
+        System.out.println(new AdminDAOImpl().getListEmployee().size());
     }
 }

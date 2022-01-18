@@ -1,8 +1,10 @@
 package com.example.webproject.BEAN;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
-public class ProductList {
+public class ProductList implements Serializable {
+    private static final long serialVersionUID= 1L;
     private String id;
     private String link_hinhanh;
     private Category category;

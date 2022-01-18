@@ -1,6 +1,9 @@
 package com.example.webproject.BEAN;
 
-public class PhoneProduct {
+import java.io.Serializable;
+
+public class PhoneProduct implements Serializable {
+    private static final long serialVersionUID= 1L;
     private String maSP;
     private String tenSP;
     private long gia;

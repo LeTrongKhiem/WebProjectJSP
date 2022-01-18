@@ -248,7 +248,8 @@
                                 </div>
                                 <div class="container-product__item-wrap">
                                     <div class="container-product__item-info">
-                                        <a href="" class="container-product__item-name">
+                                        <a href="DetailController?id=<%=productList.getId()%>"
+                                           class="container-product__item-name">
                                             <%=productList.getTen()%>
                                             <%--                                            <%=productList.getTenSP()%>--%>
                                         </a>
@@ -260,7 +261,8 @@
                                      <%=ProductListDAOImpl.getInstance().dinhDang(productList.getGia())%>
 <%--                                    <%=nf.format(productList.getGiaSP())%> đ--%>
                                 </span>
-                                        <a href="" class="container-product__item-btn">MUA</a>
+                                        <a href="cart-add?id=<%=productList.getId()%>"
+                                           class="container-product__item-btn">MUA</a>
                                     </div>
                                 </div>
                                 <ul class="container-product__item-gifts-list">

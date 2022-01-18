@@ -63,7 +63,7 @@ public class RegisterAdminController extends HttpServlet {
         String str = adminDAO.register(admin);
         if (str.equals("Success")) {
             listAdmin.put(admin.getEmail(), admin);
-            response.sendRedirect("../WebProject/verify.jsp");
+            response.sendRedirect("../WebProject/admin/login.jsp");
             request.setAttribute("email", email);
             session.setAttribute("email", email);
 //            request.setAttribute("username", username);

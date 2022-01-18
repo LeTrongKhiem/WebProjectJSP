@@ -1,3 +1,5 @@
+<jsp:useBean id="detail" scope="request" type="com.example.webproject.BEAN.Product"/>
+<%--<jsp:useBean id="productList" scope="request" type="com.example.webproject.BEAN.ProductList"/>--%>
 <%--
   Created by LeTrongKhiem.
   User: User
@@ -23,8 +25,8 @@
     <link rel="icon" href="<c:url value= './assets/img/logo3.png'/>">
 
     <link rel="stylesheet" href="<c:url value= './assets/css/base.css'/>">
-    <link rel="stylesheet" href="<c:url value= './assets/css/main.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/grid.css'/>">
+    <link rel="stylesheet" href="<c:url value= './assets/css/main.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/responsive.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/trangitem.css'/>">
     <link rel="stylesheet" href="<c:url value='./assets/trangitem/libs/normalize.css'/>">
@@ -32,10 +34,14 @@
     <script type="text/javascript" src="<c:url value='./assets/trangitem/js/jquery.min.js'/>"></script>
 
     <link rel="stylesheet" href="<c:url value='./assets/trangitem/libs/owl.carousel.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='./assets/trangitem/libs/lightslider.css'/>">
     <link rel="stylesheet" href="<c:url value='./assets/trangitem/libs/lightgallery.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='./assets/trangitem/libs/lightslider.css'/>">
     <link rel="stylesheet" href="<c:url value='./assets/trangitem/pages/phone.css'/>">
     <link rel="stylesheet" href="<c:url value='./assets/trangitem/pages/popup_v2.css'/>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.8.3/dist/css/lightgallery.min.css">
+    <!--Đường Dẫn CDN Javascript-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.8.3/dist/js/lightgallery-all.min.js"></script>
 </head>
 
 <body>
@@ -56,15 +62,14 @@
                         <meta itemprop="position" content="2"/>
                     </li>
                     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="list apple"><span itemprop="name">Apple
-                                        (iPhone) - Quốc tế</span>
+                        <a itemprop="item" href="list apple"><span itemprop="name">Apple</span>
                         </a>
                         <meta itemprop="position" content="3"/>
                     </li>
                 </ul>
             </div>
             <div class="product-title is-desktop">
-                <h1 class="title">Điện thoại iPhone XS Max Cũ (64GB, 256GB) - Fullbox</h1>
+                <h1 class="title">${detail.tenSP}</h1>
                 <div class="rating-show-start">
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -404,7 +409,7 @@
                                 </div>
                                 <div class="warranty-list attribute-list" style="">
                                     <p class="attribute-title">
-                                                <span class="title">Gói bảo hành <a href="./trangbaohanh.html"
+                                                <span class="title">Gói bảo hành <a href="./trangbaohanh.jsp"
                                                                                     target="_blank">Tìm
                                                         hiểu
                                                         thêm</a></span>
@@ -448,7 +453,7 @@
                                                         xem
                                                         chi
                                                         tiết <a
-                                                                href=""
+                                                                href="https://mobilecity.vn/page/chinh-sach-bao-hanh.html"
                                                                 target="_blank">Tại đây</a></p>
                                                 </div>
                                                 <div class="outline-tips">
@@ -469,7 +474,7 @@
                                                         tiết</a>)</span>
                                     </p>
                                     <p>Giao hàng tận nơi miễn phí trong 30 phút (<a
-                                            href="">Tìm hiểu
+                                            href="/page/chinh-sach-van-chuyen.html">Tìm hiểu
                                         thêm</a>)</p>
                                 </div>
                                 <div class="sale-box v2-promotion">
@@ -494,11 +499,11 @@
                                         </li>
                                         <li>
                                             <p>Giảm 100K khi mua BHV và đặt hàng tại: <a title=""
-                                                                                         href="">Đây</a>
+                                                                                         href="https://bit.ly/mc42-voucher">Đây</a>
                                             </p>
                                         </li>
                                         <li>
-                                            <p>Mua SHOPEE giá Rẻ: <a title="" href=""
+                                            <p>Mua SHOPEE giá Rẻ: <a title="MobileCity Shopee" href=""
                                                                      rel="nofollow" target="_blank">CLICK</a></p>
                                         </li>
                                     </ul>
@@ -550,73 +555,58 @@
         <div class="product-content-box">
             <div class="product-info-box">
                 <div class="product-info-title">Thông số kỹ thuật</div>
+                <%--                                <jsp:useBean id="detail" scope="request" type="java.util.List"/>--%>
+                <%--                <c:forEach items="${detail}" var="d">--%>
                 <div class="product-info-content">
                     <table>
                         <tbody>
                         <tr>
                             <td>Màn hình:</td>
-                            <td>Super Retina OLED, HDR10, 625 nits (HBM)<br/>
-                                6.5 inches, 1242 x 2688 pixels, tỷ lệ 19.5:9<br/>
-                                Kính chống xước, 3D Touch
+                            <td>
+                                ${detail.manHinh}
                             </td>
                         </tr>
                         <tr>
                             <td>Hệ điều hành:</td>
-                            <td>IOS 12</td>
+                            <td>${detail.hdh}</td>
                         </tr>
                         <tr>
                             <td>Camera sau:</td>
-                            <td>12 MP, f/1.8, 26mm (góc rộng), dual pixel PDAF, OIS<br/>
-                                12 MP, f/2.4, 52mm (chân dung), PDAF, OIS, 2x optical zoom<br/>
-                                Quay phim <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                             data-cfemail="dce8979ceee8">[email&#160;protected]</a>/30/60fps, <a
-                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                        data-cfemail="a392939b93d3e39093">[email&#160;protected]</a>/60/120/240fps
+                            <td>${detail.camSau}
                             </td>
                         </tr>
                         <tr>
                             <td>Camera trước:</td>
-                            <td>7 MP, f/2.2, 32mm (tiêu chuẩn)<br/>
-                                Quay phim <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                             data-cfemail="0435343c3474443734">[email&#160;protected]</a>/60fps,
-                                gyro-EIS
+                            <td>${detail.camTr}
                             </td>
                         </tr>
                         <tr>
                             <td>CPU:</td>
-                            <td>Apple A12 Bionic (7 nm), 6 nhân<br/>
-                                (2x2.5 GHz Vortex + 4x1.6 GHz Tempest)<br/>
-                                GPU: Apple GPU, 4 nhân
+                            <td>${detail.CPU}
                             </td>
                         </tr>
                         <tr>
                             <td>RAM:</td>
-                            <td>4 GB</td>
+                            <td>${detail.RAM}</td>
                         </tr>
                         <tr>
                             <td>Bộ nhớ trong:</td>
-                            <td>64-256-512 GB, NVMe<br/>
-                                Thẻ nhớ: không
+                            <td>${detail.boNhoTrong}
                             </td>
                         </tr>
                         <tr>
                             <td>Thẻ SIM:</td>
-                            <td>1 SIM - 2 SIM (tùy phiên bản thị trường), Dual SIM (Nano-SIM, dual stand-by)
-                                thị
-                                trường
-                                Trung Quốc
+                            <td>${detail.theSim}
                             </td>
                         </tr>
                         <tr>
                             <td>Dung lượng pin:</td>
-                            <td>Li-Ion 3174 mAh<br/>
-                                Sạc nhanh 15W, 50% trong 30 phút (quảng cáo)<br/>
-                                USB Power Delivery 2.0
+                            <td>${detail.pin}
                             </td>
                         </tr>
                         <tr>
                             <td>Thiết kế:</td>
-                            <td>Thanh + Cảm ứng</td>
+                            <td>${detail.thietKe}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -626,8 +616,9 @@
                             <span id="product-close-lightbox" class="close-lightbox-btn"><i class="fa fa-times"
                                                                                             aria-hidden="true"></i></span>
                     <marquee class="product-lightbox-title">
-                        <p>iPhone XS Max Cũ (64GB, 256GB) - Fullbox</p>
+                        <p>${detail.tenSP}</p>
                     </marquee>
+                    <%--                    </c:forEach>--%>
                     <div class="product-lightbox-content">
                         <table>
                             <tbody>
@@ -900,17 +891,16 @@
                 </div>
             </div>
             <div class="product-video-box">
-                <div class="product-video-title">Video đánh giá &amp; review iPhone XS Max Cũ (64GB, 256GB) -
-                    Fullbox
+                <div class="product-video-title">Video đánh giá &amp; review ${detail.tenSP}
                 </div>
                 <div class="product-video-content" id="slider_video_home">
-                    <div class="iframe" data-iframe="https://www.youtube.com/watch?v=DI7E08OOzVk&amp;t=94s">
+                    <div class="iframe" data-iframe="${detail.linkVideo1}">
                     </div>
                     <div class="slide_video owl-carousel" id="slide_video">
-                        <div class="item" data-iframe="https://www.youtube.com/watch?v=DI7E08OOzVk&amp;t=94s">
+                        <div class="item" data-iframe="${detail.linkVideo1}">
                             <span class="item_serial">1</span>
                         </div>
-                        <div class="item" data-iframe=" https://www.youtube.com/watch?v=MmHMW_USg5E">
+                        <div class="item" data-iframe=" ${detail.linkVideo2}">
                             <span class="item_serial">2</span>
                         </div>
                     </div>
@@ -925,7 +915,7 @@
                 <div class="product-detail product-subdetail">
                     <h2 class="product-content-title">
                         <img src="assets/img/logo3.png" alt="">
-                        Đánh giá nhanh iphone XS Max
+                        Đánh giá nhanh ${detail.tenSP}
                     </h2>
                     <div class="product-detail-content css-content">
                         <p style="text-align: justify;"><strong>iPhone XS Max cũ</strong> chính hãng, giá rẻ
@@ -1316,7 +1306,7 @@
             </div>
             <div class="product-content-right">
                 <div class="product-summary">
-                    <p class="product-summary-title">iPhone XS Max Cũ (64GB, 256GB) - Fullbox</p>
+                    <p class="product-summary-title">${detail.tenSP}</p>
                     <p class="product-summary-price">10.150.000 ₫</p>
                     <div class="sale-box v2-promotion">
                         <p class="sale-box-title">Khuyến mãi</p>
@@ -1377,127 +1367,12 @@
 <a href="#" class="go-to-chat">
     <i class="go-to-chat__icon fab fa-facebook-messenger"></i>
 </a>
-<script data-cfasync="false"
-        src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script type="text/javascript" src="<c:url value='./assets/trangitem/js/function.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./assets/trangitem/js/owl.carousel.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./assets/trangitem/js/lightslider.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./assets/trangitem/js/lightgallery-all.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./assets/trangitem/js/phone.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./public/assets/js/libs/classie.js'/>"></script>
-<script src="https://mobilecity.vn/public/template-admin/js/moment.min.js"></script>
-<script src="https://mobilecity.vn/public/template-admin/js/jquery.datetimepicker.full.min.js"></script>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script>
-    function suggest_search_template(element) {
-        return `
-                <li><a href="${element.url}">
-                    <div class="img">
-                        <img src="${element.image}" alt="${element.name}">
-                    </div>
-                    <div class="info">
-                        <h4 class="name">${element.name}</h4>
-                        <p class="price">${element.price}</p>
-                    </div>
-                </a></li>
-            `;
-    }
-
-    $(document).ready(function () {
-        if (!getCookie('location')) {
-            location_name = $('.location-dropdown .location-dropdown-title a span').html();
-            location_id = 1;
-            setCookie("location", location_id);
-            setCookie("location_name", location_name);
-            $('.popup-location').bPopup({
-                speed: 450,
-                transition: 'slideDown',
-                zIndex: 99999,
-                onOpen: function () {
-                    $('.popup-location').css('visibility', 'visible');
-                },
-                onClose: function () {
-                    $('.popup-location').css('visibility', 'hidden');
-                }
-            });
-        }
-
-        // search ajax bản PC và mobile
-        // PC
-        $('#keyword').on('keyup', function () {
-            var vcheck = [3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29];
-            var keyword = $(this).val();
-            data = {'keyword': keyword}
-            if (jQuery.inArray(keyword.length, vcheck) != '-1') {
-                loadAjax('https://mobilecity.vn/ajax/search', data, {
-                    beforeSend: function () {
-                    },
-                    success: function (result) {
-                        if (result.status == 1) {
-                            $('.suggest-search-list').empty();
-                            result.data.forEach(function (element, index) {
-                                suggest_template = suggest_search_template(element);
-                                $('.suggest-search-list').append(suggest_template);
-                            });
-                            $('.suggest-search').css('display', 'block');
-                        } else {
-                            $('.suggest-search').css('display', 'none');
-                        }
-                    }
-                });
-            } else {
-                $('.suggest-search').css('display', 'none');
-            }
-        });
-        // mobile
-        $('#keyword_mobile').on('keyup', function () {
-            var vcheck = [3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29];
-            var keyword = $(this).val();
-            data = {'keyword': keyword}
-            if (jQuery.inArray(keyword.length, vcheck) != '-1') {
-                loadAjax('https://mobilecity.vn/ajax/search', data, {
-                    beforeSend: function () {
-                    },
-                    success: function (result) {
-                        if (result.status == 1) {
-                            $('.suggest-search-list-mb').empty();
-                            result.data.forEach(function (element, index) {
-                                suggest_template = suggest_search_template(element);
-                                $('.suggest-search-list-mb').append(suggest_template);
-                            });
-                            $('.suggest-search-mb').css('display', 'block');
-                        } else {
-                            $('.suggest-search-mb').css('display', 'none');
-                        }
-                    }
-                });
-            } else {
-                $('.suggest-search-mb').css('display', 'none');
-            }
-        });
-        $('#hiddenMenu-user').on('click', function () {
-            if ($('#mp-pusher').hasClass('mp-pushed')) {
-                $('#mp-menu').css('display', 'none');
-                $('#mp-menu-user').css('display', 'block');
-                $('#mp-menu-user').parent().css('transform', 'translate3d(300px, 0, 0)');
-            }
-        });
-        $('#hiddenMenu').on('click', function () {
-            $('#mp-menu').css('display', 'block');
-            $('#mp-menu-user').css('display', 'none');
-            $('#mp-menu-user').parent().css('transform', 'translate3d(300px, 0, 0)');
-        });
-
-    });
-</script>
-
-<script type="text/javascript" src="<c:url value='./public/assets/js/libs/owl.carousel.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./public/assets/js/libs/jquery.simplePagination.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./public/assets/js/libs/lightslider.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./public/assets/js/libs/lightgallery-all.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./public/assets/js/pages/phone.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./public/assets/js/pages/popup_v2.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./public/assets/js/pages/product_deal_combo.js'/>"></script>
+<script type="text/javascript" src="<c:url value= 'assets/trangitem/js/function.js'/>"></script>
+<script type="text/javascript" src="<c:url value= 'assets/trangitem/js/owl.carousel.js'/>"></script>
+<script type="text/javascript" src="<c:url value= 'assets/trangitem/js/lightslider.js'/>"></script>
+<script type="text/javascript" src="<c:url value= 'assets/trangitem/js/lightgallery-all.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value= 'assets/trangitem/js/function.js'/>"></script>
+<script type="text/javascript" src="<c:url value= 'assets/trangitem/js/phone.js'/>"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script type="text/javascript">
     $(document).ready(function () {

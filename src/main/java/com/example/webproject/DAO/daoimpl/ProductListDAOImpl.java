@@ -6,7 +6,6 @@ import com.example.webproject.BEAN.Product;
 import com.example.webproject.BEAN.ProductList;
 import com.example.webproject.DAO.ProductListDAO;
 import com.example.webproject.DB.DBConnection;
-import org.codehaus.jackson.annotate.JsonSubTypes;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -178,7 +177,6 @@ public class ProductListDAOImpl implements ProductListDAO {
     public Product getLaptopByID(String id) {
 
         Product product = null;
-        ;
         String query = "select * from danhsachsp inner join  thongtindienthoai on danhsachsp.Id =thongtindienthoai.MaSP \n"
                 + "where thongtindienthoai.MaSP = ?";
 
@@ -207,8 +205,10 @@ public class ProductListDAOImpl implements ProductListDAO {
                 String noiDung = resultSet.getString("NoiDung");
                 String linkAnh2 = resultSet.getString("link_hinhanh");
                 String linkAnh3 = resultSet.getString("link_hinhanh");
+                String linkVideo1 = resultSet.getString("LinkVideo1");
+                String linkVideo2 = resultSet.getString("LinkVideo2");
                 product = new Product(maSP, tenSP, giaSP, manHinh, hdh, camSau, camTr, CPU, RAM, boNhoTrong, theSim, pin, thietKe,
-                        imei, baiViet, noiDung, link_hinhanh, linkAnh2, linkAnh3, 1);
+                        imei, baiViet, noiDung, link_hinhanh, linkAnh2, linkAnh3, 1, linkVideo1, linkVideo2);
 
             }
         } catch (Exception e) {
@@ -306,9 +306,80 @@ public class ProductListDAOImpl implements ProductListDAO {
         return listF;
     }
 
+    public int getSoLuong(String id) {
+        String query = "SELECT SoLuong FROM kho\n" +
+                "WHERE Id =?";
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, id);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public String dinhDang(long a) {
         DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
         return decimalFormat.format(a);
+    }
+
+    public Product getProductByID(String id) {
+
+        Product product = null;
+        String query = "select *  from danhsachsp LEFT JOIN  thongtindienthoai on danhsachsp.Id =thongtindienthoai.MaSP\n" +
+                "                                LEFT JOIN  thongtinlaptop on danhsachsp.Id = thongtinlaptop.MaSP\n" +
+                "                                LEFT JOIN  thongtinphukien on danhsachsp.Id = thongtinphukien.MaSP\n" +
+                "                LEFT JOIN  motasp on danhsachsp.Id = motasp.Id\n" +
+                "                                WHERE danhsachsp.Id = ?";
+
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, id);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+
+                String maSP = resultSet.getString("Id");
+                String tenSP = resultSet.getString("Ten");
+                int giaSP = resultSet.getInt("Gia");
+                String link_hinhanh = resultSet.getString("Link_hinhanh");
+                String manHinh = resultSet.getString("ManHinh");
+                String hdh = resultSet.getString("HDH");
+                String camSau = resultSet.getString("CamSau");
+                String camTr = resultSet.getString("CamTruoc");
+                String CPU = resultSet.getString("CPU");
+                String RAM = resultSet.getString("RAM");
+                String boNhoTrong = resultSet.getString("BoNhoTrong");
+                String theSim = resultSet.getString("TheSim");
+                String pin = resultSet.getString("DungLuongPin");
+                String thietKe = resultSet.getString("ThietKe");
+                String imei = resultSet.getString("Imei");
+                String baiViet = resultSet.getString("BaiViet");
+                String noiDung = resultSet.getString("NoiDung");
+                String linkAnh2 = resultSet.getString("link_hinhanh");
+                String linkAnh3 = resultSet.getString("link_hinhanh");
+                String oCung = resultSet.getString("Ocung");
+                String cardManHinh = resultSet.getString("CardManHinh");
+                String congKetNoi = resultSet.getString("CongKetNoi");
+                String dacBiet = resultSet.getString("DacBiet");
+                String kichThuocVaTrongLuong = resultSet.getString("KichThuocVaTrongLuong");
+                String thoiDiemRaMat = resultSet.getString("ThoiDiemRaMat");
+
+                product = new Product(maSP, tenSP, giaSP, manHinh, hdh, camSau, camTr, CPU, RAM, boNhoTrong, theSim, pin, thietKe,
+                        imei, baiViet, noiDung, linkAnh2, linkAnh3, oCung, cardManHinh, congKetNoi, dacBiet, kichThuocVaTrongLuong, thoiDiemRaMat, link_hinhanh);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return product;
     }
 
     public static void main(String[] args) {

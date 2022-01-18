@@ -18,9 +18,9 @@
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"/>
     <!-- MDB ESSENTIAL -->
-    <link rel="stylesheet" href="<c:url value='../ventor/css/mdb.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='./ventor/css/mdb.min.css'/>">
     <!-- MDB PLUGINS -->
-    <link rel="stylesheet" href="<c:url value='../ventor/plugins/css/all.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='./ventor/plugins/css/all.min.css'/>">
     <style>
         @media (min-width: 1400px) {
 
@@ -70,9 +70,9 @@
 </main>
 <!--Main layout-->
 </body>
-<script type="text/javascript" src="<c:url value='../ventor/js/mdb.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='./ventor/js/mdb.min.js'/>"></script>
 <!-- MDB PLUGINS -->
-<script type="text/javascript" src="<c:url value='../ventor/plugins/js/all.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='./ventor/plugins/js/all.min.js'/>"></script>
 <script type="text/javascript">
     const sidenav = document.getElementById("sidenav-1");
     const instance = mdb.Sidenav.getInstance(sidenav);

@@ -22,11 +22,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
-    <link rel="stylesheet" href="<c:url value='./assets/css/login.css'/>">
-    <link rel="stylesheet" href="<c:url value='../ventor/css/mdb.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='./ventor/css/mdb.min.css'/>">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"/>
-    <script src="<c:url value='../ventor/js/mdb.min.js'/>"></script>
+    <script src="<c:url value='./ventor/js/mdb.min.js'/>"></script>
 </head>
 <body>
 <main style="margin-top: 58px">
@@ -52,37 +51,26 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="pills-login" role="tabpanel"
                                  aria-labelledby="tab-login">
-                                <form id="formdn" name="formdn" action="" method="">
-                                    <div class="text-center mb-3">
-                                        <p>Sign in with:</p>
-                                        <button type="button" class="btn btn-primary btn-floating mx-1">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </button>
-
-                                        <button type="button" class="btn btn-primary btn-floating mx-1">
-                                            <i class="fab fa-google"></i>
-                                        </button>
-
-                                        <button type="button" class="btn btn-primary btn-floating mx-1">
-                                            <i class="fab fa-twitter"></i>
-                                        </button>
-
-                                        <button type="button" class="btn btn-primary btn-floating mx-1">
-                                            <i class="fab fa-github"></i>
-                                        </button>
-                                    </div>
-
-                                    <p class="text-center">or:</p>
-
+                                <form id="formdn" name="formdn" action="../LoginAdminController" method="post">
                                     <!-- Email input -->
                                     <div class="form-outline mb-4">
-                                        <input type="text" id="loginName" class="form-control" name="username"/>
-                                        <label class="form-label" for="loginName">Username</label>
+                                        <input type="text" id="loginName" class="form-control" name="email"
+                                               value="<%
+                                            if (request.getAttribute("email") != null && !request.getAttribute("email").equals("")) {
+                                                out.print(request.getAttribute("email"));
+                                            }
+                                        %>"/>
+                                        <label class="form-label" for="loginName">Email</label>
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="loginPassword" class="form-control" name="pass"/>
+                                        <input type="password" id="loginPassword" class="form-control" name="password"
+                                               value="<%
+                                            if (request.getAttribute("pass") != null && !request.getAttribute("pass").equals("")) {
+                                                out.print("");
+                                            }
+                                        %>"/>
                                         <label class="form-label" for="loginPassword">Password</label>
                                     </div>
 
@@ -109,7 +97,11 @@
                                     <button type="submit" class="btn btn-primary btn-block mb-4">
                                         Sign in
                                     </button>
-
+                                    <p id="errorLogin" style="color: red; font-size: 16px; text-align: center"><%
+                                        if (request.getAttribute("errorAccount") != null && !request.getAttribute("errorAccount").equals("")) {
+                                            out.print(request.getAttribute("errorAccount"));
+                                        }
+                                    %></p>
                                     <!-- Register buttons -->
                                     <div class="text-center">
                                         <p>Not a member? <a href="#!">Register</a></p>
@@ -120,7 +112,6 @@
                                  aria-labelledby="tab-register">
                                 <form id="formdk" name="formdk" action="../RegisterAdminController" method="post">
                                     <!-- Name input -->
-                                    <!-- Username input -->
                                     <div class="form-outline mb-4">
                                         <input type="text" id="name" class="form-control" name="name"/>
                                         <label class="form-label" for="name">Name</label>
@@ -176,6 +167,7 @@
                                     <button type="submit" class="btn btn-primary btn-block mb-3">
                                         Sign in
                                     </button>
+                                    <p><font size="2" color="#1e90ff" id=""></font></p>
                                 </form>
                             </div>
                         </div>

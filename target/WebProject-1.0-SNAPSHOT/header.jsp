@@ -75,7 +75,8 @@
                                     <li class="header__navbar-items header__navbar-user header__navbar-items--separate">
                                     <li class="header__navbar-items header__navbar-user header__cart-wrap">
                                         <a href="#" class="header__navbar-items-link ">
-                                            <i class="header__navbar--icon fas fa-shopping-cart"></i>
+                                            <i class="header__navbar--icon fas fa-shopping-cart"
+                                               style="margin-left: -17px;"></i>
                                             <span class="header__card-notice">3</span>
                                         </a>
                                     </li>
@@ -84,7 +85,7 @@
                                          alt="" class="header__navbar-user-img">
                                     <span class="header__navbar-user-name"
                                           style="width: 120px"> ${sessionScope.user.name}</span>
-                                    <ul class="header__navbar-user-menu">
+                                    <ul class="header__navbar-user-menu" style="left: -62px;">
                                         <li class="header__navber-user-item">
                                             <a href="./thongtincanhan.jsp" class="header-nav__log-link">Tài khoản của
                                                 tôi</a>

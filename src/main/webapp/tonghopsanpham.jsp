@@ -1,15 +1,14 @@
 <%--
   Created by LeTrongKhiem.
   User: User
-  Date: 10-Jan-22
-  Time: 2:47 PM
+  Date: 19-Jan-22
+  Time: 8:46 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="com.example.webproject.DAO.daoimpl.ProductListDAOImpl" %>
 <%@ page import="com.example.webproject.BEAN.ProductList" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="com.example.webproject.BEAN.Product" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="common/taglib.jsp" %>
@@ -19,7 +18,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><dec:title default="Sản Phẩm"/></title>
+    <title><dec:title default="Điện thoại Apple"/></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
     <link rel="stylesheet" href="<c:url value='assets/font/fontawesome-free-5.15.3-web/css/all.min.css'/>">
@@ -32,6 +31,7 @@
     <link rel="stylesheet" href="<c:url value= './assets/css/grid.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/responsive.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/mobile.css'/>">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <jsp:useBean id="a" class="com.example.webproject.DAO.daoimpl.ProductListDAOImpl" scope="request"></jsp:useBean>
 <body>
@@ -44,6 +44,19 @@
     .col {
         margin: 0 !important;
 
+    }
+
+    .button-loadmore {
+        background-color: darkcyan;
+        width: 210px;
+        height: 35px;
+        font-size: 14px;
+        text-align: center;
+        border: none;
+        border-radius: 7px;
+        color: #fff;
+        margin-top: 15px;
+        margin-left: 50%;
     }
 </style>
 <div class="main">
@@ -78,28 +91,28 @@
                     <i class="container-filter__icon-down fas fa-chevron-down"></i>
                     <ul class="container-filter__price">
                         <li class="container-filter-item">
-                            <a href="FilterController?chongia=1">Dưới 1 triệu</a>
+                            Dưới 1 triệu
                         </li>
                         <li class="container-filter-item">
-                            <a href="FilterController?chongia=2">Dưới 2 triệu</a>
+                            Dưới 2 triệu
                         </li>
                         <li class="container-filter-item">
-                            <a href="FilterController?chongia=3">Dưới 3 triệu</a>
+                            Dưới 3 triệu
                         </li>
                         <li class="container-filter-item">
-                            <a href="FilterController?chongia=4">Dưới 4 triệu</a>
+                            Dưới 4 triệu
                         </li>
                         <li class="container-filter-item">
-                            <a href="FilterController?chongia=5">Dưới 5 triệu</a>
+                            Dưới 5 triệu
                         </li>
                         <li class="container-filter-item">
-                            <a href="FilterController?chongia=7">Dưới 7 triệu</a>
+                            Dưới 7 triệu
                         </li>
                         <li class="container-filter-item">
-                            <a href="FilterController?chongia=10">Dưới 10 triệu</a>
+                            Dưới 10 triệu
                         </li>
                         <li class="container-filter-item">
-                            <a href="FilterController?chongia=11">Trên 10 triệu</a>
+                            Trên 10 triệu
                         </li>
                     </ul>
                 </li>
@@ -209,99 +222,99 @@
             </ul>
             <div class="col l-12 m-12 c-12">
                 <div class="container-product">
-                    <div class="row no-gutters phone-products">
-                        <!-- Thêm từng điện thoại vào -->
-                        <%
-                            ArrayList<ProductList> array = (ArrayList<ProductList>) session.getAttribute("list");
-                        %>
-                        <%for (int i = 0; i < array.size(); i++) {%>
-                        <div class="col l-2-4 l-3-m m-4 c-6">
-                            <div class="container-product__item">
-                                <div class="container-product__item-heading">
-                                    <div class="container-product__item-img"
-                                         style="background-image: url('<%=array.get(i).getLink_hinhanh()%>');"></div>
-                                    <div class="container-product-guarantee">
-                                        <a href="trangitem.jsp" class="container-product__item-link">
-                                            <div class="container-product-guarantee__heading">
-                                                <img src="https://mobilecity.vn/public/assets/img/icon-mobilecity-care.png"
-                                                     alt="Guarantee"
-                                                     class="container-product-guarantee__heading-img">
-                                                <h3 class="container-product-guarantee__heading-text">TGMobile
-                                                    Care</h3>
-                                            </div>
+                    <div class="row no-gutters phone-products" id="content">
+                        <jsp:useBean id="listParent" scope="request" type="java.util.List"/>
+                        <c:forEach items="${listParent}" var="l">
+                            <!-- Thêm từng điện thoại vào -->
+                            <div class="productCount col l-2-4 l-3-m m-4 c-6">
+                                <div class="container-product__item">
+                                    <div class="container-product__item-heading">
+                                        <div class="container-product__item-img"
+                                             style="background-image: url('${l.link_hinhanh}');"></div>
+                                        <div class="container-product-guarantee">
+                                            <a href="trangitem.jsp" class="container-product__item-link">
+                                                <div class="container-product-guarantee__heading">
+                                                    <img src="https://mobilecity.vn/public/assets/img/icon-mobilecity-care.png"
+                                                         alt="Guarantee"
+                                                         class="container-product-guarantee__heading-img">
+                                                    <h3 class="container-product-guarantee__heading-text">TGMobile
+                                                        Care</h3>
+                                                </div>
 
-                                            <ul class="container-product-guarantee__list">
-                                                <li class="container-product-guarantee__item">BH 12 tháng nguồn,
-                                                    màn hình
-                                                </li>
-                                                <li class="container-product-guarantee__item">Đổi mới 30 ngày
-                                                    đầu tiên
-                                                </li>
-                                                <li class="container-product-guarantee__item">Tặng ốp lưng, dán
-                                                    cường lực
-                                                </li>
-                                                <li class="container-product-guarantee__item">Hỗ trợ phần mềm
-                                                    trọn đời máy
-                                                </li>
-                                            </ul>
-                                        </a>
-                                        <a href="" class="container-product-guarantee__btn">Bảo hành vàng</a>
+                                                <ul class="container-product-guarantee__list">
+                                                    <li class="container-product-guarantee__item">BH 12 tháng nguồn,
+                                                        màn hình
+                                                    </li>
+                                                    <li class="container-product-guarantee__item">Đổi mới 30 ngày
+                                                        đầu tiên
+                                                    </li>
+                                                    <li class="container-product-guarantee__item">Tặng ốp lưng, dán
+                                                        cường lực
+                                                    </li>
+                                                    <li class="container-product-guarantee__item">Hỗ trợ phần mềm
+                                                        trọn đời máy
+                                                    </li>
+                                                </ul>
+                                            </a>
+                                            <a href="" class="container-product-guarantee__btn">Bảo hành vàng</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="container-product__item-wrap">
-                                    <div class="container-product__item-info">
-                                        <a href="" class="container-product__item-name">
-                                            <%=array.get(i).getTen()%>
-                                            <%--                                            <%=productList.getTenSP()%>--%>
-                                        </a>
-                                        <i class="container-product__item-sale-icon fas fa-gift"></i>
-                                    </div>
-                                    <div class="container-product__item-buy">
+                                    <div class="container-product__item-wrap">
+                                        <div class="container-product__item-info">
+                                            <a href="DetailController?id=${l.id}"
+                                               class="container-product__item-name">
+                                                    ${l.ten}
+                                                    <%--                                            <%=productList.getTenSP()%>--%>
+                                            </a>
+                                            <i class="container-product__item-sale-icon fas fa-gift"></i>
+                                        </div>
+                                        <div class="container-product__item-buy">
                                 <span class="container-product__item-price">
 <%--                                    <%=nf.format(productList.getGia())%> đ--%>
-                                     <%=ProductListDAOImpl.getInstance().dinhDang(array.get(i).getGia())%>
-<%--                                    <%=nf.format(productList.getGiaSP())%> đ--%>
+                                      ${l.dinhDang(l.gia)}
                                 </span>
-                                        <a href="" class="container-product__item-btn">MUA</a>
+                                            <a href="cart-add?id=${l.id}"
+                                               class="container-product__item-btn">MUA</a>
+                                        </div>
                                     </div>
-                                </div>
-                                <ul class="container-product__item-gifts-list">
-                                    <li class="container-product__item-gift">
-                                        1. Tặng:
-                                        <span class="container-product__item-gift--highlight">
+                                    <ul class="container-product__item-gifts-list">
+                                        <li class="container-product__item-gift">
+                                            1. Tặng:
+                                            <span class="container-product__item-gift--highlight">
                                     Cường lực - Ốp lưng - Tai nghe
                                 </span>
-                                        khi mua BHV
-                                    </li>
-                                    <li class="container-product__item-gift">
-                                        2. Giảm:
-                                        <span class="container-product__item-gift--highlight">
+                                            khi mua BHV
+                                        </li>
+                                        <li class="container-product__item-gift">
+                                            2. Giảm:
+                                            <span class="container-product__item-gift--highlight">
                                     100K
                                 </span>
-                                        áp dụng HSSV mua BHV tại
-                                        <span class="container-product__item-gift--highlight">
+                                            áp dụng HSSV mua BHV tại
+                                            <span class="container-product__item-gift--highlight">
                                     Thủ Đức
                                 </span>
-                                    </li>
-                                </ul>
-                                <ul class="container-product-marker__list">
-                                    <li class="container-product-marker__item container-product-marker__item--new">
-                                        Mới
-                                    </li>
-                                    <li class="container-product-marker__item container-product-marker__item--hot">
-                                        Hot
-                                    </li>
-                                </ul>
+                                        </li>
+                                    </ul>
+                                    <ul class="container-product-marker__list">
+                                        <li class="container-product-marker__item container-product-marker__item--new">
+                                            Mới
+                                        </li>
+                                        <li class="container-product-marker__item container-product-marker__item--hot">
+                                            Hot
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <%}%>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
             <div class="col l-12 m-12 c-12">
-                <div class="container-view-more">
-                    <a href="#" class="container-btn-extend">Xem thêm điện thoại</a>
-                </div>
+                <%--                <div class="container-view-more">--%>
+                <%--                    <a href="#" class="container-btn-extend" onclick="loadMore()">Xem thêm điện thoại</a>--%>
+                <%--                </div>--%>
+                <button onclick="loadMore()" class="button-loadmore">Xem thêm điện thoại</button>
             </div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
@@ -328,10 +341,11 @@
 <script src="<c:url value='./js/tool.js'/>"></script>
 <script src="<c:url value='./js/fix.js'/>"></script>
 <script src="<c:url value='./js/unlock.js'/>"></script>
+
+
 <script>
     const $ = document.querySelector.bind(document);
     const $$ = document.querySelectorAll.bind(document);
-
     const event = (() => {
 
         return {
@@ -399,6 +413,30 @@
 
     event.init();
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>
+    function loadMore() {
+        var amount = document.getElementsByClassName('productCount').length;
+        jQuery.ajax({
+            url: "/WebProject/LoadmoreController",
+            type: "get", //send it through get method
+            data: {
+                exits: amount
+            },
+            success: function (data) {
+                var row = document.getElementById('content');
+                row.innerHTML += data;
+            },
+            error: function (xhr) {
+
+            }
+        });
+    }
+</script>
 </body>
 
 </html>
+

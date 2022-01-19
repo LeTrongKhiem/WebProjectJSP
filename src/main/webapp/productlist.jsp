@@ -300,6 +300,11 @@
                     </div>
                 </div>
             </div>
+            <div class="col l-12 m-12 c-12">
+                <div class="container-view-more">
+                    <a href="#" class="container-btn-extend">Xem thêm điện thoại</a>
+                </div>
+            </div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <jsp:useBean id="i" class="com.example.webproject.BEAN.Category"></jsp:useBean>

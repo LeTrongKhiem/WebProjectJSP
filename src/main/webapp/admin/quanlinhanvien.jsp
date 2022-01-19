@@ -155,6 +155,8 @@
     ];
 
     const advancedRows = [
+        <jsp:useBean id="list" scope="request" type="com.example.webproject.admin.BEAN.Admin"/>
+        <c:forEach items="${list}" var="l">
         {
             // id: 1,
             // HoTen: "Lê Trọng Khiêm",
@@ -165,8 +167,7 @@
             // dob: "16/04/2001",
             // role: 1,
             // quyen: "Admin",
-            <jsp:useBean id="list" scope="request" type="com.example.webproject.admin.BEAN.Admin"/>
-            <c:forEach items="${list}" var="l">
+          
             id: "${l.id}",
             HoTen: "${l.hoTen}",
             email: "${l.email}",
@@ -176,9 +177,9 @@
             dob: "${l.ngayBD}",
             role: ${l.role},
             quyen: "${l.quyen}",
-            </c:forEach>
-        },
 
+        },
+        </c:forEach>
 
     ];
 

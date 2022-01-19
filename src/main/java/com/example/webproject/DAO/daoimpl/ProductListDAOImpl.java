@@ -382,12 +382,37 @@ public class ProductListDAOImpl implements ProductListDAO {
         return product;
     }
 
+    public List<ProductList> getTop5() {
+        List<ProductList> list = new ArrayList<>();
+        String query = "select * from danhsachsp limit 5";
+        try {
+            connection = new DBConnection().getConnection();//mo ket noi voi sql
+            statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                ProductList product = new ProductList();
+                product.setId(resultSet.getString("Id"));
+                product.setTen(resultSet.getString("Ten"));
+                product.setGia(resultSet.getInt("Gia"));
+                product.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                list.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
 //        System.out.println(new ProductListDAOImpl().getListProductByCategory("100002").size());
 //        System.out.println(new ProductListDAOImpl().getProductType());
-        ArrayList<ProductList> listF = (ArrayList<ProductList>) new ProductListDAOImpl().getProductType();
-        for (ProductList p : listF) {
-            System.out.println(p.getMaDanhMuc());
+//        ArrayList<ProductList> listF = (ArrayList<ProductList>) new ProductListDAOImpl().getProductType();
+//        for (ProductList p : listF) {
+//            System.out.println(p.getMaDanhMuc());
+//        }
+        List<ProductList> list = new ProductListDAOImpl().getTop5();
+        for (ProductList p : list) {
+            System.out.println(p);
         }
     }
 }

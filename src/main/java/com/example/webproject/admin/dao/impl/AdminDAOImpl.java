@@ -134,6 +134,9 @@ public class AdminDAOImpl implements AdminDAO {
 //        Admin admin = new Admin("lekhiem", "le trong khiem", "lekhiem2001@gmail.com", "0372253243", "DN", "fnjewaflwegfer");
 //
 //        System.out.println(new AdminDAOImpl().register(admin));
-        System.out.println(new AdminDAOImpl().getListEmployee().size());
+        Map<String, Admin> list = new AdminDAOImpl().getListEmployee();
+        for (Map.Entry<String, Admin> entry : list.entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue().toString());
+        }
     }
 }

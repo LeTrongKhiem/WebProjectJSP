@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 
 public class ProductList implements Serializable {
-    private static final long serialVersionUID= 1L;
+    private static final long serialVersionUID = 1L;
     private String id;
     private String link_hinhanh;
     private Category category;
@@ -92,6 +92,10 @@ public class ProductList implements Serializable {
         this.maDanhMuc = maDanhMuc;
     }
 
+    public String dinhDang(long a) {
+        DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
+        return decimalFormat.format(a);
+    }
 
 
 }

@@ -9,5 +9,6 @@ import java.util.List;
 public interface ProductDAO {
     //method get all Phone, Laptop , ...
     public ArrayList<ProductList> getListProductByCategoryParent(String type);
-    public List<ProductList> getNextProduct(int amount);
+    //lấy danh sách sản phẩm tiếp theo, loadmore
+    public List<ProductList> getNextProduct(int amount, String type);
 }

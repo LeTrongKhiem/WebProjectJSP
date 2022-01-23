@@ -52,11 +52,11 @@
             <button class="btn btn-lg btn-login" type="submit">Xác nhận</button>
         </div>
         <div class="v2-login-bottom">
-                    <span class="v2-left"><span class="v2-hide">Chưa có tài khoản</span><a href="./dangki.jsp"
+                    <span class="v2-left"><span class="v2-hide">Chưa có tài khoản</span><a href="./dang-ki"
                                                                                            class="v2-register-now"> ( Đăng ký ngay )</a>
                     </span>
             <span class="v2-right">
-                        <a class="v2-remember-password" href=""> Đăng nhập ngay</a>
+                        <a class="v2-remember-password" href="./dang-nhap"> Đăng nhập ngay</a>
                     </span>
         </div>
     </form>

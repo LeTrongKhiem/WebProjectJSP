@@ -2,7 +2,6 @@ package com.example.webproject.controller;
 
 import com.example.webproject.BEAN.User;
 import com.example.webproject.BEAN.VerifyUtils;
-import com.example.webproject.DAO.UserDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

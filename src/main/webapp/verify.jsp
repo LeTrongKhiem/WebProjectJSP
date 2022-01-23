@@ -41,7 +41,7 @@
                     .Vui lòng kiểm tra trong hòm thư</p>
             </div>
             <div class="v2-login-wrap">
-                <a href="#">
+                <a href="./dangnhap.jsp">
                     <button class="btn btn-lg btn-login" type="submit">Xác nhận</button>
                 </a>
 

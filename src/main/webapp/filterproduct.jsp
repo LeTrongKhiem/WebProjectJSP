@@ -45,6 +45,19 @@
         margin: 0 !important;
 
     }
+
+    .button-loadmore {
+        background-color: darkcyan;
+        width: 210px;
+        height: 35px;
+        font-size: 14px;
+        text-align: center;
+        border: none;
+        border-radius: 7px;
+        color: #fff;
+        margin-top: 15px;
+        margin-left: 50%;
+    }
 </style>
 <div class="main">
 
@@ -209,13 +222,13 @@
             </ul>
             <div class="col l-12 m-12 c-12">
                 <div class="container-product">
-                    <div class="row no-gutters phone-products">
+                    <div class="row no-gutters phone-products" id="content">
                         <!-- Thêm từng điện thoại vào -->
                         <%
                             ArrayList<ProductList> array = (ArrayList<ProductList>) session.getAttribute("list");
                         %>
                         <%for (int i = 0; i < array.size(); i++) {%>
-                        <div class="col l-2-4 l-3-m m-4 c-6">
+                        <div class="productCount col l-2-4 l-3-m m-4 c-6">
                             <div class="container-product__item">
                                 <div class="container-product__item-heading">
                                     <div class="container-product__item-img"
@@ -299,20 +312,11 @@
                 </div>
             </div>
             <div class="col l-12 m-12 c-12">
-                <div class="container-view-more">
-                    <a href="#" class="container-btn-extend">Xem thêm điện thoại</a>
-                </div>
+                <%--                <div class="container-view-more">--%>
+                <%--                    <a href="#" class="container-btn-extend" onclick="loadMore()">Xem thêm điện thoại</a>--%>
+                <%--                </div>--%>
+                <button onclick="loadMore()" class="button-loadmore">Xem thêm điện thoại</button>
             </div>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <jsp:useBean id="i" class="com.example.webproject.BEAN.Category"></jsp:useBean>
-                    <c:forEach begin="1" end="${a.getNumberPageProduct(i.maDanhMuc)}" var="q">
-                        <li class="page-item " aria-current="page"><a class=" page-link"
-                                                                      href="PagingController?index=${q}&madanhmuc=${i.maDanhMuc}">${q}</a>
-                        </li>
-                    </c:forEach>
-                </ul>
-            </nav>
         </div>
     </div>
     <%--    footer --%>
@@ -398,6 +402,29 @@
     })();
 
     event.init();
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>
+    function loadMore() {
+        var amount = document.getElementsByClassName('productCount').length;
+        jQuery.ajax({
+            url: "/WebProject/LoadmoreController",
+            type: "get", //send it through get method
+            data: {
+                exits: amount
+            },
+            success: function (data) {
+                var row = document.getElementById('content');
+                row.innerHTML += data;
+            },
+            error: function (xhr) {
+
+            }
+        });
+    }
 </script>
 </body>
 

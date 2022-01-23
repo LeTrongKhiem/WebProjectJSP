@@ -1,9 +1,7 @@
 package com.example.webproject.controller;
 
-import com.example.webproject.BEAN.Product;
 import com.example.webproject.BEAN.ProductList;
 import com.example.webproject.DAO.daoimpl.ProductDAOImpl;
-import com.example.webproject.DAO.daoimpl.ProductListDAOImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,14 +11,34 @@ import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "LoadmoreController", value = "/LoadmoreController")
+
 public class LoadmoreController extends HttpServlet {
+    public boolean checkMadanhmuc(String[] arr, String madanhmuc) {
+        for (String i : arr) {
+            if (i.equals(madanhmuc)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
         String amount = request.getParameter("exits");
         int amountI = Integer.parseInt(amount);
-        List<ProductList> list = new ProductDAOImpl().getNextProduct(amountI);
+        String madanhmuc = request.getParameter("madanhmuc");
+        String[] madanhmucTrue = new String[]{"100002", "100003", "100004", "100005", "100006", "100007", "100008", "100009", "1000010", "100011", "100012", "100013", "100014", "100015", "100016", "100017", "100018", "100019", "100020", "100021"};
+        String type = "";
+        List<ProductList> list = null;
+        if (madanhmuc.equals("100001")) {
+            type = "DT";
+            list = new ProductDAOImpl().getNextProduct(amountI, type);
+        } else {
+            list = new ProductDAOImpl().getNextProductChild(amountI, madanhmuc);
+        }
         PrintWriter out = response.getWriter();
 
         for (ProductList p : list) {

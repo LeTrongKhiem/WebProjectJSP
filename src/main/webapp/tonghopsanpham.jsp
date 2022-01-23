@@ -18,7 +18,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><dec:title default="Điện thoại Apple"/></title>
+    <title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
     <link rel="stylesheet" href="<c:url value='assets/font/fontawesome-free-5.15.3-web/css/all.min.css'/>">
@@ -43,7 +43,6 @@
 <style>
     .col {
         margin: 0 !important;
-
     }
 
     .button-loadmore {
@@ -56,11 +55,10 @@
         border-radius: 7px;
         color: #fff;
         margin-top: 15px;
-        margin-left: 50%;
+        margin-left: 42%;
     }
 </style>
 <div class="main">
-
     <%--  header  --%>
     <%@include file="/header.jsp" %>
     <%--  header  --%>
@@ -314,18 +312,8 @@
                 <%--                <div class="container-view-more">--%>
                 <%--                    <a href="#" class="container-btn-extend" onclick="loadMore()">Xem thêm điện thoại</a>--%>
                 <%--                </div>--%>
-                <button onclick="loadMore()" class="button-loadmore">Xem thêm điện thoại</button>
+                <button onclick="loadMore()" class="button-loadmore">Xem thêm</button>
             </div>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <jsp:useBean id="i" class="com.example.webproject.BEAN.Category"></jsp:useBean>
-                    <c:forEach begin="1" end="${a.getNumberPageProduct(i.maDanhMuc)}" var="q">
-                        <li class="page-item " aria-current="page"><a class=" page-link"
-                                                                      href="PagingController?index=${q}&madanhmuc=${i.maDanhMuc}">${q}</a>
-                        </li>
-                    </c:forEach>
-                </ul>
-            </nav>
         </div>
     </div>
     <%--    footer --%>
@@ -421,7 +409,7 @@
     function loadMore() {
         var amount = document.getElementsByClassName('productCount').length;
         jQuery.ajax({
-            url: "/WebProject/LoadmoreController",
+            url: "/WebProject/LoadmoreController?madanhmuc=<%=request.getParameter("madanhmuc")%>",
             type: "get", //send it through get method
             data: {
                 exits: amount

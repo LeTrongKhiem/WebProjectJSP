@@ -2,12 +2,9 @@ package com.example.webproject.controller;
 
 import com.example.webproject.BEAN.RandomPassword;
 import com.example.webproject.BEAN.User;
-import com.example.webproject.DAO.UserDAO;
+import com.example.webproject.DAO.daoimpl.UserDAO;
 import com.example.webproject.service.SendEmail;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -16,7 +13,6 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
-import java.util.Properties;
 
 @WebServlet(name = "ForgotPassword", value = "/ForgotPassword")
 public class ForgotPassword extends HttpServlet {

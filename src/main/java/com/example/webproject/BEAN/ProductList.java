@@ -13,6 +13,7 @@ public class ProductList implements Serializable {
     private String maDanhMuc;
     private String tenDanhMuc;
     private String loaiSP;
+    private int rank;
 
     public ProductList() {
     }
@@ -98,4 +99,11 @@ public class ProductList implements Serializable {
     }
 
 
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
 }

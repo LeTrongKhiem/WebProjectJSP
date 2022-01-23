@@ -1,6 +1,7 @@
-package com.example.webproject.DAO;
+package com.example.webproject.DAO.daoimpl;
 
 import com.example.webproject.BEAN.User;
+import com.example.webproject.DAO.ObjectDAO;
 import com.example.webproject.DB.DBConnection;
 import com.example.webproject.service.SendEmail;
 

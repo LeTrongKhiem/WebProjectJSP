@@ -46,12 +46,11 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<ProductList> getNextProduct(int amount) {
-        String sql = "SELECT *\n" +
-                "FROM danhsachsp\n" +
-                "ORDER BY Id\n" +
-                "LIMIT 10\n" +
-                "OFFSET ?;";
+    public List<ProductList> getNextProduct(int amount, String type) {
+        String sql = "SELECT DISTINCT * FROM danhsachsp where LoaiSP = '" + type + "'\n" +
+                "                ORDER BY rank asc\n" +
+                "                LIMIT 10 \n" +
+                "                OFFSET ?";
         ArrayList<ProductList> list = new ArrayList<>();
         try {
             connection = DBConnection.getConnection();
@@ -71,6 +70,7 @@ public class ProductDAOImpl implements ProductDAO {
                 productList.setMaDanhMuc(resultSet.getString("MaDanhMuc"));
                 productList.setTenDanhMuc(resultSet.getString("TenDanhMuc"));
                 productList.setLoaiSP(resultSet.getString("LoaiSP"));
+                productList.setRank(resultSet.getInt("rank"));
                 list.add(productList);
             }
         } catch (Exception e) {
@@ -79,10 +79,80 @@ public class ProductDAOImpl implements ProductDAO {
         return list;
     }
 
+    public List<ProductList> getNextProduct(int amount, String type, String madanhmuc) {
+        String sql = "SELECT DISTINCT * FROM danhsachsp where LoaiSP = ? and MaDanhMuc = ?\n" +
+                "                              ORDER BY rank DESC\n" +
+                "                             LIMIT 10 \n" +
+                "                               OFFSET ?";
+        ArrayList<ProductList> list = new ArrayList<>();
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, type);
+            statement.setString(2, madanhmuc);
+            statement.setInt(3, amount);
+            resultSet = statement.executeQuery();
+//            statement.setString(1, type);
+            while (resultSet.next()) {
+                ProductList productList = new ProductList();
+                productList.setId(resultSet.getString("id"));
+                Category category = new Category(resultSet.getString("MaDanhMuc"), "", "DanhMucCha", "");
+                productList.setCategory(category);
+                productList.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                productList.setTen(resultSet.getString("Ten"));
+                long gia = resultSet.getLong("Gia");
+                productList.setGia(gia);
+                productList.setMaDanhMuc(resultSet.getString("MaDanhMuc"));
+                productList.setTenDanhMuc(resultSet.getString("TenDanhMuc"));
+                productList.setLoaiSP(resultSet.getString("LoaiSP"));
+                productList.setRank(resultSet.getInt("rank"));
+                list.add(productList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<ProductList> getNextProductChild(int amount, String madanhmuc) {
+        String sql = "SELECT DISTINCT * FROM danhsachsp where MaDanhMuc = ?\n" +
+                "                              ORDER BY rank DESC\n" +
+                "                             LIMIT 10 \n" +
+                "                               OFFSET ?";
+        ArrayList<ProductList> list = new ArrayList<>();
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, madanhmuc);
+            statement.setInt(2, amount);
+            resultSet = statement.executeQuery();
+//            statement.setString(1, type);
+            while (resultSet.next()) {
+                ProductList productList = new ProductList();
+                productList.setId(resultSet.getString("id"));
+                Category category = new Category(resultSet.getString("MaDanhMuc"), "", "DanhMucCha", "");
+                productList.setCategory(category);
+                productList.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                productList.setTen(resultSet.getString("Ten"));
+                long gia = resultSet.getLong("Gia");
+                productList.setGia(gia);
+                productList.setMaDanhMuc(resultSet.getString("MaDanhMuc"));
+                productList.setTenDanhMuc(resultSet.getString("TenDanhMuc"));
+                productList.setLoaiSP(resultSet.getString("LoaiSP"));
+                productList.setRank(resultSet.getInt("rank"));
+                list.add(productList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+
     public static void main(String[] args) {
-        List<ProductList> list = new ProductDAOImpl().getNextProduct(2);
+        List<ProductList> list = new ProductDAOImpl().getNextProduct(1, "DT", "100002");
         for (ProductList p : list) {
-            System.out.println(p.getId());
+            System.out.println(p);
         }
     }
 }

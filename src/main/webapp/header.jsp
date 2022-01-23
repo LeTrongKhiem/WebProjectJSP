@@ -113,15 +113,15 @@
                                 </c:when>
                                 <c:otherwise>
                                     <li class="header-nav__log-item">
-                                        <a href="./trangbaohanh.jsp" class="header-nav__log-link"
+                                        <a href="./tra-cuu-bao-hanh" class="header-nav__log-link"
                                            style="width: 150px">Tra cứu bảo
                                             hành</a>
                                     </li>
                                     <li class="header-nav__log-item">
-                                        <a href="./dangnhap.jsp" class="header-nav__log-link">Đăng nhập</a>
+                                        <a href="./dang-nhap" class="header-nav__log-link">Đăng nhập</a>
                                     </li>
                                     <li class="header-nav__log-item">
-                                        <a href="./dangki.jsp" class="header-nav__log-link">Đăng ký</a>
+                                        <a href="./dang-ky" class="header-nav__log-link">Đăng ký</a>
                                     </li>
                                 </c:otherwise>
                             </c:choose>
@@ -266,7 +266,7 @@
                     <%}%>
                     <!-- Menu news -->
                     <li class="header-menu__item">
-                        <a href="./tintuc.jsp" class="header-menu__item-link">
+                        <a href="./tin-tuc" class="header-menu__item-link">
                             <i class="header-menu__item-icon fas fa-newspaper"></i>
                             <p class="header-menu__item-name">Tin tức</p>
                         </a>
@@ -322,7 +322,7 @@
             <%}%>
             <!-- News -->
             <li class="header-mobile-nav__item">
-                <a href="./tintuc.jsp" class="header-mobile-nav__item-select">
+                <a href="./tin-tuc" class="header-mobile-nav__item-select">
                     <i class="header-mobile-nav__icon-open fas fa-chevron-right"></i>
                     Tin tức
                 </a>

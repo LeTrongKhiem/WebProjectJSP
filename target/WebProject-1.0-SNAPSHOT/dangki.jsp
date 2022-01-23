@@ -1,6 +1,6 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="com.example.webproject.BEAN.User" %>
-<%@ page import="com.example.webproject.DAO.UserDAO" %>
+<%@ page import="com.example.webproject.DAO.daoimpl.UserDAO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

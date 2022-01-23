@@ -1,8 +1,7 @@
 package com.example.webproject.controller;
 
 import com.example.webproject.BEAN.User;
-import com.example.webproject.DAO.UserDAO;
-import com.example.webproject.service.SendEmail;
+import com.example.webproject.DAO.daoimpl.UserDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

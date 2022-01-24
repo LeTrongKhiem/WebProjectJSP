@@ -90,6 +90,21 @@ public class OrderDAO {
         }
         return -5;
     }
+    public int themVaoGioHang(OrderDetail order , User user) {
+        String query = "INSERT INTO thongtinspgiohang(MaSP,TongGia,SoLuong,OrderId) VALUES (?,?,?,?)";
+        try {
+            conn = new DBConnection().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1,order.getProductID());
+            ps.setDouble(2,order.getPrice());
+            ps.setInt(3,order.getQuantity());
+            ps.setInt(4,order.getOrderID());
+            ps.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return  0;
+    }
 
 
 

@@ -26,34 +26,32 @@
     <link rel="stylesheet" href="<c:url value= './assets/css/responsive.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/dangnhap.css'/>">
 </head>
+<style>
+.icon_success{
+    font-size: 60px;
+
+}
+</style>
 <body>
 <div class="main">
     <%--  header  --%>
     <%@include file="/header.jsp" %>
     <%--  header  --%>
     <div class="v2-login-area" style="padding-top: 100px">
-        <form class="form-signin" action="RegisterController" method="post" name="formdn" id="formdn">
+        <form class="form-signin" action="index.jsp" method="post">
             <div class="form-signin-heading text-center">
-                <h1 class="sign-title" style="font-size: 29px; text-align: center">Cảm ơn bạn đã đăng kí tài khoản tại
-                    Website</h1>
-                <p style="font-size: 13px; text-align: center">Email xác minh đã được gửi vào email: <a
-                        href="">${sessionScope.user.email}</a>
-                    .Vui lòng kiểm tra trong hòm thư</p>
+                <h1 class="sign-title" style="font-size: 32px; text-align: center">Thanh toán thành công</h1>
+                <i class="far fa-check-circle icon_success"></i>
+                <p style="font-size: 13px; text-align: center">Chúng tôi sẽ gửi email xác nhận đơn hàng cho bạn với các chi tiết và thông tin theo dõi.
+                </p>
             </div>
             <div class="v2-login-wrap">
-                <a href="#">
-                    <button class="btn btn-lg btn-login" type="submit">Xác nhận</button>
+                <a href="index.jsp">
+                    <button class="btn btn-lg btn-login" type="submit">Về Trang Chủ</button>
                 </a>
 
             </div>
-            <div class="v2-login-bottom" style="margin-left: 72px">
-                    <span class="v2-left"><span class="v2-hide">Bạn chưa nhận được mã</span><a href=""
-                                                                                               class="v2-register-now"> ( Gửi lại mã )</a>
-                    </span>
-                <span class="v2-right">
-                        <a class="v2-remember-password" href="./dangnhap.jsp"> Đăng nhập ngay</a>
-                    </span>
-            </div>
+
         </form>
     </div>
     <%--    footer --%>

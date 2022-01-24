@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CategoryDAOImpl implements CategoryDAO {
     private static CategoryDAOImpl instance;
@@ -105,6 +106,26 @@ public class CategoryDAOImpl implements CategoryDAO {
         }
         return list;
     }
+    public List<Category> getAllCategories() {
+        Connection connection = DBConnection.getConnection();
+        String sql = "SELECT * FROM danhmuc ";
+        List<Category> list = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Category category = new Category();
+                category.setMaDanhMuc(resultSet.getString("MaDanhMuc"));
+                category.setTenDanhMuc(resultSet.getString("TenDanhMuc"));
+                category.setDanhMucCha(resultSet.getString("DanhMucCha"));
+                list.add(category);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 
     public static void main(String[] args) {
 //        System.out.println(new CategoryDAOImpl().getListCategoryChild("100001").size());

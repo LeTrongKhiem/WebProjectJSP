@@ -1,9 +1,6 @@
 package com.example.webproject.DAO.daoimpl;
 
-import com.example.webproject.BEAN.Category;
-import com.example.webproject.BEAN.PhoneProduct;
-import com.example.webproject.BEAN.Product;
-import com.example.webproject.BEAN.ProductList;
+import com.example.webproject.BEAN.*;
 import com.example.webproject.DAO.ProductListDAO;
 import com.example.webproject.DB.DBConnection;
 import org.codehaus.jackson.annotate.JsonSubTypes;
@@ -11,6 +8,7 @@ import org.codehaus.jackson.annotate.JsonSubTypes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -368,9 +366,9 @@ public class ProductListDAOImpl implements ProductListDAO {
                 String dacBiet = resultSet.getString("DacBiet");
                 String kichThuocVaTrongLuong = resultSet.getString("KichThuocVaTrongLuong");
                 String thoiDiemRaMat = resultSet.getString("ThoiDiemRaMat");
-
+                String loaiSP = resultSet.getString("LoaiSP");
                 product = new Product(maSP, tenSP, giaSP,manHinh,hdh,camSau,camTr,CPU,RAM,boNhoTrong,theSim,pin,thietKe,
-                        imei,baiViet,noiDung,linkAnh2,linkAnh3,oCung,cardManHinh,congKetNoi,dacBiet,kichThuocVaTrongLuong,thoiDiemRaMat,link_hinhanh );
+                        imei,baiViet,noiDung,linkAnh2,linkAnh3,oCung,cardManHinh,congKetNoi,dacBiet,kichThuocVaTrongLuong,thoiDiemRaMat,link_hinhanh,loaiSP );
 
             }
         } catch (Exception e) {
@@ -404,6 +402,74 @@ public class ProductListDAOImpl implements ProductListDAO {
         }
         return null;
     }
+    public List<Product> getAllProduct() {
+        ArrayList<Product> products = new ArrayList<>();
+        String query ="select * from danhsachsp";
+        try {
+
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setMaSP(resultSet.getString("Id"));
+                product.setTenSP(resultSet.getString("Ten"));
+                product.setGiaSP(resultSet.getInt("Gia"));
+                product.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                product.setLoaiSP(resultSet.getString("LoaiSP"));
+                products.add(product);
+            }
+
+        } catch ( SQLException ex) {
+            ex.printStackTrace();
+        }
+        return products;
+    }
+    public void deleteProductAdmin(String id){
+        String query = "DELETE FROM danhsachsp WHERE Id=?";
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1,id);
+            statement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void insertProduct(String id, String name, String image,int price,String loaiSP,String maDanhMuc){
+        String query = "INSERT INTO `danhsachsp` (`Id`, `Link_hinhanh`, `Ten`, `Gia`,LoaiSP,MaDanhMuc) VALUES (?,?,?,?,?,?)";
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1,id);
+            statement.setString(2,image);
+            statement.setString(3,name);
+            statement.setInt(4,price);
+            statement.setString(5,loaiSP);
+            statement.setString(6,maDanhMuc);
+          statement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void editProduct(String id, String name, String image,int price,String loaiSP,String maDanhMuc){
+        String query = "UPDATE `danhsachsp` SET `Link_hinhanh`=?,`Ten`=?,`Gia`=?,`LoaiSP`=?,`MaDanhMuc`=? WHERE Id=?";
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(query);
+//            statement.setString(1,id);
+            statement.setString(1,image);
+            statement.setString(2,name);
+            statement.setInt(3,price);
+            statement.setString(4,loaiSP);
+            statement.setString(5,maDanhMuc);
+            statement.setString(6,id);
+            statement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
 //        System.out.println(new ProductListDAOImpl().getListProductByCategory("100002").size());
 //        System.out.println(new ProductListDAOImpl().getProductType());
@@ -411,8 +477,9 @@ public class ProductListDAOImpl implements ProductListDAO {
         for (ProductList p : listF) {
 //            System.out.println(p.getMaDanhMuc());
         }
+
         ProductListDAOImpl dao = new ProductListDAOImpl();
-        System.out.println(dao.getSoLuong("ip12"));
+        System.out.println(dao.getAllProduct());
 
     }
 }

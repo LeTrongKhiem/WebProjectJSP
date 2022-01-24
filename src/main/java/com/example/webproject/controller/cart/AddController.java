@@ -2,6 +2,8 @@ package com.example.webproject.controller.cart;
 
 import com.example.webproject.BEAN.Cart;
 import com.example.webproject.BEAN.Product;
+import com.example.webproject.BEAN.User;
+import com.example.webproject.DAO.OrderDAO;
 import com.example.webproject.DAO.daoimpl.ProductListDAOImpl;
 
 
@@ -19,8 +21,11 @@ public class AddController extends HttpServlet {
 //       Product product = ProductService.getInstance().getById(id);
         ProductListDAOImpl dao = new ProductListDAOImpl();
         HttpSession session = request.getSession();
+        HttpSession sessionUser = request.getSession();
         Product product = dao.getProductByID(id);
         Cart cart = (Cart) session.getAttribute("cart");
+        User user = (User) sessionUser.getAttribute("user");
+        OrderDAO dao1 = new OrderDAO();
         if(product!=null){
            if(cart==null){
                cart = Cart.getInstance();

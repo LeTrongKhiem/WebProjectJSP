@@ -104,7 +104,6 @@
     window.addEventListener("resize", setMode);
 </script>
 
-<!-- Table editor -->
 <script>
     const advancedColumns = [
         {
@@ -172,6 +171,7 @@
         },
 
 
+
     ];
 
     const tableModal = new TableEditor(
@@ -183,5 +183,6 @@
         {mode: "modal", entries: 5, entriesOptions: [5, 10, 15], confirm: true}
     );
 </script>
+<!-- Table editor -->
 
 </html>

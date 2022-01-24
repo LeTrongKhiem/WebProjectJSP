@@ -13,6 +13,7 @@ public class Product implements Serializable {
     private  int quantity;
     private int quantitySold;
     private String link_hinhanh;
+    private String loaiSP;
 
     public Product(){
 
@@ -43,7 +44,7 @@ public class Product implements Serializable {
 //
 //    }
 
-    public Product(String maSP, String tenSP, int giaSP, String manHinh, String hdh, String camSau, String camTr, String CPU, String RAM, String boNhoTrong, String theSim, String pin, String thietKe, String imei, String baiViet, String noiDung, String linkAnh2, String linkAnh3, String oCung, String cardManHinh, String congKetNoi, String dacBiet, String kichThuocVaTrongLuong, String thoiDiemRaMat, String link_hinhanh) {
+    public Product(String maSP, String tenSP, int giaSP, String manHinh, String hdh, String camSau, String camTr, String CPU, String RAM, String boNhoTrong, String theSim, String pin, String thietKe, String imei, String baiViet, String noiDung, String linkAnh2, String linkAnh3, String oCung, String cardManHinh, String congKetNoi, String dacBiet, String kichThuocVaTrongLuong, String thoiDiemRaMat, String link_hinhanh,String loaiSP) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.giaSP = giaSP;
@@ -69,6 +70,7 @@ public class Product implements Serializable {
         this.kichThuocVaTrongLuong = kichThuocVaTrongLuong;
         this.thoiDiemRaMat = thoiDiemRaMat;
         this.link_hinhanh = link_hinhanh;
+        this.loaiSP = loaiSP;
     }
 
     public String getMaSP() {
@@ -287,5 +289,13 @@ public class Product implements Serializable {
 
     public void setThoiDiemRaMat(String thoiDiemRaMat) {
         this.thoiDiemRaMat = thoiDiemRaMat;
+    }
+
+    public String getLoaiSP() {
+        return loaiSP;
+    }
+
+    public void setLoaiSP(String loaiSP) {
+        this.loaiSP = loaiSP;
     }
 }

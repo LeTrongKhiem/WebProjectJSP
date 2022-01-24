@@ -49,7 +49,7 @@ public class OrderController extends HttpServlet {
         }
 
 
-        response.sendRedirect(request.getContextPath() + "/checkout-success.jsp");
+        response.sendRedirect("checkout-success.jsp");
         session.removeAttribute("cart");
 
     }

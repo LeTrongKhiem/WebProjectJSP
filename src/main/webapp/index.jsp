@@ -142,7 +142,7 @@
                     <div class="container-product">
                         <div class="row no-gutters phone-products" id="content">
                             <!-- Thêm từng điện thoại vào -->
-                            <%for (ProductList p : new ProductDAOImpl().getListProductByCategoryParent("DT")) {%>
+                            <%for (ProductList p : new ProductDAOImpl().getNextProduct(0, "DT")) {%>
                             <div class="productCount col l-2-4 l-3-m m-4 c-6">
                                 <div class="container-product__item">
                                     <div class="container-product__item-heading">
@@ -226,7 +226,10 @@
                     </div>
                 </div>
                 <div class="col l-12 m-12 c-12">
-                    <button onclick="loadMore()" class="button-loadmore">Xem thêm điện thoại</button>
+                    <button href="" onclick="loadMore()" class="button-loadmore">
+                        Xem
+                        thêm điện thoại
+                    </button>
                 </div>
             </div>
 
@@ -308,7 +311,7 @@
                     <div class="container-product">
                         <div class="row no-gutters tool-products">
                             <!-- Thêm phụ kiện -->
-                            <%for (ProductList p : new ProductDAOImpl().getListProductByCategoryParent("phukien")) {%>
+                            <%for (ProductList p : new ProductDAOImpl().getNextProduct(0, "phukien")) {%>
                             <div class="productCount col l-2-4 l-3-m m-4 c-6">
                                 <div class="container-product__item">
                                     <div class="container-product__item-heading">
@@ -392,7 +395,7 @@
                     </div>
                 </div>
                 <div class="col l-12 m-12 c-12">
-                    <button onclick="loadMore()" class="button-loadmore">Xem thêm phụ kiện</button>
+                    <button onclick="loadMore1()" class="button-loadmore">Xem thêm phụ kiện</button>
                 </div>
             </div>
 
@@ -478,7 +481,7 @@
                 </div>
 
                 <div class="col l-12 m-12 c-12">
-                    <button onclick="loadMore()" class="button-loadmore">Xem thêm</button>
+                    <button onclick="loadMore2()" class="button-loadmore">Xem thêm</button>
                 </div>
             </div>
 
@@ -668,7 +671,25 @@
     function loadMore() {
         var amount = document.getElementsByClassName('productCount').length;
         jQuery.ajax({
-            url: "/WebProject/LoadmoreController",
+            url: "/WebProject/LoadmoreController?madanhmuc=100001",
+            type: "get", //send it through get method
+            data: {
+                exits: amount
+            },
+            success: function (data) {
+                var row = document.getElementById('content');
+                row.innerHTML += data;
+            },
+            error: function (xhr) {
+
+            }
+        });
+    }
+
+    function loadMore1() {
+        var amount = document.getElementsByClassName('productCount').length;
+        jQuery.ajax({
+            url: "/WebProject/LoadmoreController?madanhmuc=300001",
             type: "get", //send it through get method
             data: {
                 exits: amount
@@ -709,8 +730,6 @@
 
         return {
             render() {
-                document.querySelector('.phone-products').innerHTML = htmlPhone;
-
                 const percent = 100 / banners.length;
                 const bannerPaginations = [];
                 const htmlBanner = banners.map((banner, index) => {

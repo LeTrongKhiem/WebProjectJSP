@@ -81,7 +81,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     public List<ProductList> getNextProduct(int amount, String type, String madanhmuc) {
         String sql = "SELECT DISTINCT * FROM danhsachsp where LoaiSP = ? and MaDanhMuc = ?\n" +
-                "                              ORDER BY rank DESC\n" +
+                "                              ORDER BY rank desc\n" +
                 "                             LIMIT 10 \n" +
                 "                               OFFSET ?";
         ArrayList<ProductList> list = new ArrayList<>();

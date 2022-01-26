@@ -31,11 +31,13 @@ public class LoadmoreController extends HttpServlet {
         int amountI = Integer.parseInt(amount);
         String madanhmuc = request.getParameter("madanhmuc");
         String[] madanhmucTrue = new String[]{"100002", "100003", "100004", "100005", "100006", "100007", "100008", "100009", "1000010", "100011", "100012", "100013", "100014", "100015", "100016", "100017", "100018", "100019", "100020", "100021"};
-        String type = "";
         List<ProductList> list = null;
         if (madanhmuc.equals("100001")) {
-            type = "DT";
-            list = new ProductDAOImpl().getNextProduct(amountI, type);
+            list = new ProductDAOImpl().getNextProduct(amountI, "DT");
+        } else if (madanhmuc.equals("200001")) {
+            list = new ProductDAOImpl().getNextProduct(amountI, "LT");
+        } else if (madanhmuc.equals("300001")) {
+            list = new ProductDAOImpl().getNextProduct(amountI, "phukien");
         } else {
             list = new ProductDAOImpl().getNextProductChild(amountI, madanhmuc);
         }

@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="common/taglib.jsp" %>
@@ -699,7 +698,7 @@
 
                                     </form>
                                 </td>
-                                <td><span class="cart-price">${product.giaSP}</span></td>
+                                <td><span class="cart-price">${product.dinhDang(product.giaSP)}</span></td>
                                 <td>
                                     <ul class="cart-action">
                                         <li><a href="remove?id=${product.maSP}" class="btn-cart btn-delete btn-blue"><i
@@ -707,8 +706,8 @@
                                     </ul>
                                 </td>
                             </tr>
-<%--                            <jsp:useBean id="error" scope="request" type="com.example.webproject.controller.cart.UpdateQuantityController"/>--%>
-<%--                            <tr>${error}</tr>--%>
+                            <%--                            <jsp:useBean id="error" scope="request" type="com.example.webproject.controller.cart.UpdateQuantityController"/>--%>
+                            <%--                            <tr>${error}</tr>--%>
                         </c:forEach>
 
                         </tbody>

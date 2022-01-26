@@ -411,7 +411,7 @@
     function loadMore() {
         var amount = document.getElementsByClassName('productCount').length;
         jQuery.ajax({
-            url: "/WebProject/LoadmoreController",
+            url: "/WebProject/FilterController?madanhmuc=<%=request.getParameter("madanhmuc")%>",
             type: "get", //send it through get method
             data: {
                 exits: amount

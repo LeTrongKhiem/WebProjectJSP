@@ -1,5 +1,6 @@
 <%@ page import="com.example.webproject.DAO.daoimpl.CategoryDAOImpl" %>
-<%@ page import="com.example.webproject.BEAN.Category" %><%--
+<%@ page import="com.example.webproject.BEAN.Category" %>
+<%@ page import="com.example.webproject.BEAN.Cart" %><%--
   Created by LeTrongKhiem.
   User: User
   Date: 03-Dec-21
@@ -74,10 +75,10 @@
                                     </li>
                                     <li class="header__navbar-items header__navbar-user header__navbar-items--separate">
                                     <li class="header__navbar-items header__navbar-user header__cart-wrap">
-                                        <a href="#" class="header__navbar-items-link ">
+                                        <a href="cart" class="header__navbar-items-link ">
                                             <i class="header__navbar--icon fas fa-shopping-cart"
                                                style="margin-left: -17px;"></i>
-                                            <span class="header__card-notice">3</span>
+                                            <span class="header__card-notice"><%=Cart.getInstance().getTotalQuantity()%></span>
                                         </a>
                                     </li>
                                     <li class="header__navbar-items header__navbar-user header__navbar-items--separate">
@@ -87,7 +88,7 @@
                                           style="width: 120px"> ${sessionScope.user.name}</span>
                                     <ul class="header__navbar-user-menu" style="left: -62px;">
                                         <li class="header__navber-user-item">
-                                            <a href="./thongtincanhan.jsp" class="header-nav__log-link">Tài khoản của
+                                            <a href="./thong-tin-tai-khoan" class="header-nav__log-link">Tài khoản của
                                                 tôi</a>
                                         </li>
                                         <li class="header__navber-user-item">
@@ -140,7 +141,7 @@
                     <i class="header-mobile-menu__icon fas fa-bars"></i>
                 </div>
 
-                <a href="index.jsp" class="header-logo__link">
+                <a href="./trang-chu" class="header-logo__link">
                     <!-- <div class="header-logo__img">TG Mobile</div> -->
                     <div class="header-mobile-nav__logo1" style="background-image: url('assets/img/logo3.png');">
                     </div>
@@ -351,7 +352,7 @@
 
                         <ul class="header-mobile-sub-nav__list" style="--num-row: 8;">
                             <li class="header-mobile-sub-nav__item">
-                                <a href="thongtincanhan.jsp" class="header-mobile-sub-nav__item-link">Tài khoản của
+                                <a href="./thong-tin-tai-khoan" class="header-mobile-sub-nav__item-link">Tài khoản của
                                     tôi</a>
                             </li>
                             <li class="header-mobile-sub-nav__item">

@@ -226,6 +226,7 @@
                         <!-- Thêm từng điện thoại vào -->
                         <%
                             ArrayList<ProductList> array = (ArrayList<ProductList>) session.getAttribute("list");
+//                            ArrayList<ProductList> array = (ArrayList<ProductList>) request.getAttribute("list");
                         %>
                         <%for (int i = 0; i < array.size(); i++) {%>
                         <div class="productCount col l-2-4 l-3-m m-4 c-6">
@@ -312,9 +313,6 @@
                 </div>
             </div>
             <div class="col l-12 m-12 c-12">
-                <%--                <div class="container-view-more">--%>
-                <%--                    <a href="#" class="container-btn-extend" onclick="loadMore()">Xem thêm điện thoại</a>--%>
-                <%--                </div>--%>
                 <button onclick="loadMore()" class="button-loadmore">Xem thêm điện thoại</button>
             </div>
         </div>
@@ -411,7 +409,7 @@
     function loadMore() {
         var amount = document.getElementsByClassName('productCount').length;
         jQuery.ajax({
-            url: "/WebProject/FilterController?madanhmuc=<%=request.getParameter("madanhmuc")%>",
+            url: "/WebProject/FilterController?madanhmuc=100002?locgia=caodenthap",
             type: "get", //send it through get method
             data: {
                 exits: amount

@@ -1,3 +1,4 @@
+
 <%--
   Created by LeTrongKhiem.
   User: User
@@ -73,7 +74,7 @@
                     </li>
 
                     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <i class="fa fa-angle-right"></i> <a itemprop="item" href="/productlist.jsp"
+                        <i class="fa fa-angle-right"></i> <a itemprop="item" href="/tonghopsanpham.jsp"
                                                              title="Điện thoại di động gi&#225; rẻ, ch&#237;nh h&#227;ng - Ho&#224;ng H&#224; Mobile"
                                                              class="actived"><span itemprop="name" content="Điện thoại">Điện thoại</span></a>
                         <meta itemprop="position" content="2"/>

@@ -86,11 +86,11 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     public static void main(String[] args) {
-//        System.out.println(new CategoryDAOImpl().getListCategoryChild("100001").size());
-        ArrayList<Category> list = getInstance().getListCategoryPhone();
-        for (Category name : list) {
-            System.out.println(name.getTenDanhMuc());
-        }
+        System.out.println(new CategoryDAOImpl().getListCategoryChild("200001").size());
+//        ArrayList<Category> list = getInstance().getListCategoryPhone();
+//        for (Category name : list) {
+//            System.out.println(name.getTenDanhMuc());
+//        }
     }
 
 }

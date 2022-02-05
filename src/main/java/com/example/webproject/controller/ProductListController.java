@@ -4,6 +4,7 @@ import com.example.webproject.BEAN.Category;
 import com.example.webproject.BEAN.Product;
 import com.example.webproject.BEAN.ProductList;
 import com.example.webproject.DAO.daoimpl.CategoryDAOImpl;
+import com.example.webproject.DAO.daoimpl.FilterProductIpml;
 import com.example.webproject.DAO.daoimpl.ProductDAOImpl;
 import com.example.webproject.DAO.daoimpl.ProductListDAOImpl;
 
@@ -33,7 +34,7 @@ public class ProductListController extends HttpServlet {
             list = new ProductDAOImpl().getNextProduct(0, "LT");
         } else if (madanhmuc.equals("300001")) {
             list = new ProductDAOImpl().getNextProduct(0, "phukien");
-        } else {
+        }else {
             list = new ProductDAOImpl().getNextProductChild(0, madanhmuc);
         }
 

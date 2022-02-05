@@ -9,19 +9,33 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet(name = "FilterController", value = "/FilterController")
 public class FilterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String amount = request.getParameter("exits");
-        int amountI = Integer.parseInt(amount);
+//        String amount = request.getParameter("exits");
+//        int amountI = Integer.parseInt(amount);
         String locgia = request.getParameter("locgia");
         String chongia = request.getParameter("chongia");
         FilterProductIpml filterProduct = new FilterProductIpml();
-        filterProduct.sortByPrice(locgia);
-        if (filterProduct.listProduct.size() > 0) {
-            request.getSession().setAttribute("list", filterProduct.listProduct);
+        List<ProductList> list = null;
+//        String amount = request.getParameter("exits");
+//        int amountI = Integer.parseInt(amount);
+//        filterProduct.sortByPrice(locgia);
+//        if (filterProduct.listProduct.size() > 0) {
+//            request.getSession().setAttribute("list", filterProduct.listProduct);
+////            request.setAttribute("list", filterProduct.listProduct);
+//            response.sendRedirect("filterproduct.jsp");
+//        }
+        if (locgia.equals("caodenthap")) {
+            list = filterProduct.sortByPrice(0, "desc", "100002");
+            request.getSession().setAttribute("list", list);
+            response.sendRedirect("filterproduct.jsp");
+        } else if (locgia.equals("thapdencao")) {
+            list = filterProduct.sortByPrice(0, "asc", "100002");
+            request.getSession().setAttribute("list", list);
             response.sendRedirect("filterproduct.jsp");
         }
         if (chongia != null) {
@@ -31,7 +45,7 @@ public class FilterController extends HttpServlet {
         }
         PrintWriter out = response.getWriter();
 
-        for (ProductList p : filterProduct.listProduct) {
+        for (ProductList p : list) {
             out.println("<div class=\"productCount col l-2-4 l-3-m m-4 c-6\">\n" +
                     "                                <div class=\"container-product__item\">\n" +
                     "                                    <div class=\"container-product__item-heading\">\n" +

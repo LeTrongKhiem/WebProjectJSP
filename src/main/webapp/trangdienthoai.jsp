@@ -90,11 +90,11 @@
             </div>
             <div class="col l-12 m-12 c-12">
                 <div class="container-product">
-                    <div id="content" class=" row no-gutters">
+                    <div id="content" class="row no-gutters">
                         <jsp:useBean id="product" scope="request" type="java.util.List"/>
                         <c:forEach var="i" items="${product}">
                             <%--                            <%for (Product productList : ProductListDAOImpl.getInstance().search(request.getParameter("txt"), Integer.parseInt(request.getParameter("index")))) {%>--%>
-                            <div class="product-laptop col l-2-4 l-3-m m-4 c-6">
+                            <div class="productCount col l-2-4 l-3-m m-4 c-6">
                                 <div class="container-product__item">
                                     <div class="container-product__item-heading">
                                         <div class="container-product__item-img"
@@ -129,7 +129,7 @@
                                     </div>
                                     <div class="container-product__item-wrap">
                                         <div class="container-product__item-info">
-                                            <a href="detail?id=${i.maSP}" class="container-product__item-name">
+                                            <a href="DetailController?id=${i.maSP}" class="container-product__item-name">
                                                     ${i.tenSP}
                                             </a>
                                             <i class="container-product__item-sale-icon fas fa-gift"></i>
@@ -192,21 +192,29 @@
     </a>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 
 <script>
     function loadMore() {
-        $.ajax({
-            type: "GET",
-            url: "/lab5_war_exploded/load",
+        var amount = document.getElementsByClassName('productCount').length;
+        jQuery.ajax({
+            url: "/WebProject/SearchController",
+            type: "get", //send it through get method
+            data: {
+                exits: amount
+            },
             success: function (data) {
-                var row = document.getElementById("content");
+                var row = document.getElementById('content');
                 row.innerHTML += data;
-            }
-        })
+            },
+            error: function (xhr) {
 
+            }
+        });
     }
 </script>
 <script>

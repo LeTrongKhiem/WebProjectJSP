@@ -99,11 +99,11 @@ public class ProductListDAOImpl implements ProductListDAO {
         ArrayList<Product> products = new ArrayList<>();
         String query = "SELECT * FROM\n" +
                 "(SELECT t.*, \n" +
-                "       @rownum := @rownum + 1 AS rank\n" +
+                "       @rownum := @rownum + 1 AS line\n" +
                 "  FROM  danhsachsp t, \n" +
                 "       (SELECT @rownum := 0) r\n" +
                 " WHERE Ten like ?) as x\n" +
-                " WHERE rank BETWEEN ? and ?";
+                " WHERE line BETWEEN ? and ?";
         try {
             connection = new DBConnection().getConnection();
             statement = connection.prepareStatement(query);

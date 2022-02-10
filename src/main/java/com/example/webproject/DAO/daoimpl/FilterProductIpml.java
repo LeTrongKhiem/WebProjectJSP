@@ -124,10 +124,10 @@ public class FilterProductIpml implements FilterProduct {
 
 
     public static void main(String[] args) {
-//        List<ProductList> list = new FilterProductIpml().sortByPrice(0, "desc", "100002");
-//        for (ProductList l : list) {
-//            System.out.println(l.getTen());
-//        }
+        List<ProductList> list = new FilterProductIpml().sortByPrice(0, "desc", "100002");
+        for (ProductList l : list) {
+            System.out.println(l.getTen());
+        }
     }
 
 }

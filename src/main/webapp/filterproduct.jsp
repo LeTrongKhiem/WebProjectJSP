@@ -225,8 +225,8 @@
                     <div class="row no-gutters phone-products" id="content">
                         <!-- Thêm từng điện thoại vào -->
                         <%
-                            ArrayList<ProductList> array = (ArrayList<ProductList>) session.getAttribute("list");
-//                            ArrayList<ProductList> array = (ArrayList<ProductList>) request.getAttribute("list");
+//                            ArrayList<ProductList> array = (ArrayList<ProductList>) session.getAttribute("list");
+                            ArrayList<ProductList> array = (ArrayList<ProductList>) request.getAttribute("list");
                         %>
                         <%for (int i = 0; i < array.size(); i++) {%>
                         <div class="productCount col l-2-4 l-3-m m-4 c-6">

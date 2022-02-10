@@ -1,4 +1,3 @@
-
 <%--
   Created by LeTrongKhiem.
   User: User
@@ -210,12 +209,15 @@
                     Sắp xếp theo giá
                     <i class="container-filter__icon-down fas fa-chevron-down"></i>
                     <ul class="container-filter__price">
+
                         <li class="container-filter-item">
-                            <a href="FilterController?locgia=caodenthap">Giá cao đến thấp</a>
+                            <a href="ProductListController?locgia=caodenthap&madanhmuc=">Giá
+                                cao đến thấp</a>
                         </li>
                         <li class="container-filter-item">
                             <a href="FilterController?locgia=thapdencao">Giá thấp đến cao</a>
                         </li>
+
                     </ul>
                 </li>
             </ul>

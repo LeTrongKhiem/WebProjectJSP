@@ -40,5 +40,6 @@ public class SearchController extends HttpServlet {
         request.setAttribute("txts", txtSearch);
         request.setAttribute("listCategory", listCategory);
         request.getRequestDispatcher("trangdienthoai.jsp").forward(request, response);
+
     }
 }

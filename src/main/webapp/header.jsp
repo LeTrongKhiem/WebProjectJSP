@@ -88,7 +88,7 @@
                                           style="width: 120px"> ${sessionScope.user.name}</span>
                                     <ul class="header__navbar-user-menu" style="left: -62px;">
                                         <li class="header__navber-user-item">
-                                            <a href="./thong-tin-tai-khoan" class="header-nav__log-link">Tài khoản của
+                                            <a href='<c:url value="/thong-tin-tai-khoan"/>' class="header-nav__log-link">Tài khoản của
                                                 tôi</a>
                                         </li>
                                         <li class="header__navber-user-item">
@@ -114,15 +114,15 @@
                                 </c:when>
                                 <c:otherwise>
                                     <li class="header-nav__log-item">
-                                        <a href="./tra-cuu-bao-hanh" class="header-nav__log-link"
+                                        <a href='<c:url value="/tra-cuu-bao-hanh"/>' class="header-nav__log-link"
                                            style="width: 150px">Tra cứu bảo
                                             hành</a>
                                     </li>
                                     <li class="header-nav__log-item">
-                                        <a href="./dang-nhap" class="header-nav__log-link">Đăng nhập</a>
+                                        <a href='<c:url value="/dang-nhap"/>' class="header-nav__log-link">Đăng nhập</a>
                                     </li>
                                     <li class="header-nav__log-item">
-                                        <a href="./dang-ky" class="header-nav__log-link">Đăng ký</a>
+                                        <a href='<c:url value="/dang-ky"/>' class="header-nav__log-link">Đăng ký</a>
                                     </li>
                                 </c:otherwise>
                             </c:choose>
@@ -141,7 +141,7 @@
                     <i class="header-mobile-menu__icon fas fa-bars"></i>
                 </div>
 
-                <a href="./trang-chu" class="header-logo__link">
+                <a href='<c:url value="/trang-chu"/>' class="header-logo__link">
                     <!-- <div class="header-logo__img">TG Mobile</div> -->
                     <div class="header-mobile-nav__logo1" style="background-image: url('assets/img/logo3.png');">
                     </div>

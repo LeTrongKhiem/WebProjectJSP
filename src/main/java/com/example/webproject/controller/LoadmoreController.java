@@ -13,14 +13,6 @@ import java.util.List;
 @WebServlet(name = "LoadmoreController", value = "/LoadmoreController")
 
 public class LoadmoreController extends HttpServlet {
-    public boolean checkMadanhmuc(String[] arr, String madanhmuc) {
-        for (String i : arr) {
-            if (i.equals(madanhmuc)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,7 +22,6 @@ public class LoadmoreController extends HttpServlet {
         String amount = request.getParameter("exits");
         int amountI = Integer.parseInt(amount);
         String madanhmuc = request.getParameter("madanhmuc");
-        String[] madanhmucTrue = new String[]{"100002", "100003", "100004", "100005", "100006", "100007", "100008", "100009", "1000010", "100011", "100012", "100013", "100014", "100015", "100016", "100017", "100018", "100019", "100020", "100021"};
         List<ProductList> list = null;
         if (madanhmuc.equals("100001")) {
             list = new ProductDAOImpl().getNextProduct(amountI, "DT");

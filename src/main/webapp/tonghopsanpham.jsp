@@ -67,8 +67,9 @@
             <div class="container">
                 <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
                     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="./index.jsp"><span itemprop="name" content="Trang chủ"><i
-                                class="fas fa-home"></i></i> Trang chủ</span></a>
+                        <a itemprop="item" href='<c:url value="/trang-chu"/> '><span itemprop="name"
+                                                                                     content="Trang chủ"><i
+                                class="fas fa-home"></i> Trang chủ</span></a>
                         <meta itemprop="position" content="1"/>
                     </li>
 
@@ -312,9 +313,6 @@
                 </div>
             </div>
             <div class="col l-12 m-12 c-12">
-                <%--                <div class="container-view-more">--%>
-                <%--                    <a href="#" class="container-btn-extend" onclick="loadMore()">Xem thêm điện thoại</a>--%>
-                <%--                </div>--%>
                 <button onclick="loadMore()" class="button-loadmore">Xem thêm</button>
             </div>
         </div>

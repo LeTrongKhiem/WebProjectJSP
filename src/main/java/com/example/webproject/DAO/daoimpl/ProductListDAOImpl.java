@@ -127,6 +127,34 @@ public class ProductListDAOImpl implements ProductListDAO {
         return products;
     }
 
+    public List<Product> searchProduct(String txtSearch, int amount) {
+        ArrayList<Product> products = new ArrayList<>();
+        String query = "SELECT DISTINCT * FROM danhsachsp where Ten like ?\n" +
+                "                               ORDER BY rank asc\n" +
+                "                               LIMIT 10 \n" +
+                "                              OFFSET ?";
+        try {
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, "%" + txtSearch + "%");
+            statement.setInt(2, amount);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setMaSP(resultSet.getString("Id"));
+                product.setTenSP(resultSet.getString("Ten"));
+                product.setGiaSP(resultSet.getInt("Gia"));
+                product.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                products.add(product);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return products;
+    }
+
     public int getNumberPage() {
         String query = "SELECT count(*) FROM danhsachsp";
         try {
@@ -404,15 +432,9 @@ public class ProductListDAOImpl implements ProductListDAO {
     }
 
     public static void main(String[] args) {
-//        System.out.println(new ProductListDAOImpl().getListProductByCategory("100002").size());
-//        System.out.println(new ProductListDAOImpl().getProductType());
-//        ArrayList<ProductList> listF = (ArrayList<ProductList>) new ProductListDAOImpl().getProductType();
-//        for (ProductList p : listF) {
-//            System.out.println(p.getMaDanhMuc());
-//        }
-        List<ProductList> list = new ProductListDAOImpl().getTop5();
-        for (ProductList p : list) {
-            System.out.println(p);
+        List<Product> list = new ProductListDAOImpl().searchProduct("iphone", 1);
+        for (Product p : list) {
+            System.out.println(p.getTenSP());
         }
     }
 }

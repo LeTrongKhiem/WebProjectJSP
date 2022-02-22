@@ -36,9 +36,23 @@
     .col {
         margin: 0 !important;
     }
+
     .paginationCenter {
         margin: 10px 0 0 50%;
         font-size: 18px;
+    }
+
+    .button-loadmore {
+        background-color: darkcyan;
+        width: 210px;
+        height: 35px;
+        font-size: 14px;
+        text-align: center;
+        border: none;
+        border-radius: 7px;
+        color: #fff;
+        margin-top: 15px;
+        margin-left: 42%;
     }
 </style>
 <%--<%--%>
@@ -74,7 +88,6 @@
             <div class="container-nav">
                 <h2 class="container-nav__heading">Hãng sản xuất:</h2>
                 <ul class="container-nav__list">
-                    <%--                    <%for (Category categoryChild : categoryDAO.getListCategoryPhone()) {%>--%>
                     <jsp:useBean id="listCategory" scope="request" type="java.util.List"/>
                     <c:forEach items="${listCategory}" var="l">
                         <li class="container-nav__item">
@@ -82,7 +95,6 @@
                                class="container-nav__item-link">${l.tenDanhMuc}
                             </a>
                         </li>
-                        <%--                    <%}%>--%>
                     </c:forEach>
 
 
@@ -129,7 +141,8 @@
                                     </div>
                                     <div class="container-product__item-wrap">
                                         <div class="container-product__item-info">
-                                            <a href="DetailController?id=${i.maSP}" class="container-product__item-name">
+                                            <a href="DetailController?id=${i.maSP}"
+                                               class="container-product__item-name">
                                                     ${i.tenSP}
                                             </a>
                                             <i class="container-product__item-sale-icon fas fa-gift"></i>
@@ -164,6 +177,9 @@
                     </div>
                 </div>
             </div>
+            <%--            <div class="col l-12 m-12 c-12">--%>
+            <%--                <button onclick="loadMore()" class="button-loadmore">Xem thêm</button>--%>
+            <%--            </div>--%>
             <nav aria-label="Page navigation example">
                 <ul class="pagination paginationCenter">
                     <c:forEach begin="1" end="${endP}" var="i">
@@ -173,8 +189,6 @@
                     </c:forEach>
                 </ul>
             </nav>
-
-
         </div>
     </div>
 
@@ -202,7 +216,7 @@
     function loadMore() {
         var amount = document.getElementsByClassName('productCount').length;
         jQuery.ajax({
-            url: "/WebProject/SearchController",
+            url: "/WebProject/search",
             type: "get", //send it through get method
             data: {
                 exits: amount

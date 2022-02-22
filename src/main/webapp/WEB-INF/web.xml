@@ -7,7 +7,14 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-
+    <error-page>
+        <error-code>404</error-code>
+        <location>/page404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/page500.jsp</location>
+    </error-page>
     <servlet>
         <servlet-name>login</servlet-name>
         <jsp-file>/dangnhap.jsp</jsp-file>
@@ -79,6 +86,17 @@
         <servlet-name>thanhtoan</servlet-name>
         <url-pattern>/thanh-toan</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminlogin</servlet-name>
+        <jsp-file>/admin/login.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminlogin</servlet-name>
+        <url-pattern>/admin/dang-nhap</url-pattern>
+    </servlet-mapping>
+
+
     <session-config>
         <session-timeout>15</session-timeout>
     </session-config>

@@ -30,7 +30,7 @@ public class UserDAO implements ObjectDAO {
     public User getInfoUser(String emailUser) {
         User user = new User();
         try {
-            ResultSet resultSet = new DBConnection().selectData("select * from `user`(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK) where Email = '" + emailUser + "'");
+            ResultSet resultSet = new DBConnection().selectData("select * from `user`(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK, Role) where Email = '" + emailUser + "'");
 
             while (resultSet.next()) {
                 String name = resultSet.getString(1);
@@ -42,7 +42,8 @@ public class UserDAO implements ObjectDAO {
                 String year = resultSet.getString(7);
                 String password = resultSet.getString(8);
                 String re_password = resultSet.getString(9);
-                return new User(name, email, phone, gender, date, month, year, password, re_password);
+                int role = resultSet.getInt("Role");
+                return new User(name, email, phone, gender, date, month, year, password, re_password, role);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -154,7 +155,7 @@ public class UserDAO implements ObjectDAO {
         Map<String, User> list = new HashMap<>();
         Connection connection = DBConnection.getConnection();
         try {
-            String sql = "select HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, Matkhau, NhapLaiMK from `user` where Active='1'";
+            String sql = "select HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, Matkhau, NhapLaiMK, Role from `user` where Active='1'";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -167,7 +168,8 @@ public class UserDAO implements ObjectDAO {
                 String year = resultSet.getString(7);
                 String password = resultSet.getString(8);
                 String re_password = resultSet.getString(9);
-                User user = new User(name, email, phone, gender, date, month, year, password, re_password);
+                int role = resultSet.getInt("Role");
+                User user = new User(name, email, phone, gender, date, month, year, password, re_password, role);
                 list.put(email, user);
             }
         } catch (SQLException e) {
@@ -212,14 +214,4 @@ public class UserDAO implements ObjectDAO {
         return listEmail;
     }
 
-    public static void main(String[] args) {//test
-        User user = new User("khiem", "khiem2001@gmail.com", "0123456", "Nam", "16", "04", "2001", "123456", "123456");
-//        System.out.println(new UserDAO().addUser(user));
-//        System.out.println(new UserDAO().checkLogin("lekhiem2001@gmail.com", "letrongkhiem2001"));
-        System.out.println(UserDAO.getInstance().listUser());
-//        System.out.println(UserDAO.getInstance().login("khiem@gmail.com", "123456"));
-//        System.out.println(UserDAO.getInstance().getListEmail());
-//        new UserDAO().register(user);
-//        System.out.println(UserDAO.getInstance().registerUser(user));
-    }
 }

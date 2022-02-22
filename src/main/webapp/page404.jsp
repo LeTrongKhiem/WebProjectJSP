@@ -31,7 +31,7 @@
 <%--  header  --%>
 <%@include file="/header.jsp" %>
 <%--  header  --%>
-<div style="margin: 100px 100px 300px 100px; text-align: center">
+<div style="margin: 200px 100px 300px 100px; text-align: center">
     <span style="color: red; font-size: 30px">Không tìm thấy sản phẩm</span>
     <p style="font-size: 20px">Sản phẩm không còn khả dụng <a href="<c:url value="/trang-chu"/>"
                                                               style="text-decoration: none; font-size: 20px; color: #0b4121">Quay

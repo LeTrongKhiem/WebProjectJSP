@@ -105,7 +105,6 @@
                     <div id="content" class="row no-gutters">
                         <jsp:useBean id="product" scope="request" type="java.util.List"/>
                         <c:forEach var="i" items="${product}">
-                            <%--                            <%for (Product productList : ProductListDAOImpl.getInstance().search(request.getParameter("txt"), Integer.parseInt(request.getParameter("index")))) {%>--%>
                             <div class="productCount col l-2-4 l-3-m m-4 c-6">
                                 <div class="container-product__item">
                                     <div class="container-product__item-heading">
@@ -150,7 +149,6 @@
                                         <div class="container-product__item-buy">
                                 <span class="container-product__item-price">
                                         ${i.dinhDang(i.giaSP)}
-<%--                                    <%=ProductListDAOImpl.getInstance().dinhDang(productList.getGiaSP())%>--%>
                                 </span>
                                             <a href="cart-add?id=${i.maSP}" class="container-product__item-btn">MUA</a>
                                         </div>
@@ -212,25 +210,25 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 
-<script>
-    function loadMore() {
-        var amount = document.getElementsByClassName('productCount').length;
-        jQuery.ajax({
-            url: "/WebProject/search",
-            type: "get", //send it through get method
-            data: {
-                exits: amount
-            },
-            success: function (data) {
-                var row = document.getElementById('content');
-                row.innerHTML += data;
-            },
-            error: function (xhr) {
+<%--<script>--%>
+<%--    function loadMore() {--%>
+<%--        var amount = document.getElementsByClassName('productCount').length;--%>
+<%--        jQuery.ajax({--%>
+<%--            url: "/WebProject/search",--%>
+<%--            type: "get", //send it through get method--%>
+<%--            data: {--%>
+<%--                exits: amount--%>
+<%--            },--%>
+<%--            success: function (data) {--%>
+<%--                var row = document.getElementById('content');--%>
+<%--                row.innerHTML += data;--%>
+<%--            },--%>
+<%--            error: function (xhr) {--%>
 
-            }
-        });
-    }
-</script>
+<%--            }--%>
+<%--        });--%>
+<%--    }--%>
+<%--</script>--%>
 <script>
     const $ = document.querySelector.bind(document);
     const $$ = document.querySelectorAll.bind(document);

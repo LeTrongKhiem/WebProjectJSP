@@ -16,12 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ Hàng</title>
-    <link rel="stylesheet" href="./assets/font/fontawesome-free-5.15.3-web/css/all.css">
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="./assets/css/grid.css">
-    <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="./assets/css/mobile.css">
-    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link rel="stylesheet" href="<c:url value= './assets/font/fontawesome-free-5.15.3-web/css/all.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/lib/css/bootstrap.min.css'/>">
     <link rel="stylesheet" href="<c:url value='./assets/lib/css/owl.carousel.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/base.css'/>">

@@ -1,10 +1,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.webproject.DAO.daoimpl.CategoryDAOImpl" %>
-<%@ page import="com.example.webproject.BEAN.Category" %>
-<%@ page import="com.example.webproject.BEAN.ProductList" %>
 <%@ page import="com.example.webproject.DAO.daoimpl.ProductDAOImpl" %>
 <%@ page import="com.example.webproject.DAO.daoimpl.BannerDAOImpl" %>
+<%@ page import="com.example.webproject.BEAN.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="common/taglib.jsp" %>
@@ -67,7 +66,7 @@
                                 <i class="fas fa-arrow-left phone-banner__btn-prev"></i>
                                 <i class="fas fa-arrow-right phone-banner__btn-next"></i>
                                 <div class="phone-banner__list">
-                                    <!-- Thêm danh sách Banner -->
+
                                 </div>
                                 <div class="phone-banner-pagination">
                                 </div>

@@ -9,9 +9,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Cart implements Serializable {
+    public String dinhDang(long a) {
+        DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
+        return decimalFormat.format(a);
+    }
+
     private static final long serialVersionUID = 1L;
 
     private Map<String, Product> productsList;
+
+    public Map<String, Product> getProductsList() {
+        return productsList;
+    }
+
+    public void setProductsList(Map<String, Product> productsList) {
+        this.productsList = productsList;
+    }
 
     public Cart() {
         productsList = new HashMap<>();
@@ -19,11 +32,6 @@ public class Cart implements Serializable {
 
     public static Cart getInstance() {
         return new Cart();
-    }
-
-    public String dinhDang(long a) {
-        DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
-        return decimalFormat.format(a);
     }
 
     public void put(Product product) {
@@ -67,8 +75,8 @@ public class Cart implements Serializable {
         return productsList.remove(id);
     }
 
-    public long getTotal() {
-        long totalPrice = 0;
+    public double getTotal() {
+        double totalPrice = 0;
         for (Product product : productsList.values()) {
             totalPrice += product.getTotalMoney();
         }
@@ -91,11 +99,20 @@ public class Cart implements Serializable {
         ProductListDAOImpl dao = new ProductListDAOImpl();
         Product product = productsList.get(id);
         if (quantity < 0 || quantity > dao.getSoLuong(id)) {
-            return dao.getSoLuong(id);
+            return product.getQuantitySold();
         } else {
             product.setQuantitySold(quantity);
         }
         return product.getQuantitySold();
+    }
+
+    public boolean checkSoLuongKho(Product product) {
+        ProductListDAOImpl dao = new ProductListDAOImpl();
+        Product product1 = productsList.get(product.getMaSP());
+        if (product1.getQuantitySold() < dao.getSoLuong(product.getMaSP())) {
+            return true;
+        }
+        return false;
     }
 
 

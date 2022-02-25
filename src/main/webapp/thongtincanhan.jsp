@@ -28,6 +28,11 @@
     <link rel="stylesheet" href="<c:url value= './assets/css/trangthongtin.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/grid.css'/>">
 </head>
+<style>
+    .header-with-search__wrap {
+        height: 72%;
+    }
+</style>
 <body>
 <c:choose>
     <c:when test="${sessionScope.user != null}">

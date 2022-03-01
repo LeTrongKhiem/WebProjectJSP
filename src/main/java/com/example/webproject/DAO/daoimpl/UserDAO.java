@@ -1,7 +1,6 @@
 package com.example.webproject.DAO.daoimpl;
 
 import com.example.webproject.BEAN.User;
-import com.example.webproject.DAO.ObjectDAO;
 import com.example.webproject.DB.DBConnection;
 import com.example.webproject.service.SendEmail;
 
@@ -17,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UserDAO implements ObjectDAO {
+public class UserDAO implements com.example.webproject.DAO.UserDAO {
     private static UserDAO instance;
 
     public static UserDAO getInstance() {//single ton
@@ -26,7 +25,7 @@ public class UserDAO implements ObjectDAO {
         }
         return instance;
     }
-
+    @Override
     public User getInfoUser(String emailUser) {
         User user = new User();
         try {
@@ -51,61 +50,21 @@ public class UserDAO implements ObjectDAO {
         return null;
     }//get info user in database
 
-    @Override
-    public boolean checkLogin(String email, String password) {
-        try {
-            ResultSet resultSet = new DBConnection().selectData("select * from `user` where Email = '" + email + "'");
-
-            while (resultSet.next()) {
-                if (resultSet.getString("Email").equals(email) && resultSet.getString("MatKhau").equals(password)) {
-                    return true;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }// check login v1
-
-    @Override
-    public boolean addUser(Object obj) { //add user to database
-        User user = (User) obj;
-        try {
-            String sql = "insert into `user`(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK) values ('" + user.getName() + "', '" + user.getEmail() + "','"
-                    + user.getPhone() + "','" + user.getGender() + "', '" + user.getDate() + "','"
-                    + user.getMonth() + "','" + user.getYear() + "', '" + user.getPassword() + "','" + user.getRe_password() + "')";
-            new DBConnection().executeSQL(sql);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public void register(User user) {
-        Connection connection = DBConnection.getConnection();
-        try {
-            String sql = "insert into `user`(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK) values (?,?,?,?,?,?,?,?,?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, user.getName());
-            statement.setString(2, user.getEmail());
-            statement.setString(3, user.getPhone());
-//            statement.setString(4, user.getGender());
-            if (user.getGender().equals("1")) {
-                statement.setString(4, "Nam");
-            } else {
-                statement.setString(4, "Nữ");
-            }
-            statement.setString(5, user.getDate());
-            statement.setString(6, user.getMonth());
-            statement.setString(7, user.getYear());
-            statement.setString(8, user.getPassword());
-            statement.setString(9, user.getRe_password());
-            statement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    @Override
+//    public boolean checkLogin(String email, String password) {
+//        try {
+//            ResultSet resultSet = new DBConnection().selectData("select * from `user` where Email = '" + email + "'");
+//
+//            while (resultSet.next()) {
+//                if (resultSet.getString("Email").equals(email) && resultSet.getString("MatKhau").equals(password)) {
+//                    return true;
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return false;
+//    }// check login v1
 
     public String registerUser(User user) {
         Connection connection = DBConnection.getConnection();
@@ -150,7 +109,7 @@ public class UserDAO implements ObjectDAO {
         }
         return false;
     }
-
+    @Override
     public Map<String, User> listUser() {
         Map<String, User> list = new HashMap<>();
         Connection connection = DBConnection.getConnection();
@@ -177,15 +136,6 @@ public class UserDAO implements ObjectDAO {
         }
         return list;
     }//get list user map database
-
-    public boolean login(String email, String password) { //checkloginv2
-        Map<String, User> list = listUser();
-        if (list.containsKey(email) && list.get(email).getPassword().equals(password)) {
-            return true;
-        }
-        return false;
-    }
-
     public String hashPassword(String password) {//method hash password
         try {
             MessageDigest sha256 = null;
@@ -197,7 +147,7 @@ public class UserDAO implements ObjectDAO {
             return null;
         }
     }
-
+    @Override
     public List<String> getListEmail() {
         List<String> listEmail = new ArrayList<>();
         Connection connection = DBConnection.getConnection();

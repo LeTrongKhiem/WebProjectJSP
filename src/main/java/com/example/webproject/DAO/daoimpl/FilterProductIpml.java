@@ -66,26 +66,26 @@ public class FilterProductIpml implements FilterProduct {
 
     @Override
     public void sortByPrice(String price) {
-        listProduct = new ArrayList<ProductList>();
-        int count = ProductListDAOImpl.getInstance().getProductType().size();
-        for (int i = 0; i < count; i++) {
-            listProduct.add(ProductListDAOImpl.getInstance().getProductType().get(i));
-        }
-        if (price.equalsIgnoreCase("caodenthap")) {
-            Collections.sort(listProduct, new Comparator<ProductList>() {
-                @Override
-                public int compare(ProductList o1, ProductList o2) {
-                    return (int) (o2.getGia() - o1.getGia());
-                }
-            });
-        } else if (price.equalsIgnoreCase("thapdencao")) {
-            Collections.sort(listProduct, new Comparator<ProductList>() {
-                @Override
-                public int compare(ProductList o1, ProductList o2) {
-                    return (int) (o1.getGia() - o2.getGia());
-                }
-            });
-        }
+//        listProduct = new ArrayList<ProductList>();
+//        int count = ProductListDAOImpl.getInstance().getProductType().size();
+//        for (int i = 0; i < count; i++) {
+//            listProduct.add(ProductListDAOImpl.getInstance().getProductType().get(i));
+//        }
+//        if (price.equalsIgnoreCase("caodenthap")) {
+//            Collections.sort(listProduct, new Comparator<ProductList>() {
+//                @Override
+//                public int compare(ProductList o1, ProductList o2) {
+//                    return (int) (o2.getGia() - o1.getGia());
+//                }
+//            });
+//        } else if (price.equalsIgnoreCase("thapdencao")) {
+//            Collections.sort(listProduct, new Comparator<ProductList>() {
+//                @Override
+//                public int compare(ProductList o1, ProductList o2) {
+//                    return (int) (o1.getGia() - o2.getGia());
+//                }
+//            });
+//        }
     }
 
     public List<ProductList> sortByPrice(int amount, String locGia, String madanhmuc) {

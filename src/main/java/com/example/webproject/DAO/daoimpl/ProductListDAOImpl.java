@@ -201,81 +201,6 @@ public class ProductListDAOImpl implements ProductListDAO {
         }
         return 0;
     }
-
-    public Product getLaptopByID(String id) {
-
-        Product product = null;
-        String query = "select * from danhsachsp inner join  thongtindienthoai on danhsachsp.Id =thongtindienthoai.MaSP \n"
-                + "where thongtindienthoai.MaSP = ?";
-
-        try {
-            connection = new DBConnection().getConnection();
-            statement = connection.prepareStatement(query);
-            statement.setString(1, id);
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                String maSP = resultSet.getString("MaSP");
-                String tenSP = resultSet.getString("TenSP");
-                int giaSP = resultSet.getInt("GiaSP");
-                String link_hinhanh = resultSet.getString("Link_hinhanh");
-                String manHinh = resultSet.getString("ManHinh");
-                String hdh = resultSet.getString("HeDH");
-                String camSau = resultSet.getString("CamSau");
-                String camTr = resultSet.getString("CamTruoc");
-                String CPU = resultSet.getString("CPU");
-                String RAM = resultSet.getString("RAM");
-                String boNhoTrong = resultSet.getString("BoNhoTrong");
-                String theSim = resultSet.getString("TheSim");
-                String pin = resultSet.getString("DungLuongPin");
-                String thietKe = resultSet.getString("ThietKe");
-                String imei = resultSet.getString("Imei");
-                String baiViet = resultSet.getString("BaiViet");
-                String noiDung = resultSet.getString("NoiDung");
-                String linkAnh2 = resultSet.getString("link_hinhanh");
-                String linkAnh3 = resultSet.getString("link_hinhanh");
-                String linkVideo1 = resultSet.getString("LinkVideo1");
-                String linkVideo2 = resultSet.getString("LinkVideo2");
-                product = new Product(maSP, tenSP, giaSP, manHinh, hdh, camSau, camTr, CPU, RAM, boNhoTrong, theSim, pin, thietKe,
-                        imei, baiViet, noiDung, link_hinhanh, linkAnh2, linkAnh3, 1, linkVideo1, linkVideo2);
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return product;
-    }
-
-    public List<Product> getTop(int index) {
-        ArrayList<Product> products = new ArrayList<>();
-        String query = "SELECT * FROM\n" +
-                "(SELECT t.*, \n" +
-                "       @rownum := @rownum + 1 AS rank\n" +
-                "  FROM  danhsachsp t, \n" +
-                "       (SELECT @rownum := 0)  r) where LoaiSP='DT' as x\n" +
-                " WHERE rank BETWEEN ? and ?";
-        try {
-            connection = new DBConnection().getConnection();
-            statement = connection.prepareStatement(query);
-            statement.setInt(1, 10 * (index - 1) + 1);
-            statement.setInt(2, 10 * index);
-            resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                Product product = new Product();
-                product.setMaSP(resultSet.getString("Id"));
-                product.setTenSP(resultSet.getString("Ten"));
-                product.setGiaSP(resultSet.getInt("Gia"));
-                product.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
-                products.add(product);
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return products;
-    }
-
     public List<Product> getTop(int index, String category) {
         ArrayList<Product> products = new ArrayList<>();
         String query = "SELECT * FROM\n" +
@@ -305,33 +230,6 @@ public class ProductListDAOImpl implements ProductListDAO {
         }
 
         return products;
-    }
-
-    public List<ProductList> getProductType() {
-        String sql = "select * from danhsachsp where LoaiSP='DT'";
-        listF = new ArrayList<ProductList>();
-        try {
-            connection = DBConnection.getConnection();
-            statement = connection.prepareStatement(sql);
-            resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                ProductList productList = new ProductList();
-                productList.setId(resultSet.getString("id"));
-                Category category = new Category(resultSet.getString("MaDanhMuc"), "", "", "");
-                productList.setCategory(category);
-                productList.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
-                productList.setTen(resultSet.getString("Ten"));
-                long gia = resultSet.getLong("Gia");
-                productList.setGia(gia);
-                productList.setMaDanhMuc(resultSet.getString("MaDanhMuc"));
-                productList.setTenDanhMuc(resultSet.getString("TenDanhMuc"));
-                productList.setLoaiSP(resultSet.getString("LoaiSP"));
-                listF.add(productList);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listF;
     }
 
     public int getSoLuong(String id) {
@@ -410,31 +308,7 @@ public class ProductListDAOImpl implements ProductListDAO {
         return product;
     }
 
-    public List<ProductList> getTop5() {
-        List<ProductList> list = new ArrayList<>();
-        String query = "select * from danhsachsp limit 5";
-        try {
-            connection = new DBConnection().getConnection();//mo ket noi voi sql
-            statement = connection.prepareStatement(query);
-            resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                ProductList product = new ProductList();
-                product.setId(resultSet.getString("Id"));
-                product.setTen(resultSet.getString("Ten"));
-                product.setGia(resultSet.getInt("Gia"));
-                product.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
-                list.add(product);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
 
     public static void main(String[] args) {
-        List<Product> list = new ProductListDAOImpl().searchProduct("iphone", 1);
-        for (Product p : list) {
-            System.out.println(p.getTenSP());
-        }
     }
 }

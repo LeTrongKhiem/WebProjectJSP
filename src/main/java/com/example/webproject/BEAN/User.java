@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private static final long serialVersionUID= 1L;
+    private String id;
     private String name;
     private String email;
     private String phone;
@@ -16,6 +17,7 @@ public class User implements Serializable {
     private int role;
     private String code;
     private String address;
+    private int active;
 
     public User() {
     }
@@ -169,5 +171,21 @@ public class User implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int isActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 }

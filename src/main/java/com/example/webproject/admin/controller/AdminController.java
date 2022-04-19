@@ -1,6 +1,6 @@
 package com.example.webproject.admin.controller;
 
-import com.example.webproject.admin.BEAN.Admin;
+import com.example.webproject.BEAN.Admin;
 import com.example.webproject.admin.dao.impl.AdminDAOImpl;
 
 import javax.servlet.*;

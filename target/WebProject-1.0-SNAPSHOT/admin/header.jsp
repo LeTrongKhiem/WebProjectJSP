@@ -1,173 +1,175 @@
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%--
   Created by LeTrongKhiem.
   User: User
-  Date: 11-Jan-22
-  Time: 8:47 AM
+  Date: 19-Apr-22
+  Time: 11:40 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../common/taglib.jsp" %>
-<header>
-    <!-- Sidenav -->
-    <nav id="sidenav-1" class="sidenav" role="navigation" data-mdb-mode="side" data-mdb-hidden="false"
-         data-mdb-accordion="true">
-        <a class="ripple d-flex justify-content-center py-4" href="#!" data-mdb-ripple-color="primary">
-        </a>
-        <ul class="sidenav-menu">
-            <li class="sidenav-item">
-                <a class="sidenav-link"><i class="fas fa-cogs fa-fw me-3"></i><span>Settings</span></a>
-                <ul class="sidenav-collapse">
-                    <li class="sidenav-item">
-                        <a class="sidenav-link" href="">Profile</a>
+<%@include file="/common/taglib.jsp" %>
+<div class="app">
+    <div class="layout">
+        <!-- Header START -->
+        <div class="header">
+            <div class="logo logo-dark">
+                <a href="index.html">
+                    <img src="assets/images/logo/logo.png" alt="Logo">
+                    <img class="logo-fold" src="assets/images/logo/logo-fold.png" alt="Logo">
+                </a>
+            </div>
+            <div class="logo logo-white">
+                <a href="index.html">
+                    <img src="assets/images/logo/logo-white.png" alt="Logo">
+                    <img class="logo-fold" src="assets/images/logo/logo-fold-white.png" alt="Logo">
+                </a>
+            </div>
+            <div class="nav-wrap">
+                <ul class="nav-left">
+                    <li class="desktop-toggle">
+                        <a href="javascript:void(0);">
+                            <i class="anticon"></i>
+                        </a>
                     </li>
-                    <li class="sidenav-item">
-                        <a class="sidenav-link" href="">Account</a>
+                    <li class="mobile-toggle">
+                        <a href="javascript:void(0);">
+                            <i class="anticon"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#search-drawer">
+                            <i class="anticon anticon-search"></i>
+                        </a>
                     </li>
                 </ul>
-            </li>
-
-            <li class="sidenav-item">
-                <a class="sidenav-link" href="">
-                    <i class="fas fa-chart-line fa-fw me-3"></i><span>Thống kê</span></a>
-            </li>
-            <li class="sidenav-item">
-                <a class="sidenav-link" href="./trangdathang.jsp">
-                    <i class="fas fa-cart-plus fa-fw me-3"></i><span>Đặt hàng</span></a>
-            </li>
-            <li class="sidenav-item">
-                <a class="sidenav-link" href="./quanlinhanvien.jsp">
-                    <i class="fas fa-user fa-fw me-3"></i><span>Quản lí nhân viên</span></a>
-            </li>
-            <li class="sidenav-item">
-                <a class="sidenav-link" href="./quanliuser.jsp">
-                    <i class="fas fa-user fa-fw me-3"></i><span>Quản lí người dùng</span></a>
-            </li>
-            <li class="sidenav-item">
-                <a class="sidenav-link" href="./quanlisanpham.jsp">
-                    <i class="fas fa-phone fa-fw me-3"></i><span>Quản lí điện thoại</span></a>
-            </li>
-            <li class="sidenav-item">
-                <a class="sidenav-link" href="./quanlisanpham.jsp">
-                    <i class="fas fa-keyboard fa-fw me-3"></i><span>Quản lí phụ kiện</span></a>
-            </li>
-            <li class="sidenav-item">
-                <a class="sidenav-link" href="./quanlitintuc.jsp">
-                    <i class="fas fa-money-bill fa-fw me-3"></i><span>Quản lí tin tức</span></a>
-            </li>
-            <li class="sidenav-item">
-                <a class="sidenav-link" href="./motasanpham.jsp">
-                    <i class="fab fa-product-hunt fa-fw me-3"></i><span>Quản lí mô tả sản phẩm</span></a>
-            </li>
-        </ul>
-    </nav>
-    <!-- Sidenav -->
-
-    <!-- Navbar -->
-    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-        <!-- Container wrapper -->
-        <div class="container-fluid">
-            <!-- Toggler -->
-            <button data-mdb-toggle="sidenav" data-mdb-target="#sidenav-1"
-                    class="btn shadow-0 p-0 me-3 d-block d-xxl-none" aria-controls="#sidenav-1" aria-haspopup="true">
-                <i class="fas fa-bars fa-lg"></i>
-            </button>
-
-            <!-- Search form -->
-            <form class="d-none d-md-flex input-group w-auto my-auto">
-                <input autocomplete="off" type="search" class="form-control rounded"
-                       placeholder='Search (ctrl + "/" to focus)' style="min-width: 225px"/>
-                <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
-            </form>
-
-            <!-- Right links -->
-            <ul class="navbar-nav ms-auto d-flex flex-row">
-                <!-- Notification dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#"
-                       id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Some news</a></li>
-                        <li><a class="dropdown-item" href="#">Another news</a></li>
-                        <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <!-- Icon -->
-                <li class="nav-item">
-                    <a class="nav-link me-3 me-lg-0" href="#">
-                        <i class="fas fa-fill-drip"></i>
-                    </a>
-                </li>
-                <!-- Icon -->
-                <li class="nav-item me-3 me-lg-0">
-                    <a class="nav-link" href="https://github.com/LeTrongKhiem">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </li>
-
-                <!-- Icon dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#" id="navbarDropdown"
-                       role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                        <i class="united kingdom flag m-0"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="united kingdom flag"></i>English
-                                <i class="fa fa-check text-success ms-2"></i></a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider"/>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="poland flag"></i>Polski</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="china flag"></i>中文</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="japan flag"></i>日本語</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="germany flag"></i>Deutsch</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="france flag"></i>Français</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="spain flag"></i>Español</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="russia flag"></i>Русский</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="portugal flag"></i>Português</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <!-- Avatar -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
-                       id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                        <img src="./assets/img/avatar.jpg" class="rounded-circle"
-                             height="22" alt="" loading="lazy"/>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">My profile</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
+                <ul class="nav-right">
+                    <li class="dropdown dropdown-animated scale-left">
+                        <a href="javascript:void(0);" data-toggle="dropdown">
+                            <i class="anticon anticon-bell notification-badge"></i>
+                        </a>
+                        <div class="dropdown-menu pop-notification">
+                            <div class="p-v-15 p-h-25 border-bottom d-flex justify-content-between align-items-center">
+                                <p class="text-dark font-weight-semibold m-b-0">
+                                    <i class="anticon anticon-bell"></i>
+                                    <span class="m-l-10">Notification</span>
+                                </p>
+                                <a class="btn-sm btn-default btn" href="javascript:void(0);">
+                                    <small>View All</small>
+                                </a>
+                            </div>
+                            <div class="relative">
+                                <div class="overflow-y-auto relative scrollable" style="max-height: 300px">
+                                    <a href="javascript:void(0);" class="dropdown-item d-block p-15 border-bottom">
+                                        <div class="d-flex">
+                                            <div class="avatar avatar-blue avatar-icon">
+                                                <i class="anticon anticon-mail"></i>
+                                            </div>
+                                            <div class="m-l-15">
+                                                <p class="m-b-0 text-dark">You received a new message</p>
+                                                <p class="m-b-0"><small>8 min ago</small></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0);" class="dropdown-item d-block p-15 border-bottom">
+                                        <div class="d-flex">
+                                            <div class="avatar avatar-cyan avatar-icon">
+                                                <i class="anticon anticon-user-add"></i>
+                                            </div>
+                                            <div class="m-l-15">
+                                                <p class="m-b-0 text-dark">New user registered</p>
+                                                <p class="m-b-0"><small>7 hours ago</small></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0);" class="dropdown-item d-block p-15 border-bottom">
+                                        <div class="d-flex">
+                                            <div class="avatar avatar-red avatar-icon">
+                                                <i class="anticon anticon-user-add"></i>
+                                            </div>
+                                            <div class="m-l-15">
+                                                <p class="m-b-0 text-dark">System Alert</p>
+                                                <p class="m-b-0"><small>8 hours ago</small></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0);" class="dropdown-item d-block p-15 ">
+                                        <div class="d-flex">
+                                            <div class="avatar avatar-gold avatar-icon">
+                                                <i class="anticon anticon-user-add"></i>
+                                            </div>
+                                            <div class="m-l-15">
+                                                <p class="m-b-0 text-dark">You have a new update</p>
+                                                <p class="m-b-0"><small>2 days ago</small></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown dropdown-animated scale-left">
+                        <div class="pointer" data-toggle="dropdown">
+                            <div class="avatar avatar-image  m-h-10 m-r-15">
+                                <img src="assets/images/avatars/thumb-3.jpg"  alt="">
+                            </div>
+                        </div>
+                        <div class="p-b-15 p-t-20 dropdown-menu pop-profile">
+                            <div class="p-h-20 p-b-15 m-b-10 border-bottom">
+                                <div class="d-flex m-r-50">
+                                    <div class="avatar avatar-lg avatar-image">
+                                        <img src="assets/images/avatars/thumb-3.jpg" alt="">
+                                    </div>
+                                    <div class="m-l-10">
+                                        <p class="m-b-0 text-dark font-weight-semibold">Marshall Nichols</p>
+                                        <p class="m-b-0 opacity-07">UI/UX Desinger</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="javascript:void(0);" class="dropdown-item d-block p-h-15 p-v-10">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <i class="anticon opacity-04 font-size-16 anticon-user"></i>
+                                        <span class="m-l-10">Edit Profile</span>
+                                    </div>
+                                    <i class="anticon font-size-10 anticon-right"></i>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0);" class="dropdown-item d-block p-h-15 p-v-10">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <i class="anticon opacity-04 font-size-16 anticon-lock"></i>
+                                        <span class="m-l-10">Account Setting</span>
+                                    </div>
+                                    <i class="anticon font-size-10 anticon-right"></i>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0);" class="dropdown-item d-block p-h-15 p-v-10">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <i class="anticon opacity-04 font-size-16 anticon-project"></i>
+                                        <span class="m-l-10">Projects</span>
+                                    </div>
+                                    <i class="anticon font-size-10 anticon-right"></i>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0);" class="dropdown-item d-block p-h-15 p-v-10">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <i class="anticon opacity-04 font-size-16 anticon-logout"></i>
+                                        <span class="m-l-10">Logout</span>
+                                    </div>
+                                    <i class="anticon font-size-10 anticon-right"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#quick-view">
+                            <i class="anticon anticon-appstore"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <!-- Container wrapper -->
-    </nav>
-    <!-- Navbar -->
-</header>
+
+    </div>
+</div>

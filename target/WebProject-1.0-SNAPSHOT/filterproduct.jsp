@@ -1,4 +1,4 @@
-<%--<jsp:useBean id="madanhmucRequest" scope="request" type="java.lang.String"/>--%>
+<jsp:useBean id="madanhmucRequest" scope="request" type="java.lang.String"/>
 <%--
   Created by LeTrongKhiem.
   User: User
@@ -213,10 +213,10 @@
                     <i class="container-filter__icon-down fas fa-chevron-down"></i>
                     <ul class="container-filter__price">
                         <li class="container-filter-item">
-                            <a href="FilterController?locgia=caodenthap">Giá cao đến thấp</a>
+                            <a href="FilterController?locgia=caodenthap&madanhmuc=${madanhmucRequest}">Giá cao đến thấp</a>
                         </li>
                         <li class="container-filter-item">
-                            <a href="FilterController?locgia=thapdencao">Giá thấp đến cao</a>
+                            <a href="FilterController?locgia=thapdencao&madanhmuc=${madanhmucRequest}">Giá thấp đến cao</a>
                         </li>
                     </ul>
                 </li>

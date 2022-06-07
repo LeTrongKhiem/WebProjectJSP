@@ -105,9 +105,18 @@
         <url-pattern>/admin/quan-ly-nhan-vien</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>qlkh</servlet-name>
+        <jsp-file>/admin/quanlykhachhang.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>qlkh</servlet-name>
+        <url-pattern>/admin/quan-ly-khach-hang</url-pattern>
+    </servlet-mapping>
+
 
     <session-config>
-        <session-timeout>15</session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 </web-app>
 

@@ -8,7 +8,7 @@ public class Admin {
     private String hoTen;
     private String email;
     private String sdt;
-    private Date ngaySinh;
+    private Date ngayBD;
     private String quyen;
     private int role;
     private int active;
@@ -18,12 +18,24 @@ public class Admin {
     public Admin() {
     }
 
+    public Admin(int id, String matKhau, String hoTen, String email, String sdt, Date ngayBD, String quyen, int role, String address) {
+        this.id = id;
+        this.matKhau = matKhau;
+        this.hoTen = hoTen;
+        this.email = email;
+        this.sdt = sdt;
+        this.ngayBD = ngayBD;
+        this.quyen = quyen;
+        this.role = role;
+        this.address = address;
+    }
+
     public Admin(String matKhau, String hoTen, String email, String sdt, String address) {
         this.matKhau = matKhau;
         this.hoTen = hoTen;
         this.email = email;
         this.sdt = sdt;
-        this.ngaySinh = ngaySinh;
+        this.ngayBD = ngayBD;
         this.address = address;
     }
 
@@ -43,7 +55,7 @@ public class Admin {
         this.hoTen = hoTen;
         this.email = email;
         this.sdt = sdt;
-        this.ngaySinh = ngaySinh;
+        this.ngayBD = ngayBD;
         this.quyen = quyen;
         this.role = role;
         this.active = active;
@@ -57,7 +69,7 @@ public class Admin {
         this.hoTen = hoTen;
         this.email = email;
         this.sdt = sdt;
-        this.ngaySinh = ngaySinh;
+        this.ngayBD = ngayBD;
         this.code = code;
         this.address = address;
     }
@@ -102,12 +114,12 @@ public class Admin {
         this.sdt = sdt;
     }
 
-    public Date getNgaySinh() {
-        return ngaySinh;
+    public Date getNgayBD() {
+        return ngayBD;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
-        this.ngaySinh = ngaySinh;
+    public void setNgayBD(Date ngaySinh) {
+        this.ngayBD = ngayBD;
     }
 
     public String getQuyen() {
@@ -158,7 +170,7 @@ public class Admin {
                 ", hoTen='" + hoTen + '\'' +
                 ", email='" + email + '\'' +
                 ", sdt='" + sdt + '\'' +
-                ", ngaySinh=" + ngaySinh +
+                ", ngayBD=" + ngayBD +
                 ", quyen='" + quyen + '\'' +
                 ", role=" + role +
                 ", active=" + active +

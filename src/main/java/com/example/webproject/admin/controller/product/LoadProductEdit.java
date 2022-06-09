@@ -10,7 +10,9 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
-
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10 * 2, // 10MB
+        maxRequestSize = 1024 * 1024 * 50 * 2)
 @WebServlet(name = "LoadProductEdit", value = "/admin/edit-product")
 public class LoadProductEdit extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -21,6 +23,8 @@ public class LoadProductEdit extends HttpServlet {
         String id = request.getParameter("id");
         Product product = dao.getProductByID(id);
         List<Category> listC = categoryDAO.getAllCategories();
+        String file =request.getServletContext().getRealPath(product.getLink_hinhanh());
+        request.setAttribute("file", file);
         request.setAttribute("detail",product);
         request.setAttribute("listC",listC);
         request.getRequestDispatcher("/admin/editProduct.jsp").forward(request,response);
@@ -33,5 +37,15 @@ public class LoadProductEdit extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request,response);
+    }
+    private String extractFileName(Part part) {//This method will print the file name.
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                return s.substring(s.indexOf("=") + 2, s.length() - 1);
+            }
+        }
+        return "";
     }
 }

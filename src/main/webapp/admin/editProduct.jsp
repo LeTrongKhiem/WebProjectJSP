@@ -1,173 +1,258 @@
+<%@ page import="com.example.webproject.BEAN.User" %>
+<%@ page import="com.example.webproject.admin.dao.impl.AdminDAOImpl" %>
+<%@ page import="java.util.ArrayList" %><%--
+  Created by LeTrongKhiem.
+  User: User
+  Date: 19-Apr-22
+  Time: 11:44 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../common/taglib.jsp" %>
+<%@include file="/common/taglib.jsp" %>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Quản lí sản phẩm</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-    <!-- Google Fonts Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
-    <!-- MDB ESSENTIAL -->
-    <link rel="stylesheet" href="<c:url value='../ventor/css/mdb.min.css'/>">
-    <!-- MDB PLUGINS -->
-    <link rel="stylesheet" href="<c:url value='../ventor/plugins/css/all.min.css'/>">
-    <!-- Custom styles -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.0/css/fixedHeader.bootstrap4.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <style>
-        @media (min-width: 1400px) {
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý khách hàng</title>
 
-            main,
-            header,
-            #main-navbar {
-                padding-left: 240px;
-            }
-        }
-
-        body {
-            background-color: #fbfbfb;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="<c:url value='../assets/font/fontawesome-free-5.15.3-web/css/all.min.css'/>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="<c:url value= '../assets/img/logo3.png'/>">
+    <link rel="stylesheet" href="<c:url value='./assets/css/app.min.css'/>">
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.css"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.js"
+    ></script>
 </head>
+<style>
 
+</style>
 <body>
-<body>
-<%--  header  --%>
-<%@include file="/admin/header.jsp" %>
-<%--  header  --%>
+<div class="app">
+    <div class="layout">
+        <%--  header  --%>
+        <%@include file="./header.jsp" %>
+        <%--  header  --%>
 
-<!--Main layout-->
-<main style="margin-top: 58px">
-    <div class="container">
-        <h1 class="h5 text-center py-5 mb-0">Quản lí sản phẩm</h1>
-        <!-- Modal -->
-        <div class="" id="edit" tabindex="-1"  aria-labelledby="exampleModalLongTitle">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>Edit Item</h4>
+        <%@include file="./slidernavbar.jsp" %>
+
+        <div class="page-container">
+            <!-- Content Wrapper START -->
+            <div class="main-content">
+                <div class="page-header">
+                    <h2 class="header-title">Danh sách khách hàng</h2>
+                    <div class="header-sub-title">
+                        <nav class="breadcrumb breadcrumb-dash">
+                            <a href="#" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+                            <a class="breadcrumb-item" href="#">Apps</a>
+                            <a class="breadcrumb-item" href="#">E-commerce</a>
+                            <span class="breadcrumb-item active">Danh sách khách hàng</span>
+                        </nav>
                     </div>
-                    <div class="modal-body">
-                        <form action="<%=request.getContextPath()%>/admin/edit" method="post">
-                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="msp">
-                                <div class="form-outline "><input type="text" name="Eid"
-                                                                  class="table-editor__input form-control" value="${detail.maSP}" readonly>
-                                    <label class="form-label" style="margin-left: 0px;">Mã SP</label>
-                                    <div class="form-notch">
-                                        <div class="form-notch-leading" style="width: 9px;"></div>
-                                        <div class="form-notch-middle" style="width: 41.6px;"></div>
-                                        <div class="form-notch-trailing"></div>
+                </div>
+                <main>
+                    <div class="container">
+                        <!-- Modal -->
+                        <div class="" id="edit" tabindex="-1"  aria-labelledby="exampleModalLongTitle">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4>Edit Item</h4>
                                     </div>
-                                </div>
-                            </div>
+                                    <div class="modal-body">
+                                        <form action="<%=request.getContextPath()%>/admin/edit" method="post" enctype="multipart/form-data" >
+                                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="msp">
+                                                <div class="form-outline "><input type="text" name="Eid" autofocus
+                                                                                  class="table-editor__input form-control" value="${detail.maSP}" readonly>
+                                                    <label class="form-label" style="margin-left: 0px;">Mã SP</label>
+                                                    <div class="form-notch">
+                                                        <div class="form-notch-leading" style="width: 9px;"></div>
+                                                        <div class="form-notch-middle" style="width: 41.6px;"></div>
+                                                        <div class="form-notch-trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="tsp">
-                                <div class="form-outline "><input type="text" name="EName"  value="${detail.tenSP}"
-                                                                  class="table-editor__input form-control" value="">
-                                    <label class="form-label" style="margin-left: 0px;">Tên Sản
-                                        Phẩm</label>
-                                    <div class="form-notch">
-                                        <div class="form-notch-leading" style="width: 9px;"></div>
-                                        <div class="form-notch-middle" style="width: 82.4px;"></div>
-                                        <div class="form-notch-trailing"></div>
-                                    </div>
-                                </div>
-                            </div>
+                                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="tsp">
+                                                <div class="form-outline "><input type="text" name="EName"  value="${detail.tenSP}"
+                                                                                  class="table-editor__input form-control" checked >
+                                                    <label class="form-label">Tên Sản
+                                                        Phẩm</label>
+                                                    <div class="form-notch">
+                                                        <div class="form-notch-leading" style="width: 9px;"></div>
+                                                        <div class="form-notch-middle" style="width: 82.4px;"></div>
+                                                        <div class="form-notch-trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="a3">
+                                                <div class="form-outline "><input type="text" name="Eimage1"
+                                                                                  class="table-editor__input form-control" value="${detail.link_hinhanh}" id="outputfile">
+                                                    <label class="form-label" style="margin-left: 0px;">Link ảnh</label>
+                                                    <div class="form-notch">
+                                                        <div class="form-notch-leading" style="width: 9px;"></div>
+                                                        <div class="form-notch-middle" style="width: 60.8px;"></div>
+                                                        <div class="form-notch-trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="a3">
-                                <div class="form-outline "><input type="text" name="Eimage"
-                                                                  class="table-editor__input form-control" value="${detail.link_hinhanh}">
-                                    <label class="form-label" style="margin-left: 0px;">Link ảnh
-                                        3</label>
-                                    <div class="form-notch">
-                                        <div class="form-notch-leading" style="width: 9px;"></div>
-                                        <div class="form-notch-middle" style="width: 60.8px;"></div>
-                                        <div class="form-notch-trailing"></div>
+                                            <div class="my-4 table-editor_input-wrapper " data-mdb-field="a3">
+                                                <div class="form-outline "><input type="file" name="Eimage"
+                                                                                  class="table-editor__input form-control file-upload" onChange='getoutput()' id="inputfile">
+                                                    <label class="form-label" style="margin-left: 0px;">Link ảnh
+                                                        3</label>
+                                                    <div class="form-notch">
+                                                        <div class="form-notch-leading" style="width: 9px;"></div>
+                                                        <div class="form-notch-middle" style="width: 60.8px;"></div>
+                                                        <div class="form-notch-trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="tsp">
+                                                <div class="form-outline "><input type="text" name="EPrice"
+                                                                                  class="table-editor__input form-control" value="${detail.giaSP}">
+                                                    <label class="form-label" style="margin-left: 0px;">Giá Sản Phẩm</label>
+                                                    <div class="form-notch">
+                                                        <div class="form-notch-leading" style="width: 9px;"></div>
+                                                        <div class="form-notch-middle" style="width: 82.4px;"></div>
+                                                        <div class="form-notch-trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="tsp">
+                                                <div class="form-outline "><input type="text" name="EManHinh"
+                                                                                  class="table-editor__input form-control" value="${detail.manHinh}">
+                                                    <label class="form-label" style="margin-left: 0px;">Màn Hình</label>
+                                                    <div class="form-notch">
+                                                        <div class="form-notch-leading" style="width: 9px;"></div>
+                                                        <div class="form-notch-middle" style="width: 82.4px;"></div>
+                                                        <div class="form-notch-trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="tsp">
+                                                <div class="form-outline "><input type="text" name="EHeDieuHanh"
+                                                                                  class="table-editor__input form-control" value="${detail.hdh}">
+                                                    <label class="form-label" style="margin-left: 0px;">Hệ Điều Hành</label>
+                                                    <div class="form-notch">
+                                                        <div class="form-notch-leading" style="width: 9px;"></div>
+                                                        <div class="form-notch-middle" style="width: 82.4px;"></div>
+                                                        <div class="form-notch-trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="tsp">
+                                                <div class="form-outline "><input type="text" name="ERAM"
+                                                                                  class="table-editor__input form-control" value="${detail.RAM}">
+                                                    <label class="form-label" style="margin-left: 0px;">RAM</label>
+                                                    <div class="form-notch">
+                                                        <div class="form-notch-leading" style="width: 9px;"></div>
+                                                        <div class="form-notch-middle" style="width: 82.4px;"></div>
+                                                        <div class="form-notch-trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="tsp">
+                                                <div class="form-outline "><input type="text" name="ECPU"
+                                                                                  class="table-editor__input form-control" value="${detail.CPU}">
+                                                    <label class="form-label" style="margin-left: 0px;">CPU</label>
+                                                    <div class="form-notch">
+                                                        <div class="form-notch-leading" style="width: 9px;"></div>
+                                                        <div class="form-notch-middle" style="width: 82.4px;"></div>
+                                                        <div class="form-notch-trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="tsp">
+                                                <div class="form-outline "><input type="text" name="EThietKe"
+                                                                                  class="table-editor__input form-control" value="${detail.thietKe}">
+                                                    <label class="form-label" style="margin-left: 0px;">Thiết Kế</label>
+                                                    <div class="form-notch">
+                                                        <div class="form-notch-leading" style="width: 9px;"></div>
+                                                        <div class="form-notch-middle" style="width: 82.4px;"></div>
+                                                        <div class="form-notch-trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="a3">
+                                                <div class="form-group">
+                                                    <label>Loại Sản Phẩm</label>
+                                                    <select name="EloaiSP" class="form-select" aria-label="Default select example">
+                                                        <option>DT</option>
+                                                        <option>Laptop</option>
+                                                        <option>Phu Kien</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="a3">
+                                                <div class="form-group">
+                                                    <label>Danh Mục</label>
+                                                    <select name="Ecategory" class="form-select" aria-label="Default select example">
+                                                        <c:forEach items="${listC}" var="o">
+                                                            <option ${o.maDanhMuc} value="${o.maDanhMuc}">${o.tenDanhMuc}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-success">Save</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="tsp">
-                                <div class="form-outline "><input type="text" name="EPrice"
-                                                                  class="table-editor__input form-control" value="${detail.giaSP}">
-                                    <label class="form-label" style="margin-left: 0px;">Giá Sản Phẩm</label>
-                                    <div class="form-notch">
-                                        <div class="form-notch-leading" style="width: 9px;"></div>
-                                        <div class="form-notch-middle" style="width: 82.4px;"></div>
-                                        <div class="form-notch-trailing"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="a3">
-                                <div class="form-group">
-                                    <label>Loại Sản Phẩm</label>
-                                    <select name="EloaiSP" class="form-select" aria-label="Default select example">
-                                        <option>DT</option>
-                                        <option>Laptop</option>
-                                        <option>Phu Kien</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="my-4 table-editor_input-wrapper" data-mdb-field="a3">
-                                <div class="form-group">
-                                    <label>Danh Mục</label>
-                                    <select name="Ecategory" class="form-select" aria-label="Default select example">
-                                        <c:forEach items="${listC}" var="o">
-                                            <option ${o.maDanhMuc} value="${o.maDanhMuc}">${o.tenDanhMuc}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success">Save</button>
-                            </div>
-                        </form>
+                        </div>
+                        <!--Section: Content-->
+                    </div>
+                </main>
                     </div>
                 </div>
             </div>
         </div>
-        <!--Section: Content-->
     </div>
-</main>
-<!--Main layout-->
+    <!-- Content Wrapper END -->
 
-<!--Footer-->
-<footer></footer>
-<!--Footer-->
-</body>
-<!-- MDB ESSENTIAL -->
-<script type="text/javascript" src="<c:url value='../ventor/js/mdb.min.js'/>"></script>
-<!-- MDB PLUGINS -->
-<script type="text/javascript" src="<c:url value='../ventor/plugins/js/all.min.js'/>"></script>
-<!-- Sidenav -->
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/fixedheader/3.2.0/js/dataTables.fixedHeader.min.js"></script>
+</div>
+<!-- Core Vendors JS -->
+<script src="<c:url value='assets/js/vendors.min.js'/>"></script>
 
+<!-- page js -->
+<script src="<c:url value='assets/vendors/datatables/jquery.dataTables.min.js'/>"></script>
+<script src="<c:url value='assets/vendors/datatables/dataTables.bootstrap.min.js'/>"></script>
+<script src="<c:url value='assets/js/pages/e-commerce-order-list.js'/>"></script>
 
-<!-- Table editor -->
+<!-- Core JS -->
+<script src="<c:url value='assets/js/app.min.js'/>"></script>
 <script>
-    $(document).ready(function () {
-        var table = $('#example').DataTable({
-            fixedHeader: true
-        });
-    });
+    function getFile(filePath) {
+        return filePath.substr(filePath.lastIndexOf('\\') + 1).split('.')[0]+'.'+filePath.substr(filePath.lastIndexOf('\\') + 1).split('.')[1];
+    }
+
+    function getoutput() {
+        outputfile.value ='./assets/img/dssp/'+ getFile(inputfile.value);
+    };
+</script>
 </script>
 </body>
 </html>

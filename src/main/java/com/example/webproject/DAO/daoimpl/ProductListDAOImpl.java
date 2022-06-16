@@ -10,6 +10,7 @@ import com.example.webproject.DB.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -258,6 +259,7 @@ public class ProductListDAOImpl implements ProductListDAO {
     public Product getProductByID(String id) {
 
         Product product = null;
+        ;
         String query = "select *  from danhsachsp LEFT JOIN  thongtindienthoai on danhsachsp.Id =thongtindienthoai.MaSP\n" +
                 "                                LEFT JOIN  thongtinlaptop on danhsachsp.Id = thongtinlaptop.MaSP\n" +
                 "                                LEFT JOIN  thongtinphukien on danhsachsp.Id = thongtinphukien.MaSP\n" +
@@ -275,7 +277,7 @@ public class ProductListDAOImpl implements ProductListDAO {
                 String tenSP = resultSet.getString("Ten");
                 int giaSP = resultSet.getInt("Gia");
                 String link_hinhanh = resultSet.getString("Link_hinhanh");
-                String manHinh = resultSet.getString("ManHinh");
+                String manHinh  = resultSet.getString("ManHinh");
                 String hdh = resultSet.getString("HDH");
                 String camSau = resultSet.getString("CamSau");
                 String camTr = resultSet.getString("CamTruoc");
@@ -296,9 +298,9 @@ public class ProductListDAOImpl implements ProductListDAO {
                 String dacBiet = resultSet.getString("DacBiet");
                 String kichThuocVaTrongLuong = resultSet.getString("KichThuocVaTrongLuong");
                 String thoiDiemRaMat = resultSet.getString("ThoiDiemRaMat");
-
-                product = new Product(maSP, tenSP, giaSP, manHinh, hdh, camSau, camTr, CPU, RAM, boNhoTrong, theSim, pin, thietKe,
-                        imei, baiViet, noiDung, linkAnh2, linkAnh3, oCung, cardManHinh, congKetNoi, dacBiet, kichThuocVaTrongLuong, thoiDiemRaMat, link_hinhanh);
+                String loaiSP = resultSet.getString("LoaiSP");
+                product = new Product(maSP, tenSP, giaSP,manHinh,hdh,camSau,camTr,CPU,RAM,boNhoTrong,theSim,pin,thietKe,
+                        imei,baiViet,noiDung,linkAnh2,linkAnh3,oCung,cardManHinh,congKetNoi,dacBiet,kichThuocVaTrongLuong,thoiDiemRaMat,link_hinhanh,loaiSP );
 
             }
         } catch (Exception e) {
@@ -306,6 +308,105 @@ public class ProductListDAOImpl implements ProductListDAO {
         }
 
         return product;
+    }
+    public List<Product> getAllProduct() {
+        ArrayList<Product> products = new ArrayList<>();
+        String query ="select * from danhsachsp";
+        try {
+
+            connection = new DBConnection().getConnection();
+            statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setMaSP(resultSet.getString("Id"));
+                product.setTenSP(resultSet.getString("Ten"));
+                product.setGiaSP(resultSet.getInt("Gia"));
+                product.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                product.setLoaiSP(resultSet.getString("LoaiSP"));
+                products.add(product);
+            }
+
+        } catch ( SQLException ex) {
+            ex.printStackTrace();
+        }
+        return products;
+    }
+    public void editProduct(String id, String name, String image,int price,String loaiSP,String maDanhMuc){
+        String query = "UPDATE `danhsachsp` SET `Link_hinhanh`=?,`Ten`=?,`Gia`=?,`LoaiSP`=?,`MaDanhMuc`=? WHERE Id=?";
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(query);
+//            statement.setString(1,id);
+            statement.setString(1,image);
+            statement.setString(2,name);
+            statement.setInt(3,price);
+            statement.setString(4,loaiSP);
+            statement.setString(5,maDanhMuc);
+            statement.setString(6,id);
+            statement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void editProductDetail(String id, String hdh, String ram,String manHinh,String cpu, String thietKe){
+        String query = "UPDATE  `motasp` SET `HDH`=?,`RAM`=?,`ManHinh`=?,`CPU`=?,`ThietKe`=? WHERE Id=?";
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(6,id);
+            statement.setString(1,hdh);
+            statement.setString(2,ram);
+            statement.setString(3,manHinh);
+            statement.setString(4,cpu);
+            statement.setString(5,thietKe);
+            statement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void deleteProductAdmin(String id){
+        String query = "DELETE FROM danhsachsp WHERE Id=?";
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1,id);
+            statement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void insertProduct(String id, String name, String image,int price,String loaiSP,String maDanhMuc){
+        String query = "INSERT INTO `danhsachsp` (`Id`, `Link_hinhanh`, `Ten`, `Gia`,LoaiSP,MaDanhMuc) VALUES (?,?,?,?,?,?)";
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1,id);
+            statement.setString(2,image);
+            statement.setString(3,name);
+            statement.setInt(4,price);
+            statement.setString(5,loaiSP);
+            statement.setString(6,maDanhMuc);
+            statement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void insertDetailProduct(String id, String hdh, String ram,String manHinh,String cpu, String thietKe){
+        String query = "INSERT INTO `motasp`(`Id`,`HDH`,`RAM`,`ManHinh`,`CPU`,`ThietKe`) VALUES (?,?,?,?,?,?)";
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1,id);
+            statement.setString(2,hdh);
+            statement.setString(3,ram);
+            statement.setString(4,manHinh);
+            statement.setString(5,cpu);
+            statement.setString(6,thietKe);
+            statement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 

@@ -54,6 +54,7 @@
     ArrayList<Banner> banners = bannerDAO.listBanner();
 %>
 <div class="main">
+
     <%--  header  --%>
     <%@include file="/header.jsp" %>
     <%--  header  --%>
@@ -67,10 +68,19 @@
                         </ol>
                         <div class="carousel-inner">
                             <%for (int i = 0; i < banners.size(); i++) {%>
+                            <%--                            <div class="carousel-item <%if (banners.indexOf(banner1) == 0) {out.print("active");}%>">--%>
+                            <%--                                <img class="d-block w-100" src="<%=banner1.getLink_hinhanh()%>" alt="First slide">--%>
+                            <%--                            </div>--%>
                                                         <div class="carousel-item <%if (i == 0) {out.print("active");}%>">
                                                             <img class="d-block w-100" src="<%=banners.get(i).getLink_hinhanh()%>" alt="First slide">
                                                         </div>
                         <%}%>
+                        <%--                            <div class="carousel-item">--%>
+                        <%--                                <img class="d-block w-100" src="./assets/img/banner2.jpg" alt="Second slide">--%>
+                        <%--                            </div>--%>
+                        <%--                            <div class="carousel-item">--%>
+                        <%--                                <img class="d-block w-100" src="./assets/img/banner3.jpg" alt="Third slide">--%>
+                        <%--                            </div>--%>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -668,6 +678,10 @@
     <!-- Button -->
     <a href="#" class="go-to-top">
         <i class="go-to-top__icon fas fa-chevron-circle-up"></i>
+    </a>
+
+    <a href="#" class="go-to-chat">
+        <i class="go-to-chat__icon fab fa-facebook-messenger"></i>
     </a>
 </div>
 

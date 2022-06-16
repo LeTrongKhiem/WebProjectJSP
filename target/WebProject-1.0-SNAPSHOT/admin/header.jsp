@@ -151,17 +151,15 @@
                                     <i class="anticon font-size-10 anticon-right"></i>
                                 </div>
                             </a>
-                                <a href="LogoutAdminController" class="dropdown-item d-block p-h-15 p-v-10">
-                                    Logout
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div href="">
-                                            <i class="anticon opacity-04 font-size-16 anticon-logout"></i>
-                                            <input type="submit" class="m-l-10" value="Logout">
-                                        </div>
-                                        <i class="anticon font-size-10 anticon-right"></i>
+                            <a href="javascript:void(0);" class="dropdown-item d-block p-h-15 p-v-10">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <i class="anticon opacity-04 font-size-16 anticon-logout"></i>
+                                        <span class="m-l-10">Logout</span>
                                     </div>
-                                </a>
-
+                                    <i class="anticon font-size-10 anticon-right"></i>
+                                </div>
+                            </a>
                         </div>
                     </li>
                     <li>

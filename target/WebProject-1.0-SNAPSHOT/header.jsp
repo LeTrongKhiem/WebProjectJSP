@@ -200,7 +200,7 @@
                     </div>
                 </a>
 
-                <form class="header-search hide-on-mobile-and-tablet" action="search" method="post">
+                <form class="header-search hide-on-mobile-and-tablet" action="search?index=1" method="post">
                     <input value="${txts}" name="txt" type="text" placeholder="Nhập tên sản phẩm..."
                            class="header-search__input">
                     <button type="submit" style="background: #fff;border: none;"><i

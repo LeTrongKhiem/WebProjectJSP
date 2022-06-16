@@ -23,7 +23,7 @@ public class SearchController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-////        request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String txtSearch = request.getParameter("txt");
         int index = Integer.parseInt(request.getParameter("index"));
 //        String amount = request.getParameter("exits");

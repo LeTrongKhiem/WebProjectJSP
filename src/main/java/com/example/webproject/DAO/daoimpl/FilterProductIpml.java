@@ -65,27 +65,62 @@ public class FilterProductIpml implements FilterProduct {
 
 
     @Override
-    public void sortByPrice(String price) {
-        listProduct = new ArrayList<ProductList>();
-        int count = ProductListDAOImpl.getInstance().getProductType().size();
-        for (int i = 0; i < count; i++) {
-            listProduct.add(ProductListDAOImpl.getInstance().getProductType().get(i));
+    public ArrayList<ProductList> sortByPrice(String locGia, String madanhmuc, String loaisp) {
+//        listProduct = new ArrayList<ProductList>();
+//        int count = ProductListDAOImpl.getInstance().getProductType().size();
+//        for (int i = 0; i < count; i++) {
+//            listProduct.add(ProductListDAOImpl.getInstance().getProductType().get(i));
+//        }
+//        if (price.equalsIgnoreCase("caodenthap")) {
+//            Collections.sort(listProduct, new Comparator<ProductList>() {
+//                @Override
+//                public int compare(ProductList o1, ProductList o2) {
+//                    return (int) (o2.getGia() - o1.getGia());
+//                }
+//            });
+//        } else if (price.equalsIgnoreCase("thapdencao")) {
+//            Collections.sort(listProduct, new Comparator<ProductList>() {
+//                @Override
+//                public int compare(ProductList o1, ProductList o2) {
+//                    return (int) (o1.getGia() - o2.getGia());
+//                }
+//            });
+//        }
+        ArrayList<ProductList> listProductList = new ArrayList<ProductList>();
+        String sql = null;
+        if (loaisp == null || loaisp.equals("")) {
+            sql = "select * from danhsachsp where MaDanhMuc='" + madanhmuc + "' order by Gia " + locGia;
+        } else if (loaisp != null || !loaisp.equals("")) {
+            sql = "select * from danhsachsp where LoaiSP='" + loaisp + "' order by Gia " + locGia;
         }
-        if (price.equalsIgnoreCase("caodenthap")) {
-            Collections.sort(listProduct, new Comparator<ProductList>() {
-                @Override
-                public int compare(ProductList o1, ProductList o2) {
-                    return (int) (o2.getGia() - o1.getGia());
-                }
-            });
-        } else if (price.equalsIgnoreCase("thapdencao")) {
-            Collections.sort(listProduct, new Comparator<ProductList>() {
-                @Override
-                public int compare(ProductList o1, ProductList o2) {
-                    return (int) (o1.getGia() - o2.getGia());
-                }
-            });
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(sql);
+//            if (loaisp == null) {
+//                statement.setString(1, madanhmuc);
+//            } else {
+//                statement.setString(1, loaisp);
+//            }
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                ProductList productList = new ProductList();
+                productList.setId(resultSet.getString("id"));
+                Category category = new Category(resultSet.getString("MaDanhMuc"), "", "DanhMucCha", "");
+                productList.setCategory(category);
+                productList.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                productList.setTen(resultSet.getString("Ten"));
+                long gia = resultSet.getLong("Gia");
+                productList.setGia(gia);
+                productList.setMaDanhMuc(resultSet.getString("MaDanhMuc"));
+                productList.setTenDanhMuc(resultSet.getString("TenDanhMuc"));
+                productList.setLoaiSP(resultSet.getString("LoaiSP"));
+                productList.setRank(resultSet.getInt("rank"));
+                listProductList.add(productList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return listProductList;
     }
 
     public List<ProductList> sortByPrice(int amount, String locGia, String madanhmuc) {
@@ -124,7 +159,7 @@ public class FilterProductIpml implements FilterProduct {
 
 
     public static void main(String[] args) {
-        List<ProductList> list = new FilterProductIpml().sortByPrice(0, "desc", "100002");
+        List<ProductList> list = new FilterProductIpml().sortByPrice("desc", "", "DT");
         for (ProductList l : list) {
             System.out.println(l.getTen());
         }

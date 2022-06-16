@@ -1,6 +1,6 @@
 package com.example.webproject.admin.controller;
 
-import com.example.webproject.admin.BEAN.Admin;
+import com.example.webproject.BEAN.Admin;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -17,7 +17,7 @@ import java.util.Map;
 public class LoginAdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request, response);
     }
 
     @Override
@@ -40,11 +40,11 @@ public class LoginAdminController extends HttpServlet {
             session.setAttribute("admin", admin);
             session.setMaxInactiveInterval(30 * 60);
             Cookie userCookie = new Cookie("admin", URLEncoder.encode(admin.getHoTen(), "UTF-8"));
-            session.setAttribute("email", email);
+            request.setAttribute("email", email);
             response.addCookie(userCookie);
 //            String encodedURL = response.encodeRedirectURL(urlRQ);
 //            response.sendRedirect(encodedURL);
-            response.sendRedirect("/WebProject/admin/quanlinhanvien.jsp");
+            response.sendRedirect(request.getContextPath()+ "/admin/quan-ly-nhan-vien");
         } else if (!valid) {
             request.setCharacterEncoding("UTF-8");
             response.setCharacterEncoding("UTF-8");
@@ -53,7 +53,7 @@ public class LoginAdminController extends HttpServlet {
                 request.setAttribute("errorAccount", error);
                 request.setAttribute("email", email);
                 request.setAttribute("pass", hashPassword);
-                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/admin/login.jsp");
+                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/admin/AdminLogin.jsp");
                 requestDispatcher.forward(request, response);
             }
         }

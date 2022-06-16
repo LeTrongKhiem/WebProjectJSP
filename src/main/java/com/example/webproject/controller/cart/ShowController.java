@@ -1,11 +1,11 @@
 package com.example.webproject.controller.cart;
 
 import com.example.webproject.BEAN.Cart;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "ShowController", value = "/cart")
 public class ShowController extends HttpServlet {
@@ -17,6 +17,7 @@ public class ShowController extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart");
         if (cart == null) {
             cart = Cart.getInstance();
+
         }
         session.setAttribute("cart", cart);
         request.setAttribute("cart", cart);

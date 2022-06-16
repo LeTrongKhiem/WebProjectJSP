@@ -4,30 +4,48 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 
 public class Product implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private String maSP;
+    private String maSP ;
     private String tenSP;
     private int giaSP;
     private String manHinh;
-    private String hdh, camSau, camTr, CPU, RAM, boNhoTrong, theSim, pin, thietKe, imei, baiViet, noiDung, linkAnh2, linkAnh3;
-    private int quantity;
+    private String  hdh, camSau, camTr, CPU, RAM, boNhoTrong, theSim, pin, thietKe, imei, baiViet, noiDung,linkAnh2, linkAnh3;
+    private String oCung,cardManHinh,congKetNoi,dacBiet,kichThuocVaTrongLuong,thoiDiemRaMat;
+    private  int quantity;
     private int quantitySold;
     private String link_hinhanh;
+    private String loaiSP;
     Category maDanhMuc;
-    private String linkVideo1, linkVideo2;
-    private String oCung, cardManHinh, congKetNoi, dacBiet, kichThuocVaTrongLuong, thoiDiemRaMat;
 
-
-    public Product() {
+    public Product(){
 
     }
 
-    public String dinhDang(long a) {
-        DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
-        return decimalFormat.format(a);
-    }
 
-    public Product(String maSP, String tenSP, int giaSP, String manHinh, String hdh, String camSau, String camTr, String CPU, String RAM, String boNhoTrong, String theSim, String pin, String thietKe, String imei, String baiViet, String noiDung, String linkAnh2, String linkAnh3, String oCung, String cardManHinh, String congKetNoi, String dacBiet, String kichThuocVaTrongLuong, String thoiDiemRaMat, String link_hinhanh) {
+//    public Product(String maSP, String tenSP, int giaSP, String manHinh, String hdh, String camSau, String camTr, String CPU, String RAM, String boNhoTrong, String theSim, String pin, String thietKe, String imei, String baiViet, String noiDung, String link_hinhanh, String linkAnh2, String linkAnh3, int quantity) {
+//        this.maSP = maSP;
+//        this.tenSP = tenSP;
+//        this.giaSP = giaSP;
+//        this.manHinh = manHinh;
+//        this.hdh = hdh;
+//        this.camSau = camSau;
+//        this.camTr = camTr;
+//        this.CPU = CPU;
+//        this.RAM = RAM;
+//        this.boNhoTrong = boNhoTrong;
+//        this.theSim = theSim;
+//        this.pin = pin;
+//        this.thietKe = thietKe;
+//        this.imei = imei;
+//        this.baiViet = baiViet;
+//        this.noiDung = noiDung;
+//        this.link_hinhanh = link_hinhanh;
+//        this.linkAnh2 = linkAnh2;
+//        this.linkAnh3 = linkAnh3;
+//        this.quantity = quantity;
+//
+//    }
+
+    public Product(String maSP, String tenSP, int giaSP, String manHinh, String hdh, String camSau, String camTr, String CPU, String RAM, String boNhoTrong, String theSim, String pin, String thietKe, String imei, String baiViet, String noiDung, String linkAnh2, String linkAnh3, String oCung, String cardManHinh, String congKetNoi, String dacBiet, String kichThuocVaTrongLuong, String thoiDiemRaMat, String link_hinhanh,String loaiSP) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.giaSP = giaSP;
@@ -53,55 +71,7 @@ public class Product implements Serializable {
         this.kichThuocVaTrongLuong = kichThuocVaTrongLuong;
         this.thoiDiemRaMat = thoiDiemRaMat;
         this.link_hinhanh = link_hinhanh;
-    }
-
-    public Product(String maSP, String tenSP, int giaSP, String manHinh, String hdh, String camSau, String camTr, String CPU, String RAM, String boNhoTrong, String theSim, String pin, String thietKe, String imei, String baiViet, String noiDung, String link_hinhanh, String linkAnh2, String linkAnh3, int quantity, String linkVideo1, String linkVideo2) {
-        this.maSP = maSP;
-        this.tenSP = tenSP;
-        this.giaSP = giaSP;
-        this.manHinh = manHinh;
-        this.hdh = hdh;
-        this.camSau = camSau;
-        this.camTr = camTr;
-        this.CPU = CPU;
-        this.RAM = RAM;
-        this.boNhoTrong = boNhoTrong;
-        this.theSim = theSim;
-        this.pin = pin;
-        this.thietKe = thietKe;
-        this.imei = imei;
-        this.baiViet = baiViet;
-        this.noiDung = noiDung;
-        this.link_hinhanh = link_hinhanh;
-        this.linkAnh2 = linkAnh2;
-        this.linkAnh3 = linkAnh3;
-        this.quantity = quantity;
-        this.linkVideo1 = linkVideo1;
-        this.linkVideo2 = linkVideo2;
-    }
-
-    public String getLinkVideo1() {
-        return linkVideo1;
-    }
-
-    public void setLinkVideo1(String linkVideo1) {
-        this.linkVideo1 = linkVideo1;
-    }
-
-    public String getLinkVideo2() {
-        return linkVideo2;
-    }
-
-    public void setLinkVideo2(String linkVideo2) {
-        this.linkVideo2 = linkVideo2;
-    }
-
-    public Category getMaDanhMuc() {
-        return maDanhMuc;
-    }
-
-    public void setMaDanhMuc(Category maDanhMuc) {
-        this.maDanhMuc = maDanhMuc;
+        this.loaiSP = loaiSP;
     }
 
     public String getMaSP() {
@@ -151,11 +121,9 @@ public class Product implements Serializable {
     public void setQuantitySold(int quantitySold) {
         this.quantitySold = quantitySold;
     }
-
-    public int getTotalMoney() {
+    public int getTotalMoney(){
         return quantitySold * giaSP;
     }
-
     public String getManHinh() {
         return manHinh;
     }
@@ -323,5 +291,23 @@ public class Product implements Serializable {
     public void setThoiDiemRaMat(String thoiDiemRaMat) {
         this.thoiDiemRaMat = thoiDiemRaMat;
     }
-}
 
+    public String getLoaiSP() {
+        return loaiSP;
+    }
+
+    public void setLoaiSP(String loaiSP) {
+        this.loaiSP = loaiSP;
+    }
+    public Category getMaDanhMuc() {
+        return maDanhMuc;
+    }
+
+    public void setMaDanhMuc(Category maDanhMuc) {
+        this.maDanhMuc = maDanhMuc;
+    }
+    public String dinhDang(long a) {
+        DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
+        return decimalFormat.format(a);
+    }
+}

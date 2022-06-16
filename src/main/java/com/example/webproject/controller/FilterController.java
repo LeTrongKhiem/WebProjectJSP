@@ -1,5 +1,6 @@
 package com.example.webproject.controller;
 
+import com.example.webproject.BEAN.Category;
 import com.example.webproject.BEAN.ProductList;
 import com.example.webproject.DAO.FilterProduct;
 import com.example.webproject.DAO.daoimpl.FilterProductIpml;
@@ -31,15 +32,18 @@ public class FilterController extends HttpServlet {
 //            response.sendRedirect("filterproduct.jsp");
 //        }
         if (locgia.equals("caodenthap")) {
-            list = filterProduct.sortByPrice(0, "desc", madanhmuc);
+            list = filterProduct.sortByPrice("desc", madanhmuc, "");
             request.getSession().setAttribute("list", list);
             request.setAttribute("list", list);
 //            response.sendRedirect("filterproduct.jsp");
             request.getRequestDispatcher("filterproduct.jsp").forward(request, response);
-        } else if (locgia.equals("thapdencao")) {
-            list = filterProduct.sortByPrice(0, "asc", "100002");
+        }
+        if (locgia.equals("thapdencao")) {
+            list = filterProduct.sortByPrice("asc", madanhmuc, "");
             request.setAttribute("list", list);
+            request.getSession().setAttribute("list", list);
             request.getRequestDispatcher("filterproduct.jsp").forward(request, response);
+//            response.sendRedirect("filterproduct.jsp");
         }
         if (chongia != null) {
             filterProduct.selectByPrice(Integer.parseInt(chongia));

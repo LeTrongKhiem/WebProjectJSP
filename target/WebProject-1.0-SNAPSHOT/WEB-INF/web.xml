@@ -115,6 +115,15 @@
         <url-pattern>/admin/quan-ly-nhan-vien</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>adminlogin</servlet-name>
+        <jsp-file>/admin/AdminLogin.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminlogin</servlet-name>
+        <url-pattern>/admin/dang-nhap</url-pattern>
+    </servlet-mapping>
+
 
     <session-config>
         <session-timeout>15</session-timeout>

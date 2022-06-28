@@ -11,7 +11,7 @@ import java.io.IOException;
 public class DelectProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String  id = request.getParameter("id");
+        String id = request.getParameter("id");
         ProductListDAOImpl dao = new ProductListDAOImpl();
         dao.deleteProductAdmin(id);
         response.sendRedirect(request.getContextPath()+"/admin/product");

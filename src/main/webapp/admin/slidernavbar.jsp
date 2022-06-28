@@ -53,7 +53,13 @@
                         <a href="/WebProject/admin/quanlykhachhang.jsp">Quản lý khách hàng</a>
                     </li>
                     <li>
-                        <a href="app-mail.html">Mail</a>
+                        <a href="/WebProject/admin/product">Quản lý sản phẩm</a>
+                    </li>
+                    <li>
+                        <a href="/WebProject/admin/banner">Quản lý Banner</a>
+                    </li>
+                    <li>
+                        <a href="/WebProject/admin/order">Quản lý đơn hàng</a>
                     </li>
                 </ul>
             </li>

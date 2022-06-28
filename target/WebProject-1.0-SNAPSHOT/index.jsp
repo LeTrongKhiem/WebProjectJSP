@@ -595,7 +595,7 @@
                         </div>
                         <div class="col l-6 m-6 c-0">
                             <a href="#" class="banner__link">
-                                <img src="<%=bannerDAO.listBanner().get(3).getLink_banner_content()%>"
+                                <img src="<%=bannerDAO.listBanner().get(2).getLink_banner_content()%>"
                                      alt="Banner 2" class="banner__img">
                             </a>
                         </div>

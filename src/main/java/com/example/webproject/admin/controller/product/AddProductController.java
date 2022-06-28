@@ -21,14 +21,6 @@ import java.util.List;
 
 @WebServlet(name = "AddProductController", value = "/admin/add")
 public class AddProductController extends HttpServlet {
-    private ServletFileUpload uploader;
-
-    public void init() throws ServletException {
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-        File fileDir = (File) getServletContext().getAttribute("FILES_DIR_FILE");
-        factory.setRepository(fileDir);
-        this.uploader = new ServletFileUpload(factory);
-    }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,7 +34,7 @@ public class AddProductController extends HttpServlet {
         String manHinh = request.getParameter("pManHinh");
         Part filePart = request.getPart("image");
         String fileName = extractFileName(filePart);
-        String savePath = "D:\\JavaServlet\\CK_LTW\\WebProjectJSP\\src\\main\\webapp\\assets\\img\\dssp\\" + File.separator + fileName;
+        String savePath = "D:\\LapTrinhWeb\\JSPDemo\\WebProject\\src\\main\\webapp\\assets\\img\\dssp\\" + File.separator + fileName;
         File fileSaveDir = new File(savePath);
         filePart.write(savePath);
         String insertPath = "./assets/img/dssp/" + fileName;

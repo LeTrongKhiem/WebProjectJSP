@@ -411,5 +411,6 @@ public class ProductListDAOImpl implements ProductListDAO {
 
 
     public static void main(String[] args) {
+//        new ProductListDAOImpl().insertProduct("123123", "Macbook 01", "dasdasdasd", 123123, "DT", "200001");
     }
 }

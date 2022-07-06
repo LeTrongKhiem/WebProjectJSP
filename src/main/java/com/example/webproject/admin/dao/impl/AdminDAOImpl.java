@@ -1,7 +1,8 @@
 package com.example.webproject.admin.dao.impl;
 
+import com.example.webproject.BEAN.User;
 import com.example.webproject.DB.DBConnection;
-import com.example.webproject.admin.BEAN.Admin;
+import com.example.webproject.BEAN.Admin;
 import com.example.webproject.admin.dao.AdminDAO;
 import com.example.webproject.service.SendEmail;
 
@@ -122,6 +123,72 @@ public class AdminDAOImpl implements AdminDAO {
         return list;
     }
 
+    @Override
+    public ArrayList<Admin> getListAdminUser() {
+        ArrayList<Admin> listAdmin = new ArrayList<Admin>();
+        connection = DBConnection.getConnection();
+        try {
+            String sql = "select HoTen, Email, SDT, NgayBD, Quyen, Role, Active, Address from `admin`";
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String hoTen = resultSet.getString("HoTen");
+                String email = resultSet.getString("Email");
+                String sdt = resultSet.getString("NgayBD");
+                java.sql.Date ngayBD = resultSet.getDate("NgayBD");
+                int role = resultSet.getInt("Role");
+                int active = resultSet.getInt("Active");
+                String address = resultSet.getString("Address");
+                Admin admin = new Admin();
+                admin.setHoTen(hoTen);
+                admin.setEmail(email);
+                admin.setSdt(sdt);
+                admin.setNgayBD(ngayBD);
+                admin.setRole(role);
+                admin.setActive(active);
+                admin.setAddress(address);
+                listAdmin.add(admin);
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return listAdmin;
+    }
+
+    @Override
+    public ArrayList<User> getListCustomer() {
+        ArrayList<User> listCustomer = new ArrayList<>();
+        connection = DBConnection.getConnection();
+        try {
+            String sql = "SELECT UserId, HoTen, Email, Sdt, GioiTinh, Role, Active, DiaChi FROM `user`";
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String userId = resultSet.getString("UserId");
+                String hoTen = resultSet.getString("HoTen");
+                String email = resultSet.getString("Email");
+                String sdt = resultSet.getString("Sdt");
+                String gioiTinh = resultSet.getString("GioiTinh");
+                int role = resultSet.getInt("Role");
+                int active = resultSet.getInt("Active");
+                String diaChi = resultSet.getString("DiaChi");
+                User user = new User();
+                user.setId(userId);
+                user.setName(hoTen);
+                user.setEmail(email);
+                user.setPhone(sdt);
+                user.setGender(gioiTinh);
+                user.setRole(role);
+                user.setActive(active);
+                user.setAddress(diaChi);
+                listCustomer.add(user);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listCustomer;
+    }
+
     public static void main(String[] args) {
 //        Map<String, Admin> list = new AdminDAOImpl().listAdmin();
 //        for (Map.Entry<String, Admin> entry : list.entrySet()) {
@@ -134,9 +201,13 @@ public class AdminDAOImpl implements AdminDAO {
 //        Admin admin = new Admin("lekhiem", "le trong khiem", "lekhiem2001@gmail.com", "0372253243", "DN", "fnjewaflwegfer");
 //
 //        System.out.println(new AdminDAOImpl().register(admin));
-        Map<String, Admin> list = new AdminDAOImpl().getListEmployee();
-        for (Map.Entry<String, Admin> entry : list.entrySet()) {
-            System.out.println(entry.getKey() + ":" + entry.getValue().toString());
+//        Map<String, Admin> list = new AdminDAOImpl().getListEmployee();
+//        for (Map.Entry<String, Admin> entry : list.entrySet()) {
+//            System.out.println(entry.getKey() + ":" + entry.getValue().toString());
+//        }
+        ArrayList<User> list = new AdminDAOImpl().getListCustomer();
+        for (User admin : list) {
+            System.out.println(admin.getEmail());
         }
     }
 }

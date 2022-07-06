@@ -20,8 +20,8 @@ public interface ProductListDAO {
     public List<Product> search(String txtSearch, int index);
     //
     public int getNumberPage();
-    public Product getLaptopByID(String id);
-    public List<Product> getTop(int index);
+    public Product getProductByID(String id);
+    public List<Product> getTop(int index, String category);
 
 
 }

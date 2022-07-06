@@ -1,12 +1,13 @@
 package com.example.webproject.controller.cart;
 
+
 import com.example.webproject.BEAN.Cart;
-import com.example.webproject.DAO.daoimpl.ProductListDAOImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.HashMap;
 
 @WebServlet(name = "UpdateQuantityController", value = "/updateQuantity")
 public class UpdateQuantityController extends HttpServlet {
@@ -18,8 +19,7 @@ public class UpdateQuantityController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
-        ProductListDAOImpl dao = new ProductListDAOImpl();
-        int sl = dao.getSoLuong(id);
+
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
@@ -27,15 +27,13 @@ public class UpdateQuantityController extends HttpServlet {
             response.setStatus(404);
             return;
         }
-        if (quantity == 0) {
+        if(quantity==0){
             cart.remove(id);
-        } else {
-            cart.updateQuantitySold(id, quantity);
-            String er = "Rất tiếc trong kho chỉ còn lại" + Integer.toString(sl);
-            request.setAttribute("error", er);
+        }else {
+        cart.updateQuantitySold(id,quantity);
 //        cart.updateQuantity(id,quantity);
         }
         session.setAttribute("cart", cart);
-        response.sendRedirect(request.getContextPath() + "/cart");
+        response.sendRedirect(request.getContextPath()+"/cart");
     }
 }

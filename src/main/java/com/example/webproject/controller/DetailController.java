@@ -18,7 +18,7 @@ public class DetailController extends HttpServlet {
         String id = request.getParameter("id");
         ProductListDAOImpl dao = new ProductListDAOImpl();
 //        Product p = ProductService.getInstance().getById(id);
-        Product p = dao.getLaptopByID(id);
+        Product p = dao.getProductByID(id);
 //        PhoneProduct p = dao.getPhoneByID(id);
         request.setAttribute("detail", p);
         request.getRequestDispatcher("trangitem.jsp").forward(request, response);

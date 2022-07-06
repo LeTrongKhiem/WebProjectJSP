@@ -78,7 +78,7 @@ public class LoginController extends HttpServlet {
             response.addCookie(userCookie);
 //            String encodedURL = response.encodeRedirectURL(urlRQ);
 //            response.sendRedirect(encodedURL);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
         } else if (!valid) {
             request.setCharacterEncoding("UTF-8");
             response.setCharacterEncoding("UTF-8");

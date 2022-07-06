@@ -1,7 +1,7 @@
 package com.example.webproject.admin.controller;
 
 import com.example.webproject.BEAN.User;
-import com.example.webproject.admin.BEAN.Admin;
+import com.example.webproject.BEAN.Admin;
 import com.example.webproject.admin.dao.impl.AdminDAOImpl;
 import com.example.webproject.controller.RegisterController;
 

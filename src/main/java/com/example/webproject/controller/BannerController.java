@@ -8,18 +8,17 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "BannerController", value = "/BannerController")
 public class BannerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int count = BannerDAOImpl.getInstance().listBanner().size();
-        int percent = 100 / count;
-        ArrayList bannerPaginations;
-        for (Banner b : BannerDAOImpl.getInstance().listBanner()) {
-            String first = "";
-            
-        }
+        List<Banner> banners = new ArrayList<Banner>();
+        banners = BannerDAOImpl.getInstance().listBanner();
+        request.setAttribute("banners", banners);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
     }
 
     @Override

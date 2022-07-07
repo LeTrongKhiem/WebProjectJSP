@@ -5,7 +5,8 @@ import com.example.webproject.BEAN.Product;
 import com.example.webproject.BEAN.User;
 import com.example.webproject.DAO.daoimpl.OrderDAO;
 import com.example.webproject.DAO.daoimpl.ProductListDAOImpl;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -31,7 +32,9 @@ public class AddController extends HttpServlet {
                 cart = Cart.getInstance();
             }
             cart.put(product);
-            session.setAttribute("cart", cart);
+            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String json = ow.writeValueAsString(cart);
+            session.setAttribute("cart", json);
         }
 
         response.sendRedirect(request.getContextPath() + "/cart");

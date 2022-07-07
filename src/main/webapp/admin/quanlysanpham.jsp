@@ -123,7 +123,7 @@
                                         <button onclick="location.href='edit-product?id=${item.maSP}'" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                                             <i class="anticon anticon-edit"></i>
                                         </button>
-                                        <button  onclick="window.location.href='delete?id=${item.maSP}'" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                        <button onclick="window.location.href='delete?id=${item.maSP}'" class="btn btn-icon btn-hover btn-sm btn-rounded">
                                             <i class="anticon anticon-delete"></i>
                                         </button>
                                     </td>

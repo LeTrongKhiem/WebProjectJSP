@@ -40,6 +40,7 @@
         margin-left: 42%;
         margin-bottom: 15px;
     }
+    .col { margin: 0 !important; }
 </style>
 <body>
 <%
@@ -93,16 +94,16 @@
                 </div>
             </div>
 
-            <div class="col l-4 m-0 c-0">
-                <iframe src="<%=bannerDAO.listBanner().get(0).getLink_video1()%>" title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen class="video1"></iframe>
-                <iframe src="<%=bannerDAO.listBanner().get(0).getLink_video2()%>" title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen class="video2"></iframe>
-            </div>
+<%--            <div class="col l-4 m-0 c-0">--%>
+<%--                <iframe src="<%=bannerDAO.listBanner().get(0).getLink_video1()%>" title="YouTube video player"--%>
+<%--                        frameborder="0"--%>
+<%--                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"--%>
+<%--                        allowfullscreen class="video1"></iframe>--%>
+<%--                <iframe src="<%=bannerDAO.listBanner().get(0).getLink_video2()%>" title="YouTube video player"--%>
+<%--                        frameborder="0"--%>
+<%--                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"--%>
+<%--                        allowfullscreen class="video2"></iframe>--%>
+<%--            </div>--%>
 
             <div class="col l-12 m-12 c-12">
                 <div class="container-nav">
@@ -595,7 +596,7 @@
                         </div>
                         <div class="col l-6 m-6 c-0">
                             <a href="#" class="banner__link">
-                                <img src="<%=bannerDAO.listBanner().get(3).getLink_banner_content()%>"
+                                <img src="<%=bannerDAO.listBanner().get(2).getLink_banner_content()%>"
                                      alt="Banner 2" class="banner__img">
                             </a>
                         </div>

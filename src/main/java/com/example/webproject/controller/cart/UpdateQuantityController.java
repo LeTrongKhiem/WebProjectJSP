@@ -8,6 +8,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.HashMap;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 @WebServlet(name = "UpdateQuantityController", value = "/updateQuantity")
 public class UpdateQuantityController extends HttpServlet {
@@ -33,6 +35,8 @@ public class UpdateQuantityController extends HttpServlet {
         cart.updateQuantitySold(id,quantity);
 //        cart.updateQuantity(id,quantity);
         }
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(cart);
         session.setAttribute("cart", cart);
         response.sendRedirect(request.getContextPath()+"/cart");
     }

@@ -93,15 +93,9 @@
                                             <div class="avatar avatar-image avatar-sm m-r-10">
                                                 <img src="assets/images/avatars/thumb-1.jpg" alt="">
                                             </div>
-                                            <%--                                            <h6 class="m-b-0">${ad.hoTen}</h6>--%>
                                             <h6 class="m-b-0"><%=user.getName()%></h6>
                                         </div>
                                     </td>
-                                    <%--                                    <td>${ad.email}</td>--%>
-                                    <%--                                    <td>${ad.ngayBD}</td>--%>
-                                    <%--                                    <td>${ad.role}</td>--%>
-                                    <%--                                    <td>${ad.address}</td>--%>
-
                                     <td><%=user.getEmail()%>
                                     </td>
                                     <td><%=user.getPhone()%>

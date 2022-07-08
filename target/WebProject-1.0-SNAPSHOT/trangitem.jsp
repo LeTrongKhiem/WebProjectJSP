@@ -1,3 +1,5 @@
+<%@ page import="java.text.DecimalFormat" %>
+<%@ page import="java.math.BigDecimal" %>
 <jsp:useBean id="detail" scope="request" type="com.example.webproject.BEAN.Product"/>
 <%--<jsp:useBean id="productList" scope="request" type="com.example.webproject.BEAN.ProductList"/>--%>
 <%--

@@ -660,50 +660,50 @@
                             </div>
                         </c:if>
                         </thead>
-                        <tbody class="shadow-around">
+                        <tbody class="shadow-around" id="cart-body">
 
-                        <c:set var="products" value="${cart.productList}"/>
-                        <c:forEach items="${products}" var="product">
+<%--                        <c:set var="products" value="${cart.productList}"/>--%>
+<%--                        <c:forEach items="${products}" var="product">--%>
 
-                            <tr class="table-body">
-                                <td>
-                                    <figure><img src="${product.link_hinhanh}" style="width:160px"/></figure>
-                                </td>
-                                <td>
-                                    <div class="cart-wrappper text-left th_description">
-                                        <h6>${product.tenSP}</h6>
-                                        <p><span>Availability</span>: Available in Stock</p>
-                                        <p><span>Product Code</span>: CwT4a</p>
-                                    </div>
-                                </td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>
-                                    <form class="quantity-control"
-                                          action="<%=request.getContextPath()+"/updateQuantity"%>" method="post">
-                                            <%--                                            <span class="btn-cart btn-square btn-plus btn-qty"><i--%>
-                                            <%--                                                    class="fa fa-plus"></i></span>--%>
-                                        <input type="number" value="${product.quantitySold}" data-min="0"
-                                               data-minalert="Số lượng không được nhỏ hơn 0"
-                                               data-invalid="Nhập số lượng hợp lệ"
-                                               name="quantity">
-                                        <input value="${product.maSP}" type="hidden" name="id" data-min="0">
-                                            <%--                                            <span class="btn-cart btn-square btn-minus btn-qty"><i--%>
-                                            <%--                                                    class="fa fa-minus"></i></span>--%>
+<%--                            <tr class="table-body">--%>
+<%--                                <td>--%>
+<%--                                    <figure><img src="${product.link_hinhanh}" style="width:160px"/></figure>--%>
+<%--                                </td>--%>
+<%--                                <td>--%>
+<%--                                    <div class="cart-wrappper text-left th_description">--%>
+<%--                                        <h6>${product.tenSP}</h6>--%>
+<%--                                        <p><span>Availability</span>: Available in Stock</p>--%>
+<%--                                        <p><span>Product Code</span>: CwT4a</p>--%>
+<%--                                    </div>--%>
+<%--                                </td>--%>
+<%--                                <td>&nbsp;</td>--%>
+<%--                                <td>&nbsp;</td>--%>
+<%--                                <td>--%>
+<%--                                    <form class="quantity-control"--%>
+<%--                                          action="<%=request.getContextPath()+"/updateQuantity"%>" method="post">--%>
+<%--                                          <span data-id="asc_${product.maSP}" class="btn-cart btn-square btn-plus btn-qty"><i--%>
+<%--                                            class="fa fa-plus"></i></span>--%>
+<%--                                        <input type="text" disabled value="${product.quantitySold}" data-min="0"--%>
+<%--                                               data-minalert="Số lượng không được nhỏ hơn 0"--%>
+<%--                                               data-invalid="Nhập số lượng hợp lệ"--%>
+<%--                                               name="quantity">--%>
+<%--                                        <input value="${product.maSP}" type="hidden" name="id" data-min="0">--%>
+<%--                                        <span data-id="desc_${product.maSP}" class="btn-cart btn-square btn-minus btn-qty"><i--%>
+<%--                                                class="fa fa-minus"></i></span>--%>
 
-                                    </form>
-                                </td>
-                                <td><span class="cart-price">${product.dinhDang(product.giaSP)}</span></td>
-                                <td>
-                                    <ul class="cart-action">
-                                        <li><a href="remove?id=${product.maSP}" class="btn-cart btn-delete btn-blue"><i
-                                                class="fa fa-trash"></i></a></li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            <%--                            <jsp:useBean id="error" scope="request" type="com.example.webproject.controller.cart.UpdateQuantityController"/>--%>
-                            <%--                            <tr>${error}</tr>--%>
-                        </c:forEach>
+<%--                                    </form>--%>
+<%--                                </td>--%>
+<%--                                <td><span class="cart-price">${product.dinhDang(product.giaSP)}</span></td>--%>
+<%--                                <td>--%>
+<%--                                    <ul class="cart-action">--%>
+<%--                                        <li><a href="remove?id=${product.maSP}" class="btn-cart btn-delete btn-blue"><i--%>
+<%--                                                class="fa fa-trash"></i></a></li>--%>
+<%--                                    </ul>--%>
+<%--                                </td>--%>
+<%--                            </tr>--%>
+<%--                            &lt;%&ndash;                            <jsp:useBean id="error" scope="request" type="com.example.webproject.controller.cart.UpdateQuantityController"/>&ndash;%&gt;--%>
+<%--                            &lt;%&ndash;                            <tr>${error}</tr>&ndash;%&gt;--%>
+<%--                        </c:forEach>--%>
 
                         </tbody>
                     </table>
@@ -714,11 +714,11 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="buttons-cart--inner">
                         <div class="buttons-cart">
-                            <a href="#">Tiếp tục mua hàng</a>
+                            <a href="<%=request.getContextPath() + "/trang-chu"%>">Tiếp tục mua hàng</a>
                         </div>
                         <div class="buttons-cart checkout--btn">
-                            <a href="#">Cập nhật</a>
-                            <a href="#">Thanh Toán</a>
+                            <a href="<%=request.getContextPath() + "/updateQuantity"%>">Cập nhật</a>
+                            <a href="<%=request.getContextPath() + "/checkout"%>">Thanh Toán</a>
                         </div>
                     </div>
                 </div>
@@ -745,8 +745,8 @@
                                 <li>Phí ship</li>
                             </ul>
                             <ul class="cart__price">
-                                <li>${cart.dinhDang(cart.total)}</li>
-
+<%--                                <li>${cart.dinhDang(cart.total)}</li>--%>
+                                <li class="total-cart"></li>
                                 <li>Miễn phí</li>
                             </ul>
                         </div>
@@ -768,24 +768,16 @@
 
 <%--    footer --%>
 <%@include file="/footer.jsp" %>
-<%--    footer --%>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-<!-- <script src="./assets/lib/js/jquery.js"></script> -->
-<script src="./assets/lib/js/ajaxify.min.js"></script>
-<script src="./assets/lib/js/main.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
+<script src="./js/cart.js"></script>
+<script>
+    var cartJS = new CartJS();
+    cartJS.initialize();
+</script>
 </body>
 
 </html>

@@ -15,35 +15,11 @@ public class Product implements Serializable {
     private String link_hinhanh;
     private String loaiSP;
     Category maDanhMuc;
+    String categoryId;
 
     public Product(){
 
     }
-
-
-//    public Product(String maSP, String tenSP, int giaSP, String manHinh, String hdh, String camSau, String camTr, String CPU, String RAM, String boNhoTrong, String theSim, String pin, String thietKe, String imei, String baiViet, String noiDung, String link_hinhanh, String linkAnh2, String linkAnh3, int quantity) {
-//        this.maSP = maSP;
-//        this.tenSP = tenSP;
-//        this.giaSP = giaSP;
-//        this.manHinh = manHinh;
-//        this.hdh = hdh;
-//        this.camSau = camSau;
-//        this.camTr = camTr;
-//        this.CPU = CPU;
-//        this.RAM = RAM;
-//        this.boNhoTrong = boNhoTrong;
-//        this.theSim = theSim;
-//        this.pin = pin;
-//        this.thietKe = thietKe;
-//        this.imei = imei;
-//        this.baiViet = baiViet;
-//        this.noiDung = noiDung;
-//        this.link_hinhanh = link_hinhanh;
-//        this.linkAnh2 = linkAnh2;
-//        this.linkAnh3 = linkAnh3;
-//        this.quantity = quantity;
-//
-//    }
 
     public Product(String maSP, String tenSP, int giaSP, String manHinh, String hdh, String camSau, String camTr, String CPU, String RAM, String boNhoTrong, String theSim, String pin, String thietKe, String imei, String baiViet, String noiDung, String linkAnh2, String linkAnh3, String oCung, String cardManHinh, String congKetNoi, String dacBiet, String kichThuocVaTrongLuong, String thoiDiemRaMat, String link_hinhanh,String loaiSP) {
         this.maSP = maSP;
@@ -298,6 +274,13 @@ public class Product implements Serializable {
 
     public void setLoaiSP(String loaiSP) {
         this.loaiSP = loaiSP;
+    }
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
     public Category getMaDanhMuc() {
         return maDanhMuc;

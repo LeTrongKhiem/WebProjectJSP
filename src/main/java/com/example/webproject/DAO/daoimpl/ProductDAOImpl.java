@@ -78,6 +78,45 @@ public class ProductDAOImpl implements ProductDAO {
         }
         return list;
     }
+    @Override
+    public List<ProductList> getProductRelated(String cateId, String productId) {
+//        String sql = "select * from danhsachsp where danhsachsp.MaDanhMuc = ? limit 0,3";
+        String sql = "select * from danhsachsp\n" +
+                "where danhsachsp.MaDanhMuc = ? and danhsachsp.Id not in (?)\n" +
+                "limit 0, 3";
+        ArrayList<ProductList> list = new ArrayList<>();
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, cateId);
+            statement.setString(2, productId);
+            resultSet = statement.executeQuery();
+//            statement.setString(1, type);
+            while (resultSet.next()) {
+                ProductList productList = new ProductList();
+                productList.setId(resultSet.getString("id"));
+                Category category = new Category(resultSet.getString("MaDanhMuc"), "", "DanhMucCha", "");
+                productList.setCategory(category);
+                productList.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
+                productList.setTen(resultSet.getString("Ten"));
+                long gia = resultSet.getLong("Gia");
+                productList.setGia(gia);
+                productList.setMaDanhMuc(resultSet.getString("MaDanhMuc"));
+                productList.setTenDanhMuc(resultSet.getString("TenDanhMuc"));
+                productList.setLoaiSP(resultSet.getString("LoaiSP"));
+                productList.setRank(resultSet.getInt("rank"));
+                list.add(productList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<ProductList> getAccessories(String cateId) {
+        return null;
+    }
 
     public List<ProductList> getNextProduct(int amount, String type, String madanhmuc) {
         String sql = "SELECT DISTINCT * FROM danhsachsp where LoaiSP = ? and MaDanhMuc = ?\n" +
@@ -150,9 +189,9 @@ public class ProductDAOImpl implements ProductDAO {
 
 
     public static void main(String[] args) {
-        List<ProductList> list = new ProductDAOImpl().getNextProduct(1, "DT", "100002");
+        List<ProductList> list = new ProductDAOImpl().getProductRelated("100005", "11grey");
         for (ProductList p : list) {
-            System.out.println(p);
+            System.out.println(p.getTen());
         }
     }
 }

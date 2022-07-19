@@ -301,9 +301,10 @@ public class ProductListDAOImpl implements ProductListDAO {
                 String kichThuocVaTrongLuong = resultSet.getString("KichThuocVaTrongLuong");
                 String thoiDiemRaMat = resultSet.getString("ThoiDiemRaMat");
                 String loaiSP = resultSet.getString("LoaiSP");
+                String maDanhMuc = resultSet.getString("MaDanhMuc");
                 product = new Product(maSP, tenSP, giaSP,manHinh,hdh,camSau,camTr,CPU,RAM,boNhoTrong,theSim,pin,thietKe,
                         imei,baiViet,noiDung,linkAnh2,linkAnh3,oCung,cardManHinh,congKetNoi,dacBiet,kichThuocVaTrongLuong,thoiDiemRaMat,link_hinhanh,loaiSP );
-
+                product.setCategoryId(maDanhMuc);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -410,35 +411,6 @@ public class ProductListDAOImpl implements ProductListDAO {
             e.printStackTrace();
         }
     }
-    public List<Product> GetAllPaging(PagingProduct paging) {
-        ArrayList<Product> products = new ArrayList<Product>();
-        StringBuilder str = new StringBuilder("select * from danhsachsp inner join motasp on danhsachsp.Id = motasp.Id");
-//        String query ="select * from danhsachsp inner join motasp on danhsachsp.Id = motasp.Id";
-        try {
-            connection = new DBConnection().getConnection();
-            statement = connection.prepareStatement(String.valueOf(str));
-            if (paging.getKeyword() != null) {
-                str = str.append(" where danhsachsp.Ten like %"+paging.getKeyword()+"%");
-            }
-            if (paging.getPrice() != 0) {
-                str.append(" where danhsachsp.Gia <= "+paging.getPrice()+"");
-            }
-            resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                Product product = new Product();
-                product.setMaSP(resultSet.getString("Id"));
-                product.setTenSP(resultSet.getString("Ten"));
-                product.setGiaSP(resultSet.getInt("Gia"));
-                product.setLink_hinhanh(resultSet.getString("Link_hinhanh"));
-                product.setLoaiSP(resultSet.getString("LoaiSP"));
-                products.add(product);
-            }
-        } catch ( SQLException ex) {
-            ex.printStackTrace();
-        }
-        return products;
-    }
-
     public static void main(String[] args) {
 //        new ProductListDAOImpl().insertProduct("123123", "Macbook 01", "dasdasdasd", 123123, "DT", "200001");
 //        Product p = new ProductListDAOImpl().getProductByID("ip12");

@@ -49,7 +49,6 @@ public class ProductListController extends HttpServlet {
 
         request.setAttribute("listParent", list);
         request.setAttribute("madanhmucRequest", madanhmuc);
-//        request.setAttribute("madanhmuc", madanhmuc);
         request.getRequestDispatcher("tonghopsanpham.jsp").forward(request, response);
 //
 

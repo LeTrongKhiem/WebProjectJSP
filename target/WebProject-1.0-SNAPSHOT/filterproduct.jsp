@@ -1,4 +1,3 @@
-<jsp:useBean id="madanhmucRequest" scope="request" type="java.lang.String"/>
 <%--
   Created by LeTrongKhiem.
   User: User
@@ -20,7 +19,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><dec:title default="Sản Phẩm"/></title>
+    <title>Lọc sản phẩm</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
     <link rel="stylesheet" href="<c:url value='assets/font/fontawesome-free-5.15.3-web/css/all.min.css'/>">
@@ -34,7 +33,6 @@
     <link rel="stylesheet" href="<c:url value= './assets/css/responsive.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/mobile.css'/>">
 </head>
-<jsp:useBean id="a" class="com.example.webproject.DAO.daoimpl.ProductListDAOImpl" scope="request"></jsp:useBean>
 <body>
 <%
     ProductListDAOImpl productListDAO = new ProductListDAOImpl();
@@ -86,148 +84,116 @@
             <div class="header__container">
                 <h3>Điện thoại</h3>
             </div>
-            <ul class="container-filter__list">
-                <li class="container-filter__item">
-                    Mức giá
-                    <i class="container-filter__icon-down fas fa-chevron-down"></i>
-                    <ul class="container-filter__price">
-                        <li class="container-filter-item">
-                            <a href="FilterController?chongia=1">Dưới 1 triệu</a>
-                        </li>
-                        <li class="container-filter-item">
-                            <a href="FilterController?chongia=2">Dưới 2 triệu</a>
-                        </li>
-                        <li class="container-filter-item">
-                            <a href="FilterController?chongia=3">Dưới 3 triệu</a>
-                        </li>
-                        <li class="container-filter-item">
-                            <a href="FilterController?chongia=4">Dưới 4 triệu</a>
-                        </li>
-                        <li class="container-filter-item">
-                            <a href="FilterController?chongia=5">Dưới 5 triệu</a>
-                        </li>
-                        <li class="container-filter-item">
-                            <a href="FilterController?chongia=7">Dưới 7 triệu</a>
-                        </li>
-                        <li class="container-filter-item">
-                            <a href="FilterController?chongia=10">Dưới 10 triệu</a>
-                        </li>
-                        <li class="container-filter-item">
-                            <a href="FilterController?chongia=11">Trên 10 triệu</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="container-filter__item">
-                    Hãng sản xuất
-                    <i class="container-filter__icon-down fas fa-chevron-down"></i>
-                    <ul class="container-filter__manufacturer">
-                        <li class="container-filter-item-manufacturer">
-                            Apple
-                        </li>
-                        <li class="container-filter-item-manufacturer">
-                            Xiaomi
-                        </li>
-                        <li class="container-filter-item-manufacturer">
-                            Samsung
-                        </li>
-                        <li class="container-filter-item-manufacturer">
-                            Oppo
-                        </li>
-                        <li class="container-filter-item-manufacturer">
-                            OnePlus
-                        </li>
-                        <li class="container-filter-item-manufacturer">
-                            Vivo
-                        </li>
-                        <li class="container-filter-item-manufacturer">
-                            LG
-                        </li>
-                        <li class="container-filter-item-manufacturer">
-                            Google
-                        </li>
-                    </ul>
-                </li>
-                <li class="container-filter__item">
-                    Hệ điều hành
-                    <i class="container-filter__icon-down fas fa-chevron-down"></i>
-                    <ul class="container-filter__price">
-                        <li class="container-filter-item">
-                            Android
-                        </li>
-                        <li class="container-filter-item">
-                            IOS
-                        </li>
-                        <li class="container-filter-item">
-                            Window Phone
-                        </li>
-                        <li class="container-filter-item">
-                            HDH Khác
-                        </li>
-                    </ul>
-                </li>
-                <li class="container-filter__item">
-                    Màn hình
-                    <i class="container-filter__icon-down fas fa-chevron-down"></i>
-                    <ul class="container-filter__price">
-                        <li class="container-filter-item">
-                            Dưới 3"
-                        </li>
-                        <li class="container-filter-item">
-                            Khoảng 3"
-                        </li>
-                        <li class="container-filter-item">
-                            Khoảng 4"
-                        </li>
-                        <li class="container-filter-item">
-                            Khoảng 5"
-                        </li>
-                        <li class="container-filter-item">
-                            Khoảng 6"
-                        </li>
-                    </ul>
+            <form action="FilterController?xuly=xulyloc1" method="post">
+                <ul class="container-filter__list">
+                    <li class="container-filter__item">
+                        Mức giá
+                        <i class="container-filter__icon-down fas fa-chevron-down"></i>
+                        <ul class="container-filter__price">
+                            <li class="container-filter-item">
+                                <%--                            <a href="FilterController?chongia=1000000&chongia1=3000000" data-id="">Từ 1-3 triệu</a>--%>
+                                <label data-id=""><input type="radio" name="giadt" value="1den3">Từ 1-3 triệu</label>
+                            </li>
+                            <li class="container-filter-item">
+                                <%--                            <a href="FilterController?chongia=3000000&chongia1=8000000" data-id="">Từ 3 - 8--%>
+                                <%--                                triệu</a>--%>
+                                <label data-id=""><input type="radio" name="giadt" value="3den8">Từ 3-8 triệu</label>
+                            </li>
+                            <li class="container-filter-item">
+                                <%--                            <a href="FilterController?chongia=8000000&chongia1=10000000" data-id="">Từ 8 - 10--%>
+                                <%--                                triệu</a>--%>
+                                <label data-id=""><input type="radio" name="giadt" value="8den10">Từ 8-10 triệu</label>
+                            </li>
+                            <li class="container-filter-item">
+                                <%--                            <a href="FilterController?chongia=10000000&chongia1=20000000" data-id="">Trên 10--%>
+                                <%--                                triệu</a>--%>
+                                <label data-id=""><input type="radio" name="giadt" value="10den20">Trên 10 triệu</label>
+                            </li>
+                            <li class="container-filter-item">
+                                <%--                            <a href="FilterController?chongia=10000000&chongia1=20000000" data-id="">Trên 10--%>
+                                <%--                                triệu</a>--%>
+                                <label data-id=""><input type="radio" name="giadt" value="20den40">Trên 20 triệu</label>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="container-filter__item">
+                        Hãng sản xuất
+                        <i class="container-filter__icon-down fas fa-chevron-down"></i>
+                        <ul class="container-filter__manufacturer">
+                            <li class="container-filter-item-manufacturer">
+                                <%--                            <a href="FilterController?chon=iphone" data-id="">Apple</a>--%>
+                                <label data-id=""> <input type="radio" name="tendt" value="iphone">Iphone</label>
+                            </li>
+                            <li class="container-filter-item-manufacturer">
+                                <%--                            <a href="FilterController?chon=xiaomi" data-id="">Xiaomi</a>--%>
+                                <label data-id=""> <input type="radio" name="tendt" value="xiaomi">Xiaomi</label>
+                            </li>
+                            <li class="container-filter-item-manufacturer">
+                                <%--                            <a href="FilterController?chon=samsung" data-id="">SamSung</a>--%>
+                                <label data-id=""> <input type="radio" name="tendt" value="samsung">SamSung</label>
+                            </li>
+                            <li class="container-filter-item-manufacturer">
+                                <%--                            <a href="FilterController?chon=oppo" data-id="">Oppo</a>--%>
+                                <label data-id=""> <input type="radio" name="tendt" value="oppo">Oppo</label>
+                            </li>
+                            <li class="container-filter-item-manufacturer">
+                                <%--                            <a href="FilterController?chon=oneplus" data-id="">OnePlus</a>--%>
+                                <label data-id=""> <input type="radio" name="tendt" value="oneplus">OnePlus</label>
+                            </li>
+                            <li class="container-filter-item-manufacturer">
+                                <%--                            <a href="FilterController?chon=vivo" data-id="">Vivo</a>--%>
+                                <label data-id=""> <input type="radio" name="tendt" value="vivo">Vivo</label>
+                            </li>
+                            <li class="container-filter-item-manufacturer">
+                                <%--                            <a href="FilterController?chon=lg" data-id="">LG</a>--%>
+                                <label data-id=""> <input type="radio" name="tendt" value="lg">LG</label>
+                            </li>
+                            <li class="container-filter-item-manufacturer">
+                                <%--                            <a href="FilterController?chon=google" data-id="">Google</a>--%>
+                                <label data-id=""> <input type="radio" name="tendt" value="google">Google</label>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="container-filter__item">
+                        Loại sản phẩm
+                        <i class="container-filter__icon-down fas fa-chevron-down"></i>
+                        <ul class="container-filter__manufacturer">
+                            <li class="container-filter-item-manufacturer">
+                                <label data-id=""> <input type="radio" name="loaisp" value="DT">Điện thoại</label>
+                            </li>
+                            <li class="container-filter-item-manufacturer">
+                                <label data-id=""> <input type="radio" name="loaisp" value="LT">Laptop</label>
+                            </li>
+                            <li class="container-filter-item-manufacturer">
+                                <label data-id=""> <input type="radio" name="loaisp" value="phukien">Phụ kiện</label>
+                            </li>
+                        </ul>
+                    </li>
+                    <button class="btn btn-primary" type="submit">Xem kết quả</button>
 
-                </li>
-                <li class="container-filter__item">
-                    Tính năng
-                    <i class="container-filter__icon-down fas fa-chevron-down"></i>
-                    <ul class="container-filter__price">
-                        <li class="container-filter-item">
-                            Băng tầng 4G 5G
-                        </li>
-                        <li class="container-filter-item">
-                            2 Sim 2 Sóng
-                        </li>
-                        <li class="container-filter-item">
-                            Smart Phone
-                        </li>
-                        <li class="container-filter-item">
-                            Wifi
-                        </li>
-                        <li class="container-filter-item">
-                            Cảm ứng
-                        </li>
-                    </ul>
-                </li>
-                <li class="container-filter__item">
-                    Sắp xếp theo giá
-                    <i class="container-filter__icon-down fas fa-chevron-down"></i>
-                    <ul class="container-filter__price">
-                        <li class="container-filter-item">
-                            <a href="FilterController?locgia=caodenthap&madanhmuc=${madanhmucRequest}">Giá cao đến thấp</a>
-                        </li>
-                        <li class="container-filter-item">
-                            <a href="FilterController?locgia=thapdencao&madanhmuc=${madanhmucRequest}">Giá thấp đến cao</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                    <li class="container-filter__item">
+                        Sắp xếp theo giá
+                        <i class="container-filter__icon-down fas fa-chevron-down"></i>
+                        <ul class="container-filter__price">
+                            <li class="container-filter-item">
+                                <a href="FilterController?locgia=caodenthap">Giá
+                                    cao đến thấp</a>
+                            </li>
+                            <li class="container-filter-item">
+                                <a href="FilterController?locgia=thapdencao">Giá thấp đến
+                                    cao</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </form>
             <div class="col l-12 m-12 c-12">
                 <div class="container-product">
                     <div class="row no-gutters phone-products" id="content">
                         <!-- Thêm từng điện thoại vào -->
                         <%
-//                            ArrayList<ProductList> array = (ArrayList<ProductList>) session.getAttribute("list");
-                            ArrayList<ProductList> array = (ArrayList<ProductList>) request.getAttribute("list");
+                            //                            ArrayList<ProductList> array = (ArrayList<ProductList>) session.getAttribute("list");
+                            ArrayList<Product> array = (ArrayList<Product>) session.getAttribute("list");
                         %>
                         <%for (int i = 0; i < array.size(); i++) {%>
                         <div class="productCount col l-2-4 l-3-m m-4 c-6">
@@ -266,7 +232,7 @@
                                 <div class="container-product__item-wrap">
                                     <div class="container-product__item-info">
                                         <a href="" class="container-product__item-name">
-                                            <%=array.get(i).getTen()%>
+                                            <%=array.get(i).getTenSP()%>
                                             <%--                                            <%=productList.getTenSP()%>--%>
                                         </a>
                                         <i class="container-product__item-sale-icon fas fa-gift"></i>
@@ -274,7 +240,7 @@
                                     <div class="container-product__item-buy">
                                 <span class="container-product__item-price">
 <%--                                    <%=nf.format(productList.getGia())%> đ--%>
-                                     <%=ProductListDAOImpl.getInstance().dinhDang(array.get(i).getGia())%>
+                                     <%=ProductListDAOImpl.getInstance().dinhDang(array.get(i).getGiaSP())%>
 <%--                                    <%=nf.format(productList.getGiaSP())%> đ--%>
                                 </span>
                                         <a href="" class="container-product__item-btn">MUA</a>

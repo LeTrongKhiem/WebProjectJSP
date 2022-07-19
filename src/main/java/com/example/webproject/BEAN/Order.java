@@ -1,7 +1,6 @@
 package com.example.webproject.BEAN;
 
 import java.io.Serializable;
-import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -16,22 +15,8 @@ public class Order implements Serializable {
     private double totalPrice;
     private Date createdAt;
     private Date updatedAt;
-    private boolean status;
 
     public Order() {
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "user='" + user + '\'' +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", totalPrice=" + totalPrice +
-                ", status=" + status +
-                '}';
     }
 
     public Order(int orderID, String name, String address, String email, String phoneNumber, double totalPrice, Date createdAt, Date updatedAt) {
@@ -45,16 +30,6 @@ public class Order implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public Order(String user,String name, String address, String email, String phoneNumber, double totalPrice, boolean status) {
-        this.user = user;
-        this.name = name;
-        this.address = address;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.totalPrice = totalPrice;
-        this.status = status;
-    }
-
     public Order(String user,String name, String address, String email, String phoneNumber, double totalPrice) {
         this.user = user;
         this.name = name;
@@ -62,6 +37,7 @@ public class Order implements Serializable {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.totalPrice = totalPrice;
+
     }
 
     public int getOrderID() {
@@ -136,23 +112,11 @@ public class Order implements Serializable {
         this.user = user;
     }
 
-    public boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean user) {
-        this.status = status;
-    }
-
     public List<OrderDetail> getDetails() {
         return details;
     }
 
     public void setDetails(List<OrderDetail> details) {
         this.details = details;
-    }
-    public String dinhDang(double a) {
-        DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
-        return decimalFormat.format(a);
     }
 }

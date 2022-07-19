@@ -777,6 +777,20 @@
 <script>
     var cartJS = new CartJS();
     cartJS.initialize();
+    function loadCart() {
+        $.ajax({
+            type: "GET",
+            url: '/WebProject/cart',
+            success: function (response) {
+                console.log(response);
+                var html = '';
+                var total = 0;
+                var count = 0;
+                var row = document.getElementById('cart-body');
+                row.innerHTML += response;
+            },
+        });
+    }
 </script>
 </body>
 

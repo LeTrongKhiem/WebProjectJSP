@@ -289,8 +289,8 @@ public class Product implements Serializable {
     public void setMaDanhMuc(Category maDanhMuc) {
         this.maDanhMuc = maDanhMuc;
     }
-    public String dinhDang(long a) {
-        DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
+    public String dinhDang(int a) {
+        DecimalFormat decimalFormat = new DecimalFormat("000,000");
         return decimalFormat.format(a);
     }
 }

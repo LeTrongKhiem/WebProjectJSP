@@ -747,7 +747,7 @@
             <div class="product-content-right">
                 <div class="product-summary">
                     <p class="product-summary-title">${detail.tenSP}</p>
-                    <p class="product-summary-price">${detail.giaSP} ₫</p>
+                    <p class="product-summary-price">${detail.dinhDang(detail.giaSP)} ₫</p>
                     <div class="sale-box v2-promotion">
                         <p class="sale-box-title">Khuyến mãi</p>
                         <ol>

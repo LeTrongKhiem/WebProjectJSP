@@ -231,17 +231,14 @@
                                 </div>
                                 <div class="container-product__item-wrap">
                                     <div class="container-product__item-info">
-                                        <a href="" class="container-product__item-name">
+                                        <a href="DetailController?id=<%=array.get(i).getMaSP()%>" class="container-product__item-name">
                                             <%=array.get(i).getTenSP()%>
-                                            <%--                                            <%=productList.getTenSP()%>--%>
                                         </a>
                                         <i class="container-product__item-sale-icon fas fa-gift"></i>
                                     </div>
                                     <div class="container-product__item-buy">
                                 <span class="container-product__item-price">
-<%--                                    <%=nf.format(productList.getGia())%> đ--%>
                                      <%=ProductListDAOImpl.getInstance().dinhDang(array.get(i).getGiaSP())%>
-<%--                                    <%=nf.format(productList.getGiaSP())%> đ--%>
                                 </span>
                                         <a href="" class="container-product__item-btn">MUA</a>
                                     </div>

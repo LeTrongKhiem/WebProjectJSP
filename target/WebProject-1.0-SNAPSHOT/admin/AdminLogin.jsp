@@ -20,6 +20,19 @@
     <link href="<c:url value='./assets/css/app.min.css'/>" rel="stylesheet">
 </head>
 <body>
+<%--<%--%>
+<%--    String uid = (String) session.getAttribute("user");--%>
+<%--    if (uid == null) {--%>
+<%--%>--%>
+<%--<jsp:forward page="AdminLogin.jsp"/>--%>
+<%--<%--%>
+<%--} else {--%>
+
+<%--%>--%>
+<%--<jsp:forward page="quanlynhanvien.jsp"/>--%>
+<%--<%--%>
+<%--    }--%>
+<%--%>--%>
 <div class="app">
     <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex"
          style="">
@@ -51,7 +64,7 @@
                                         <div class="input-affix m-b-10">
                                             <i class="prefix-icon anticon anticon-lock"></i>
                                             <input type="password" class="form-control" id="password"
-                                                   placeholder="Password" name="password"  value="<%
+                                                   placeholder="Password" name="password" value="<%
                      if (request.getAttribute("pass")!=null && !request.getAttribute("pass").equals("")) {
                         out.print("");
                     }

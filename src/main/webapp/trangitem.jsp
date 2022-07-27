@@ -1,3 +1,7 @@
+<%@ page import="java.text.DecimalFormat" %>
+<%@ page import="java.math.BigDecimal" %>
+<jsp:useBean id="detail" scope="request" type="com.example.webproject.BEAN.Product"/>
+<%--<jsp:useBean id="productList" scope="request" type="com.example.webproject.BEAN.ProductList"/>--%>
 <%--
   Created by LeTrongKhiem.
   User: User
@@ -15,7 +19,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iPhone XS Max Cũ (64GB, 256GB) - Fullbox</title>
+    <title>${detail.tenSP}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
     <link rel="stylesheet" href="<c:url value='./assets/font/fontawesome-free-5.15.3-web/css/all.min.css'/>">
@@ -23,8 +27,8 @@
     <link rel="icon" href="<c:url value= './assets/img/logo3.png'/>">
 
     <link rel="stylesheet" href="<c:url value= './assets/css/base.css'/>">
-    <link rel="stylesheet" href="<c:url value= './assets/css/main.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/grid.css'/>">
+    <link rel="stylesheet" href="<c:url value= './assets/css/main.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/responsive.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/trangitem.css'/>">
     <link rel="stylesheet" href="<c:url value='./assets/trangitem/libs/normalize.css'/>">
@@ -32,98 +36,17 @@
     <script type="text/javascript" src="<c:url value='./assets/trangitem/js/jquery.min.js'/>"></script>
 
     <link rel="stylesheet" href="<c:url value='./assets/trangitem/libs/owl.carousel.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='./assets/trangitem/libs/lightslider.css'/>">
     <link rel="stylesheet" href="<c:url value='./assets/trangitem/libs/lightgallery.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='./assets/trangitem/libs/lightslider.css'/>">
     <link rel="stylesheet" href="<c:url value='./assets/trangitem/pages/phone.css'/>">
     <link rel="stylesheet" href="<c:url value='./assets/trangitem/pages/popup_v2.css'/>">
-
-    <script type="application/ld+json">
-        {
-            "@graph": [
-                {
-                    "@context": "http://schema.org/",
-                    "@type": "Product",
-                    "sku": "953",
-                    "id": "953",
-                    "mpn": "MobileCity",
-                    "name": "iPhone XS Max Cũ (64GB, 256GB) - Fullbox",
-                    "description": "iPhone XS Max cũ (64GB, 256GB) chính hãng, giá rẻ nhất Hà Nội, Đà Nẵng, TP HCM. Bán iPhone XS Max cũ xách tay BH 12 tháng chính hãng.",
-                    "image": "https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/iphone-xs-max-vang.jpg",
-                    "brand": "Apple (iPhone) - Quốc tế",
-                    "aggregateRating": {
-                        "@type": "AggregateRating",
-                        "ratingValue": "5",
-                        "reviewCount": "1092"
-                    },
-                    "review": {
-                        "@type": "Review",
-                        "author": "Tran Le Hai",
-                        "reviewRating": {
-                            "@type": "Rating",
-                            "bestRating": "5",
-                            "ratingValue": "1",
-                            "worstRating": "1"
-                        }
-                    },
-                    "offers": {
-                        "@type": "AggregateOffer",
-                        "priceCurrency": "VND",
-                        "offerCount": 10,
-                        "price": "10150000",
-                        "lowPrice": "10150000",
-                        "highPrice": "11450000",
-                        "priceValidUntil": "2019-12-31",
-                        "availability": "http://schema.org/InStock",
-                        "warranty": {
-                            "@type": "WarrantyPromise",
-                            "durationOfWarranty": {
-                                "@type": "QuantitativeValue",
-                                "value": "6 tháng",
-                                "unitCode": "ANN"
-                            }
-                        },
-                        "itemCondition": "mới",
-                        "seller": {
-                            "@type": "Organization",
-                            "name": "MobileCity"
-                        }
-                    }
-                },
-                {
-                    "@context": "http://schema.org",
-                    "@type": "WebSite",
-                    "name": "MobileCity",
-                    "url": "https://mobilecity.vn"
-                }
-            ]
-        }
-    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.8.3/dist/css/lightgallery.min.css">
+    <!--Đường Dẫn CDN Javascript-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.8.3/dist/js/lightgallery-all.min.js"></script>
 </head>
 
 <body>
-<div id="fb-root"></div>
-<script>
-    setTimeout(function () {
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '545601995544225',
-                autoLogAppEvents: true,
-                xfbml: true,
-                version: 'v2.11'
-            });
-        };
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {
-                return;
-            }
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    }, 3000);
-</script>
 <%--  header  --%>
 <%@include file="/header.jsp" %>
 <%--  header  --%>
@@ -134,30 +57,21 @@
             <div class="breadcrumb">
                 <ul itemscope itemtype="http://schema.org/BreadcrumbList">
                     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="./mobile.html"><span itemprop="name">Điện thoại di
+                        <a itemprop="item" href="./productlist.jsp"><span itemprop="name">Điện thoại di
                                         động</span>
                             <i class="fa fa-angle-right" aria-hidden="true" style="margin: 0 5px"></i>
                         </a>
                         <meta itemprop="position" content="2"/>
                     </li>
                     <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="list apple"><span itemprop="name">Apple
-                                        (iPhone) - Quốc tế</span>
+                        <a itemprop="item" href="list apple"><span itemprop="name">Apple</span>
                         </a>
                         <meta itemprop="position" content="3"/>
                     </li>
                 </ul>
             </div>
             <div class="product-title is-desktop">
-                <h1 class="title">Điện thoại iPhone XS Max Cũ (64GB, 256GB) - Fullbox</h1>
-                <div class="rating-show-start">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <a href="#" class="rating-show-count">(<span>1092</span> đánh giá)</a>
-                </div>
+                <h1 class="title">${detail.tenSP}</h1>
             </div>
             <div class="product-content-box">
                 <div class="grid wide">
@@ -166,384 +80,12 @@
                             <div class="product-slide-image">
                                 <div class="product_image v2-product-image">
                                     <li class="active"><img
-                                            src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w300/iphone-xs-max-den.jpg"
-                                            alt="iphone-xs-max-den" data-color="1"/></li>
-                                    <li><img
-                                            src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w300/iphone-xs-max-trang.jpg"
-                                            alt="iphone-xs-max-trang" data-color="9"/></li>
-                                    <li><img
-                                            src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w300/iphone-xs-max-vang.jpg"
-                                            alt="iphone-xs-max-vang" data-color="511"/></li>
-                                </div>
-                                <div class="product_slide v2-product-slide">
-                                    <ul id="image-gallery" class="gallery list-unstyled">
-                                        <li data-src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/iphone-xs-max-truoc-sau.jpg"
-                                            data-sub-html="<h4>iPhone XS Max Cũ (64GB, 256GB) - Fullbox</h4>">
-                                            <a href="#">
-                                                <img src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w80/iphone-xs-max-truoc-sau.jpg"
-                                                     alt="iphone-xs-max-truoc-sau"/>
-                                            </a>
-                                        </li>
-                                        <li data-src="https://cdn.mobilecity.vn/mobilecity-vn/images/2020/05/iphone-xsmax-mobile-city.jpg"
-                                            data-sub-html="<h4>iPhone XS Max Cũ (64GB, 256GB) - Fullbox</h4>">
-                                            <a href="#">
-                                                <img src="https://cdn.mobilecity.vn/mobilecity-vn/images/2020/05/w80/iphone-xsmax-mobile-city.jpg"
-                                                     alt="iphone-xsmax-mobile-city"/>
-                                            </a>
-                                        </li>
-                                        <li data-src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/iphone-xs-max-man-hinh.jpg"
-                                            data-sub-html="<h4>iPhone XS Max Cũ (64GB, 256GB) - Fullbox</h4>">
-                                            <a href="#">
-                                                <img src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w80/iphone-xs-max-man-hinh.jpg"
-                                                     alt="iphone-xs-max-man-hinh"/>
-                                            </a>
-                                        </li>
-                                        <li data-src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/iphone-xs-max-tren-duoi.jpg"
-                                            data-sub-html="<h4>iPhone XS Max Cũ (64GB, 256GB) - Fullbox</h4>">
-                                            <a href="#">
-                                                <img src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w80/iphone-xs-max-tren-duoi.jpg"
-                                                     alt="iphone-xs-max-tren-duoi"/>
-                                            </a>
-                                        </li>
-                                        <li data-src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/iphone-xs-max-canh-ben.jpg"
-                                            data-sub-html="<h4>iPhone XS Max Cũ (64GB, 256GB) - Fullbox</h4>">
-                                            <a href="#">
-                                                <img src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w80/iphone-xs-max-canh-ben.jpg"
-                                                     alt="iphone-xs-max-canh-ben"/>
-                                            </a>
-                                        </li>
-                                        <li data-src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/iphone-xs-max-nut-nguon.jpg"
-                                            data-sub-html="<h4>iPhone XS Max Cũ (64GB, 256GB) - Fullbox</h4>">
-                                            <a href="#">
-                                                <img src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w80/iphone-xs-max-nut-nguon.jpg"
-                                                     alt="iphone-xs-max-nut-nguon"/>
-                                            </a>
-                                        </li>
-                                        <li data-src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/iphone-xs-max-nut-bam.jpg"
-                                            data-sub-html="<h4>iPhone XS Max Cũ (64GB, 256GB) - Fullbox</h4>">
-                                            <a href="#">
-                                                <img src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w80/iphone-xs-max-nut-bam.jpg"
-                                                     alt="iphone-xs-max-nut-bam"/>
-                                            </a>
-                                        </li>
-                                        <li data-src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/iphone-xs-max-canh-duoi.jpg"
-                                            data-sub-html="<h4>iPhone XS Max Cũ (64GB, 256GB) - Fullbox</h4>">
-                                            <a href="#">
-                                                <img src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w80/iphone-xs-max-canh-duoi.jpg"
-                                                     alt="iphone-xs-max-canh-duoi"/>
-                                            </a>
-                                        </li>
-                                        <li data-src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/iphone-xs-max-khay-sim.jpg"
-                                            data-sub-html="<h4>iPhone XS Max Cũ (64GB, 256GB) - Fullbox</h4>">
-                                            <a href="#">
-                                                <img src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w80/iphone-xs-max-khay-sim.jpg"
-                                                     alt="iphone-xs-max-khay-sim"/>
-                                            </a>
-                                        </li>
-                                        <li data-src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/iphone-xs-max-camera.jpg"
-                                            data-sub-html="<h4>iPhone XS Max Cũ (64GB, 256GB) - Fullbox</h4>">
-                                            <a href="#">
-                                                <img src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w80/iphone-xs-max-camera.jpg"
-                                                     alt="iphone-xs-max-camera"/>
-                                            </a>
-                                        </li>
-                                        <li data-src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/iphone-xs-max-mat-sau.jpg"
-                                            data-sub-html="<h4>iPhone XS Max Cũ (64GB, 256GB) - Fullbox</h4>">
-                                            <a href="#">
-                                                <img src="https://cdn.mobilecity.vn/mobilecity-vn/images/2021/07/w80/iphone-xs-max-mat-sau.jpg"
-                                                     alt="iphone-xs-max-mat-sau"/>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-store-list">
-                                <p class="title-store-list">Danh sách cửa hàng:</p>
-                                <select class="location" id="location-message">
-                                    <option value="1" selected>
-                                        TP.HCM
-                                    </option>
-                                    <option value="2">
-                                        Hà Nội
-                                    </option>
-                                    <option value="3">
-                                        Đà Nẵng
-                                    </option>
-                                </select>
-                                <style type="text/css">
-                                    .outstock {
-                                        color: red;
-                                    }
-
-                                    .instock {
-                                        color: blue;
-                                    }
-                                </style>
-                                <div class="store-list">
-                                    <ul>
-                                        <li class="store" data-location="0" data-id="0">
-                                            Cửa hàng online <span class="status-stock instock">(Còn hàng)</span>
-                                        </li>
-                                        <li class="store" data-location="1" data-id="1" style="">
-                                            Phường Linh Trung, Thủ Đức, Thành phố Hồ Chí Minh <span
-                                                class="status-stock instock">(Còn hàng)</span>
-                                        </li>
-                                        <li class="store" data-location="1" data-id="2" style="">
-                                            Phường Linh Trung, Thủ Đức, Thành phố Hồ Chí Minh <span
-                                                class="status-stock instock">(Còn hàng)</span>
-                                        </li>
-                                        <li class="store" data-location="2" data-id="3" style="display: none">
-                                            Phường Linh Trung, Thủ Đức, Thành phố Hồ Chí Minh <span
-                                                class="status-stock instock">(Còn hàng)</span>
-                                        </li>
-                                        <li class="store" data-location="2" data-id="4" style="display: none">
-                                            Phường Linh Trung, Thủ Đức, Thành phố Hồ Chí Minh <span
-                                                class="status-stock instock">(Còn hàng)</span>
-                                        </li>
-                                        <li class="store" data-location="3" data-id="5" style="display: none">
-                                            Phường Linh Trung, Thủ Đức, Thành phố Hồ Chí Minh <span
-                                                class="status-stock instock">(Còn hàng)</span>
-                                        </li>
-                                        <li class="store" data-location="1" data-id="6" style="">
-                                            Phường Linh Trung, Thủ Đức, Thành phố Hồ Chí Minh <span
-                                                class="status-stock instock">(Còn hàng)</span>
-                                        </li>
-                                    </ul>
+                                            src="${detail.link_hinhanh}"
+                                            alt="${detail.tenSP}" data-color="1"/></li>
                                 </div>
                             </div>
                         </div>
                         <div class="col l-5 m-8 c-12">
-                            <div class="product-price-content">
-                                <div class="price-and-color">
-                                    <div class="price_location">
-                                        <p>Giá tại: </p>
-                                        <select class="location" id="location">
-                                            <option value="1" selected>
-                                                Hà Nội
-                                            </option>
-                                            <option value="2">
-                                                TP.HCM
-                                            </option>
-                                            <option value="3">
-                                                Đà Nẵng
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="price-product" style="">
-                                        <p class="price"></p>
-                                        <p class="price-old">11.450.000₫</p>
-                                    </div>
-                                    <div class="status-box">
-                                        <i class="fas fa-check-square" aria-hidden="true"></i>
-                                        <span class="status-instock">Còn hàng</span>
-                                    </div>
-                                </div>
-                                <div class="attribute-group" style="">
-                                    <p class="product-note-buy">Chọn phiên bản để xem giá và chi nhánh còn hàng:
-                                    </p>
-                                    <div class="color-list attribute-list">
-                                        <p class="attribute-title"><span class="title">Màu sắc</span> <span
-                                                class="color-name-selected"></span></p>
-                                        <div class="attribute-value">
-                                            <div data-color_id="1" style="background-color: #000000"
-                                                 data-title="Đen" class="color-item attribute-item">
-                                                <div class="product-variation__tick ">
-                                                    <svg enable-background="new 0 0 12 12" viewBox="0 0 12 12"
-                                                         x="0" y="0" class="svg-icon icon-tick-bold ">
-                                                        <g>
-                                                            <path
-                                                                    d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z">
-                                                            </path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div data-color_id="9" style="background-color: #ffffff"
-                                                 data-title="Trắng" class="color-item attribute-item">
-                                                <div class="product-variation__tick ">
-                                                    <svg enable-background="new 0 0 12 12" viewBox="0 0 12 12"
-                                                         x="0" y="0" class="svg-icon icon-tick-bold ">
-                                                        <g>
-                                                            <path
-                                                                    d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z">
-                                                            </path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div data-color_id="511" style="background-color: #ffd479"
-                                                 data-title="Vàng" class="color-item attribute-item">
-                                                <div class="product-variation__tick ">
-                                                    <svg enable-background="new 0 0 12 12" viewBox="0 0 12 12"
-                                                         x="0" y="0" class="svg-icon icon-tick-bold ">
-                                                        <g>
-                                                            <path
-                                                                    d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z">
-                                                            </path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <span style="display: none" class="color-name-selected"></span>
-                                        </div>
-                                    </div>
-                                    <div class="storage-list attribute-list">
-                                        <p class="attribute-title">Bộ nhớ </p>
-                                        <div class="attribute-value">
-                                            <div data-storage_id="14" class="storage-item attribute-item">64GB
-                                                <div class="product-variation__tick ">
-                                                    <svg enable-background="new 0 0 12 12" viewBox="0 0 12 12"
-                                                         x="0" y="0" class="svg-icon icon-tick-bold ">
-                                                        <g>
-                                                            <path
-                                                                    d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z">
-                                                            </path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div data-storage_id="253" class="storage-item attribute-item">256GB
-                                                <div class="product-variation__tick ">
-                                                    <svg enable-background="new 0 0 12 12" viewBox="0 0 12 12"
-                                                         x="0" y="0" class="svg-icon icon-tick-bold ">
-                                                        <g>
-                                                            <path
-                                                                    d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z">
-                                                            </path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div data-storage_id="254" class="storage-item attribute-item">512GB
-                                                <div class="product-variation__tick ">
-                                                    <svg enable-background="new 0 0 12 12" viewBox="0 0 12 12"
-                                                         x="0" y="0" class="svg-icon icon-tick-bold ">
-                                                        <g>
-                                                            <path
-                                                                    d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z">
-                                                            </path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="origin-list attribute-list">
-                                        <p class="attribute-title">Nguồn gốc </p>
-                                        <div class="attribute-value">
-                                            <div data-origin_id="11" class="origin-item attribute-item">Hàn Quốc
-                                                <div class="product-variation__tick ">
-                                                    <svg enable-background="new 0 0 12 12" viewBox="0 0 12 12"
-                                                         x="0" y="0" class="svg-icon icon-tick-bold ">
-                                                        <g>
-                                                            <path
-                                                                    d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z">
-                                                            </path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div data-origin_id="305" class="origin-item attribute-item">Âu, Mỹ
-                                                <div class="product-variation__tick ">
-                                                    <svg enable-background="new 0 0 12 12" viewBox="0 0 12 12"
-                                                         x="0" y="0" class="svg-icon icon-tick-bold ">
-                                                        <g>
-                                                            <path
-                                                                    d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z">
-                                                            </path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="aspect-list attribute-list">
-                                        <p class="attribute-title">Tình trạng </p>
-                                        <div class="attribute-value">
-                                            <div data-aspect_id="32" class="aspect-item attribute-item">95%
-                                                <div class="product-variation__tick ">
-                                                    <svg enable-background="new 0 0 12 12" viewBox="0 0 12 12"
-                                                         x="0" y="0" class="svg-icon icon-tick-bold ">
-                                                        <g>
-                                                            <path
-                                                                    d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z">
-                                                            </path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div data-aspect_id="18" class="aspect-item attribute-item">99%
-                                                <div class="product-variation__tick ">
-                                                    <svg enable-background="new 0 0 12 12" viewBox="0 0 12 12"
-                                                         x="0" y="0" class="svg-icon icon-tick-bold ">
-                                                        <g>
-                                                            <path
-                                                                    d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z">
-                                                            </path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="warranty-list attribute-list" style="">
-                                    <p class="attribute-title">
-                                                <span class="title">Gói bảo hành <a href="./trangbaohanh.html"
-                                                                                    target="_blank">Tìm
-                                                        hiểu
-                                                        thêm</a></span>
-                                        <span class="price-warranty"></span>
-                                    </p>
-                                    <div class="attribute-value">
-                                        <div data-warranty_id="1" data-web_id="1429"
-                                             data-warranty_price="550000" class="attribute-item warranty-item">
-                                            BHV 6 Tháng
-                                        </div>
-                                        <div data-warranty_id="3" data-web_id="1430"
-                                             data-warranty_price="850000" class="attribute-item warranty-item">
-                                            BHV 12 Tháng
-                                        </div>
-                                        <span class="price-warranty" style=""></span>
-                                        <div class="about-warranty">
-                                            <a href="" class="about_warranty_link" target="_blank">
-                                                <i class="fa fa-question-circle-o" aria-hidden="true"></i>
-                                            </a>
-                                            <div id="text-tooltips">
-                                                <div class="tips-content">
-                                                    <p class="tips-content-heading">Các chính sách của gói Bảo
-                                                        hành
-                                                        vàng
-                                                        mà Bảo hành
-                                                        thường không có:</p>
-                                                    <p>1. Bảo hành cả Pin, Nguồn, Màn hình, Camera, Vân tay.
-                                                    </p>
-                                                    <p>2. Thời gian được đổi máy nếu có lỗi nhà sản xuất lên đến
-                                                        30
-                                                        ngày
-                                                        (+ thêm 15-30
-                                                        ngày đối với máy ship xa).</p>
-                                                    <p>3. Tặng củ sạc nhanh, Cáp, Dán cường lực, Ốp lưng, Tai
-                                                        nghe
-                                                        hoặc
-                                                        mặt hàng khác
-                                                        tương đương khi mua Bảo hành vàng.</p>
-                                                    <p>4. Bảo hành lần 3 đổi máy luôn.</p>
-                                                    <p>... Còn nhiều chính sách khác trong gói BHV, quý khách
-                                                        xem
-                                                        chi
-                                                        tiết <a
-                                                                href="https://mobilecity.vn/page/chinh-sach-bao-hanh.html"
-                                                                target="_blank">Tại đây</a></p>
-                                                </div>
-                                                <div class="outline-tips">
-                                                    <div class="tips"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="product-more-info">
                                 <div class="warranty-default-box">
                                     <p class="warranty-text" style="">
@@ -599,13 +141,13 @@
                                     0372.253.243 (ĐN)
                                 </div>
 
-                                <a href="#">
+                                <a href="cart-add?id=${detail.maSP}">
                                     <button class="button-add-cart btn-payment">
                                         <i class="fas fa-shopping-cart"></i>
                                         THÊM VÀO GIỎ HÀNG
                                     </button>
                                 </a>
-                                <a href="#">
+                                <a href="cart-add?id=${detail.maSP}">
                                     <button class="button-buy btn-payment">
                                         MUA HÀNG NGAY
                                     </button>
@@ -640,68 +182,51 @@
                         <tbody>
                         <tr>
                             <td>Màn hình:</td>
-                            <td>Super Retina OLED, HDR10, 625 nits (HBM)<br/>
-                                6.5 inches, 1242 x 2688 pixels, tỷ lệ 19.5:9<br/>
-                                Kính chống xước, 3D Touch
+                            <td>
+                                ${detail.manHinh}
                             </td>
                         </tr>
                         <tr>
                             <td>Hệ điều hành:</td>
-                            <td>IOS 12</td>
+                            <td>${detail.hdh}</td>
                         </tr>
                         <tr>
                             <td>Camera sau:</td>
-                            <td>12 MP, f/1.8, 26mm (góc rộng), dual pixel PDAF, OIS<br/>
-                                12 MP, f/2.4, 52mm (chân dung), PDAF, OIS, 2x optical zoom<br/>
-                                Quay phim <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                             data-cfemail="dce8979ceee8">[email&#160;protected]</a>/30/60fps, <a
-                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                        data-cfemail="a392939b93d3e39093">[email&#160;protected]</a>/60/120/240fps
+                            <td>${detail.camSau}
                             </td>
                         </tr>
                         <tr>
                             <td>Camera trước:</td>
-                            <td>7 MP, f/2.2, 32mm (tiêu chuẩn)<br/>
-                                Quay phim <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                             data-cfemail="0435343c3474443734">[email&#160;protected]</a>/60fps,
-                                gyro-EIS
+                            <td>${detail.camTr}
                             </td>
                         </tr>
                         <tr>
                             <td>CPU:</td>
-                            <td>Apple A12 Bionic (7 nm), 6 nhân<br/>
-                                (2x2.5 GHz Vortex + 4x1.6 GHz Tempest)<br/>
-                                GPU: Apple GPU, 4 nhân
+                            <td>${detail.CPU}
                             </td>
                         </tr>
                         <tr>
                             <td>RAM:</td>
-                            <td>4 GB</td>
+                            <td>${detail.RAM}</td>
                         </tr>
                         <tr>
                             <td>Bộ nhớ trong:</td>
-                            <td>64-256-512 GB, NVMe<br/>
-                                Thẻ nhớ: không
+                            <td>${detail.boNhoTrong}
                             </td>
                         </tr>
                         <tr>
                             <td>Thẻ SIM:</td>
-                            <td>1 SIM - 2 SIM (tùy phiên bản thị trường), Dual SIM (Nano-SIM, dual stand-by)
-                                thị
-                                trường
-                                Trung Quốc
+                            <td>${detail.theSim}
                             </td>
                         </tr>
                         <tr>
                             <td>Dung lượng pin:</td>
-                            <td>Li-Ion 3174 mAh<br/>
-                                Sạc nhanh 15W, 50% trong 30 phút (quảng cáo)<br/>
-                                USB Power Delivery 2.0
+                            <td>${detail.pin}
                             </td>
                         </tr>
                         <tr>
                             <td>Thiết kế:</td>
-                            <td>Thanh + Cảm ứng</td>
+                            <td>${detail.thietKe}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -711,8 +236,9 @@
                             <span id="product-close-lightbox" class="close-lightbox-btn"><i class="fa fa-times"
                                                                                             aria-hidden="true"></i></span>
                     <marquee class="product-lightbox-title">
-                        <p>iPhone XS Max Cũ (64GB, 256GB) - Fullbox</p>
+                        <p>${detail.tenSP}</p>
                     </marquee>
+                    <%--                    </c:forEach>--%>
                     <div class="product-lightbox-content">
                         <table>
                             <tbody>
@@ -985,20 +511,7 @@
                 </div>
             </div>
             <div class="product-video-box">
-                <div class="product-video-title">Video đánh giá &amp; review iPhone XS Max Cũ (64GB, 256GB) -
-                    Fullbox
-                </div>
-                <div class="product-video-content" id="slider_video_home">
-                    <div class="iframe" data-iframe="https://www.youtube.com/watch?v=DI7E08OOzVk&amp;t=94s">
-                    </div>
-                    <div class="slide_video owl-carousel" id="slide_video">
-                        <div class="item" data-iframe="https://www.youtube.com/watch?v=DI7E08OOzVk&amp;t=94s">
-                            <span class="item_serial">1</span>
-                        </div>
-                        <div class="item" data-iframe=" https://www.youtube.com/watch?v=MmHMW_USg5E">
-                            <span class="item_serial">2</span>
-                        </div>
-                    </div>
+                <div class="product-video-title">Video đánh giá &amp; review ${detail.tenSP}
                 </div>
             </div>
         </div>
@@ -1010,7 +523,7 @@
                 <div class="product-detail product-subdetail">
                     <h2 class="product-content-title">
                         <img src="assets/img/logo3.png" alt="">
-                        Đánh giá nhanh iphone XS Max
+                        Đánh giá nhanh ${detail.tenSP}
                     </h2>
                     <div class="product-detail-content css-content">
                         <p style="text-align: justify;"><strong>iPhone XS Max cũ</strong> chính hãng, giá rẻ
@@ -1202,191 +715,6 @@
                         <p style="text-align: center;"></p>
                         <p></p>
                         <p></p>
-                        <div id="WidgetFloaterPanels" class="LTRStyle"
-                             style="display: none; text-align: left; direction: ltr; visibility: hidden;"
-                             translate="no">
-                            <div id="WidgetFloater" style="display: none;">
-                                <div id="WidgetLogoPanel"><span id="WidgetTranslateWithSpan">TRANSLATE with <img
-                                        class="lazy" id="FloaterLogo"/></span> <span id="WidgetCloseButton"
-                                                                                     title="Exit Translation">x</span>
-                                </div>
-                                <div id="LanguageMenuPanel">
-                                    <div class="DDStyle_outer"><input id="LanguageMenu_svid"
-                                                                      style="display: none;" autocomplete="on"
-                                                                      name="LanguageMenu_svid"
-                                                                      type="text" value="en"/>
-                                        <input id="LanguageMenu_textid" style="display: none;" autocomplete="on"
-                                               name="LanguageMenu_textid" type="text"/> <span
-                                                id="__LanguageMenu_header" class="DDStyle"
-                                                tabindex="0">English</span>
-                                        <div style="position: relative; text-align: left; left: 0;">
-                                            <div style="position: absolute; ;left: 0px;">
-                                                <div id="__LanguageMenu_popup" class="DDStyle"
-                                                     style="display: none;">
-                                                    <table id="LanguageMenu" border="0">
-                                                        <tbody>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#ar">Arabic</a></td>
-                                                            <td><a tabindex="-1" href="#he">Hebrew</a></td>
-                                                            <td><a tabindex="-1" href="#pl">Polish</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#bg">Bulgarian</a>
-                                                            </td>
-                                                            <td><a tabindex="-1" href="#hi">Hindi</a></td>
-                                                            <td><a tabindex="-1" href="#pt">Portuguese</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#ca">Catalan</a></td>
-                                                            <td><a tabindex="-1" href="#mww">Hmong Daw</a>
-                                                            </td>
-                                                            <td><a tabindex="-1" href="#ro">Romanian</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#zh-CHS">Chinese
-                                                                Simplified</a>
-                                                            </td>
-                                                            <td><a tabindex="-1" href="#hu">Hungarian</a>
-                                                            </td>
-                                                            <td><a tabindex="-1" href="#ru">Russian</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#zh-CHT">Chinese
-                                                                Traditional</a>
-                                                            </td>
-                                                            <td><a tabindex="-1" href="#id">Indonesian</a>
-                                                            </td>
-                                                            <td><a tabindex="-1" href="#sk">Slovak</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#cs">Czech</a></td>
-                                                            <td><a tabindex="-1" href="#it">Italian</a></td>
-                                                            <td><a tabindex="-1" href="#sl">Slovenian</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#da">Danish</a></td>
-                                                            <td><a tabindex="-1" href="#ja">Japanese</a>
-                                                            </td>
-                                                            <td><a tabindex="-1" href="#es">Spanish</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#nl">Dutch</a></td>
-                                                            <td><a tabindex="-1" href="#tlh">Klingon</a>
-                                                            </td>
-                                                            <td><a tabindex="-1" href="#sv">Swedish</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#en">English</a></td>
-                                                            <td><a tabindex="-1" href="#ko">Korean</a></td>
-                                                            <td><a tabindex="-1" href="#th">Thai</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#et">Estonian</a>
-                                                            </td>
-                                                            <td><a tabindex="-1" href="#lv">Latvian</a></td>
-                                                            <td><a tabindex="-1" href="#tr">Turkish</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#fi">Finnish</a></td>
-                                                            <td><a tabindex="-1" href="#lt">Lithuanian</a>
-                                                            </td>
-                                                            <td><a tabindex="-1" href="#uk">Ukrainian</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#fr">French</a></td>
-                                                            <td><a tabindex="-1" href="#ms">Malay</a></td>
-                                                            <td><a tabindex="-1" href="#ur">Urdu</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#de">German</a></td>
-                                                            <td><a tabindex="-1" href="#mt">Maltese</a></td>
-                                                            <td><a tabindex="-1" href="#vi">Vietnamese</a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#el">Greek</a></td>
-                                                            <td><a tabindex="-1" href="#no">Norwegian</a>
-                                                            </td>
-                                                            <td><a tabindex="-1" href="#cy">Welsh</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><a tabindex="-1" href="#ht">Haitian
-                                                                Creole</a>
-                                                            </td>
-                                                            <td><a tabindex="-1" href="#fa">Persian</a></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                    <img class="lazy"
-                                                         style="height: 7px; width: 17px; border-width: 0px; left: 20px;"
-                                                         alt=""/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="CTFLinksPanel"><span id="ExternalLinksPanel"><a id="HelpLink"
-                                                                                         title="Help"
-                                                                                         href="https://go.microsoft.com/?linkid=9722454"
-                                                                                         target="_blank"
-                                                                                         rel="noopener noreferrer"> <img
-                                        class="lazy"
-                                        id="HelpImg"/></a> <a id="EmbedLink"
-                                                              title="Get this widget for your own site"></a> <img
-                                        class="lazy"
-                                        id="EmbedImg"/> <a id="ShareLink"
-                                                           title="Share translated page with friends"></a> <img
-                                        class="lazy"
-                                        id="ShareImg"/> </span></div>
-                                <div id="FloaterProgressBar"></div>
-                            </div>
-                            <div id="WidgetFloaterCollapsed" style="display: none;">TRANSLATE with <img
-                                    class="lazy" id="CollapsedLogoImg"/></div>
-                            <div id="FloaterSharePanel" style="display: none;">
-                                <div id="ShareTextDiv"><span id="ShareTextSpan"> COPY THE URL BELOW </span>
-                                </div>
-                                <div id="ShareTextboxDiv"><input id="ShareTextbox" name="ShareTextbox"
-                                                                 readonly="readonly" type="text"/> <a id="EmailLink"
-                                                                                                      title="Email this translation"></a>
-                                    <img class="lazy" id="EmailImg"/>
-                                </div>
-                                <div id="ShareFooter"><span id="ShareHelpSpan"><a id="ShareHelpLink"></a> <img
-                                        class="lazy" id="ShareHelpImg"/></span> <span id="ShareBackSpan"><a
-                                        id="ShareBack" title="Back To Translation"></a> Back</span></div>
-                                <input id="EmailSubject" name="EmailSubject" type="hidden"
-                                       value="Check out this page in {0} translated from {1}"/> <input
-                                    id="EmailBody" name="EmailBody" type="hidden"
-                                    value="Translated: {0}%0d%0aOriginal: {1}%0d%0a%0d%0aAutomatic translation powered by Microsoft® Translator%0d%0ahttp://www.bing.com/translator?ref=MSTWidget"/>
-                                <input id="ShareHelpText" type="hidden"
-                                       value="This link allows visitors to launch this page and automatically translate it to {0}."/>
-                            </div>
-                            <div id="FloaterEmbed" style="display: none;">
-                                <div id="EmbedTextDiv"><span id="EmbedTextSpan">EMBED THE SNIPPET BELOW IN YOUR
-                                                SITE</span>
-                                    <a id="EmbedHelpLink"
-                                       title="Copy this code and place it into your HTML."></a>
-                                    <img class="lazy" id="EmbedHelpImg"/>
-                                </div>
-                                <div id="EmbedTextboxDiv"><input id="EmbedSnippetTextBox"
-                                                                 name="EmbedSnippetTextBox" readonly="readonly"
-                                                                 type="text"
-                                                                 value="&lt;div id='MicrosoftTranslatorWidget' class='Dark' style='color:white;background-color:#555555'&gt;&lt;/div&gt;&lt;script type='text/javascript'&gt;setTimeout(function(){var s=document.createElement('script');s.type='text/javascript';s.charset='UTF-8';s.src=((location &amp;&amp; location.href &amp;&amp; location.href.indexOf('https') == 0)?'https://ssl.microsofttranslator.com':'http://www.microsofttranslator.com')+'/ajax/v3/WidgetV3.ashx?siteData=ueOIGRSKkd965FeEGM5JtQ**&amp;ctf=true&amp;ui=true&amp;settings=manual&amp;from=en';var p=document.getElementsByTagName('head')[0]||document.documentElement;p.insertBefore(s,p.firstChild); },0);&lt;/script&gt;"/>
-                                </div>
-                                <div id="EmbedNoticeDiv"><span id="EmbedNoticeSpan">Enable collaborative
-                                                features
-                                                and
-                                                customize widget: <a href="https://www.bing.com/widget/translator"
-                                                                     target="_blank" rel="noopener noreferrer">Bing Webmaster
-                                                    Portal</a></span></div>
-                                <div id="EmbedFooterDiv"><span id="EmbedBackSpan"><a
-                                        title="Back To Translation">Back</a></span></div>
-                            </div>
-                        </div>
                     </div>
                     <div class="product-detail-show">
                         <button class="product-detail-view product-detail-viewall">
@@ -1401,8 +729,8 @@
             </div>
             <div class="product-content-right">
                 <div class="product-summary">
-                    <p class="product-summary-title">iPhone XS Max Cũ (64GB, 256GB) - Fullbox</p>
-                    <p class="product-summary-price">10.150.000 ₫</p>
+                    <p class="product-summary-title">${detail.tenSP}</p>
+                    <p class="product-summary-price">${detail.giaSP} ₫</p>
                     <div class="sale-box v2-promotion">
                         <p class="sale-box-title">Khuyến mãi</p>
                         <ol>
@@ -1458,507 +786,14 @@
 <a href="#" class="go-to-top">
     <i class="go-to-top__icon fas fa-chevron-circle-up"></i>
 </a>
-
-<a href="#" class="go-to-chat">
-    <i class="go-to-chat__icon fab fa-facebook-messenger"></i>
-</a>
-<script data-cfasync="false"
-        src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script type="text/javascript" src="<c:url value='./assets/trangitem/js/function.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./assets/trangitem/js/owl.carousel.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./assets/trangitem/js/lightslider.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./assets/trangitem/js/lightgallery-all.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./assets/trangitem/js/phone.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./public/assets/js/libs/classie.js'/>"></script>
-<script src="https://mobilecity.vn/public/template-admin/js/moment.min.js"></script>
-<script src="https://mobilecity.vn/public/template-admin/js/jquery.datetimepicker.full.min.js"></script>
+<script type="text/javascript" src="<c:url value= 'assets/trangitem/js/function.js'/>"></script>
+<script type="text/javascript" src="<c:url value= 'assets/trangitem/js/owl.carousel.js'/>"></script>
+<script type="text/javascript" src="<c:url value= 'assets/trangitem/js/lightslider.js'/>"></script>
+<script type="text/javascript" src="<c:url value= 'assets/trangitem/js/lightgallery-all.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value= 'assets/trangitem/js/function.js'/>"></script>
+<script type="text/javascript" src="<c:url value= 'assets/trangitem/js/phone.js'/>"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script>
-    function suggest_search_template(element) {
-        return `
-                <li><a href="${element.url}">
-                    <div class="img">
-                        <img src="${element.image}" alt="${element.name}">
-                    </div>
-                    <div class="info">
-                        <h4 class="name">${element.name}</h4>
-                        <p class="price">${element.price}</p>
-                    </div>
-                </a></li>
-            `;
-    }
 
-    $(document).ready(function () {
-        if (!getCookie('location')) {
-            location_name = $('.location-dropdown .location-dropdown-title a span').html();
-            location_id = 1;
-            setCookie("location", location_id);
-            setCookie("location_name", location_name);
-            $('.popup-location').bPopup({
-                speed: 450,
-                transition: 'slideDown',
-                zIndex: 99999,
-                onOpen: function () {
-                    $('.popup-location').css('visibility', 'visible');
-                },
-                onClose: function () {
-                    $('.popup-location').css('visibility', 'hidden');
-                }
-            });
-        }
-
-        // search ajax bản PC và mobile
-        // PC
-        $('#keyword').on('keyup', function () {
-            var vcheck = [3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29];
-            var keyword = $(this).val();
-            data = {'keyword': keyword}
-            if (jQuery.inArray(keyword.length, vcheck) != '-1') {
-                loadAjax('https://mobilecity.vn/ajax/search', data, {
-                    beforeSend: function () {
-                    },
-                    success: function (result) {
-                        if (result.status == 1) {
-                            $('.suggest-search-list').empty();
-                            result.data.forEach(function (element, index) {
-                                suggest_template = suggest_search_template(element);
-                                $('.suggest-search-list').append(suggest_template);
-                            });
-                            $('.suggest-search').css('display', 'block');
-                        } else {
-                            $('.suggest-search').css('display', 'none');
-                        }
-                    }
-                });
-            } else {
-                $('.suggest-search').css('display', 'none');
-            }
-        });
-        // mobile
-        $('#keyword_mobile').on('keyup', function () {
-            var vcheck = [3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29];
-            var keyword = $(this).val();
-            data = {'keyword': keyword}
-            if (jQuery.inArray(keyword.length, vcheck) != '-1') {
-                loadAjax('https://mobilecity.vn/ajax/search', data, {
-                    beforeSend: function () {
-                    },
-                    success: function (result) {
-                        if (result.status == 1) {
-                            $('.suggest-search-list-mb').empty();
-                            result.data.forEach(function (element, index) {
-                                suggest_template = suggest_search_template(element);
-                                $('.suggest-search-list-mb').append(suggest_template);
-                            });
-                            $('.suggest-search-mb').css('display', 'block');
-                        } else {
-                            $('.suggest-search-mb').css('display', 'none');
-                        }
-                    }
-                });
-            } else {
-                $('.suggest-search-mb').css('display', 'none');
-            }
-        });
-        $('#hiddenMenu-user').on('click', function () {
-            if ($('#mp-pusher').hasClass('mp-pushed')) {
-                $('#mp-menu').css('display', 'none');
-                $('#mp-menu-user').css('display', 'block');
-                $('#mp-menu-user').parent().css('transform', 'translate3d(300px, 0, 0)');
-            }
-        });
-        $('#hiddenMenu').on('click', function () {
-            $('#mp-menu').css('display', 'block');
-            $('#mp-menu-user').css('display', 'none');
-            $('#mp-menu-user').parent().css('transform', 'translate3d(300px, 0, 0)');
-        });
-
-    });
-</script>
-
-<script type="text/javascript" src="<c:url value='./public/assets/js/libs/owl.carousel.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./public/assets/js/libs/jquery.simplePagination.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./public/assets/js/libs/lightslider.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./public/assets/js/libs/lightgallery-all.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./public/assets/js/pages/phone.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./public/assets/js/pages/popup_v2.js'/>"></script>
-<script type="text/javascript" src="<c:url value='./public/assets/js/pages/product_deal_combo.js'/>"></script>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        getComment('https://mobilecity.vn/ajax/comment/phones/953');
-        comment_like();
-        comment_search('https://mobilecity.vn/ajax/comment/search/phones/953', 'https://mobilecity.vn/ajax/comment/phones/953');
-        send_comment('https://mobilecity.vn/ajax/comment/phones/953/add');
-        let phone_variants = [{
-            "id": 14748,
-            "phone_id": 953,
-            "color": 1,
-            "storage": 14,
-            "aspect": 32,
-            "origin": 11,
-            "price": 10150000,
-            "soft_id": 2173,
-            "variant_text": "64GB \u0110en 95% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14750,
-            "phone_id": 953,
-            "color": 9,
-            "storage": 14,
-            "aspect": 32,
-            "origin": 11,
-            "price": 10350000,
-            "soft_id": 2175,
-            "variant_text": "64GB Tr\u1eafng 95% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14749,
-            "phone_id": 953,
-            "color": 511,
-            "storage": 14,
-            "aspect": 32,
-            "origin": 11,
-            "price": 10550000,
-            "soft_id": 2174,
-            "variant_text": "64GB V\u00e0ng 95% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14757,
-            "phone_id": 953,
-            "color": 1,
-            "storage": 14,
-            "aspect": 18,
-            "origin": 11,
-            "price": 10650000,
-            "soft_id": 2167,
-            "variant_text": "64GB \u0110en 99% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14730,
-            "phone_id": 953,
-            "color": 1,
-            "storage": 14,
-            "aspect": 32,
-            "origin": 305,
-            "price": 10650000,
-            "soft_id": 2143,
-            "variant_text": "64GB \u0110en 95% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14732,
-            "phone_id": 953,
-            "color": 9,
-            "storage": 14,
-            "aspect": 32,
-            "origin": 305,
-            "price": 10850000,
-            "soft_id": 2145,
-            "variant_text": "64GB Tr\u1eafng 95% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14759,
-            "phone_id": 953,
-            "color": 9,
-            "storage": 14,
-            "aspect": 18,
-            "origin": 11,
-            "price": 10850000,
-            "soft_id": 2169,
-            "variant_text": "64GB Tr\u1eafng 99% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14731,
-            "phone_id": 953,
-            "color": 511,
-            "storage": 14,
-            "aspect": 32,
-            "origin": 305,
-            "price": 11050000,
-            "soft_id": 2144,
-            "variant_text": "64GB V\u00e0ng 95% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14758,
-            "phone_id": 953,
-            "color": 511,
-            "storage": 14,
-            "aspect": 18,
-            "origin": 11,
-            "price": 11050000,
-            "soft_id": 2168,
-            "variant_text": "64GB V\u00e0ng 99% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14739,
-            "phone_id": 953,
-            "color": 1,
-            "storage": 14,
-            "aspect": 18,
-            "origin": 305,
-            "price": 11150000,
-            "soft_id": 2149,
-            "variant_text": "64GB \u0110en 99% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14741,
-            "phone_id": 953,
-            "color": 9,
-            "storage": 14,
-            "aspect": 18,
-            "origin": 305,
-            "price": 11350000,
-            "soft_id": 2151,
-            "variant_text": "64GB Tr\u1eafng 99% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14740,
-            "phone_id": 953,
-            "color": 511,
-            "storage": 14,
-            "aspect": 18,
-            "origin": 305,
-            "price": 11550000,
-            "soft_id": 2150,
-            "variant_text": "64GB V\u00e0ng 99% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14751,
-            "phone_id": 953,
-            "color": 1,
-            "storage": 253,
-            "aspect": 32,
-            "origin": 11,
-            "price": 11650000,
-            "soft_id": 2176,
-            "variant_text": "256GB \u0110en 95% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14753,
-            "phone_id": 953,
-            "color": 9,
-            "storage": 253,
-            "aspect": 32,
-            "origin": 11,
-            "price": 11850000,
-            "soft_id": 2178,
-            "variant_text": "256GB Tr\u1eafng 95% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14754,
-            "phone_id": 953,
-            "color": 1,
-            "storage": 254,
-            "aspect": 32,
-            "origin": 11,
-            "price": 11950000,
-            "soft_id": 2456,
-            "variant_text": "512GB \u0110en 95% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14752,
-            "phone_id": 953,
-            "color": 511,
-            "storage": 253,
-            "aspect": 32,
-            "origin": 11,
-            "price": 12050000,
-            "soft_id": 2177,
-            "variant_text": "256GB V\u00e0ng 95% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14756,
-            "phone_id": 953,
-            "color": 9,
-            "storage": 254,
-            "aspect": 32,
-            "origin": 11,
-            "price": 12150000,
-            "soft_id": 2458,
-            "variant_text": "512GB Tr\u1eafng 95% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14760,
-            "phone_id": 953,
-            "color": 1,
-            "storage": 253,
-            "aspect": 18,
-            "origin": 11,
-            "price": 12150000,
-            "soft_id": 2170,
-            "variant_text": "256GB \u0110en 99% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14733,
-            "phone_id": 953,
-            "color": 1,
-            "storage": 253,
-            "aspect": 32,
-            "origin": 305,
-            "price": 12150000,
-            "soft_id": 2146,
-            "variant_text": "256GB \u0110en 95% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14762,
-            "phone_id": 953,
-            "color": 9,
-            "storage": 253,
-            "aspect": 18,
-            "origin": 11,
-            "price": 12350000,
-            "soft_id": 2172,
-            "variant_text": "256GB Tr\u1eafng 99% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14755,
-            "phone_id": 953,
-            "color": 511,
-            "storage": 254,
-            "aspect": 32,
-            "origin": 11,
-            "price": 12350000,
-            "soft_id": 2457,
-            "variant_text": "512GB V\u00e0ng 95% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14735,
-            "phone_id": 953,
-            "color": 9,
-            "storage": 253,
-            "aspect": 32,
-            "origin": 305,
-            "price": 12350000,
-            "soft_id": 2148,
-            "variant_text": "256GB Tr\u1eafng 95% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14763,
-            "phone_id": 953,
-            "color": 1,
-            "storage": 254,
-            "aspect": 18,
-            "origin": 11,
-            "price": 12450000,
-            "soft_id": 2453,
-            "variant_text": "512GB \u0110en 99% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14736,
-            "phone_id": 953,
-            "color": 1,
-            "storage": 254,
-            "aspect": 32,
-            "origin": 305,
-            "price": 12450000,
-            "soft_id": 2444,
-            "variant_text": "512GB \u0110en 95% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14734,
-            "phone_id": 953,
-            "color": 511,
-            "storage": 253,
-            "aspect": 32,
-            "origin": 305,
-            "price": 12550000,
-            "soft_id": 2147,
-            "variant_text": "256GB V\u00e0ng 95% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14761,
-            "phone_id": 953,
-            "color": 511,
-            "storage": 253,
-            "aspect": 18,
-            "origin": 11,
-            "price": 12550000,
-            "soft_id": 2171,
-            "variant_text": "256GB V\u00e0ng 99% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14738,
-            "phone_id": 953,
-            "color": 9,
-            "storage": 254,
-            "aspect": 32,
-            "origin": 305,
-            "price": 12650000,
-            "soft_id": 2446,
-            "variant_text": "512GB Tr\u1eafng 95% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14742,
-            "phone_id": 953,
-            "color": 1,
-            "storage": 253,
-            "aspect": 18,
-            "origin": 305,
-            "price": 12650000,
-            "soft_id": 2152,
-            "variant_text": "256GB \u0110en 99% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14765,
-            "phone_id": 953,
-            "color": 9,
-            "storage": 254,
-            "aspect": 18,
-            "origin": 11,
-            "price": 12650000,
-            "soft_id": 2455,
-            "variant_text": "512GB Tr\u1eafng 99% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14744,
-            "phone_id": 953,
-            "color": 9,
-            "storage": 253,
-            "aspect": 18,
-            "origin": 305,
-            "price": 12850000,
-            "soft_id": 2154,
-            "variant_text": "256GB Tr\u1eafng 99% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14737,
-            "phone_id": 953,
-            "color": 511,
-            "storage": 254,
-            "aspect": 32,
-            "origin": 305,
-            "price": 12850000,
-            "soft_id": 2445,
-            "variant_text": "512GB V\u00e0ng 95% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14764,
-            "phone_id": 953,
-            "color": 511,
-            "storage": 254,
-            "aspect": 18,
-            "origin": 11,
-            "price": 12850000,
-            "soft_id": 2454,
-            "variant_text": "512GB V\u00e0ng 99% H\u00e0n Qu\u1ed1c"
-        }, {
-            "id": 14745,
-            "phone_id": 953,
-            "color": 1,
-            "storage": 254,
-            "aspect": 18,
-            "origin": 305,
-            "price": 12950000,
-            "soft_id": 2441,
-            "variant_text": "512GB \u0110en 99% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14743,
-            "phone_id": 953,
-            "color": 511,
-            "storage": 253,
-            "aspect": 18,
-            "origin": 305,
-            "price": 13050000,
-            "soft_id": 2153,
-            "variant_text": "256GB V\u00e0ng 99% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14747,
-            "phone_id": 953,
-            "color": 9,
-            "storage": 254,
-            "aspect": 18,
-            "origin": 305,
-            "price": 13150000,
-            "soft_id": 2443,
-            "variant_text": "512GB Tr\u1eafng 99% \u00c2u, M\u1ef9"
-        }, {
-            "id": 14746,
-            "phone_id": 953,
-            "color": 511,
-            "storage": 254,
-            "aspect": 18,
-            "origin": 305,
-            "price": 13350000,
-            "soft_id": 2442,
-            "variant_text": "512GB V\u00e0ng 99% \u00c2u, M\u1ef9"
-        }];
-        let extra_prices = {"1": 0, "2": 100000, "3": 100000};
-        showInfoVariantSync(phone_variants, extra_prices, 953, 1);
-        // showPopupBuyVariant(phone_variants, extra_prices);
-        showRelatedProduct(953);
-    });
-
-</script>
-<a class="mobilecity-messenger" href="https://m.me/mobilecityvn" target="_blank"></a>
 <script> var reCaptcha = 'eyJzcGFtX3RpbWVzIjoiMyIsInNwYW1fc2Vjb25kcyI6IjEwIn0=';</script>
 </body>
 

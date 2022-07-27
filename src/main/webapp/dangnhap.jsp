@@ -1,7 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.webproject.BEAN.User" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="com.example.webproject.DAO.UserDAO" %>
+<%@ page import="com.example.webproject.DAO.daoimpl.UserDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@include file="common/taglib.jsp" %>
@@ -76,11 +76,11 @@
                 <button class="btn btn-lg btn-login" type="submit">Đăng nhập</button>
             </div>
             <div class="v2-login-bottom">
-                    <span class="v2-left"><span class="v2-hide">Chưa có tài khoản</span><a href="dangki.jsp"
+                    <span class="v2-left"><span class="v2-hide">Chưa có tài khoản</span><a href="./dang-ky"
                                                                                            class="v2-register-now"> ( Đăng ký ngay )</a>
                     </span>
                 <span class="v2-right">
-                    <a class="v2-remember-password" href="quenmatkhau.jsp"> Quên mật khẩu ?</a>
+                    <a class="v2-remember-password" href="./quen-mat-khau"> Quên mật khẩu ?</a>
                 </span> <br>
 
             </div>

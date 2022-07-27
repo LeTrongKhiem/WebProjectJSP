@@ -3,24 +3,142 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-    <display-name>Web Project</display-name>
+    <display-name>TGMobile</display-name>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-<!--    <filter>-->
-<!--        <filter-name>sitemesh</filter-name>-->
-<!--        <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>-->
-<!--    </filter>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>sitemesh</filter-name>-->
-<!--        <url-pattern>/*</url-pattern>-->
-<!--    </filter-mapping>-->
+<!--    <error-page>-->
+<!--        <error-code>404</error-code>-->
+<!--        <location>/page404.jsp</location>-->
+<!--    </error-page>-->
+<!--    <error-page>-->
+<!--        <error-code>500</error-code>-->
+<!--        <location>/page500.jsp</location>-->
+<!--    </error-page>-->
+    <servlet>
+        <servlet-name>login</servlet-name>
+        <jsp-file>/dangnhap.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/dang-nhap</url-pattern>
+    </servlet-mapping>
 
-<!--    <listener>-->
-<!--        <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>-->
-<!--    </listener>-->
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <jsp-file>/dangki.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/dang-ky</url-pattern>
+    </servlet-mapping>
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>
+            c:\apache-tomcat-5.5.29\webapps\data\
+        </param-value>
+    </context-param>
+    <context-param>
+        <param-name>tempfile.dir</param-name>
+        <param-value>/admin/add</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>trangbaohanh</servlet-name>
+        <jsp-file>/trangbaohanh.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>trangbaohanh</servlet-name>
+        <url-pattern>/tra-cuu-bao-hanh</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ForgotPassword</servlet-name>
+        <jsp-file>/quenmatkhau.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ForgotPassword</servlet-name>
+        <url-pattern>/quen-mat-khau</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>tintuc</servlet-name>
+        <jsp-file>/tintuc.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>tintuc</servlet-name>
+        <url-pattern>/tin-tuc</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>info</servlet-name>
+        <jsp-file>/thongtincanhan.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>info</servlet-name>
+        <url-pattern>/thong-tin-tai-khoan</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/trang-chu</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>thanhtoan</servlet-name>
+        <jsp-file>/thanhtoan.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>thanhtoan</servlet-name>
+        <url-pattern>/thanh-toan</url-pattern>
+    </servlet-mapping>
+
+<!--    <servlet>-->
+<!--        <servlet-name>adminlogin</servlet-name>-->
+<!--        <jsp-file>/admin/AdminLogin.jsp</jsp-file>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>adminlogin</servlet-name>-->
+<!--        <url-pattern>/admin/dang-nhap</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+    <servlet>
+        <servlet-name>qlnv</servlet-name>
+        <jsp-file>/admin/quanlynhanvien.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>qlnv</servlet-name>
+        <url-pattern>/admin/quan-ly-nhan-vien</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>adminlogin</servlet-name>
+        <jsp-file>/admin/AdminLogin.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adminlogin</servlet-name>
+        <url-pattern>/admin/dang-nhap</url-pattern>
+    </servlet-mapping>
+
 
     <session-config>
         <session-timeout>15</session-timeout>
     </session-config>
 </web-app>
+
+        <!--    <filter>-->
+        <!--        <filter-name>sitemesh</filter-name>-->
+        <!--        <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>-->
+        <!--    </filter>-->
+        <!--    <filter-mapping>-->
+        <!--        <filter-name>sitemesh</filter-name>-->
+        <!--        <url-pattern>/*</url-pattern>-->
+        <!--    </filter-mapping>-->
+
+        <!--    <listener>-->
+        <!--        <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>-->
+        <!--    </listener>-->

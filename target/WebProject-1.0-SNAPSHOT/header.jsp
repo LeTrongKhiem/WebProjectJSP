@@ -1,5 +1,6 @@
 <%@ page import="com.example.webproject.DAO.daoimpl.CategoryDAOImpl" %>
-<%@ page import="com.example.webproject.BEAN.Category" %><%--
+<%@ page import="com.example.webproject.BEAN.Category" %>
+<%@ page import="com.example.webproject.BEAN.Cart" %><%--
   Created by LeTrongKhiem.
   User: User
   Date: 03-Dec-21
@@ -65,62 +66,116 @@
                 <div class="col l-4 m-0 c-0">
                     <div class="header-nav__item">
                         <ul class="header-nav__logs-list" style="width: 100%">
+                            <c:set var="auth" value="${sessionScope.user}"/>
                             <c:choose>
-                                <c:when test="${sessionScope.user != null}">
-                                    <li class="header__navbar-items">
-                                        <a href="#" class="header__navbar-items-link" style="margin-left: 100px">
-                                            <i class="header__navbar--icon fas fa-bell"></i>
-                                        </a>
-                                    </li>
-                                    <li class="header__navbar-items header__navbar-user header__navbar-items--separate">
-                                    <li class="header__navbar-items header__navbar-user header__cart-wrap">
-                                        <a href="#" class="header__navbar-items-link ">
-                                            <i class="header__navbar--icon fas fa-shopping-cart"></i>
-                                            <span class="header__card-notice">3</span>
-                                        </a>
-                                    </li>
-                                    <li class="header__navbar-items header__navbar-user header__navbar-items--separate">
-                                    <img src="https://avatar-redirect.appspot.com/google/108477473411482458497?size=400"
-                                         alt="" class="header__navbar-user-img">
-                                    <span class="header__navbar-user-name"
-                                          style="width: 120px"> ${sessionScope.user.name}</span>
-                                    <ul class="header__navbar-user-menu">
-                                        <li class="header__navber-user-item">
-                                            <a href="./thongtincanhan.jsp" class="header-nav__log-link">Tài khoản của
-                                                tôi</a>
+                                <c:when test="${auth != null}">
+                                    <c:if test="${sessionScope.user.role >= 1}">
+                                        <li class="header__navbar-items">
+                                            <a href="#" class="header__navbar-items-link" style="margin-left: 100px">
+                                                <i class="header__navbar--icon fas fa-bell"></i>
+                                            </a>
                                         </li>
-                                        <li class="header__navber-user-item">
-                                            <a href="" class="header-nav__log-link">Tra cứu bảo hành</a>
+                                        <li class="header__navbar-items header__navbar-user header__navbar-items--separate">
+                                        <li class="header__navbar-items header__navbar-user header__cart-wrap">
+                                            <a href="cart" class="header__navbar-items-link ">
+                                                <i class="header__navbar--icon fas fa-shopping-cart"
+                                                   style="margin-left: -17px;"></i>
+                                                <span class="header__card-notice"><%=Cart.getInstance().getTotalQuantity()%></span>
+                                            </a>
                                         </li>
-                                        <li class="header__navber-user-item">
-                                            <a href="" class="header-nav__log-link">Đơn đặt hàng</a>
+                                        <li class="header__navbar-items header__navbar-user header__navbar-items--separate">
+                                            <img src="https://avatar-redirect.appspot.com/google/108477473411482458497?size=400"
+                                                 alt="" class="header__navbar-user-img">
+                                            <span class="header__navbar-user-name"
+                                                  style="width: 120px"> ${sessionScope.user.name}</span>
+                                            <ul class="header__navbar-user-menu" style="left: -62px;">
+                                                <li class="header__navber-user-item">
+                                                    <a href='<c:url value="/thong-tin-tai-khoan"/>'
+                                                       class="header-nav__log-link">Tài khoản của
+                                                        tôi</a>
+                                                </li>
+                                                <li class="header__navber-user-item">
+                                                    <a href="" class="header-nav__log-link">Tra cứu bảo hành</a>
+                                                </li>
+                                                <li class="header__navber-user-item">
+                                                    <a href="" class="header-nav__log-link">Đơn đặt hàng</a>
+                                                </li>
+                                                <li class="header__navber-user-item">
+                                                    <a href="" class="header-nav__log-link">Lịch sử mua hàng</a>
+                                                </li>
+                                                <li class="header__navber-user-item">
+                                                    <a href="" class="header-nav__log-link">Lịch sử sữa chữa</a>
+                                                </li>
+                                                <li class="header__navber-user-item">
+                                                    <a href="" class="header-nav__log-link">Sổ địa chỉ</a>
+                                                </li>
+                                                <li class="header__navber-user-item header__navber-user-item--separate">
+                                                    <a href="LogOutController" class="header-nav__log-link">Đăng
+                                                        xuất</a>
+                                                </li>
+                                            </ul>
+                                        <li><a href="<c:url value="/admin/dang-nhap"/>"
+                                               style="text-decoration: none; color: var(--primary-color);">Trang
+                                            Admin</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.user.role == 0}">
+                                        <li class="header__navbar-items">
+                                            <a href="#" class="header__navbar-items-link" style="margin-left: 100px">
+                                                <i class="header__navbar--icon fas fa-bell"></i>
+                                            </a>
                                         </li>
-                                        <li class="header__navber-user-item">
-                                            <a href="" class="header-nav__log-link">Lịch sử mua hàng</a>
+                                        <li class="header__navbar-items header__navbar-user header__navbar-items--separate">
+                                        <li class="header__navbar-items header__navbar-user header__cart-wrap">
+                                            <a href="cart" class="header__navbar-items-link ">
+                                                <i class="header__navbar--icon fas fa-shopping-cart"
+                                                   style="margin-left: -17px;"></i>
+                                                <span class="header__card-notice"><%=Cart.getInstance().getTotalQuantity()%></span>
+                                            </a>
                                         </li>
-                                        <li class="header__navber-user-item">
-                                            <a href="" class="header-nav__log-link">Lịch sử sữa chữa</a>
-                                        </li>
-                                        <li class="header__navber-user-item">
-                                            <a href="" class="header-nav__log-link">Sổ địa chỉ</a>
-                                        </li>
-                                        <li class="header__navber-user-item header__navber-user-item--separate">
-                                            <a href="LogOutController" class="header-nav__log-link">Đăng
-                                                xuất</a>
-                                        </li>
-                                    </ul>
+                                        <li class="header__navbar-items header__navbar-user header__navbar-items--separate">
+                                        <img src="https://avatar-redirect.appspot.com/google/108477473411482458497?size=400"
+                                             alt="" class="header__navbar-user-img">
+                                        <span class="header__navbar-user-name"
+                                              style="width: 120px"> ${sessionScope.user.name}</span>
+                                        <ul class="header__navbar-user-menu" style="left: -62px;">
+                                            <li class="header__navber-user-item">
+                                                <a href='<c:url value="/thong-tin-tai-khoan"/>'
+                                                   class="header-nav__log-link">Tài khoản của
+                                                    tôi</a>
+                                            </li>
+                                            <li class="header__navber-user-item">
+                                                <a href="" class="header-nav__log-link">Tra cứu bảo hành</a>
+                                            </li>
+                                            <li class="header__navber-user-item">
+                                                <a href="" class="header-nav__log-link">Đơn đặt hàng</a>
+                                            </li>
+                                            <li class="header__navber-user-item">
+                                                <a href="" class="header-nav__log-link">Lịch sử mua hàng</a>
+                                            </li>
+                                            <li class="header__navber-user-item">
+                                                <a href="" class="header-nav__log-link">Lịch sử sữa chữa</a>
+                                            </li>
+                                            <li class="header__navber-user-item">
+                                                <a href="" class="header-nav__log-link">Sổ địa chỉ</a>
+                                            </li>
+                                            <li class="header__navber-user-item header__navber-user-item--separate">
+                                                <a href="LogOutController" class="header-nav__log-link">Đăng
+                                                    xuất</a>
+                                            </li>
+                                        </ul>
+                                    </c:if>
                                 </c:when>
                                 <c:otherwise>
                                     <li class="header-nav__log-item">
-                                        <a href="./trangbaohanh.jsp" class="header-nav__log-link"
+                                        <a href='<c:url value="/tra-cuu-bao-hanh"/>' class="header-nav__log-link"
                                            style="width: 150px">Tra cứu bảo
                                             hành</a>
                                     </li>
                                     <li class="header-nav__log-item">
-                                        <a href="./dangnhap.jsp" class="header-nav__log-link">Đăng nhập</a>
+                                        <a href='<c:url value="/dang-nhap"/>' class="header-nav__log-link">Đăng nhập</a>
                                     </li>
                                     <li class="header-nav__log-item">
-                                        <a href="./dangki.jsp" class="header-nav__log-link">Đăng ký</a>
+                                        <a href='<c:url value="/dang-ky"/>' class="header-nav__log-link">Đăng ký</a>
                                     </li>
                                 </c:otherwise>
                             </c:choose>
@@ -139,21 +194,24 @@
                     <i class="header-mobile-menu__icon fas fa-bars"></i>
                 </div>
 
-                <a href="index.jsp" class="header-logo__link">
+                <a href='<c:url value="/trang-chu"/>' class="header-logo__link">
                     <!-- <div class="header-logo__img">TG Mobile</div> -->
                     <div class="header-mobile-nav__logo1" style="background-image: url('assets/img/logo3.png');">
                     </div>
                 </a>
 
-                <div class="header-search hide-on-mobile-and-tablet">
-                    <input type="text" placeholder="Nhập tên sản phẩm..." class="header-search__input">
-                    <i class="header-search__icon fas fa-search"></i>
-                </div>
+                <form class="header-search hide-on-mobile-and-tablet" action="search?index=1" method="post">
+                    <input value="${txts}" name="txt" type="text" placeholder="Nhập tên sản phẩm..."
+                           class="header-search__input">
+                    <button type="submit" style="background: #fff;border: none;"><i
+                            class="header-search__icon fas fa-search"></i></button>
+                </form>
 
                 <ul class="header-menu hide-on-mobile-and-tablet">
                     <%for (Category categoryParent : categoryDAO.getListCategoryParent()) {%>
                     <li class="header-menu__item">
-                        <a href="productlist.jsp" class="header-menu__item-link">
+                        <a href="ProductListController?madanhmuc=<%=categoryParent.getMaDanhMuc()%>"
+                           class="header-menu__item-link">
                             <i class="header-menu__item-icon <%=categoryParent.getIcon()%>"></i>
                             <p class="header-menu__item-name"><%=categoryParent.getTenDanhMuc()%>
                             </p>
@@ -167,7 +225,8 @@
                                             <%for (Category categoryChild : categoryDAO.getListCategoryChild(categoryParent.getMaDanhMuc())) {%>
                                             <div class="col l-4 m-4">
                                                 <div class="header-sub-menu__item">
-                                                    <a href="productlist.jsp?madanhmuc=<%=categoryChild.getMaDanhMuc()%>" class="header-sub-menu__link">
+                                                    <a href="ProductListController?madanhmuc=<%=categoryChild.getMaDanhMuc()%>"
+                                                       class="header-sub-menu__link">
                                                         <i
                                                                 class="header-sub-menu__icon fas fa-angle-double-right"></i>
                                                         <%=categoryChild.getTenDanhMuc()%>
@@ -261,7 +320,7 @@
                     <%}%>
                     <!-- Menu news -->
                     <li class="header-menu__item">
-                        <a href="./tintuc.jsp" class="header-menu__item-link">
+                        <a href="./tin-tuc" class="header-menu__item-link">
                             <i class="header-menu__item-icon fas fa-newspaper"></i>
                             <p class="header-menu__item-name">Tin tức</p>
                         </a>
@@ -317,7 +376,7 @@
             <%}%>
             <!-- News -->
             <li class="header-mobile-nav__item">
-                <a href="./tintuc.jsp" class="header-mobile-nav__item-select">
+                <a href="./tin-tuc" class="header-mobile-nav__item-select">
                     <i class="header-mobile-nav__icon-open fas fa-chevron-right"></i>
                     Tin tức
                 </a>
@@ -346,7 +405,8 @@
 
                         <ul class="header-mobile-sub-nav__list" style="--num-row: 8;">
                             <li class="header-mobile-sub-nav__item">
-                                <a href="thongtincanhan.jsp" class="header-mobile-sub-nav__item-link">Tài khoản của tôi</a>
+                                <a href="./thong-tin-tai-khoan" class="header-mobile-sub-nav__item-link">Tài khoản của
+                                    tôi</a>
                             </li>
                             <li class="header-mobile-sub-nav__item">
                                 <a href="trangbaohanh.jsp" class="header-mobile-sub-nav__item-link">Tra cứu bảo hành</a>

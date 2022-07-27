@@ -1,8 +1,10 @@
 package com.example.webproject.BEAN;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class RandomPassword {
+public class RandomPassword implements Serializable {
+    private static final long serialVersionUID= 1L;
     private static final String alpha = "abcdefghijklmnopqrstuvwxyz"; // a-z
     private static final String alphaUpperCase = alpha.toUpperCase(); // A-Z
     private static final String digits = "0123456789"; // 0-9

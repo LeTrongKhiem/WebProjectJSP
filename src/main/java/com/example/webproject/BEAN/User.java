@@ -1,6 +1,10 @@
 package com.example.webproject.BEAN;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
+    private static final long serialVersionUID= 1L;
+    private String id;
     private String name;
     private String email;
     private String phone;
@@ -13,6 +17,7 @@ public class User {
     private int role;
     private String code;
     private String address;
+    private int active;
 
     public User() {
     }
@@ -31,6 +36,19 @@ public class User {
         this.code = code;
     }
 
+
+    public User(String name, String email, String phone, String gender, String date, String month, String year, String password, String re_password, int role) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.date = date;
+        this.month = month;
+        this.year = year;
+        this.password = password;
+        this.re_password = re_password;
+        this.role = role;
+    }
 
     public User(String name, String email, String phone, String gender, String date, String month, String year, String password, String re_password) {
         this.name = name;
@@ -153,5 +171,21 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int isActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 }

@@ -28,105 +28,119 @@
     <link rel="stylesheet" href="<c:url value= './assets/css/trangthongtin.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/grid.css'/>">
 </head>
+<style>
+    .header-with-search__wrap {
+        height: 72%;
+    }
+</style>
 <body>
-<%--  header  --%>
-<%@include file="/header.jsp" %>
-<%--  header  --%>
-<div class="container">
-    <h2 class="container-heading">Tài khoản</h2>
-    <div class="grid wide">
-        <div class="row">
-            <div class="col-lg-3 user-profile-left">
-                <div class="text-center user-info">
-                    <img src="https://avatar-redirect.appspot.com/google/108477473411482458497?size=400"
-                         style="width: 150px;" class="avatar img-circle" alt="avatar">
-                    <h3 class="text-center">${sessionScope.user.name}</h3>
-                    <input type="file" name="file" id="file" class="inputfile"/>
-                    <!-- <input type="file" class="btn btn-light btn--m btn--inline btn-image" value="Chọn ảnh"></input> -->
-                </div>
-            </div>
+<c:choose>
+    <c:when test="${sessionScope.user != null}">
+        <%@include file="/header.jsp" %>
+        <%--  header  --%>
+        <div class="container">
+            <h2 class="container-heading">Tài khoản</h2>
+            <div class="grid wide">
+                <div class="row">
+                    <div class="col-lg-3 user-profile-left">
+                        <div class="text-center user-info">
+                            <img src="https://avatar-redirect.appspot.com/google/108477473411482458497?size=400"
+                                 style="width: 150px;" class="avatar img-circle" alt="avatar">
+                            <h3 class="text-center">${sessionScope.user.name}</h3>
+                            <input type="file" name="file" id="file" class="inputfile"/>
+                            <!-- <input type="file" class="btn btn-light btn--m btn--inline btn-image" value="Chọn ảnh"></input> -->
+                        </div>
+                    </div>
 
 
-            <div class="col-md-9 personal-info">
-                <h3>Thông tin cá nhân</h3>
+                    <div class="col-md-9 personal-info">
+                        <h3>Thông tin cá nhân</h3>
 
-                <form class="form-horizontal" role="form" action="ChangePasswordController" method="post">
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Họ Tên:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" type="text" value="${sessionScope.user.name}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Địa chỉ:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" type="text" value="${sessionScope.user.address}" name="address">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Email:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" type="email" value="${sessionScope.user.email}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">SĐT:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" type="text" value="${sessionScope.user.phone}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Tên tài khoản:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" type="text" value="${sessionScope.user.email}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Mật khẩu mới:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" type="password" value="" name="newPass" id="newPass">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Xác nhận mật khẩu:</label>
-                        <div class="col-lg-8">
-                            <input class="form-control" type="password" name="confirmPass" id="confirmPass">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label"></label>
-                        <div class="col-lg-8">
-                            <button type="submit" class="btn-save"
-                                    style="width: 150px; height: 40px; font-size: 1.6rem">Cập nhật
-                            </button>
-                            <span></span>
-                            <input type="reset" class="btn btn-default" value="Thoát">
-                        </div>
-                    </div>
-                    <p><font size="2" color="red" id="repassError"></font></p>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label"></label>
-                        <div class="col-lg-8">
+                        <form class="form-horizontal" role="form" action="ChangePasswordController" method="post">
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Họ Tên:</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" type="text" value="${sessionScope.user.name}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Địa chỉ:</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" type="text" value="${sessionScope.user.address}"
+                                           name="address">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Email:</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" type="email" value="${sessionScope.user.email}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">SĐT:</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" type="text" value="${sessionScope.user.phone}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Tên tài khoản:</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" type="text" value="${sessionScope.user.email}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Mật khẩu mới:</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" type="password" value="" name="newPass" id="newPass">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Xác nhận mật khẩu:</label>
+                                <div class="col-lg-8">
+                                    <input class="form-control" type="password" name="confirmPass" id="confirmPass">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label"></label>
+                                <div class="col-lg-8">
+                                    <button type="submit" class="btn-save"
+                                            style="width: 150px; height: 40px; font-size: 1.6rem">Cập nhật
+                                    </button>
+                                    <span></span>
+                                    <input type="reset" class="btn btn-default" value="Thoát">
+                                </div>
+                            </div>
+                            <p><font size="2" color="red" id="repassError"></font></p>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label"></label>
+                                <div class="col-lg-8">
                             <span><%
                                 if (request.getAttribute("changePass") != null) {
                                     out.print(request.getAttribute("changePass"));
                                 }
                             %></span>
-<%--                            <%String action = request.getParameter("action"); %>--%>
-<%--                            <%if (action.equals("doimk")) { %>--%>
-<%--                            <center><h2 style="color: #BDBDBD">Cập nhật thông tin thành công ! <span--%>
-<%--                                    class="glyphicon glyphicon-alert"></span></h2></center>--%>
-<%--                            <%} %>--%>
-                        </div>
+                                        <%--                            <%String action = request.getParameter("action"); %>--%>
+                                        <%--                            <%if (action.equals("doimk")) { %>--%>
+                                        <%--                            <center><h2 style="color: #BDBDBD">Cập nhật thông tin thành công ! <span--%>
+                                        <%--                                    class="glyphicon glyphicon-alert"></span></h2></center>--%>
+                                        <%--                            <%} %>--%>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<%--    footer --%>
-<%@include file="/footer.jsp" %>
-<%--    footer --%>
+        <%--    footer --%>
+        <%@include file="/footer.jsp" %>
+        <%--    footer --%>
+    </c:when>
+    <c:otherwise>
+        <%response.sendRedirect("./dangnhap.jsp");%>
+    </c:otherwise>
+</c:choose>
+<%--  header  --%>
+
 <script src="<c:url value='./js/tool.js'/>"></script>
 <script>
     if ($('#newPass').val().length < 5) {

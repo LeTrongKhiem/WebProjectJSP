@@ -253,6 +253,5 @@
         outputfile.value ='./assets/img/dssp/'+ getFile(inputfile.value);
     };
 </script>
-</script>
 </body>
 </html>

@@ -5,16 +5,12 @@ import com.example.webproject.BEAN.Product;
 import com.example.webproject.BEAN.User;
 import com.example.webproject.DAO.daoimpl.OrderDAO;
 import com.example.webproject.DAO.daoimpl.ProductListDAOImpl;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.google.gson.Gson;
-import com.google.gson.JsonDeserializer;
+
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
 
 @WebServlet(name = "AddController", value = "/cart-add")
 public class AddController extends HttpServlet {
@@ -27,23 +23,15 @@ public class AddController extends HttpServlet {
         HttpSession session = request.getSession();
         HttpSession sessionUser = request.getSession();
         Product product = dao.getProductByID(id);
-        String sessionCart = (String) session.getAttribute("cart");
+        Cart cart = (Cart) session.getAttribute("cart");
         User user = (User) sessionUser.getAttribute("user");
         OrderDAO dao1 = new OrderDAO();
-        Gson gson = new Gson();
-        Cart cart = null;
-        if (sessionCart != null) {
-            cart = gson.fromJson(sessionCart, Cart.class);
-        }
         if (product != null) {
             if (cart == null) {
                 cart = Cart.getInstance();
             }
             cart.put(product);
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            String json = ow.writeValueAsString(cart);
-            session.setAttribute("cart", json);
-            request.setAttribute("cart", cart);
+            session.setAttribute("cart", cart);
         }
 
         response.sendRedirect(request.getContextPath() + "/cart");

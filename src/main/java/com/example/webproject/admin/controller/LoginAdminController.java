@@ -2,6 +2,7 @@ package com.example.webproject.admin.controller;
 
 import com.example.webproject.BEAN.Admin;
 
+import javax.faces.bean.SessionScoped;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -39,6 +40,7 @@ public class LoginAdminController extends HttpServlet {
             Admin admin = listAdmin.get(email);
             session.setAttribute("admin", admin);
             session.setMaxInactiveInterval(30 * 60);
+
             Cookie userCookie = new Cookie("admin", URLEncoder.encode(admin.getHoTen(), "UTF-8"));
             request.setAttribute("email", email);
             response.addCookie(userCookie);

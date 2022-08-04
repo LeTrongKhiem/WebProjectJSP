@@ -7,20 +7,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "LogoutAdminController", value = "/LogoutAdminController")
+@WebServlet(name = "LogoutAdminController", value = "/admin/LogoutAdminController")
 public class LogoutAdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         ServletContext context = getServletContext();
-//        String user = (String) session.getAttribute("user");
-//        List<String> listUserLogged = (List<String>) getServletContext().getAttribute("userLogged");
-//        listUserLogged.remove(user);
         List<String> ds = new ArrayList<>();
 //        getServletContext().setAttribute("userLogged", ds);
         if (session != null) session.removeAttribute("admin");
@@ -34,7 +26,11 @@ public class LogoutAdminController extends HttpServlet {
                 }
             }
         }
-//        response.sendRedirect("admin/AdminLogin.jsp");
         request.getRequestDispatcher("/admin/AdminLogin.jsp").forward(request, response);
+    }
+
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 }

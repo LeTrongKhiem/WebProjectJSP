@@ -11,6 +11,12 @@ import java.io.IOException;
 public class RemoveController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String  id = request.getParameter("id");
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
@@ -18,12 +24,6 @@ public class RemoveController extends HttpServlet {
             cart.remove(id);
             session.getAttribute("cart");
         }
-        response.sendRedirect(request.getContextPath() + "/cart");
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+//        response.sendRedirect(request.getContextPath() + "/cart");
     }
 }

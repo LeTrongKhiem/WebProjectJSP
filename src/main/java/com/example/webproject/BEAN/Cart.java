@@ -99,11 +99,15 @@ public class Cart implements Serializable {
         ProductListDAOImpl dao = new ProductListDAOImpl();
         Product product = productsList.get(id);
         if (quantity < 0 || quantity > dao.getSoLuong(id)) {
-            return product.getQuantitySold();
+            return product.getSoLuongKho();
         } else {
             product.setQuantitySold(quantity);
         }
         return product.getQuantitySold();
+    }
+    public int getSoLuong(String id){
+        ProductListDAOImpl dao = new ProductListDAOImpl();
+        return  dao.getSoLuong(id);
     }
 
     public boolean checkSoLuongKho(Product product) {

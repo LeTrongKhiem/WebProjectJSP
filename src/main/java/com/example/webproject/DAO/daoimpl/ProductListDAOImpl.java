@@ -263,10 +263,12 @@ public class ProductListDAOImpl implements ProductListDAO {
         Product product = null;
         ;
         String query = "select *  from danhsachsp LEFT JOIN  thongtindienthoai on danhsachsp.Id =thongtindienthoai.MaSP\n" +
-                "                                LEFT JOIN  thongtinlaptop on danhsachsp.Id = thongtinlaptop.MaSP\n" +
-                "                                LEFT JOIN  thongtinphukien on danhsachsp.Id = thongtinphukien.MaSP\n" +
-                "                LEFT JOIN  motasp on danhsachsp.Id = motasp.Id\n" +
-                "                                WHERE danhsachsp.Id = ?";
+                "                                              LEFT JOIN  thongtinlaptop on danhsachsp.Id = thongtinlaptop.MaSP\n" +
+                "                                                LEFT JOIN  thongtinphukien on danhsachsp.Id = thongtinphukien.MaSP\n" +
+                "                          LEFT JOIN  motasp on danhsachsp.Id = motasp.Id \n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tLEFT JOIN kho on danhsachsp.Id = kho.Id\n" +
+                "\n" +
+                "                                                WHERE danhsachsp.Id = ?";
 
         try {
             connection = new DBConnection().getConnection();
@@ -302,8 +304,9 @@ public class ProductListDAOImpl implements ProductListDAO {
                 String thoiDiemRaMat = resultSet.getString("ThoiDiemRaMat");
                 String loaiSP = resultSet.getString("LoaiSP");
                 String maDanhMuc = resultSet.getString("MaDanhMuc");
+                int soLuongKho = resultSet.getInt("SoLuong");
                 product = new Product(maSP, tenSP, giaSP,manHinh,hdh,camSau,camTr,CPU,RAM,boNhoTrong,theSim,pin,thietKe,
-                        imei,baiViet,noiDung,linkAnh2,linkAnh3,oCung,cardManHinh,congKetNoi,dacBiet,kichThuocVaTrongLuong,thoiDiemRaMat,link_hinhanh,loaiSP );
+                        imei,baiViet,noiDung,linkAnh2,linkAnh3,oCung,cardManHinh,congKetNoi,dacBiet,kichThuocVaTrongLuong,thoiDiemRaMat,link_hinhanh,loaiSP, soLuongKho );
                 product.setCategoryId(maDanhMuc);
             }
         } catch (Exception e) {

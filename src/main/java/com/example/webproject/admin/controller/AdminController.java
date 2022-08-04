@@ -14,7 +14,11 @@ public class AdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Map<String, Admin> list = AdminDAOImpl.getInstance().getListEmployee();
+        HttpSession session = request.getSession();
         request.setAttribute("list", list);
+        if (session.getAttribute("admin") == null) {
+            response.sendRedirect("AdminLogin.jsp");
+        }
         request.getRequestDispatcher("/WebProject/admin/quanlinhanvien.jsp").forward(request, response);
     }
 

@@ -124,7 +124,6 @@
         <url-pattern>/admin/dang-nhap</url-pattern>
     </servlet-mapping>
 
-
     <session-config>
         <session-timeout>15</session-timeout>
     </session-config>

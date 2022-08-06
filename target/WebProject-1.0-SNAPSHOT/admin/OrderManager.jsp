@@ -75,13 +75,15 @@
                             <div class="col-lg-8">
                                 <div class="d-md-flex">
                                     <div class="m-b-10">
-                                        <select class="custom-select" style="min-width: 180px;">
+                                        <form action="<%=request.getContextPath()%>/admin/order" method="get">
+                                        <select class="custom-select" style="min-width: 180px;" name="status" onchange="this.form.submit()">
                                             <option selected>Status</option>
-                                            <option value="all" href="/admin/order?status=true">Đã xác nhận</option>
-                                            <option value="approved">Approved</option>
+                                            <option value="true">Đã xác nhận</option>
+                                            <option value="false">Chưa xác nhận</option>
                                             <option value="pending">Pending</option>
                                             <option value="rejected">Rejected</option>
                                         </select>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

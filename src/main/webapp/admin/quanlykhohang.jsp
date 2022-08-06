@@ -91,8 +91,7 @@
                                             <div class="my-4 table-editor_input-wrapper" data-mdb-field="tsp">
                                                 <div class="form-outline "><input type="text" name="quantity"  value="${warehouse.quantity}"
                                                                                   class="table-editor__input form-control" checked >
-                                                    <label class="form-label">Tên Sản
-                                                        Phẩm</label>
+                                                    <label class="form-label">Số lượng còn lại trong kho</label>
                                                     <div class="form-notch">
                                                         <div class="form-notch-leading" style="width: 9px;"></div>
                                                         <div class="form-notch-middle" style="width: 82.4px;"></div>

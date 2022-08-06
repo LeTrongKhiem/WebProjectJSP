@@ -77,7 +77,7 @@
                                     <div class="m-b-10">
                                         <select class="custom-select" style="min-width: 180px;">
                                             <option selected>Status</option>
-                                            <option value="all">All</option>
+                                            <option value="all" href="/admin/order?status=true">Đã xác nhận</option>
                                             <option value="approved">Approved</option>
                                             <option value="pending">Pending</option>
                                             <option value="rejected">Rejected</option>
@@ -93,28 +93,32 @@
                                 <tr>
                                     <th>Tài khoản</th>
                                     <th>Tên</th>
-                                    <th>Email</th>
                                     <th>Địa chỉ</th>
+                                    <th>Thời gian đặt hàng</th>
                                     <th>Số điện thoại</th>
                                     <th>Tổng tiền</th>
                                     <th>Trạng thái</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <jsp:useBean id="listOrder" scope="request" type="java.util.List"/>
                                 <c:forEach items="${listOrder}" var="item">
                                     <tr>
                                         <td>${item.user}</td>
                                         <td>${item.name}</td>
-                                        <td>${item.email}</td>
                                         <td>${item.address}</td>
+                                        <td>${item.createdAt}</td>
                                         <td>${item.phoneNumber}</td>
                                         <td>${item.dinhDang(item.totalPrice)}</td>
                                         <td>${item.status == true ? "Đã duyệt" : "Chưa duyệt"}</td>
 <%--                                        <c:if test = "${item.status == true}">--%>
 <%--                                            <td>Đã duyệt</td>--%>
 <%--                                        </c:if>--%>
-
                                         <td class="text-right">
+                                            <button onclick="location.href='orderdetail?id=${item.orderID}'"
+                                                    class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                                <i class="anticon anticon-folder-open"></i>
+                                            </button>
                                             <button onclick="showMessageAccept(${item.orderID})"
                                                     class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                                                 <i class="anticon anticon-edit"></i>

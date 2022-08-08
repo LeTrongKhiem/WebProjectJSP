@@ -12,7 +12,8 @@ import java.util.List;
 
 public class CategoryDAOImpl implements CategoryDAO {
     private static CategoryDAOImpl instance;
-
+    Connection connection = null;
+    PreparedStatement statement;
     public static CategoryDAOImpl getInstance() {
         if (instance == null) {
             return new CategoryDAOImpl();
@@ -85,6 +86,20 @@ public class CategoryDAOImpl implements CategoryDAO {
         }
         return list;
     }
+
+    @Override
+    public void deleteCategory(String maDanhMuc) {
+        String query = "DELETE FROM `danhmuc` WHERE MaDanhMuc=?";
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1,maDanhMuc);
+            statement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public List<Category> getAllCategories() {
         Connection connection = DBConnection.getConnection();
         String sql = "SELECT * FROM danhmuc ";
@@ -104,13 +119,19 @@ public class CategoryDAOImpl implements CategoryDAO {
         }
         return list;
     }
-
+    public void createCategory(String tenDanhMuc) {
+        String query = "INSERT INTO `category` (`TenDanhMuc`) VALUES (?)";
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1,tenDanhMuc);
+            statement.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
         System.out.println(new CategoryDAOImpl().getListCategoryChild("200001").size());
-//        ArrayList<Category> list = getInstance().getListCategoryPhone();
-//        for (Category name : list) {
-//            System.out.println(name.getTenDanhMuc());
-//        }
     }
 
 }

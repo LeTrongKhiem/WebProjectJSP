@@ -59,7 +59,7 @@
             <form action="">
                 <input type="text" required placeholder="Nhập số điện thoại của bạn..." name="" id=""
                        class="footer-mail__input" style="margin-right: 20px; height: 34px;">
-                <input type="text" required placeholder="Nhập imei..." name="" id=""
+                <input type="text" required placeholder="Nhập imei..." name="" id=" "
                        class="footer-mail__input" style="margin-right: 20px; height: 34px;">
                 <button class="footer-mail__btn" style="height: 34px; width: 90px">Tra cứu</button>
             </form>

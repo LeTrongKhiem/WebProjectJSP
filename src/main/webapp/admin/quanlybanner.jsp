@@ -98,7 +98,7 @@
                                 <%ArrayList<Banner> bArrayList = new BannerDAOImpl().getListBanner();%>
                                 <%for (Banner banner : bArrayList) {%>
                                     <tr>
-                                        <td>${item.bannerID}</td>
+                                        <td><%=banner.getBannerID()%></td>
                                         <td><img src=".${item.link_hinhanh}" style="width: 100px"></td>
                                         <td><%=banner.getLink_video1()%>
                                         </td>
@@ -106,10 +106,10 @@
                                         </td>
                                         <td></td>
                                         <td class="text-right">
-                                            <button onclick="location.href='edit-product?id=${item.bannerID}'" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                            <button onclick="location.href='edit-product?id=${bannerID}'" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                                                 <i class="anticon anticon-edit"></i>
                                             </button>
-                                            <button onclick="showMessage(${item.bannerID})" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                            <button onclick="showMessage(${bannerID})" class="btn btn-icon btn-hover btn-sm btn-rounded">
                                                 <i class="anticon anticon-delete"></i>
                                             </button>
                                         </td>
@@ -139,6 +139,28 @@
                                             <div class="form-notch">
                                                 <div class="form-notch-leading" style="width: 9px;"></div>
                                                 <div class="form-notch-middle" style="width: 60.8px;"></div>
+                                                <div class="form-notch-trailing"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="my-4 table-editor_input-wrapper" data-mdb-field="dlv">
+                                        <div class="form-outline "><input type="text" name="plv"
+                                                                          class="table-editor__input form-control" value="">
+                                            <label class="form-label" style="margin-left: 0px;">link video</label>
+                                            <div class="form-notch">
+                                                <div class="form-notch-leading" style="width: 9px;"></div>
+                                                <div class="form-notch-middle" style="width: 82.4px;"></div>
+                                                <div class="form-notch-trailing"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="my-4 table-editor_input-wrapper" data-mdb-field="dlvc">
+                                        <div class="form-outline "><input type="text" name="plvc"
+                                                                          class="table-editor__input form-control" value="">
+                                            <label class="form-label" style="margin-left: 0px;">link video content</label>
+                                            <div class="form-notch">
+                                                <div class="form-notch-leading" style="width: 9px;"></div>
+                                                <div class="form-notch-middle" style="width: 82.4px;"></div>
                                                 <div class="form-notch-trailing"></div>
                                             </div>
                                         </div>

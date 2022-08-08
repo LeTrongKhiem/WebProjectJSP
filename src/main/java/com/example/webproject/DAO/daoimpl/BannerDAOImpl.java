@@ -93,7 +93,7 @@ public class BannerDAOImpl implements BannerDAO {
             connection = DBConnection.getConnection();
             statement = connection.prepareStatement(query);
 //            statement.setString(1,id);
-            statement.setString(1,linkanh);
+            statement.setString(1   ,linkanh);
             statement.setString(2,id);
             statement.executeUpdate();
         }catch (Exception e){

@@ -50,6 +50,12 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
+                        <div class="d-flex justify-content-end mb-4">
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModalLong">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
                         <div class="row m-b-30">
                             <div class="col-lg-8">
                                 <div class="d-md-flex">
@@ -73,49 +79,115 @@
                                     <th>Mã danh mục</th>
                                     <th>tên danh mục</th>
                                     <th>Danh mục cha</th>
+                                    <th>Action</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <%--                                <jsp:useBean id="getListAdmin" scope="request" type="java.util.List"/>--%>
                                 <%--                                <c:forEach items="${getListAdmin}" var="ad">--%>
-                                <%ArrayList<Category> cArrayList = (ArrayList<Category>) new CategoryDAOImpl().getAllCategories();%>
-                                <%for (Category c : cArrayList) {%>
+                                <c:forEach items="${listBanner}" var="item">
                                 <tr>
                                     <td>
-                                        <%=c.getMaDanhMuc()%>
+                                       ${item.maDanhMuc}
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="avatar avatar-image avatar-sm m-r-10">
                                                 <img src="assets/images/avatars/thumb-1.jpg" alt="">
                                             </div>
-                                            <h6 class="m-b-0"><%=c.getTenDanhMuc()%></h6>
+                                            <h6 class="m-b-0">${item.tenDanhMuc}</h6>
                                         </div>
                                     </td>
-                                    <td><%=c.getDanhMucCha()%>
+                                    <td>${item.danhMucCha}
                                     </td>
 
                                     </td>
 
                                     <td class="text-right">
-                                        <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                        <button onclick="location.href='edit-product?id=${item.maDanhMuc}'" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                                             <i class="anticon anticon-edit"></i>
                                         </button>
-                                        <button class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                        <button onclick="window.location.href='delete?id=${item.maDanhMuc}'" class="btn btn-icon btn-hover btn-sm btn-rounded">
                                             <i class="anticon anticon-delete"></i>
                                         </button>
                                     </td>
                                 </tr>
                                 <%--                                </c:forEach>--%>
-                                <%}%>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>New danh mục</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form action="<%=request.getContextPath()%>/admin/add" method="post" enctype="multipart/form-data">
+                                    <div class="my-4 table-editor_input-wrapper" data-mdb-field="mdm">
+                                        <div class="form-outline "><input name="pid" type="text"
+                                                                          class="table-editor__input form-control" value="">
+                                            <label class="form-label" style="margin-left: 0px;">Mã danh mục</label>
+                                            <div class="form-notch">
+                                                <div class="form-notch-leading" style="width: 9px;"></div>
+                                                <div class="form-notch-middle" style="width: 41.6px;"></div>
+                                                <div class="form-notch-trailing"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="my-4 table-editor_input-wrapper" data-mdb-field="tdm">
+                                        <div class="form-outline "><input type="text" name="pName"
+                                                                          class="table-editor__input form-control" value="">
+                                            <label class="form-label" style="margin-left: 0px;">Tên danh mục</label>
+                                            <div class="form-notch">
+                                                <div class="form-notch-leading" style="width: 9px;"></div>
+                                                <div class="form-notch-middle" style="width: 82.4px;"></div>
+                                                <div class="form-notch-trailing"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="my-4 table-editor_input-wrapper" data-mdb-field="dmc">
+                                        <div class="form-outline "><input type="text" name="pDmc"
+                                                                          class="table-editor__input form-control" value="">
+                                            <label class="form-label" style="margin-left: 0px;">danh mục cha</label>
+                                            <div class="form-notch">
+                                                <div class="form-notch-leading" style="width: 9px;"></div>
+                                                <div class="form-notch-middle" style="width: 82.4px;"></div>
+                                                <div class="form-notch-trailing"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="my-4 table-editor_input-wrapper" data-mdb-field="icon">
+                                        <div class="form-outline "><input type="text" name="pIcon"
+                                                                          class="table-editor__input form-control" value="">
+                                            <label class="form-label" style="margin-left: 0px;">Icon</label>
+                                            <div class="form-notch">
+                                                <div class="form-notch-leading" style="width: 9px;"></div>
+                                                <div class="form-notch-middle" style="width: 82.4px;"></div>
+                                                <div class="form-notch-trailing"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
     <!-- Content Wrapper END -->
 

@@ -11,5 +11,6 @@ public interface CategoryDAO {
     public ArrayList<Category> getListCategoryChild(String categoryId);
     //lấy danh sách danh mục điện thoại
     public ArrayList<Category> getListCategoryPhone();
-    public void deleteCategory(String id);
+    public void deleteCategory(String maDanhMuc);
+
 }

@@ -1,21 +1,16 @@
 <%@ page import="com.example.webproject.BEAN.Banner" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.example.webproject.DAO.daoimpl.BannerDAOImpl" %><%--
-  Created by LeTrongKhiem.
-  User: User
-  Date: 17-Jun-22
-  Time: 3:42 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.example.webproject.DAO.daoimpl.BannerDAOImpl" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
 <html>
 <head>
-    <title>Quản lý Banner</title>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Quản lý Banner</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="<c:url value='../assets/font/fontawesome-free-5.15.3-web/css/all.min.css'/>">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -23,20 +18,7 @@
     <link rel="stylesheet" href="<c:url value='./assets/css/app.min.css'/>">
 </head>
 <link rel="stylesheet" href="<c:url value='./assets/css/app.min.css'/>">
-<script>
-    function showMessage(id) {
-        var options = confirm('Bạn có muốn xóa banner này');
-        if (options===true){
-            window.location.href = 'deleteBanner?id='+id;
-        }
-    }
-</script>
 </head>
-<style>
-    .btn:hover{
-        border: none !important;
-    }
-</style>
 <body>
 <div class="app">
     <div class="layout">
@@ -92,15 +74,15 @@
                                     <th>Hình ảnh</th>
                                     <th>Link video</th>
                                     <th>Link banner content</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <c:forEach items="${listBanner}" var="item">
                                     <tr>
                                         <td>${item.bannerID}</td>
-<%--                                        <td><%=banner.getBannerID()%></td>--%>
                                         <td><img src=".${item.link_hinhanh}" style="width: 100px"></td>
-                                        <td>${item.link_Video1}</td>
+                                        <td>${item.link_video1}</td>
                                         <td>${item.link_banner_content}%>
                                         </td>
                                         <td></td>
@@ -129,7 +111,17 @@
                             </div>
                             <div class="modal-body">
                                 <form action="<%=request.getContextPath()%>/admin/addbanner" method="post" >
-
+                                    <div class="my-4 table-editor_input-wrapper" data-mdb-field="bid">
+                                        <div class="form-outline "><input type="text" name="bid"
+                                                                          class="table-editor__input form-control" value="">
+                                            <label class="form-label" style="margin-left: 0px;">bannerId</label>
+                                            <div class="form-notch">
+                                                <div class="form-notch-leading" style="width: 9px;"></div>
+                                                <div class="form-notch-middle" style="width: 82.4px;"></div>
+                                                <div class="form-notch-trailing"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="my-4 table-editor_input-wrapper" data-mdb-field="a3">
                                         <div class="form-outline "><input type="file" name="imageBanner"
                                                                           class="table-editor__input form-control" value="Upload">
@@ -154,9 +146,9 @@
                                         </div>
                                     </div>
                                     <div class="my-4 table-editor_input-wrapper" data-mdb-field="dlvc">
-                                        <div class="form-outline "><input type="text" name="plvc"
+                                        <div class="form-outline "><input type="text" name="lbc"
                                                                           class="table-editor__input form-control" value="">
-                                            <label class="form-label" style="margin-left: 0px;">link video content</label>
+                                            <label class="form-label" style="margin-left: 0px;">link banner content</label>
                                             <div class="form-notch">
                                                 <div class="form-notch-leading" style="width: 9px;"></div>
                                                 <div class="form-notch-middle" style="width: 82.4px;"></div>

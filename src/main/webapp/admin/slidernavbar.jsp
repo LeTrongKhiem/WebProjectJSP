@@ -47,7 +47,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="/WebProject/admin/quan-ly-nhan-vien">Quản lý nhân viên</a>
+                        <a href="/WebProject_war_exploded/admin/quan-ly-nhan-vien">Quản lý nhân viên</a>
                     </li>
                     <li>
                         <a href="/WebProject_war_exploded/admin/quanlykhachhang.jsp">Quản lý khách hàng</a>
@@ -59,10 +59,10 @@
                         <a href="/WebProject_war_exploded/admin/quanlybanner.jsp">Quản lý Banner</a>
                     </li>
                     <li>
-                        <a href="/WebProject/admin/order">Quản lý đơn hàng</a>
+                        <a href="/WebProject_war_exploded/admin/order">Quản lý đơn hàng</a>
                     </li>
                     <li>
-                        <a href="/WebProject_war_exploded/admin/quanlydanhmuc.jsp">Quản lý danh mục</a>
+                        <a href="/WebProject_war_exploded/admin/category">Quản lý danh mục</a>
                     </li>
                     <li>
                         <a href="/WebProject_war_exploded/admin/quanlytintuc.jsp">Quản lý tin tức</a>

@@ -200,10 +200,6 @@
 
 <!-- Core JS -->
 <script src="<c:url value='assets/js/app.min.js'/>"></script>
-$(document).ready(function () {
-var table = $('#table').DataTable({
-fixedHeader: true
-});
-});
+
 </body>
 </html>

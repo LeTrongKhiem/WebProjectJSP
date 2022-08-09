@@ -8,8 +8,8 @@ import java.util.List;
 public interface BannerDAO {
     //lấy danh sách các banner
     public ArrayList<Banner> listBanner();
-    public ArrayList<Banner> getListBanner();
-    public void createBanner(String linkanh);
+    public List<Banner> getListBanner();
+    public void createBanner(String bannerID,String link_hinhanh,String link_video1,String link_banner_content);
 
     void editBanner(String id, String linkanh);
 

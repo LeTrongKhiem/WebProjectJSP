@@ -18,6 +18,7 @@ public class ShowBannerController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BannerDAOImpl dao = new BannerDAOImpl();
         List<Banner> listBanner = dao.getListBanner();
+        System.out.println(listBanner);
         request.setAttribute("listBanner",listBanner);
         request.getRequestDispatcher("/admin/quanlybanner.jsp").forward(request, response);
     }

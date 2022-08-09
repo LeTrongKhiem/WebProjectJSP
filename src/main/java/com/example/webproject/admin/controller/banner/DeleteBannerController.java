@@ -12,9 +12,9 @@ import java.io.IOException;
 public class DeleteBannerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("id");
+        String banner = request.getParameter("IDBanner");
         BannerDAOImpl dao = new BannerDAOImpl();
-        dao.deleteBanner(id);
+        dao.deleteBanner(banner);
         response.sendRedirect(request.getContextPath()+"/admin/banner");
     }
 

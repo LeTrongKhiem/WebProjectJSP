@@ -1,8 +1,6 @@
 package com.example.webproject.DAO.daoimpl;
 
 import com.example.webproject.BEAN.Banner;
-import com.example.webproject.BEAN.Category;
-import com.example.webproject.BEAN.ProductList;
 import com.example.webproject.DAO.BannerDAO;
 import com.example.webproject.DB.DBConnection;
 
@@ -10,25 +8,24 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
 public class BannerDAOImpl implements BannerDAO {
     private static BannerDAOImpl instance;
     Connection connection = null;
     PreparedStatement statement;
-    ResultSet resultSet;
 
     public static BannerDAOImpl getInstance() {
         if (instance == null) {
-            instance = new BannerDAOImpl();
-        }
+           return new BannerDAOImpl();
+        }else{
         return instance;
+    }
     }
 
     @Override
     public ArrayList<Banner> listBanner() {
         Connection connection = DBConnection.getConnection();
-        String sql = "SELECT * FROM `banner` where IDBanner=1 or IDBanner=2 or IDBanner=3";
+        String sql = "SELECT * FROM `banner` where IDBanner='null'";
         ArrayList<Banner> list = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement(sql);

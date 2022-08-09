@@ -18,6 +18,11 @@ public class Category implements Serializable {
         this.danhMucCha = danhMucCha;
         this.icon = icon;
     }
+    public Category(String maDanhMuc, String tenDanhMuc, String danhMucCha) {
+        this.maDanhMuc = maDanhMuc;
+        this.tenDanhMuc = tenDanhMuc;
+        this.danhMucCha = danhMucCha;
+    }
 
     public String getMaDanhMuc() {
         return maDanhMuc;

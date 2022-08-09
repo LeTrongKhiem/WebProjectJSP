@@ -95,26 +95,25 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <%ArrayList<Banner> bArrayList = new BannerDAOImpl().getListBanner();%>
-                                <%for (Banner banner : bArrayList) {%>
+                                <c:forEach items="${listBanner}" var="item">
                                     <tr>
-                                        <td><%=banner.getBannerID()%></td>
+                                        <td>${item.bannerID}</td>
+<%--                                        <td><%=banner.getBannerID()%></td>--%>
                                         <td><img src=".${item.link_hinhanh}" style="width: 100px"></td>
-                                        <td><%=banner.getLink_video1()%>
-                                        </td>
-                                        <td><%=banner.getLink_banner_content()%>
+                                        <td>${item.link_Video1}</td>
+                                        <td>${item.link_banner_content}%>
                                         </td>
                                         <td></td>
                                         <td class="text-right">
-                                            <button onclick="location.href='edit-product?id=${bannerID}'" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                            <button onclick="location.href='edit-product?id=${item.bannerID}'" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                                                 <i class="anticon anticon-edit"></i>
                                             </button>
-                                            <button onclick="showMessage(${bannerID})" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                            <button onclick="location.href='deleteBanner?bannerID=${item.bannerID}'" class="btn btn-icon btn-hover btn-sm btn-rounded">
                                                 <i class="anticon anticon-delete"></i>
                                             </button>
                                         </td>
                                     </tr>
-                                <%}%>
+                                </c:forEach>
 
                                 </tbody>
                             </table>
@@ -126,10 +125,10 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4>New item</h4>
+                                <h4>New banner</h4>
                             </div>
                             <div class="modal-body">
-                                <form action="<%=request.getContextPath()%>/admin/addbanner" method="post" enctype="multipart/form-data">
+                                <form action="<%=request.getContextPath()%>/admin/addbanner" method="post" >
 
                                     <div class="my-4 table-editor_input-wrapper" data-mdb-field="a3">
                                         <div class="form-outline "><input type="file" name="imageBanner"

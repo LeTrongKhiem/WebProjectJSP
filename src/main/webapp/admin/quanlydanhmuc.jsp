@@ -86,16 +86,14 @@
                                 <tbody>
                                 <%--                                <jsp:useBean id="getListAdmin" scope="request" type="java.util.List"/>--%>
                                 <%--                                <c:forEach items="${getListAdmin}" var="ad">--%>
-                                <c:forEach items="${listBanner}" var="item">
+                                <c:forEach items="${listC}" var="item">
                                 <tr>
                                     <td>
                                        ${item.maDanhMuc}
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <div class="avatar avatar-image avatar-sm m-r-10">
-                                                <img src="assets/images/avatars/thumb-1.jpg" alt="">
-                                            </div>
+
                                             <h6 class="m-b-0">${item.tenDanhMuc}</h6>
                                         </div>
                                     </td>
@@ -105,10 +103,10 @@
                                     </td>
 
                                     <td class="text-right">
-                                        <button onclick="location.href='edit-product?id=${item.maDanhMuc}'" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                        <button onclick="location.href='edit-category?maDanhMuc=${item.maDanhMuc}'" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                                             <i class="anticon anticon-edit"></i>
                                         </button>
-                                        <button onclick="window.location.href='delete?id=${item.maDanhMuc}'" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                        <button onclick="window.location.href='deleteCategory?maDanhMuc=${item.maDanhMuc}'" class="btn btn-icon btn-hover btn-sm btn-rounded">
                                             <i class="anticon anticon-delete"></i>
                                         </button>
                                     </td>
@@ -128,9 +126,9 @@
                                 <h4>New danh mục</h4>
                             </div>
                             <div class="modal-body">
-                                <form action="<%=request.getContextPath()%>/admin/add" method="post" enctype="multipart/form-data">
+                                <form action="<%=request.getContextPath()%>/admin/addcategory" method="post">
                                     <div class="my-4 table-editor_input-wrapper" data-mdb-field="mdm">
-                                        <div class="form-outline "><input name="pid" type="text"
+                                        <div class="form-outline "><input name="pMaDanhMuc" type="text"
                                                                           class="table-editor__input form-control" value="">
                                             <label class="form-label" style="margin-left: 0px;">Mã danh mục</label>
                                             <div class="form-notch">
@@ -142,7 +140,7 @@
                                     </div>
 
                                     <div class="my-4 table-editor_input-wrapper" data-mdb-field="tdm">
-                                        <div class="form-outline "><input type="text" name="pName"
+                                        <div class="form-outline "><input type="text" name="pTenDanhMuc"
                                                                           class="table-editor__input form-control" value="">
                                             <label class="form-label" style="margin-left: 0px;">Tên danh mục</label>
                                             <div class="form-notch">
@@ -154,7 +152,7 @@
                                     </div>
 
                                     <div class="my-4 table-editor_input-wrapper" data-mdb-field="dmc">
-                                        <div class="form-outline "><input type="text" name="pDmc"
+                                        <div class="form-outline "><input type="text" name="pdanhMucCha"
                                                                           class="table-editor__input form-control" value="">
                                             <label class="form-label" style="margin-left: 0px;">danh mục cha</label>
                                             <div class="form-notch">
@@ -164,17 +162,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="my-4 table-editor_input-wrapper" data-mdb-field="icon">
-                                        <div class="form-outline "><input type="text" name="pIcon"
-                                                                          class="table-editor__input form-control" value="">
-                                            <label class="form-label" style="margin-left: 0px;">Icon</label>
-                                            <div class="form-notch">
-                                                <div class="form-notch-leading" style="width: 9px;"></div>
-                                                <div class="form-notch-middle" style="width: 82.4px;"></div>
-                                                <div class="form-notch-trailing"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+<%--                                    <div class="my-4 table-editor_input-wrapper" data-mdb-field="icon">--%>
+<%--                                        <div class="form-outline "><input type="text" name="pIcon"--%>
+<%--                                                                          class="table-editor__input form-control" value="">--%>
+<%--                                            <label class="form-label" style="margin-left: 0px;">Icon</label>--%>
+<%--                                            <div class="form-notch">--%>
+<%--                                                <div class="form-notch-leading" style="width: 9px;"></div>--%>
+<%--                                                <div class="form-notch-middle" style="width: 82.4px;"></div>--%>
+<%--                                                <div class="form-notch-trailing"></div>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-success">Save</button>

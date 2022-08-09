@@ -10,6 +10,8 @@ public interface BannerDAO {
     public ArrayList<Banner> listBanner();
     public ArrayList<Banner> getListBanner();
     public void createBanner(String linkanh);
-    public void editBanner(String id, String linkanh);
+
+    void editBanner(String id, String linkanh);
+
     public void deleteBanner(String id);
 }

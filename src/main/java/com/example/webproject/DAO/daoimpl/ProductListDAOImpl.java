@@ -427,6 +427,18 @@ public class ProductListDAOImpl implements ProductListDAO {
     }
 
     public void deleteProductAdmin(String id) {
+        String query = "DELETE FROM motasp WHERE Id=?";
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, id);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void deleteProductDetail(String id) {
         String query = "DELETE FROM danhsachsp WHERE Id=?";
         try {
             connection = DBConnection.getConnection();
@@ -436,8 +448,8 @@ public class ProductListDAOImpl implements ProductListDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
+    }
     public void insertProduct(String id, String name, String image, int price, String loaiSP, String maDanhMuc) {
         String query = "INSERT INTO `danhsachsp` (`Id`, `Link_hinhanh`, `Ten`, `Gia`,LoaiSP,MaDanhMuc) VALUES (?,?,?,?,?,?)";
         try {

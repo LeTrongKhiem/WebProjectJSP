@@ -1,6 +1,8 @@
 package com.example.webproject.admin.controller.product;
 
 import com.example.webproject.DAO.daoimpl.ProductListDAOImpl;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -8,6 +10,9 @@ import javax.servlet.annotation.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Base64;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2 * 2, // 2MB
         maxFileSize = 1024 * 1024 * 10 * 2, // 10MB
@@ -20,12 +25,19 @@ public class EditProduct extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("editProduct.jsp").forward(request, response);
+        doPost(request, response);
+        response.getWriter().append("Served at: ").append(request.getContextPath());
+
+        request.getRequestDispatcher("/admin/editProduct.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        factory.setSizeThreshold(1024 * 1024 * 2);
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        upload.setSizeMax(1024 * 1024 * 10);
         String id =  request.getParameter("Eid");
         String name = request.getParameter("EName");
         String hdh = request.getParameter("EHeDieuHanh");
@@ -36,13 +48,12 @@ public class EditProduct extends HttpServlet {
 //        String image = request.getParameter("Eimage");
         Part filePart = request.getPart("Eimage");
         String fileName = extractFileName(filePart);
-        String savePath = "D:\\JavaServlet\\CK_LTW\\WebProjectJSP\\src\\main\\webapp\\assets\\img\\dssp\\" + File.separator + fileName;
+
+        String appPath = request.getServletContext().getRealPath("\\assets\\img\\dssp\\");
+        String savePath = appPath +File.separator+ fileName;
         File fileSaveDir = new File(savePath);
-        if(!fileSaveDir.exists()){
-            fileSaveDir.mkdir();
-        }
         if(filePart.getSize() > 0){
-            filePart.write(savePath);
+            filePart.write(savePath + File.separator);
         }else {
             fileName = request.getParameter("Eimage1").substring(request.getParameter("Eimage1").lastIndexOf("/") + 1);
         }
@@ -56,12 +67,7 @@ public class EditProduct extends HttpServlet {
         dao.editProduct(id,name,insertPath,price,loaiSP,maDanhMuc);
         dao.editProductDetail(id,hdh,ram,manHinh,cpu,thietKe);
         response.sendRedirect("product");
-        byte[] bytes  = new byte[1024];
-        OutputStream os = response.getOutputStream();
 
-        os.write(bytes);
-        os.flush();
-        os.close();
     }
     private String extractFileName(Part part) {//This method will print the file name.
         String contentDisp = part.getHeader("content-disposition");

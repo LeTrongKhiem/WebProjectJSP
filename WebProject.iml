@@ -109,5 +109,6 @@
     <orderEntry type="library" name="Maven: io.leangen.geantyref:geantyref:1.3.13" level="project" />
     <orderEntry type="library" name="Maven: com.github.ben-manes.caffeine:caffeine:3.0.3" level="project" />
     <orderEntry type="library" name="datatables" level="application" />
+    <orderEntry type="library" name="chart.js" level="application" />
   </component>
 </module>

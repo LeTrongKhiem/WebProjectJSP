@@ -44,7 +44,7 @@
 <div class="app">
     <div class="layout">
         <%--  header  --%>
-        <%@include file="./header.jsp" %>
+        <%@include file="Header.jsp" %>
         <%--  header  --%>
 
         <%@include file="./slidernavbar.jsp" %>
@@ -135,41 +135,6 @@
 
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4>New item</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form action="<%=request.getContextPath()%>/admin/addbanner" method="post"
-                                      enctype="multipart/form-data">
-
-                                    <div class="my-4 table-editor_input-wrapper" data-mdb-field="a3">
-                                        <div class="form-outline "><input type="file" name="imageBanner"
-                                                                          class="table-editor__input form-control"
-                                                                          value="Upload">
-                                            <label class="form-label" style="margin-left: 0px;"> Hình Ảnh
-                                            </label>
-                                            <div class="form-notch">
-                                                <div class="form-notch-leading" style="width: 9px;"></div>
-                                                <div class="form-notch-middle" style="width: 60.8px;"></div>
-                                                <div class="form-notch-trailing"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                        </button>
-                                        <button type="submit" class="btn btn-success">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-
                         </div>
                     </div>
                 </div>

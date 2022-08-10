@@ -19,7 +19,7 @@ public class AdminController extends HttpServlet {
         if (session.getAttribute("admin") == null) {
             response.sendRedirect("AdminLogin.jsp");
         }
-        request.getRequestDispatcher("/WebProject/admin/quanlinhanvien.jsp").forward(request, response);
+        request.getRequestDispatcher("quanlinhanvien.jsp").forward(request, response);
     }
 
     @Override

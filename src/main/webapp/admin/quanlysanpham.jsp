@@ -56,7 +56,7 @@
 <div class="app">
     <div class="layout">
         <%--  header  --%>
-        <%@include file="./header.jsp" %>
+        <%@include file="Header.jsp" %>
         <%--  header  --%>
 
         <%@include file="./slidernavbar.jsp" %>

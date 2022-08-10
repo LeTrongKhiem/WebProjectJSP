@@ -12,8 +12,11 @@ import javax.servlet.annotation.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2 * 2, // 2MB
         maxFileSize = 1024 * 1024 * 10 * 2, // 10MB
@@ -21,40 +24,62 @@ import java.util.List;
 
 @WebServlet(name = "AddProductController", value = "/admin/add")
 public class AddProductController extends HttpServlet {
+    private ServletFileUpload uploader;
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+
+//    public void init() throws ServletException {
+//        DiskFileItemFactory factory = new DiskFileItemFactory();
+//        File fileDir = (File) getServletContext().getAttribute("FILES_DIR_FILE");
+//        factory.setRepository(fileDir);
+//        this.uploader = new ServletFileUpload(factory);
+//    }
+
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+        response.getWriter().append("Served at: ").append(request.getContextPath());
+
+        request.getRequestDispatcher("/admin/quanlysanpham.jsp").forward(request, response);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+        System.getProperty("java.io.tmpdir");
         String id = request.getParameter("pid");
         String name = request.getParameter("pName");
         String hdh = request.getParameter("pHDH");
         String ram = request.getParameter("pRAM");
-        String cpu= request.getParameter("pCPU");
+        String cpu = request.getParameter("pCPU");
         String thietKe = request.getParameter("pThietKe");
         String manHinh = request.getParameter("pManHinh");
         Part filePart = request.getPart("image");
         String fileName = extractFileName(filePart);
-        String savePath = "D:\\LapTrinhWeb\\JSPDemo\\WebProject\\src\\main\\webapp\\assets\\img\\dssp\\" + File.separator + fileName;
+
+        Random random = ThreadLocalRandom.current();
+        byte[] r = new byte[8]; //Means 2048 bit
+        random.nextBytes(r);
+        String s = Base64.getEncoder().encodeToString(r);
+        String fileNameWithoutExt = fileName.substring(0, fileName.lastIndexOf("."));
+        String fileExt = fileName.substring(fileName.lastIndexOf("."));
+        fileName = fileNameWithoutExt + s + fileExt;
+        String appPath = request.getServletContext().getRealPath("\\assets\\img\\dssp\\");
+        String savePath = appPath +File.separator+ fileName;
+        System.out.println(savePath);
         File fileSaveDir = new File(savePath);
-        filePart.write(savePath);
+        filePart.write(savePath + File.separator);
         String insertPath = "./assets/img/dssp/" + fileName;
         String maDanhMuc = request.getParameter("category");
         int price = Integer.parseInt(request.getParameter("pPrice"));
         String loaiSP = request.getParameter("loaiSP");
         ProductListDAOImpl dao = new ProductListDAOImpl();
         dao.insertProduct(id, name, insertPath, price, loaiSP, maDanhMuc);
-        dao.insertDetailProduct(id,hdh,ram,manHinh,cpu,thietKe);
-        response.sendRedirect("product");
-    }
+        dao.insertDetailProduct(id, hdh, ram, manHinh, cpu, thietKe);
+        request.getRequestDispatcher("product").forward(request, response);
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("quanlysanpham.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
+        ;
     }
 
     private String extractFileName(Part part) {//This method will print the file name.
@@ -68,13 +93,9 @@ public class AddProductController extends HttpServlet {
         return "";
     }
 
-    private static String getSubmittedFileName(Part part) {
-        for (String cd : part.getHeader("content-disposition").split(";")) {
-            if (cd.trim().startsWith("filename")) {
-                String fileName = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
-                return fileName.substring(fileName.lastIndexOf('/') + 1).substring(fileName.lastIndexOf('\\') + 1); // MSIE fix.
-            }
-        }
-        return null;
+
+
+    public static void main(String[] args) {
+
     }
 }

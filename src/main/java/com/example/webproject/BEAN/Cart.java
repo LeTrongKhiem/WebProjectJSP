@@ -109,7 +109,6 @@ public class Cart implements Serializable {
         ProductListDAOImpl dao = new ProductListDAOImpl();
         return  dao.getSoLuong(id);
     }
-
     public boolean checkSoLuongKho(Product product) {
         ProductListDAOImpl dao = new ProductListDAOImpl();
         Product product1 = productsList.get(product.getMaSP());

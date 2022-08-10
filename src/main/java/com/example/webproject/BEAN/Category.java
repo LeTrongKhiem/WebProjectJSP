@@ -22,6 +22,7 @@ public class Category implements Serializable {
         this.maDanhMuc = maDanhMuc;
         this.tenDanhMuc = tenDanhMuc;
         this.danhMucCha = danhMucCha;
+
     }
 
     public String getMaDanhMuc() {

@@ -11,7 +11,7 @@ public interface BannerDAO {
     public List<Banner> getListBanner();
     public void createBanner(String bannerID,String link_hinhanh,String link_video1,String link_banner_content);
 
-    void editBanner(String id, String linkanh);
+    void editBanner(int bannerID,String link_hinhanh,String link_video1,String link_banner_content);
 
     public void deleteBanner(String id);
 }

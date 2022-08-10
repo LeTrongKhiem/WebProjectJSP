@@ -1,9 +1,11 @@
 package com.example.webproject.DAO.daoimpl;
 
 import com.example.webproject.BEAN.Category;
+import com.example.webproject.BEAN.Common.PagingProduct;
 import com.example.webproject.BEAN.PhoneProduct;
 import com.example.webproject.BEAN.Product;
 import com.example.webproject.BEAN.ProductList;
+import com.example.webproject.DAO.FilterProduct;
 import com.example.webproject.DAO.ProductListDAO;
 import com.example.webproject.DB.DBConnection;
 
@@ -261,10 +263,12 @@ public class ProductListDAOImpl implements ProductListDAO {
         Product product = null;
         ;
         String query = "select *  from danhsachsp LEFT JOIN  thongtindienthoai on danhsachsp.Id =thongtindienthoai.MaSP\n" +
-                "                                LEFT JOIN  thongtinlaptop on danhsachsp.Id = thongtinlaptop.MaSP\n" +
-                "                                LEFT JOIN  thongtinphukien on danhsachsp.Id = thongtinphukien.MaSP\n" +
-                "                LEFT JOIN  motasp on danhsachsp.Id = motasp.Id\n" +
-                "                                WHERE danhsachsp.Id = ?";
+                "                                              LEFT JOIN  thongtinlaptop on danhsachsp.Id = thongtinlaptop.MaSP\n" +
+                "                                                LEFT JOIN  thongtinphukien on danhsachsp.Id = thongtinphukien.MaSP\n" +
+                "                          LEFT JOIN  motasp on danhsachsp.Id = motasp.Id \n" +
+                "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tLEFT JOIN kho on danhsachsp.Id = kho.Id\n" +
+                "\n" +
+                "                                                WHERE danhsachsp.Id = ?";
 
         try {
             connection = new DBConnection().getConnection();
@@ -299,9 +303,11 @@ public class ProductListDAOImpl implements ProductListDAO {
                 String kichThuocVaTrongLuong = resultSet.getString("KichThuocVaTrongLuong");
                 String thoiDiemRaMat = resultSet.getString("ThoiDiemRaMat");
                 String loaiSP = resultSet.getString("LoaiSP");
+                String maDanhMuc = resultSet.getString("MaDanhMuc");
+                int soLuongKho = resultSet.getInt("SoLuong");
                 product = new Product(maSP, tenSP, giaSP,manHinh,hdh,camSau,camTr,CPU,RAM,boNhoTrong,theSim,pin,thietKe,
-                        imei,baiViet,noiDung,linkAnh2,linkAnh3,oCung,cardManHinh,congKetNoi,dacBiet,kichThuocVaTrongLuong,thoiDiemRaMat,link_hinhanh,loaiSP );
-
+                        imei,baiViet,noiDung,linkAnh2,linkAnh3,oCung,cardManHinh,congKetNoi,dacBiet,kichThuocVaTrongLuong,thoiDiemRaMat,link_hinhanh,loaiSP, soLuongKho );
+                product.setCategoryId(maDanhMuc);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -408,11 +414,16 @@ public class ProductListDAOImpl implements ProductListDAO {
             e.printStackTrace();
         }
     }
-
-
     public static void main(String[] args) {
 //        new ProductListDAOImpl().insertProduct("123123", "Macbook 01", "dasdasdasd", 123123, "DT", "200001");
-        Product p = new ProductListDAOImpl().getProductByID("ip12");
-        System.out.println(p.getTenSP());
+//        Product p = new ProductListDAOImpl().getProductByID("ip12");
+//        System.out.println(p.getTenSP());
+        PagingProduct p = new PagingProduct();
+//        p.setKeyword("iphone");
+        p.setPrice(10);
+        List<Product> list = new ProductListDAOImpl().getAllProduct();
+        for (Product pro : list) {
+            System.out.println(pro.getTenSP());
+        }
     }
 }

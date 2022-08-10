@@ -44,7 +44,7 @@
 <div class="app">
     <div class="layout">
         <%--  header  --%>
-        <%@include file="./header.jsp" %>
+        <%@include file="Header.jsp" %>
         <%--  header  --%>
 
         <%@include file="./slidernavbar.jsp" %>
@@ -75,13 +75,15 @@
                             <div class="col-lg-8">
                                 <div class="d-md-flex">
                                     <div class="m-b-10">
-                                        <select class="custom-select" style="min-width: 180px;">
+                                        <form action="<%=request.getContextPath()%>/admin/order" method="get">
+                                        <select class="custom-select" style="min-width: 180px;" name="status" onchange="this.form.submit()">
                                             <option selected>Status</option>
-                                            <option value="all">All</option>
-                                            <option value="approved">Approved</option>
+                                            <option value="true">Đã xác nhận</option>
+                                            <option value="false">Chưa xác nhận</option>
                                             <option value="pending">Pending</option>
                                             <option value="rejected">Rejected</option>
                                         </select>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -93,28 +95,32 @@
                                 <tr>
                                     <th>Tài khoản</th>
                                     <th>Tên</th>
-                                    <th>Email</th>
                                     <th>Địa chỉ</th>
+                                    <th>Thời gian đặt hàng</th>
                                     <th>Số điện thoại</th>
                                     <th>Tổng tiền</th>
                                     <th>Trạng thái</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <jsp:useBean id="listOrder" scope="request" type="java.util.List"/>
                                 <c:forEach items="${listOrder}" var="item">
                                     <tr>
                                         <td>${item.user}</td>
                                         <td>${item.name}</td>
-                                        <td>${item.email}</td>
                                         <td>${item.address}</td>
+                                        <td>${item.createdAt}</td>
                                         <td>${item.phoneNumber}</td>
                                         <td>${item.dinhDang(item.totalPrice)}</td>
                                         <td>${item.status == true ? "Đã duyệt" : "Chưa duyệt"}</td>
 <%--                                        <c:if test = "${item.status == true}">--%>
 <%--                                            <td>Đã duyệt</td>--%>
 <%--                                        </c:if>--%>
-
                                         <td class="text-right">
+                                            <button onclick="location.href='orderdetail?id=${item.orderID}'"
+                                                    class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                                <i class="anticon anticon-folder-open"></i>
+                                            </button>
                                             <button onclick="showMessageAccept(${item.orderID})"
                                                     class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                                                 <i class="anticon anticon-edit"></i>
@@ -129,41 +135,6 @@
 
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4>New item</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form action="<%=request.getContextPath()%>/admin/addbanner" method="post"
-                                      enctype="multipart/form-data">
-
-                                    <div class="my-4 table-editor_input-wrapper" data-mdb-field="a3">
-                                        <div class="form-outline "><input type="file" name="imageBanner"
-                                                                          class="table-editor__input form-control"
-                                                                          value="Upload">
-                                            <label class="form-label" style="margin-left: 0px;"> Hình Ảnh
-                                            </label>
-                                            <div class="form-notch">
-                                                <div class="form-notch-leading" style="width: 9px;"></div>
-                                                <div class="form-notch-middle" style="width: 60.8px;"></div>
-                                                <div class="form-notch-trailing"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                        </button>
-                                        <button type="submit" class="btn btn-success">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-
                         </div>
                     </div>
                 </div>

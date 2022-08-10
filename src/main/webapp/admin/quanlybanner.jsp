@@ -23,7 +23,7 @@
 <div class="app">
     <div class="layout">
         <%--  header  --%>
-        <%@include file="./header.jsp" %>
+        <%@include file="./Header.jsp" %>
         <%--  header  --%>
 
         <%@include file="./slidernavbar.jsp" %>
@@ -87,7 +87,7 @@
                                         </td>
                                         <td></td>
                                         <td class="text-right">
-                                            <button onclick="location.href='edit-product?id=${item.bannerID}'" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                            <button onclick="location.href='editBanner?bannerID=${item.bannerID}'" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                                                 <i class="anticon anticon-edit"></i>
                                             </button>
                                             <button onclick="location.href='deleteBanner?bannerID=${item.bannerID}'" class="btn btn-icon btn-hover btn-sm btn-rounded">

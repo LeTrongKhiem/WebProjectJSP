@@ -35,7 +35,6 @@ public class CategoryDAOImpl implements CategoryDAO {
                 category.setMaDanhMuc(resultSet.getString("MaDanhMuc"));
                 category.setTenDanhMuc(resultSet.getString("TenDanhMuc"));
                 category.setDanhMucCha(resultSet.getString("DanhMucCha"));
-                category.setIcon(resultSet.getString("Icon"));
                 list.add(category);
             }
         } catch (Exception e) {
@@ -89,9 +88,9 @@ public class CategoryDAOImpl implements CategoryDAO {
         try {
             connection = DBConnection.getConnection();
             statement = connection.prepareStatement(query);
-            statement.setString(1,tenDanhMuc);
-            statement.setString(3,madanhmuc);
-            statement.setString(2,danhMucCha);
+            statement.setString(2,tenDanhMuc);
+            statement.setString(1,madanhmuc);
+            statement.setString(3,danhMucCha);
             statement.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();

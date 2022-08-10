@@ -164,6 +164,23 @@
                         <div class="product-related-box phone-related-box col l-3 m-0 c-0" style="">
                             <div class="product-related-title">Sản phẩm tương tự</div>
                             <div class="product-related-list phone-related-box-mobile product-box-mobile">
+                                <jsp:useBean id="related" scope="request" type="java.util.List"/>
+                                <c:forEach items="${related}" var="r">
+                                    <div class="product-related-item">
+                                        <div class="product-related-image">
+                                            <a target="_blank" href="DetailController?id=${r.id}">
+                                                <img src="${r.link_hinhanh}" alt="xiaomi-12s-ultra-black">
+                                            </a>
+                                        </div>
+                                        <div class="product-related-content">
+                                            <div class="product-related-name-price">
+                                                <p class="name"><a target="_blank" href="DetailController?id=${r.id}">${r.ten}</a></p>
+                                                <p class="price">${r.dinhDang(r.gia)}</p>
+                                            </div>
+                                            <a class="link-detail" href="DetailController?id=${r.id}">Xem chi tiết</a>
+                                        </div>
+                                    </div>
+                                </c:forEach>
                             </div>
                             <div class="product-related-title">Phụ kiện liên quan</div>
                         </div>
@@ -730,7 +747,7 @@
             <div class="product-content-right">
                 <div class="product-summary">
                     <p class="product-summary-title">${detail.tenSP}</p>
-                    <p class="product-summary-price">${detail.giaSP} ₫</p>
+                    <p class="product-summary-price">${detail.dinhDang(detail.giaSP)} ₫</p>
                     <div class="sale-box v2-promotion">
                         <p class="sale-box-title">Khuyến mãi</p>
                         <ol>

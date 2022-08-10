@@ -15,7 +15,8 @@ public class Product implements Serializable {
     private String link_hinhanh;
     private String loaiSP;
     Category maDanhMuc;
-
+    private int soLuongKho;
+    String categoryId;
     public Product(){
 
     }
@@ -73,7 +74,35 @@ public class Product implements Serializable {
         this.link_hinhanh = link_hinhanh;
         this.loaiSP = loaiSP;
     }
-
+    public Product(String maSP, String tenSP, int giaSP, String manHinh, String hdh, String camSau, String camTr, String CPU, String RAM, String boNhoTrong, String theSim, String pin, String thietKe, String imei, String baiViet, String noiDung, String linkAnh2, String linkAnh3, String oCung, String cardManHinh, String congKetNoi, String dacBiet, String kichThuocVaTrongLuong, String thoiDiemRaMat, String link_hinhanh,String loaiSP,int soLuongKho) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.giaSP = giaSP;
+        this.manHinh = manHinh;
+        this.hdh = hdh;
+        this.camSau = camSau;
+        this.camTr = camTr;
+        this.CPU = CPU;
+        this.RAM = RAM;
+        this.boNhoTrong = boNhoTrong;
+        this.theSim = theSim;
+        this.pin = pin;
+        this.thietKe = thietKe;
+        this.imei = imei;
+        this.baiViet = baiViet;
+        this.noiDung = noiDung;
+        this.linkAnh2 = linkAnh2;
+        this.linkAnh3 = linkAnh3;
+        this.oCung = oCung;
+        this.cardManHinh = cardManHinh;
+        this.congKetNoi = congKetNoi;
+        this.dacBiet = dacBiet;
+        this.kichThuocVaTrongLuong = kichThuocVaTrongLuong;
+        this.thoiDiemRaMat = thoiDiemRaMat;
+        this.link_hinhanh = link_hinhanh;
+        this.loaiSP = loaiSP;
+        this.soLuongKho = soLuongKho;
+    }
     public String getMaSP() {
         return maSP;
     }
@@ -309,5 +338,20 @@ public class Product implements Serializable {
     public String dinhDang(long a) {
         DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
         return decimalFormat.format(a);
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public int getSoLuongKho(){
+        return  soLuongKho;
+    }
+    public void setSoLuongKho(int soLuongKho){
+        this.soLuongKho =soLuongKho;
     }
 }

@@ -1,7 +1,6 @@
 package com.example.webproject.admin.controller.banner;
 
 import com.example.webproject.BEAN.Banner;
-
 import com.example.webproject.DAO.daoimpl.BannerDAOImpl;
 
 import javax.servlet.ServletException;

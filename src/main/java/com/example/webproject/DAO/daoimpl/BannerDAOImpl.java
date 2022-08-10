@@ -1,6 +1,7 @@
 package com.example.webproject.DAO.daoimpl;
 
 import com.example.webproject.BEAN.Banner;
+import com.example.webproject.BEAN.Category;
 import com.example.webproject.DAO.BannerDAO;
 import com.example.webproject.DB.DBConnection;
 
@@ -17,10 +18,10 @@ public class BannerDAOImpl implements BannerDAO {
 
     public static BannerDAOImpl getInstance() {
         if (instance == null) {
-           return new BannerDAOImpl();
+            return new BannerDAOImpl();
         }else{
-        return instance;
-    }
+            return instance;
+        }
     }
 
     @Override
@@ -89,20 +90,40 @@ public class BannerDAOImpl implements BannerDAO {
     }
 
     @Override
-    public void editBanner(String id, String linkanh) {
-        String query = "UPDATE `banner` SET `Link_hinhanh`=? WHERE IDBanner=?";
+    public void editBanner(int bannerID, String linkanh,String link_video, String link_banner_content) {
+        String query = "UPDATE `banner` SET `Link_hinhanh`=?,`Link_Video1`=?,`Link-banner_content` WHERE IDBanner=?";
         try {
             connection = DBConnection.getConnection();
             statement = connection.prepareStatement(query);
-//            statement.setString(1,id);
-            statement.setString(1   ,linkanh);
-            statement.setString(2,id);
+            statement.setInt(1   ,bannerID);
+            statement.setString(2,linkanh);
+            statement.setString(3,link_video);
+            statement.setString(4,link_banner_content);
             statement.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();
         }
     }
-
+    public Banner getBannerByBannerId(int bannerId) {
+        Connection connection = DBConnection.getConnection();
+        Banner banner =null;
+        String sql = "SELECT * FROM banner WHERE IDBanner =?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1,bannerId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int bannerID = Integer.parseInt(resultSet.getString("IDBanner"));
+                String linkanh = resultSet.getString("TenDanhMuc");
+                String link_video = resultSet.getString("Link_Video1");
+                String link_banner_content = resultSet.getString("Link_banner_content");
+                banner =new Banner(bannerID,linkanh,link_video,link_banner_content);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return banner;
+    }
     @Override
     public void deleteBanner(String bannerID) {
         String query = "DELETE FROM `banner` WHERE IDBanner=?";
@@ -117,8 +138,8 @@ public class BannerDAOImpl implements BannerDAO {
     }
 
     public static void main(String[] args) {
-            BannerDAOImpl dao =  new BannerDAOImpl();
+        BannerDAOImpl dao =  new BannerDAOImpl();
         System.out.println(dao.getListBanner());
-        }
+    }
 
 }

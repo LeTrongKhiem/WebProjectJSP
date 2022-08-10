@@ -20,7 +20,7 @@ public class EditProduct extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("editProduct.jsp").forward(request, response);
+        request.getRequestDispatcher("EditProduct.jsp").forward(request, response);
     }
 
     @Override

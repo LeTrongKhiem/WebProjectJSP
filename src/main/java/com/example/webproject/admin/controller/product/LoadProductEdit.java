@@ -23,11 +23,10 @@ public class LoadProductEdit extends HttpServlet {
         String id = request.getParameter("id");
         Product product = dao.getProductByID(id);
         List<Category> listC = categoryDAO.getAllCategories();
-        String file =request.getServletContext().getRealPath(product.getLink_hinhanh());
-        request.setAttribute("file", file);
+
         request.setAttribute("detail",product);
         request.setAttribute("listC",listC);
-        request.getRequestDispatcher("/admin/editProduct.jsp").forward(request,response);
+        request.getRequestDispatcher("/admin/EditProduct.jsp").forward(request,response);
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

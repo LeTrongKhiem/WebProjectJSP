@@ -1,6 +1,7 @@
 package com.example.webproject.admin.dao.impl;
 
 import com.example.webproject.BEAN.Order;
+import com.example.webproject.BEAN.OrderDetail;
 import com.example.webproject.DB.DBConnection;
 import com.example.webproject.admin.dao.OrderDAO;
 
@@ -8,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderDAOImpl implements OrderDAO {
     Connection connection = null;
@@ -23,12 +25,13 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public ArrayList<Order> getListOrder() {
+    public ArrayList<Order> getListOrder(boolean status) {
         ArrayList<Order> listOrder = new ArrayList<>();
         connection = DBConnection.getConnection();
         try {
-            String query = "select * from `order`";
+            String query = query = "select * from `order` where Status = ?";
             statement = connection.prepareStatement(query);
+            statement.setBoolean(1, status);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int orderId = resultSet.getInt("OrderId");
@@ -38,8 +41,8 @@ public class OrderDAOImpl implements OrderDAO {
                 String address = resultSet.getString("Address");
                 String phone = resultSet.getString("PhoneNumber");
                 double total = resultSet.getDouble("total");
-                boolean status = resultSet.getBoolean("Status");
-                Order order = new Order(userId, name, address, email, phone, total, status);
+                boolean statuss = resultSet.getBoolean("Status");
+                Order order = new Order(userId, name, address, email, phone, total, statuss);
                 order.setOrderID(orderId);
                 listOrder.add(order);
             }
@@ -84,7 +87,7 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     public static void main(String[] args) {
-        ArrayList<Order> list = OrderDAOImpl.getInstance().getListOrder();
+        ArrayList<Order> list = OrderDAOImpl.getInstance().getListOrder(true);
         for (Order order : list) {
             System.out.println(order.toString());
         }

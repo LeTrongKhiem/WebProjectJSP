@@ -1,10 +1,16 @@
 package com.example.webproject.BEAN;
 
+import java.text.DecimalFormat;
+import java.util.Date;
+
 public class OrderDetail {
     private int id;
     private int orderID;
+    private String productId;
     private String productID;
     private int quantity;
+    private Date createAt;
+    private Date createUpdate;
     private double price;
     public OrderDetail() {
 
@@ -63,4 +69,45 @@ public class OrderDetail {
         this.price = price;
     }
 
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public Date getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
+    }
+
+    public Date getCreateUpdate() {
+        return createUpdate;
+    }
+
+    public void setCreateUpdate(Date createUpdate) {
+        this.createUpdate = createUpdate;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDetail{" +
+                "id=" + id +
+                ", orderID=" + orderID +
+                ", productId='" + productId + '\'' +
+                ", productID='" + productID + '\'' +
+                ", quantity=" + quantity +
+                ", createAt=" + createAt +
+                ", createUpdate=" + createUpdate +
+                ", price=" + price +
+                '}';
+    }
+    public String dinhDang(double a) {
+        DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
+        return decimalFormat.format(a);
+    }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{all, api, jquery-3.2.1, jquery-3.2.1.slim, jquery-3.3.1, lightgallery, normalize, popper.js, twitter-bootstrap}" />
+    <file url="file://$PROJECT_DIR$" libraries="{all, api, chart.js, datatables, jquery-3.2.1, jquery-3.2.1.slim, jquery-3.3.1, lightgallery, normalize, popper.js, twitter-bootstrap}" />
   </component>
 </project>

@@ -49,7 +49,7 @@
 <div class="app">
     <div class="layout">
         <%--  header  --%>
-        <%@include file="./header.jsp" %>
+        <%@include file="Header.jsp" %>
         <%--  header  --%>
 
         <%@include file="./slidernavbar.jsp" %>
@@ -252,7 +252,6 @@
     function getoutput() {
         outputfile.value ='./assets/img/dssp/'+ getFile(inputfile.value);
     };
-</script>
 </script>
 </body>
 </html>

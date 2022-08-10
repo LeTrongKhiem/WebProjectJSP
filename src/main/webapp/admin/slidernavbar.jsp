@@ -61,6 +61,9 @@
                     <li>
                         <a href="/WebProject/admin/order">Quản lý đơn hàng</a>
                     </li>
+                    <li>
+                        <a href="/WebProject/admin/ShowStatistic">Thống kê doanh thu</a>
+                    </li>
                 </ul>
             </li>
         </ul>

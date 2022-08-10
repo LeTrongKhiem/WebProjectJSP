@@ -1,12 +1,16 @@
 package com.example.webproject.admin.controller.order;
 
+import com.example.webproject.BEAN.OrderDetail;
+import com.example.webproject.BEAN.WareHouse;
 import com.example.webproject.DAO.daoimpl.ProductListDAOImpl;
 import com.example.webproject.admin.dao.impl.OrderDAOImpl;
+import com.example.webproject.admin.dao.impl.WareHouseDAOImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "AcceptOrder", value = "/admin/accept")
 public class AcceptOrder extends HttpServlet {
@@ -15,8 +19,19 @@ public class AcceptOrder extends HttpServlet {
         String id = request.getParameter("id");
         int orderId = Integer.parseInt(id);
         OrderDAOImpl dao = new OrderDAOImpl();
-        dao.acceptOrder(orderId);
-        response.sendRedirect(request.getContextPath()+"/admin/order");
+        WareHouseDAOImpl wDao = new WareHouseDAOImpl();
+        List<OrderDetail> od = wDao.getWarehouseByOrderId(id);
+        boolean i;
+        i = dao.acceptOrder(orderId);
+        if (i) {
+            for (OrderDetail o : od) {
+                int quantityOrder = o.getQuantity();
+                WareHouse wareHouse = wDao.getQuantity(o.getProductId());
+                int quantityWarehouse = wareHouse.getQuantity();
+                wDao.updateWarehouse(o.getProductId(), quantityOrder, quantityWarehouse);
+            }
+        }
+        response.sendRedirect(request.getContextPath() + "/admin/order");
     }
 
     @Override

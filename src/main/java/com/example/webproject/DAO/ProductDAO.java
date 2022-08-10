@@ -11,4 +11,6 @@ public interface ProductDAO {
     public ArrayList<ProductList> getListProductByCategoryParent(String type);
     //lấy danh sách sản phẩm tiếp theo, loadmore
     public List<ProductList> getNextProduct(int amount, String type);
+    public List<ProductList> getProductRelated(String cateId, String productId);
+    public List<ProductList> getAccessories(String cateId);
 }

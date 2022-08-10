@@ -108,8 +108,6 @@ public class OrderDAO {
         }
         return 0;
     }
-
-
     public static void main(String[] args) {
         Order order = new Order("1", "2", "3", "4", "5", 6);
         OrderDAO dao = new OrderDAO();

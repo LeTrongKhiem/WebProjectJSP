@@ -46,16 +46,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <select id="select-day-from" class="form-control" style="width : 200px;">
-                                    <option value="2022/02/22">2022/02/01</option>
-                                    <option value="2022/04/22">2022/03/01</option>
+                                    <option value="2022/02/01">2022/02/01</option>
                                     <option></option>
                                     <option></option>
                                     <option></option>
                                 </select>
                                 <select id="select-day-to" class="form-control" style="width : 200px;">
-                                    <option value="2022/03/22">2022/03/01</option>
-                                    <option value="2022/04/22">2022/04/01</option>
-                                    <option value="2022/05/22">2022/05/01</option>
+                                    <option value="2022/04/01">2022/04/01</option>
                                     <option></option>
                                     <option></option>
                                 </select>
@@ -77,7 +74,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="<c:url value='./assets/js/chartsjs.js'/>"></script>
+<script src="<c:url value='assets/js/chartsjs.js'/>"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
 <script>
     function registerChart(lsData) {
@@ -85,7 +82,7 @@
         var lsDatasource = [];
 
         $.each(lsData, function (index, item) {
-            lsLabel.push(item.Date);
+            lsLabel.push(item.date);
             lsDatasource.push(item.Benefit)
         })
         var ctx = document.getElementById("chartStatistic");//.getContext("2d");
@@ -97,6 +94,7 @@
                 borderWidth: 1,
                 data: lsDatasource
             }]
+
         };
         var myBarChart = new Chart(ctx, {
             type: "bar",
@@ -115,8 +113,9 @@
         $.ajax({
             url: '<%=request.getContextPath()+"/admin/ShowStatistic"%>',
             type: 'GET',
-            success: function () {
+            success: function (response) {
                 registerChart(st)
+                console.log(<%new Gson().toJson(request.getAttribute("st"));%>)
             },
             data: {
                 fromDate: selectdayfrom,

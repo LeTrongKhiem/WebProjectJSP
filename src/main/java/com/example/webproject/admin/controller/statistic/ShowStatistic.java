@@ -37,7 +37,7 @@ public class ShowStatistic extends HttpServlet {
         List<Statistic> list = dao.GetByDay(sqlFromDate, sqlToDate);
         Statistic s = (Statistic) list.get(0);
         request.setAttribute("st", list);
-        request.getRequestDispatcher("ThongKe.jsp").forward(request, response);
+        request.getRequestDispatcher("ThongKeDoanhThu.jsp").forward(request, response);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class ShowStatistic extends HttpServlet {
         Statistic s = (Statistic) list.get(0);
         request.setAttribute("st", list);
         request.getAttribute("st");
-        request.getRequestDispatcher("ThongKe.jsp").forward(request, response);
-//        response.sendRedirect(request.getContextPath() + "/admin/ThongKe.jsp");
+//        request.getRequestDispatcher("ThongKe.jsp").forward(request, response);
+        response.sendRedirect(request.getContextPath() + "ThongKe.jsp");
     }
 }

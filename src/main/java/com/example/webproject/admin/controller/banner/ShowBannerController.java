@@ -18,7 +18,6 @@ public class ShowBannerController extends HttpServlet {
         request.setAttribute("listBanner", banner);
         request.getRequestDispatcher("/admin/quanlybanner.jsp").forward(request, response);
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

@@ -46,13 +46,16 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <select id="select-day-from" class="form-control" style="width : 200px;">
-                                    <option value="2022/02/01">2022/02/01</option>
+                                    <option value="2022/02/22">2022/02/01</option>
+                                    <option value="2022/04/22">2022/03/01</option>
                                     <option></option>
                                     <option></option>
                                     <option></option>
                                 </select>
                                 <select id="select-day-to" class="form-control" style="width : 200px;">
-                                    <option value="2022/04/01">2022/04/01</option>
+                                    <option value="2022/03/22">2022/03/01</option>
+                                    <option value="2022/04/22">2022/04/01</option>
+                                    <option value="2022/05/22">2022/05/01</option>
                                     <option></option>
                                     <option></option>
                                 </select>
@@ -82,8 +85,8 @@
         var lsDatasource = [];
 
         $.each(lsData, function (index, item) {
-            lsLabel.push(item.date);
-            lsDatasource.push(item.benefit)
+            lsLabel.push(item.Date);
+            lsDatasource.push(item.Benefit)
         })
         var ctx = document.getElementById("chartStatistic");//.getContext("2d");
         var barChartData = {
@@ -111,11 +114,10 @@
         const selectdayto = $('#select-day-to').val();
         console.log(selectdayfrom)
         $.ajax({
-            url: '<%=request.getContextPath()+"/admin/ShowStatisticss"%>',
+            url: '<%=request.getContextPath()+"/admin/Statistic"%>',
             type: 'GET',
             success: function () {
-                registerChart(data)
-                console.log(<%new Gson().toJson(request.getAttribute("st"));%>)
+                registerChart(st)
             },
             data: {
                 fromDate: selectdayfrom,

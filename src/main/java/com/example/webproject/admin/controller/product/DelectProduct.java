@@ -14,6 +14,7 @@ public class DelectProduct extends HttpServlet {
         String id = request.getParameter("id");
         ProductListDAOImpl dao = new ProductListDAOImpl();
         dao.deleteProductAdmin(id);
+        dao.deleteProductDetail(id);
         response.sendRedirect(request.getContextPath()+"/admin/product");
     }
 

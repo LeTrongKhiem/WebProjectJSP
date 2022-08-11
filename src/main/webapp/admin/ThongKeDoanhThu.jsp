@@ -82,7 +82,7 @@
         var lsDatasource = [];
 
         $.each(lsData, function (index, item) {
-            lsLabel.push(item.date);
+            lsLabel.push(item.Date);
             lsDatasource.push(item.Benefit)
         })
         var ctx = document.getElementById("chartStatistic");//.getContext("2d");

@@ -101,11 +101,11 @@ public class SendEmail {
     }
 
     public void sendMail1(String to, String subject, String text) {
-//        String mailFrom = "tgmobile.cskh@gmail.com";
-//        String passEmailFrom = "yjewncggdeavyncg";
+        String mailFrom = "tgmobile.cskh@gmail.com";
+        String passEmailFrom = "argifttugjjvjnem";
 
-        String mailFrom = "service.collabclothing@gmail.com";
-        String passEmailFrom = "znrjifeqrlhlhkib";
+//        String mailFrom = "service.collabclothing@gmail.com";
+//        String passEmailFrom = "znrjifeqrlhlhkib";
         Properties properties = new Properties();
         properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         properties.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host

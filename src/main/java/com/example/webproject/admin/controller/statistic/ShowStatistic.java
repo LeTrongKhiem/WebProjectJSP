@@ -59,8 +59,9 @@ public class ShowStatistic extends HttpServlet {
         List<Statistic> list = dao.GetByDay(sqlFromDate, sqlToDate);
         Statistic s = (Statistic) list.get(0);
         request.setAttribute("st", list);
-        request.getAttribute("st");
-//        request.getRequestDispatcher("ThongKe.jsp").forward(request, response);
-        response.sendRedirect(request.getContextPath() + "ThongKe.jsp");
+        request.setAttribute("from", fromDate);
+        request.setAttribute("to", toDate);
+        request.getRequestDispatcher("ThongKe.jsp").forward(request, response);
+//        response.sendRedirect(request.getContextPath() + "ThongKe.jsp");
     }
 }

@@ -46,13 +46,16 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <select id="select-day-from" class="form-control" style="width : 200px;">
-                                    <option value="2022/02/01">2022/02/01</option>
+                                    <option value="2022/02/22">2022/02/01</option>
+                                    <option value="2022/04/22">2022/03/01</option>
                                     <option></option>
                                     <option></option>
                                     <option></option>
                                 </select>
                                 <select id="select-day-to" class="form-control" style="width : 200px;">
-                                    <option value="2022/04/01">2022/04/01</option>
+                                    <option value="2022/03/22">2022/03/01</option>
+                                    <option value="2022/04/22">2022/04/01</option>
+                                    <option value="2022/05/22">2022/05/01</option>
                                     <option></option>
                                     <option></option>
                                 </select>
@@ -82,7 +85,7 @@
         var lsDatasource = [];
 
         $.each(lsData, function (index, item) {
-            lsLabel.push(item.date);
+            lsLabel.push(item.Date);
             lsDatasource.push(item.Benefit)
         })
         var ctx = document.getElementById("chartStatistic");//.getContext("2d");

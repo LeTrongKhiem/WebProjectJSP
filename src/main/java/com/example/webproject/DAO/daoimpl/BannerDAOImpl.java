@@ -74,7 +74,7 @@ public class BannerDAOImpl implements BannerDAO {
 
     @Override
     public void createBanner(String bannerID,String link_hinhanh,String link_video1,String link_banner_content) {
-        String query = "INSERT INTO `banner` (`IDBanner,Link_hinhanh,Link_Video1,Link_banner_content`) VALUES ?,?,?,?)";
+        String query = "INSERT INTO `banner` (IDBanner,Link_hinhanh,Link_Video1,Link_banner_content) VALUES (?,?,?,?)";
         try {
             connection = DBConnection.getConnection();
             statement = connection.prepareStatement(query);
@@ -139,7 +139,7 @@ public class BannerDAOImpl implements BannerDAO {
 
     public static void main(String[] args) {
         BannerDAOImpl dao =  new BannerDAOImpl();
-        System.out.println(dao.getListBanner());
+       dao.createBanner("1","1","1","1");
     }
 
 }

@@ -110,7 +110,7 @@
                                 <h4>New banner</h4>
                             </div>
                             <div class="modal-body">
-                                <form action="<%=request.getContextPath()%>/admin/addbanner" method="post" >
+                                <form action="<%=request.getContextPath()%>/admin/addbanner" method="post" enctype="multipart/form-data" >
                                     <div class="my-4 table-editor_input-wrapper" data-mdb-field="bid">
                                         <div class="form-outline "><input type="text" name="bid"
                                                                           class="table-editor__input form-control" value="">

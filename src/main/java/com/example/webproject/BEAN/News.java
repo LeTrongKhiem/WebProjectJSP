@@ -25,6 +25,10 @@ public class News {
         this.link_hinhanh=link_hinhanh;
     }
 
+
+    public News(String maTinTuc, String tieuDe, String tomTat, String noiDung, java.sql.Date ngayDang, String tacGia, String linkAnh) {
+    }
+
     public String getmaTinTuc() {
         return maTinTuc;
     }

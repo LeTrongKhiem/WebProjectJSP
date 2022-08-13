@@ -68,6 +68,9 @@
                         <a href="/WebProject/admin/news">Quản lý tin tức</a>
                     </li>
                     <li>
+                        <a href="/WebProject/admin/admin">Quản lý Admin</a>
+                    </li>
+                    <li>
                         <a href="/WebProject/admin/ShowStatistic">Thống kê doanh thu</a>
                     </li>
                 </ul>

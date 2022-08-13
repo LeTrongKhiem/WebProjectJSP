@@ -74,6 +74,9 @@ public class Admin {
         this.address = address;
     }
 
+    public Admin(int adminID, String matKhau, String email, String sDT, java.sql.Date ngayBatDau, String quyen, String role, String active, String code, String address) {
+    }
+
     public int getId() {
         return id;
     }

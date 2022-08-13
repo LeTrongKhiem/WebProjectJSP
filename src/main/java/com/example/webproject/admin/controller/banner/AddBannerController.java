@@ -25,15 +25,17 @@ public class AddBannerController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Part image = request.getPart("imageBanner");
         String fileName = extractFileName(image);
-        String savePath = "c:\\Users\\tangm\\IdeaProjects\\WebProjectJSP2\\src\\main\\webapp\\assets\\banner\\" + File.separator + fileName;
+        String appPath = request.getServletContext().getRealPath("\\assets\\img\\");
+        String savePath = appPath +File.separator+ fileName;
         File fileSaveDir = new File(savePath);
         image.write(savePath);
-        String insertPath = "./assets/banner/" + fileName;
+        String insertPath = "./assets/img/" + fileName;
         String link_video1=request.getParameter("lvd");
         String link_banner_content=request.getParameter("ldc");
         String bannerID=request.getParameter("bid");
         BannerDAOImpl dao = new BannerDAOImpl();
         dao.createBanner(bannerID,insertPath,link_video1,link_banner_content);
+        System.out.println(savePath);
         response.sendRedirect("banner");
     }
     private String extractFileName(Part part) {

@@ -87,6 +87,8 @@ public class NewsDAOImpl implements NewsDAO {
         }
         return list;
     }
+
+
     public void createNews(String maTinTuc,String tieuDe, String tomTat,String noiDung,Date ngayDang,String tacGia,String linkanh) {
         String query = "INSERT INTO tintuc(MaTinTuc,TieuDe,TomTat,NoiDung,NgayDang,TAcGia,Link_hinhanh) VALUES(?,?,?,?,?,?,?)";
         try {
@@ -165,10 +167,13 @@ public class NewsDAOImpl implements NewsDAO {
     }
 
     public static void main(String[] args) {
-        System.out.println(new NewsDAOImpl().getListNewsId().size());
-//        ArrayList<Category> list = getInstance().getListCategoryPhone();
-//        for (Category name : list) {
-//            System.out.println(name.getTenDanhMuc());
+         NewsDAOImpl dao = new NewsDAOImpl();
+        System.out.println(dao.getAllNews());
+        List<News> list = dao.getAllNews();
+        for(News s :list){
+            System.out.println(s);
+        }
+
 //        }
     }
 

@@ -108,11 +108,11 @@
                                     </td>
                                     <td>${item.noiDung}
                                     </td>
-                                    <td>${item.NgayDang}
+                                    <td>${item.ngayDang}
                                     </td>
-                                    <td>${item.TacGia}
+                                    <td>${item.tacGia}
                                     </td>
-                                    <td>${item.Link_hinhanh}
+                                    <td>${item.link_hinhanh}
                                     </td>
                                     <td class="text-right">
                                         <button onclick="location.href='editNews?maTinTuc=${item.maTinTuc}'" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">

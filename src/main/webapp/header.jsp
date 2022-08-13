@@ -320,7 +320,7 @@
                     <%}%>
                     <!-- Menu news -->
                     <li class="header-menu__item">
-                        <a href="./tin-tuc" class="header-menu__item-link">
+                        <a href="./news" class="header-menu__item-link">
                             <i class="header-menu__item-icon fas fa-newspaper"></i>
                             <p class="header-menu__item-name">Tin tức</p>
                         </a>

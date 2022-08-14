@@ -32,7 +32,7 @@
     <%@include file="/header.jsp" %>
     <%--  header  --%>
     <div class="v2-login-area" style="padding-top: 100px">
-        <form class="form-signin" action="RegisterController" method="post" name="formdn" id="formdn">
+        <form class="form-signin" action="LoginController" method="post" name="formdn" id="formdn">
             <div class="form-signin-heading text-center">
                 <h1 class="sign-title" style="font-size: 29px; text-align: center">Cảm ơn bạn đã đăng kí tài khoản tại
                     Website</h1>

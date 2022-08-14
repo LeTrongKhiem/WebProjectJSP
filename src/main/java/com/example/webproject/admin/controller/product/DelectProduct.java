@@ -1,6 +1,7 @@
 package com.example.webproject.admin.controller.product;
 
 import com.example.webproject.DAO.daoimpl.ProductListDAOImpl;
+import com.example.webproject.admin.dao.impl.WareHouseDAOImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,7 +14,9 @@ public class DelectProduct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
         ProductListDAOImpl dao = new ProductListDAOImpl();
+        WareHouseDAOImpl wareDAO = new WareHouseDAOImpl();
         dao.deleteProductAdmin(id);
+        wareDAO.deleteWareHouse(id);
         dao.deleteProductDetail(id);
         response.sendRedirect(request.getContextPath()+"/admin/product");
     }

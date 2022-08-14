@@ -5,7 +5,7 @@ import com.google.api.client.http.MultipartContent;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
+import org.apache.tomcat.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -65,7 +65,9 @@ public class AddProductController extends HttpServlet {
         String fileNameWithoutExt = fileName.substring(0, fileName.lastIndexOf("."));
         String fileExt = fileName.substring(fileName.lastIndexOf("."));
         fileName = fileNameWithoutExt + s + fileExt;
+//        String appPath = request.getServletContext().getRealPath("/opt/tomcat/webapps/ROOT/assets/img/dssp");
         String appPath = request.getServletContext().getRealPath("\\assets\\img\\dssp\\");
+//        String appPath = "35066-2112@gate.manage.ruk-com.cloud:3022/opt/tomcat/webapps/ROOT/assets/img/dssp";
         String savePath = appPath + File.separator + fileName;
         System.out.println(savePath);
         File fileSaveDir = new File(savePath);

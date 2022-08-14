@@ -1,6 +1,7 @@
 package com.example.webproject.DAO.daoimpl;
 
 import com.example.webproject.BEAN.User;
+import com.example.webproject.BEAN.UserOrder;
 import com.example.webproject.DB.DBConnection;
 import com.example.webproject.service.SendEmail;
 
@@ -164,4 +165,56 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
         return listEmail;
     }
 
+    @Override
+    public List<UserOrder> getOrder(String email) {
+        List<UserOrder> orders = new ArrayList<UserOrder>();
+        Connection connection = DBConnection.getConnection();
+        try {
+            String sql = "SELECT `order`.OrderId, `user`.Email,danhsachsp.Ten, thongtinspgiohang.CreateAt,thongtinspgiohang.SoLuong,thongtinspgiohang.TongGia\n" +
+                    "FROM `user` INNER JOIN (`order` INNER JOIN (thongtinspgiohang INNER JOIN danhsachsp ON thongtinspgiohang.MaSP = danhsachsp.Id) ON `order`.OrderId = thongtinspgiohang.OrderId) ON `user`.Email = `order`.UserId\n" +
+                    "where `user`.Email = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                UserOrder order = new UserOrder();
+                order.setOrderId(resultSet.getInt("OrderId"));
+                order.setCreateDate(resultSet.getDate("CreateAt"));
+                order.setQuantity(resultSet.getInt("SoLuong"));
+                order.setProductName(resultSet.getString("Ten"));
+                order.setTotal(resultSet.getDouble("TongGia"));
+                order.setEmail(resultSet.getString("Email"));
+                orders.add(order);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orders;
+    }
+
+    @Override
+    public User getUserById(String id) {
+        User user = new User();
+        Connection connection = DBConnection.getConnection();
+        try {
+            String sql = "select Email from `user` where UserId = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                user.setEmail(resultSet.getString("Email"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    public static void main(String[] args) {
+//        List<UserOrder> list = new UserDAO().getOrder("lekhiem2001@gmail.com");
+//        for (UserOrder u : list) {
+//            System.out.println(u.getProductName());
+//        }
+        System.out.println(new UserDAO().getUserById("1").getEmail());
+    }
 }

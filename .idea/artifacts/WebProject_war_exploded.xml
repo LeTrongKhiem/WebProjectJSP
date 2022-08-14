@@ -68,6 +68,11 @@
           <element id="library" level="project" name="Maven: com.github.ben-manes.caffeine:caffeine:3.0.3" />
           <element id="library" level="project" name="Maven: taglibs:standard:1.1.2" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.15" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-coyote:8.0.33" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-servlet-api:8.0.33" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jni:8.0.33" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:8.0.33" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-util:8.0.33" />
         </element>
       </element>
       <element id="directory" name="META-INF">

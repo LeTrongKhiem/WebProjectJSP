@@ -115,7 +115,7 @@
                                     <td>${item.link_hinhanh}
                                     </td>
                                     <td class="text-right">
-                                        <button onclick="location.href='editNews?maTinTuc=${item.maTinTuc}'" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                        <button onclick="location.href='edit-News?maTinTuc=${item.maTinTuc}'" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
                                             <i class="anticon anticon-edit"></i>
                                         </button>
                                         <button onclick="window.location.href='deleteNews?maTinTuc=${item.maTinTuc}'" class="btn btn-icon btn-hover btn-sm btn-rounded">

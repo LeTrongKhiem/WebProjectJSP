@@ -75,10 +75,10 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4>Edit Item</h4>
+                                        <h4>Edit News</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="<%=request.getContextPath()%>/admin/addtintuc" method="post"
+                                        <form action="<%=request.getContextPath()%>/admin/editNews" method="post"
                                               enctype="multipart/form-data">
 
                                             <div class="my-4 table-editor_input-wrapper" data-mdb-field="a3">

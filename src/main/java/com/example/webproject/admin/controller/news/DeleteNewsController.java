@@ -1,6 +1,6 @@
 package com.example.webproject.admin.controller.news;
 
-import com.example.webproject.DAO.daoimpl.NewsDAOImpl;
+import com.example.webproject.admin.dao.impl.NewsDAOImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

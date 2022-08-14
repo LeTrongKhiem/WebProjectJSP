@@ -1,4 +1,4 @@
-<%@ page import="com.example.webproject.DAO.daoimpl.NewsDAOImpl" %>
+<%@ page import="com.example.webproject.admin.dao.impl.NewsDAOImpl" %>
 <%@ page import="com.example.webproject.BEAN.News" %>
 <%@ page import="java.util.ArrayList" %><%--
   Created by LeTrongKhiem.
@@ -26,14 +26,14 @@
 <script>
     function showMessage(maTicTuc) {
         var options = confirm('Bạn có muốn xóa tin tức này');
-        if (options===true){
-            window.location.href = 'deleteTinTuc?maTinTuc='+maTicTuc;
+        if (options === true) {
+            window.location.href = 'deleteTinTuc?maTinTuc=' + maTicTuc;
         }
     }
 </script>
 </head>
 <style>
-    .btn:hover{
+    .btn:hover {
         border: none !important;
     }
 </style>
@@ -98,34 +98,33 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <%ArrayList<News> newsArrayList= (ArrayList<News>) new NewsDAOImpl().getAllNews();%>
-                                    <%for(News news: newsArrayList){%>
-                                <tr>
-                                    <td><%=news.getmaTinTuc()%>
-                                    </td>
-                                    <td><%=news.gettieuDe()%>
-                                    </td>
-                                    <td><%=news.gettomTat()%>
-                                    </td>
-                                    <td><%=news.getnoiDung()%>
-                                    </td>
-                                    <td><%=news.getNgayDang()%>
-                                    </td>
-                                    <td><%=news.getTacGia()%>
-                                    </td>
-                                    <td><%=news.getLink_hinhanh()%>
-                                    </td>
-                                    <td class="text-right">
-                                        <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
-                                            <i class="anticon anticon-edit"></i>
-                                        </button>
-                                        <button class="btn btn-icon btn-hover btn-sm btn-rounded">
-                                            <i class="anticon anticon-delete"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                </tr>
-                                    <%}%>
+                                <c:forEach items="${listN}" var="item">
+                                    <tr>
+                                        <td>${item.maTinTuc}
+                                        </td>
+                                        <td>${item.tieuDe}
+                                        </td>
+                                        <td>${item.tomTat}
+                                        </td>
+                                        <td>${item.noiDung}
+                                        </td>
+                                        <td>${item.ngayDang}
+                                        </td>
+                                        <td>${item.tacGia}
+                                        </td>
+                                        <td>${item.link_hinhanh}
+                                        </td>
+                                        <td class="text-right">
+                                            <button onclick="location.href='edit-News?maTinTuc=${item.maTinTuc}'" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                                                <i class="anticon anticon-edit"></i>
+                                            </button>
+                                            <button onclick="window.location.href='deleteNews?maTinTuc=${item.maTinTuc}'" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                                                <i class="anticon anticon-delete"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -139,12 +138,14 @@
                                 <h4>New tin tức</h4>
                             </div>
                             <div class="modal-body">
-                                <form action="<%=request.getContextPath()%>/admin/addtintuc" method="post" enctype="multipart/form-data">
+                                <form action="<%=request.getContextPath()%>/admin/addtintuc" method="post"
+                                      enctype="multipart/form-data">
 
                                     <div class="my-4 table-editor_input-wrapper" data-mdb-field="a3">
                                         <div class="my-4 table-editor_input-wrapper" data-mdb-field="mtt">
-                                            <div class="form-outline "><input type="text" name="pmtt"
-                                                                              class="table-editor__input form-control" value="">
+                                            <div class="form-outline "><input type="text" name="pMaTinTuc"
+                                                                              class="table-editor__input form-control"
+                                                                              value="">
                                                 <label class="form-label" style="margin-left: 0px;">mã tin tức</label>
                                                 <div class="form-notch">
                                                     <div class="form-notch-leading" style="width: 9px;"></div>
@@ -154,8 +155,9 @@
                                             </div>
                                         </div>
                                         <div class="my-4 table-editor_input-wrapper" data-mdb-field="td">
-                                            <div class="form-outline "><input type="text" name="ptd"
-                                                                              class="table-editor__input form-control" value="">
+                                            <div class="form-outline "><input type="text" name="pTieuDe"
+                                                                              class="table-editor__input form-control"
+                                                                              value="">
                                                 <label class="form-label" style="margin-left: 0px;">tiêu đề</label>
                                                 <div class="form-notch">
                                                     <div class="form-notch-leading" style="width: 9px;"></div>
@@ -165,8 +167,9 @@
                                             </div>
                                         </div>
                                         <div class="my-4 table-editor_input-wrapper" data-mdb-field="tt">
-                                            <div class="form-outline "><input type="text" name="ptt"
-                                                                              class="table-editor__input form-control" value="">
+                                            <div class="form-outline "><input type="text" name="pTomTat"
+                                                                              class="table-editor__input form-control"
+                                                                              value="">
                                                 <label class="form-label" style="margin-left: 0px;">tóm tắt</label>
                                                 <div class="form-notch">
                                                     <div class="form-notch-leading" style="width: 9px;"></div>
@@ -176,19 +179,27 @@
                                             </div>
                                         </div>
                                         <div class="my-4 table-editor_input-wrapper" data-mdb-field="dnd">
-                                            <div class="form-outline "><input type="text" name="pnd"
-                                                                              class="table-editor__input form-control" value="">
-                                                <label class="form-label" style="margin-left: 0px;">nội dung</label>
-                                                <div class="form-notch">
-                                                    <div class="form-notch-leading" style="width: 9px;"></div>
-                                                    <div class="form-notch-middle" style="width: 82.4px;"></div>
-                                                    <div class="form-notch-trailing"></div>
-                                                </div>
+                                            <div class="form-outline ">
+                                                <%--                                                <input type="text" name="pnd"--%>
+                                                <%--                                                                              class="table-editor__input form-control" value="">--%>
+                                                <%--                                                <label class="form-label" style="margin-left: 0px;">nội dung</label>--%>
+                                                <%--                                                <div class="form-notch">--%>
+                                                <%--                                                    <div class="form-notch-leading" style="width: 9px;"></div>--%>
+                                                <%--                                                    <div class="form-notch-middle" style="width: 82.4px;"></div>--%>
+                                                <%--                                                    <div class="form-notch-trailing"></div>--%>
+                                                <%--                                                </div>--%>
+
+                                                <textarea name="pNoiDung" id="content" rows="10" cols="80">
+
+                    </textarea>
+
                                             </div>
+
                                         </div>
                                         <div class="my-4 table-editor_input-wrapper" data-mdb-field="dnd">
-                                            <div class="form-outline "><input type="date" name="pnd"
-                                                                              class="table-editor__input form-control" value="">
+                                            <div class="form-outline "><input type="date" name="pNgayDang"
+                                                                              class="table-editor__input form-control"
+                                                                              value="">
                                                 <label class="form-label" style="margin-left: 0px;">ngày đăng</label>
                                                 <div class="form-notch">
                                                     <div class="form-notch-leading" style="width: 9px;"></div>
@@ -198,8 +209,9 @@
                                             </div>
                                         </div>
                                         <div class="my-4 table-editor_input-wrapper" data-mdb-field="dtg">
-                                            <div class="form-outline "><input type="text" name="ptg"
-                                                                              class="table-editor__input form-control" value="">
+                                            <div class="form-outline "><input type="text" name="pTacGia"
+                                                                              class="table-editor__input form-control"
+                                                                              value="">
                                                 <label class="form-label" style="margin-left: 0px;">tác giả</label>
                                                 <div class="form-notch">
                                                     <div class="form-notch-leading" style="width: 9px;"></div>
@@ -209,8 +221,9 @@
                                             </div>
                                         </div>
                                         <div class="my-4 table-editor_input-wrapper" data-mdb-field="dla">
-                                            <div class="form-outline "><input type="text" name="pla"
-                                                                              class="table-editor__input form-control" value="">
+                                            <div class="form-outline "><input type="text" name="pLinkanh"
+                                                                              class="table-editor__input form-control"
+                                                                              value="">
                                                 <label class="form-label" style="margin-left: 0px;">link ảnh</label>
                                                 <div class="form-notch">
                                                     <div class="form-notch-leading" style="width: 9px;"></div>
@@ -221,7 +234,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        </button>
                                         <button type="submit" class="btn btn-success">Save</button>
                                     </div>
                                 </form>
@@ -230,6 +244,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -246,5 +261,14 @@
 
 <!-- Core JS -->
 <script src="<c:url value='assets/js/app.min.js'/>"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#content'))
+        .catch(error => {
+            console.error(error);
+        });
+    CKEDITOR.replace('content');
+</script>
 </body>
 </html>

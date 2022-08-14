@@ -135,5 +135,6 @@
     <orderEntry type="library" name="Maven: com.github.ben-manes.caffeine:caffeine:3.0.3" level="project" />
     <orderEntry type="library" name="Maven: taglibs:standard:1.1.2" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.15" level="project" />
+    <orderEntry type="library" name="ckeditor" level="application" />
   </component>
 </module>

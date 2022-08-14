@@ -67,7 +67,9 @@
                     <li>
                         <a href="<%=request.getContextPath()%>/admin/ShowStatistic">Thống kê doanh thu</a>
                     </li>
-
+                    <li>
+                        <a href="<%=request.getContextPath()%>/admin/news">Quản lý tin tức</a>
+                    </li>
                 </ul>
             </li>
         </ul>

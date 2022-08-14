@@ -25,6 +25,10 @@ public class News {
         this.link_hinhanh=link_hinhanh;
     }
 
+
+    public News(String maTinTuc, String tieuDe, String tomTat, String noiDung, java.sql.Date ngayDang, String tacGia, String linkAnh) {
+    }
+
     public String getmaTinTuc() {
         return maTinTuc;
     }
@@ -78,6 +82,17 @@ public class News {
     public void setLink_hinhanh(String link_hinhanh) {
         this.link_hinhanh = link_hinhanh;
     }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "maTinTuc='" + maTinTuc + '\'' +
+                ", tieuDe='" + tieuDe + '\'' +
+                ", tomTat='" + tomTat + '\'' +
+                ", noiDung='" + noiDung + '\'' +
+                ", ngayDang=" + ngayDang +
+                ", tacGia='" + tacGia + '\'' +
+                ", link_hinhanh='" + link_hinhanh + '\'' +
+                '}';
+    }
 }
-
-

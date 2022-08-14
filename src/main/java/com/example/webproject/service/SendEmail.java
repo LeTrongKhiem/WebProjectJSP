@@ -6,6 +6,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class SendEmail {
+    public static final String url = "https://tgmobile.me";
     private String userMail;
     private String code;
 
@@ -60,7 +61,7 @@ public class SendEmail {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(userMail));
             message.setSubject("TGMobile in Email Verification Link");
             message.setText("Verification link...");
-            message.setText("Your Verification link :: " + "http://localhost:2222/WebProject/ActivationAccount?key1=" + userMail + "&key2=" + code);
+            message.setText("Your Verification link :: " + url + "/ActivationAccount?key1=" + userMail + "&key2=" + code);
             Transport.send(message);
         } catch (Exception e) {
             e.printStackTrace();

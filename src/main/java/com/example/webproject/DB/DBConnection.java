@@ -15,7 +15,9 @@ public class DBConnection {
     public static Connection getConnection() {
         Connection connection = null;
         String url = "jdbc:mysql://localhost:3306/dbweb2";
+//        String url = "jdbc:mysql://node35046-env-8700300.proen.app.ruk-com.cloud/JavaWebApp";
         String userName = "root";
+//        String pass = "AHEgvo71200";
         String pass = "";
         try {
             Class.forName("com.mysql.jdbc.Driver");

@@ -47,7 +47,7 @@
     <%@include file="/header.jsp" %>
     <%--  header  --%>
     <div class="v2-login-area">
-        <form class="form-signin" action="/admin/LoginController" method="post" name="formdn" id="formdn">
+        <form class="form-signin" action="LoginController" method="post" name="formdn" id="formdn">
             <div class="form-signin-heading text-center">
                 <h1 class="sign-title">Đăng nhập</h1>
             </div>

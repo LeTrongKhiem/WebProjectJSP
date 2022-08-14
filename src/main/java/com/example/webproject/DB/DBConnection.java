@@ -14,11 +14,11 @@ public class DBConnection {
 
     public static Connection getConnection() {
         Connection connection = null;
-//        String url = "jdbc:mysql://localhost:3306/dbweb2";
-        String url = "jdbc:mysql://node35046-env-8700300.proen.app.ruk-com.cloud/JavaWebApp";
+        String url = "jdbc:mysql://localhost:3306/dbweb2";
+//        String url = "jdbc:mysql://node35065-tgmoblie.proen.app.ruk-com.cloud/JavaWebApp";
         String userName = "root";
-        String pass = "AHEgvo71200";
-//        String pass = "";
+//        String pass = "PKCoph03628";
+        String pass = "";
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url, userName, pass);

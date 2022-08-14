@@ -373,7 +373,8 @@
     function loadMore() {
         var amount = document.getElementsByClassName('productCount').length;
         jQuery.ajax({
-            url: "<%=request.getContextPath()%>/FilterController?madanhmuc=100002?locgia=caodenthap",
+            <%--url: "<%=request.getContextPath()%>/FilterController?madanhmuc=100002?locgia=caodenthap",--%>
+            url: "/FilterController?madanhmuc=100002?locgia=caodenthap",
             type: "get", //send it through get method
             data: {
                 exits: amount

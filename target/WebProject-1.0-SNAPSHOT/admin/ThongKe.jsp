@@ -114,7 +114,8 @@
         const selectdayto = $('#select-day-to').val();
         console.log(selectdayfrom)
         $.ajax({
-            url: '<%=request.getContextPath()+"/admin/Statistic"%>',
+            <%--url: '<%=request.getContextPath()%>"/admin/Statistic"',--%>
+            url: './Statistic',
             type: 'GET',
             success: function () {
                 registerChart(st)

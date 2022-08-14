@@ -32,9 +32,8 @@ public class Statistic extends HttpServlet {
         }
         StatisticDAOImpl dao = new StatisticDAOImpl();
         List<com.example.webproject.BEAN.Statistic> list = dao.GetByDay(sqlFromDate, sqlToDate);
-        com.example.webproject.BEAN.Statistic s = (com.example.webproject.BEAN.Statistic) list.get(0);
         request.setAttribute("st", list);
-        request.getRequestDispatcher("ThongKe.jsp").forward(request, response);
+        request.getRequestDispatcher("/admin/ThongKe.jsp").forward(request, response);
     }
 
     @Override

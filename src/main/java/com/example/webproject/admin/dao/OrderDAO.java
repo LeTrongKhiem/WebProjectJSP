@@ -10,4 +10,5 @@ public interface OrderDAO {
     public ArrayList<Order> getListOrder(boolean status);
     public boolean acceptOrder(int orderId);
     public boolean deleteOrder(int orderId);
+    public boolean deleteOrderDetail(int orderId);
 }

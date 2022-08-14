@@ -66,7 +66,7 @@ public class AddProductController extends HttpServlet {
         String fileExt = fileName.substring(fileName.lastIndexOf("."));
         fileName = fileNameWithoutExt + s + fileExt;
         String appPath = request.getServletContext().getRealPath("\\assets\\img\\dssp\\");
-        String savePath = appPath +File.separator+ fileName;
+        String savePath = appPath + File.separator + fileName;
         System.out.println(savePath);
         File fileSaveDir = new File(savePath);
         filePart.write(savePath + File.separator);
@@ -78,8 +78,6 @@ public class AddProductController extends HttpServlet {
         dao.insertProduct(id, name, insertPath, price, loaiSP, maDanhMuc);
         dao.insertDetailProduct(id, hdh, ram, manHinh, cpu, thietKe);
         request.getRequestDispatcher("product").forward(request, response);
-
-        ;
     }
 
     private String extractFileName(Part part) {//This method will print the file name.
@@ -92,7 +90,6 @@ public class AddProductController extends HttpServlet {
         }
         return "";
     }
-
 
 
     public static void main(String[] args) {

@@ -85,6 +85,23 @@ public class OrderDAOImpl implements OrderDAO {
         }
         return false;
     }
+    @Override
+    public boolean deleteOrderDetail(int orderId) {
+        connection = DBConnection.getConnection();
+        try {
+            String query = "delete from `thongtinspgiohang` where OrderId = ?";
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, orderId);
+            int i = statement.executeUpdate();
+            if (i > 0) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 
     public static void main(String[] args) {
         ArrayList<Order> list = OrderDAOImpl.getInstance().getListOrder(true);

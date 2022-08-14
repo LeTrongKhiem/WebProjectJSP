@@ -69,7 +69,7 @@ public class RegisterAdminController extends HttpServlet {
 //            session.setAttribute("username", username);
             session.setAttribute("listAdmin", listAdmin);
         } else {
-            response.sendRedirect(request.getContextPath() + "/admin/quanlynhanvien.jsp");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminRegister.jsp");
         }
     }
 

@@ -27,7 +27,7 @@ public class AdminDAOImpl implements AdminDAO {
     public String register(Admin admin) {
         connection = DBConnection.getConnection();
         try {
-            String sql = "insert into `admin`(MatKhau, HoTen, Email, SDT, Address, `Code`) values (?,?,?,?,?,?)";
+            String sql = "insert into `admin`(MatKhau, HoTen, Email, SDT, Address, `Code`, Role) values (?,?,?,?,?,?,?)";
             statement = connection.prepareStatement(sql, statement.RETURN_GENERATED_KEYS);
             statement.setString(1, admin.getMatKhau());
             statement.setString(2, admin.getHoTen());
@@ -36,6 +36,7 @@ public class AdminDAOImpl implements AdminDAO {
 //            statement.setDate(6, admin.getNgaySinh());
             statement.setString(5, admin.getAddress());
             statement.setString(6, admin.getCode());
+            statement.setInt(7, admin.getRole());
             int i = statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
 
@@ -45,7 +46,7 @@ public class AdminDAOImpl implements AdminDAO {
             resultSet.close();
             if (i != 0) {
                 SendEmail sendEmail = new SendEmail();
-                String text = "Your Verification link :: http://localhost:2222/WebProject/ActivationAdmin?key1=" + admin.getEmail() + "&key2=" + admin.getCode();
+                String text = "Your Verification link :: http://tgmoblie.proen.app.ruk-com.cloud/ActivationAdmin?key1=" + admin.getEmail() + "&key2=" + admin.getCode();
                 sendEmail.sendMail1(admin.getEmail(), "Verification Email TGMobile Employee", text);
                 return "Success";
             }
@@ -198,16 +199,17 @@ public class AdminDAOImpl implements AdminDAO {
 //        for (String p : list) {
 //            System.out.println(p);
 //        }
-//        Admin admin = new Admin("lekhiem", "le trong khiem", "lekhiem2001@gmail.com", "0372253243", "DN", "fnjewaflwegfer");
-//
+        Admin admin = new Admin("lekhiem", "le trong khiem", "lekhiem2001123@gmail.com", "0372253243", "DN", "fnjewaflwegfer");
+        admin.setRole(2);
+        System.out.println(new AdminDAOImpl().register(admin));;
 //        System.out.println(new AdminDAOImpl().register(admin));
 //        Map<String, Admin> list = new AdminDAOImpl().getListEmployee();
 //        for (Map.Entry<String, Admin> entry : list.entrySet()) {
 //            System.out.println(entry.getKey() + ":" + entry.getValue().toString());
 //        }
-        ArrayList<User> list = new AdminDAOImpl().getListCustomer();
-        for (User admin : list) {
-            System.out.println(admin.getEmail());
-        }
+//        ArrayList<User> list = new AdminDAOImpl().getListCustomer();
+//        for (User admin : list) {
+//            System.out.println(admin.getEmail());
+//        }
     }
 }

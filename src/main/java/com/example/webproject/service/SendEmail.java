@@ -6,8 +6,8 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class SendEmail {
-    public static final String url = "http://tgmoblie.proen.app.ruk-com.cloud";
-//    public static final String url = "http://localhost:2222/WebProject";
+//    public static final String url = "http://tgmoblie.proen.app.ruk-com.cloud";
+    public static final String url = "http://localhost:2222/WebProject";
     private String userMail;
     private String code;
 

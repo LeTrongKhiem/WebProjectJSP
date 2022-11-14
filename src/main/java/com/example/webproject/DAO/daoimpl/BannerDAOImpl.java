@@ -79,11 +79,32 @@ public class BannerDAOImpl implements BannerDAO {
         try {
             connection = DBConnection.getConnection();
             statement = connection.prepareStatement(query);
-            statement.setString(1,linkanh);
+            statement.setString(1, linkanh);
             statement.executeUpdate();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public Banner getBannerByBannerId(int bannerId) {
+        Connection connection = DBConnection.getConnection();
+        Banner banner = null;
+        String sql = "SELECT * FROM banner WHERE IDBanner =?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, bannerId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int bannerID = Integer.parseInt(resultSet.getString("IDBanner"));
+                String linkanh = resultSet.getString("TenDanhMuc");
+                String link_video = resultSet.getString("Link_Video1");
+                String link_banner_content = resultSet.getString("Link_banner_content");
+                banner = new Banner(bannerID, linkanh, link_video, link_banner_content);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return banner;
     }
 
     @Override
@@ -93,10 +114,10 @@ public class BannerDAOImpl implements BannerDAO {
             connection = DBConnection.getConnection();
             statement = connection.prepareStatement(query);
 //            statement.setString(1,id);
-            statement.setString(1,linkanh);
-            statement.setString(2,id);
+            statement.setString(1, linkanh);
+            statement.setString(2, id);
             statement.executeUpdate();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -107,9 +128,24 @@ public class BannerDAOImpl implements BannerDAO {
         try {
             connection = DBConnection.getConnection();
             statement = connection.prepareStatement(query);
-            statement.setString(1,id);
+            statement.setString(1, id);
             statement.executeUpdate();
-        }catch (Exception e){
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void editBanner(int bannerID, String linkanh, String link_video, String link_banner_content) {
+        String query = "UPDATE `banner` SET `Link_hinhanh`=?,`Link_Video1`=?,`Link-banner_content` WHERE IDBanner=?";
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, bannerID);
+            statement.setString(2, linkanh);
+            statement.setString(3, link_video);
+            statement.setString(4, link_banner_content);
+            statement.executeUpdate();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

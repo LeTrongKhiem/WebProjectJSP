@@ -18,6 +18,17 @@
 <%--<%--%>
 <%--    }--%>
 <%--%>--%>
+<style>
+    .logo.logo-dark{
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+    .logo-dark a{
+      font-size: 24px;
+    }
+
+</style>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
 <c:set var="auth" value="${sessionScope.admin}"/>
@@ -28,15 +39,12 @@
                 <!-- Header START -->
                 <div class="header">
                     <div class="logo logo-dark">
-                        <a href="index.html">
-                            <img src="assets/images/logo/logo.png" alt="Logo">
-                            <img class="logo-fold" src="assets/images/logo/logo-fold.png" alt="Logo">
+                        <a href="index.html">TGMOBILE
                         </a>
                     </div>
                     <div class="logo logo-white">
                         <a href="index.html">
-                            <img src="assets/images/logo/logo-white.png" alt="Logo">
-                            <img class="logo-fold" src="assets/images/logo/logo-fold-white.png" alt="Logo">
+                            TGMOBILE
                         </a>
                     </div>
                     <div class="nav-wrap">

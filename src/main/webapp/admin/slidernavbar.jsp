@@ -47,22 +47,28 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="/WebProject/admin/quan-ly-nhan-vien">Quản lý nhân viên</a>
+                        <a href="<%=request.getContextPath()%>/admin/quan-ly-nhan-vien">Quản lý nhân viên</a>
                     </li>
                     <li>
-                        <a href="/WebProject/admin/quanlykhachhang.jsp">Quản lý khách hàng</a>
+                        <a href="<%=request.getContextPath()%>/admin/quanlykhachhang.jsp">Quản lý khách hàng</a>
                     </li>
                     <li>
-                        <a href="/WebProject/admin/product">Quản lý sản phẩm</a>
+                        <a href="<%=request.getContextPath()%>/admin/product">Quản lý sản phẩm</a>
                     </li>
                     <li>
-                        <a href="/WebProject/admin/banner">Quản lý Banner</a>
+                        <a href="<%=request.getContextPath()%>/admin/banner">Quản lý Banner</a>
                     </li>
                     <li>
-                        <a href="/WebProject/admin/order">Quản lý đơn hàng</a>
+                        <a href="<%=request.getContextPath()%>/admin/category">Quản lý danh mục</a>
                     </li>
                     <li>
-                        <a href="/WebProject/admin/ShowStatistic">Thống kê doanh thu</a>
+                        <a href="<%=request.getContextPath()%>/admin/order">Quản lý đơn hàng</a>
+                    </li>
+                    <li>
+                        <a href="<%=request.getContextPath()%>/admin/ShowStatistic">Thống kê doanh thu</a>
+                    </li>
+                    <li>
+                        <a href="<%=request.getContextPath()%>/admin/news">Quản lý tin tức</a>
                     </li>
                 </ul>
             </li>

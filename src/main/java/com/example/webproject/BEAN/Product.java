@@ -339,7 +339,6 @@ public class Product implements Serializable {
         DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
         return decimalFormat.format(a);
     }
-
     public String getCategoryId() {
         return categoryId;
     }
@@ -347,7 +346,6 @@ public class Product implements Serializable {
     public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
     }
-
     public int getSoLuongKho(){
         return  soLuongKho;
     }

@@ -79,7 +79,7 @@
                             <%--                            <div class="carousel-item <%if (banners.indexOf(banner1) == 0) {out.print("active");}%>">--%>
                             <%--                                <img class="d-block w-100" src="<%=banner1.getLink_hinhanh()%>" alt="First slide">--%>
                             <%--                            </div>--%>
-                            <div class="carousel-item <%if((i == 0)) {out.print("active");}else {out.print("");}%>">
+                            <div class="carousel-item <%if((i == 0)) {out.print("active");} else {out.print("");}%>">
                                 <img class="d-block w-100" src="<%=banners.get(i).getLink_hinhanh()%>"
                                      alt="1">
                             </div>
@@ -98,16 +98,18 @@
                     </div>
                 </div>
 
-                <%--            <div class="col l-4 m-0 c-0">--%>
-                <%--                <iframe src="<%=bannerDAO.listBanner().get(0).getLink_video1()%>" title="YouTube video player"--%>
-                <%--                        frameborder="0"--%>
-                <%--                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"--%>
-                <%--                        allowfullscreen class="video1"></iframe>--%>
-                <%--                <iframe src="<%=bannerDAO.listBanner().get(0).getLink_video2()%>" title="YouTube video player"--%>
-                <%--                        frameborder="0"--%>
-                <%--                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"--%>
-                <%--                        allowfullscreen class="video2"></iframe>--%>
-                <%--            </div>--%>
+                <div class="col l-4 m-0 c-0">
+                    <iframe src="<%=bannerDAO.listBanner().get(0).getLink_video1()%>"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen class="video1"></iframe>
+                    <iframe src="<%=bannerDAO.listBanner().get(0).getLink_video2()%>"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen class="video2"></iframe>
+                </div>
 
                 <div class="col l-12 m-12 c-12">
                     <div class="container-nav">
@@ -762,8 +764,8 @@
 
         event.init();
     </script>
-    <script type="text/javascript" src="./assets/lib/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="<c:url value='./assets/lib/js/bootstrap.min.js'/>"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -773,7 +775,8 @@
         function loadMore() {
             var amount = document.getElementsByClassName('productCount').length;
             jQuery.ajax({
-                url: "/WebProject/LoadmoreController?madanhmuc=100001",
+                <%--url: "<%=request.getContextPath()%>/LoadmoreController?madanhmuc=100001",--%>
+                url: "./LoadmoreController?madanhmuc=100001",
                 type: "get", //send it through get method
                 data: {
                     exits: amount
@@ -791,7 +794,8 @@
         function loadMore1() {
             var amount = document.getElementsByClassName('productCount1').length;
             jQuery.ajax({
-                url: "/WebProject/LoadmoreController?madanhmuc=200001",
+                <%--url: "<%=request.getContextPath()%>/LoadmoreController?madanhmuc=200001",--%>
+                url: "./LoadmoreController?madanhmuc=200001",
                 type: "get", //send it through get method
                 data: {
                     exits: amount
@@ -809,7 +813,8 @@
         function loadMore2() {
             var amount = document.getElementsByClassName('productCount2').length;
             jQuery.ajax({
-                url: "/WebProject/LoadmoreController?madanhmuc=300001",
+                <%--url: "<%=request.getContextPath()%>/LoadmoreController?madanhmuc=300001",--%>
+                url: "./LoadmoreController?madanhmuc=300001",
                 type: "get", //send it through get method
                 data: {
                     exits: amount

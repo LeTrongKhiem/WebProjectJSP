@@ -80,7 +80,7 @@
                                             <a href="cart" class="header__navbar-items-link ">
                                                 <i class="header__navbar--icon fas fa-shopping-cart"
                                                    style="margin-left: -17px;"></i>
-                                                <span class="header__card-notice"><%=Cart.getInstance().getTotalQuantity()%></span>
+<%--                                                <span class="header__card-notice"><%=Cart.getInstance().getTotalQuantity()%></span>--%>
                                             </a>
                                         </li>
                                         <li class="header__navbar-items header__navbar-user header__navbar-items--separate">
@@ -101,7 +101,7 @@
                                                     <a href="" class="header-nav__log-link">Đơn đặt hàng</a>
                                                 </li>
                                                 <li class="header__navber-user-item">
-                                                    <a href="" class="header-nav__log-link">Lịch sử mua hàng</a>
+                                                    <a href="UserOrderController" class="header-nav__log-link">Lịch sử mua hàng</a>
                                                 </li>
                                                 <li class="header__navber-user-item">
                                                     <a href="" class="header-nav__log-link">Lịch sử sữa chữa</a>

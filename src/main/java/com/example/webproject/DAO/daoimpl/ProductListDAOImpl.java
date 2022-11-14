@@ -5,7 +5,6 @@ import com.example.webproject.BEAN.Common.PagingProduct;
 import com.example.webproject.BEAN.PhoneProduct;
 import com.example.webproject.BEAN.Product;
 import com.example.webproject.BEAN.ProductList;
-import com.example.webproject.DAO.FilterProduct;
 import com.example.webproject.DAO.ProductListDAO;
 import com.example.webproject.DB.DBConnection;
 
@@ -371,14 +370,26 @@ public class ProductListDAOImpl implements ProductListDAO {
             e.printStackTrace();
         }
     }
-    public void deleteProductAdmin(String id){
+    public void deleteProductDetail(String id) {
         String query = "DELETE FROM danhsachsp WHERE Id=?";
         try {
             connection = DBConnection.getConnection();
             statement = connection.prepareStatement(query);
-            statement.setString(1,id);
+            statement.setString(1, id);
             statement.executeUpdate();
-        }catch (Exception e){
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void deleteProductAdmin(String id) {
+        String query = "DELETE FROM motasp WHERE Id=?";
+        try {
+            connection = DBConnection.getConnection();
+            statement = connection.prepareStatement(query);
+            statement.setString(1, id);
+            statement.executeUpdate();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

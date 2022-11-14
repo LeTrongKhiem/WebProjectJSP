@@ -21,7 +21,12 @@ public class Banner implements Serializable {
         this.link_video2 = link_video2;
         this.link_banner_content = link_banner_content;
     }
-
+    public Banner(int bannerID, String linkanh, String link_video, String link_banner_content) {
+        this.bannerID=bannerID;
+        this.link_hinhanh = link_hinhanh;
+        this.link_video1 = link_video1;
+        this.link_banner_content = link_banner_content;
+    }
     public int getBannerID() {
         return bannerID;
     }

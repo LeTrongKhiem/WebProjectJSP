@@ -1,6 +1,7 @@
 package com.example.webproject.admin.controller;
 
 import com.example.webproject.BEAN.Admin;
+import com.example.webproject.BEAN.User;
 
 import javax.faces.bean.SessionScoped;
 import javax.servlet.*;
@@ -12,12 +13,29 @@ import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "LoginAdminController", value = "/LoginAdminController")
+@WebServlet(name = "LoginAdminController", value = "/admin/LoginAdminController")
 public class LoginAdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        HttpSession session = request.getSession();
+//        String email = request.getParameter("email");
+//        String password = request.getParameter("password");
+//        ServletContext context = getServletContext();
+//        String urlRQ = (String) context.getAttribute("url");
+//        Map<String, Admin> listAdmin = (Map<String, Admin>) session.getAttribute("listAdmin");
+//        //check login
+//        if (listAdmin.containsKey(email) && listAdmin.get(email).equals(password)) { //check login
+//            Admin admin = listAdmin.get(email);
+//            session.setAttribute("admin", admin);
+//            session.setMaxInactiveInterval(30 * 60);
+//            Cookie userCookie = new Cookie("admin", URLEncoder.encode(admin.getHoTen(), "UTF-8"));
+//            request.setAttribute("email", email);
+//            response.addCookie(userCookie);
+//            request.getRequestDispatcher("/admin/AdminLogin.jsp").forward(request, response);
+//        }
         doPost(request, response);
     }
 
@@ -55,7 +73,7 @@ public class LoginAdminController extends HttpServlet {
                 request.setAttribute("errorAccount", error);
                 request.setAttribute("email", email);
                 request.setAttribute("pass", hashPassword);
-                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/admin/AdminLogin.jsp");
+                RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher( "/admin/AdminLogin.jsp");
                 requestDispatcher.forward(request, response);
             }
         }

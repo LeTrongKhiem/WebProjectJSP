@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý khách hàng</title>
+    <title>Sửa sản phẩm</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="<c:url value='../assets/font/fontawesome-free-5.15.3-web/css/all.min.css'/>">
@@ -104,8 +104,9 @@
                                                 </div>
                                             </div>
                                             <div class="my-4 table-editor_input-wrapper" data-mdb-field="a3">
-                                                <div class="form-outline "><input type="text" name="Eimage1"
+                                                <div class="form-outline "><input type="hidden" name="Eimage1"
                                                                                   class="table-editor__input form-control" value="${detail.link_hinhanh}" id="outputfile">
+                                                    <img src=".${detail.link_hinhanh}" alt="" width="200px" height="200px">
                                                     <label class="form-label" style="margin-left: 0px;">Link ảnh</label>
                                                     <div class="form-notch">
                                                         <div class="form-notch-leading" style="width: 9px;"></div>
@@ -199,7 +200,7 @@
                                                     <label>Loại Sản Phẩm</label>
                                                     <select name="EloaiSP" class="form-select" aria-label="Default select example">
                                                         <option>DT</option>
-                                                        <option>Laptop</option>
+                                                        <option selected>Laptop</option>
                                                         <option>Phu Kien</option>
                                                     </select>
                                                 </div>
@@ -209,7 +210,9 @@
                                                     <label>Danh Mục</label>
                                                     <select name="Ecategory" class="form-select" aria-label="Default select example">
                                                         <c:forEach items="${listC}" var="o">
-                                                            <option ${o.maDanhMuc} value="${o.maDanhMuc}">${o.tenDanhMuc}</option>
+                                                            <option value="${o.maDanhMuc}"
+                                                            ${o.maDanhMuc == detail.categoryId ? 'selected' : ''}>
+                                                                ${o.tenDanhMuc}</option>
                                                         </c:forEach>
                                                     </select>
                                                 </div>

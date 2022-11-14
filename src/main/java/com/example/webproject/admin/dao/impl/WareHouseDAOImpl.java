@@ -85,6 +85,24 @@ public class WareHouseDAOImpl implements WareHouseDAO {
     }
 
     @Override
+    public boolean deleteWareHouse(String productId) {
+        connection = DBConnection.getConnection();
+        try {
+            String query = "delete from kho where Id = ?";
+            statement = connection.prepareStatement(query);
+            statement.setString(1, productId);
+            int i = statement.executeUpdate();
+            if (i == 0) {
+                return false;
+            } else
+                return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
     public WareHouse getQuantity(String productId) {
         connection = DBConnection.getConnection();
         WareHouse wareHouse = new WareHouse();

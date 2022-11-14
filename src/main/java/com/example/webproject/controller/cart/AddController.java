@@ -5,16 +5,12 @@ import com.example.webproject.BEAN.Product;
 import com.example.webproject.BEAN.User;
 import com.example.webproject.DAO.daoimpl.OrderDAO;
 import com.example.webproject.DAO.daoimpl.ProductListDAOImpl;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.google.gson.Gson;
-import com.google.gson.JsonDeserializer;
+
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
 
 @WebServlet(name = "AddController", value = "/cart-add")
 public class AddController extends HttpServlet {

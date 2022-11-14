@@ -19,11 +19,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-@WebServlet(name = "RegisterAdminController", value = "/RegisterAdminController")
+@WebServlet(name = "RegisterAdminController", value = "/admin/RegisterAdminController")
 public class RegisterAdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("AdminRegister.jsp").forward(request, response);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class RegisterAdminController extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         HttpSession session = request.getSession();
-        String name = request.getParameter("name");
+        String name = request.getParameter("fname");
 //        String bd = request.getParameter("bd");
 //        Date bd1 = null;
 //        try {
@@ -42,11 +42,10 @@ public class RegisterAdminController extends HttpServlet {
         String address = request.getParameter("address");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
-        String pass = request.getParameter("pass");
-        String repass = request.getParameter("repass");
+        String pass = request.getParameter("password");
+        String role = request.getParameter("role");
         String passHash = hashPassword(pass);
-        String rePassHash = hashPassword(repass);
-
+        int roleI = Integer.parseInt(role);
         String code;
         Random random = new Random();
         random.nextInt(999999);
@@ -54,7 +53,7 @@ public class RegisterAdminController extends HttpServlet {
 
         Admin admin = new Admin(passHash, name, email, phone, address);
         admin.setCode(code);
-
+        admin.setRole(roleI);
         Map<String, Admin> listAdmin = (Map<String, Admin>) session.getAttribute("listAdmin");
         if (listAdmin == null) {
             listAdmin = new HashMap<String, Admin>();
@@ -63,14 +62,14 @@ public class RegisterAdminController extends HttpServlet {
         String str = adminDAO.register(admin);
         if (str.equals("Success")) {
             listAdmin.put(admin.getEmail(), admin);
-            response.sendRedirect(request.getContextPath() + "admin/AdminLogin.jsp");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminLogin.jsp");
             request.setAttribute("email", email);
             session.setAttribute("email", email);
 //            request.setAttribute("username", username);
 //            session.setAttribute("username", username);
             session.setAttribute("listAdmin", listAdmin);
         } else {
-            response.sendRedirect(request.getContextPath() + "admin/quanlynhanvien.jsp");
+            response.sendRedirect(request.getContextPath() + "/admin/AdminRegister.jsp");
         }
     }
 

@@ -29,9 +29,9 @@ public class ActivationAdmin extends HttpServlet {
                 statement1.setString(2, code);
                 int i = statement1.executeUpdate();
                 if (i == 1) {
-                    response.sendRedirect("../WebProject/admin/login.jsp");
+                    response.sendRedirect(request.getContextPath() + "/admin/AdminLogin.jsp");
                 } else {
-                    response.sendRedirect("../WebProject/admin/motasanpham.jsp");
+                    response.sendRedirect(request.getContextPath() + "/admin/motasanpham.jsp");
                 }
             }
         } catch (Exception e) {

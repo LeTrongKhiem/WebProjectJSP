@@ -15,6 +15,7 @@ public class DeleteOrder extends HttpServlet {
         String id = request.getParameter("id");
         int orderId = Integer.parseInt(id);
         OrderDAOImpl dao = new OrderDAOImpl();
+        dao.deleteOrderDetail(orderId);
         dao.deleteOrder(orderId);
         response.sendRedirect(request.getContextPath()+"/admin/order");
     }

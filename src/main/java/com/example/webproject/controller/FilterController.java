@@ -2,9 +2,8 @@ package com.example.webproject.controller;
 
 import com.example.webproject.BEAN.Category;
 import com.example.webproject.BEAN.ProductList;
-import com.example.webproject.DAO.daoimpl.FilterProduct;
+import com.example.webproject.DAO.FilterProduct;
 import com.example.webproject.DAO.daoimpl.FilterProductIpml;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -17,9 +16,9 @@ import java.util.List;
 public class FilterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FilterProduct loc = new FilterProduct();
+        FilterProductIpml loc = new FilterProductIpml();
         ServletContext context = getServletContext();
-        FilterProduct.listLoc = new ArrayList<>();
+        FilterProductIpml.listLoc = new ArrayList<>();
         String chon = request.getParameter("chon");
         String chongia = request.getParameter("chongia");
         String chongia1 = request.getParameter("chongia1");
@@ -47,7 +46,7 @@ public class FilterController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FilterProduct sp = new FilterProduct();
+        FilterProductIpml sp = new FilterProductIpml();
         String xuLyLoc = request.getParameter("xuly");
         if (xuLyLoc.equals("xulyloc1")) {
             String tendt = request.getParameter("tendt");

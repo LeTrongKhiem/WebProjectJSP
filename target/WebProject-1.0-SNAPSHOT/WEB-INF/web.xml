@@ -97,15 +97,6 @@
         <url-pattern>/thanh-toan</url-pattern>
     </servlet-mapping>
 
-<!--    <servlet>-->
-<!--        <servlet-name>adminlogin</servlet-name>-->
-<!--        <jsp-file>/admin/AdminLogin.jsp</jsp-file>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>adminlogin</servlet-name>-->
-<!--        <url-pattern>/admin/dang-nhap</url-pattern>-->
-<!--    </servlet-mapping>-->
-
     <servlet>
         <servlet-name>qlnv</servlet-name>
         <jsp-file>/admin/quanlynhanvien.jsp</jsp-file>
@@ -116,19 +107,6 @@
     </servlet-mapping>
 
     <session-config>
-        <session-timeout>15</session-timeout>
+        <session-timeout>60</session-timeout>
     </session-config>
 </web-app>
-
-        <!--    <filter>-->
-        <!--        <filter-name>sitemesh</filter-name>-->
-        <!--        <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>-->
-        <!--    </filter>-->
-        <!--    <filter-mapping>-->
-        <!--        <filter-name>sitemesh</filter-name>-->
-        <!--        <url-pattern>/*</url-pattern>-->
-        <!--    </filter-mapping>-->
-
-        <!--    <listener>-->
-        <!--        <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>-->
-        <!--    </listener>-->

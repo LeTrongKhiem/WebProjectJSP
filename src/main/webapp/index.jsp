@@ -775,8 +775,8 @@
         function loadMore() {
             var amount = document.getElementsByClassName('productCount').length;
             jQuery.ajax({
-                <%--url: "<%=request.getContextPath()%>/LoadmoreController?madanhmuc=100001",--%>
-                url: "./LoadmoreController?madanhmuc=100001",
+                url: "<%=request.getContextPath()%>/LoadmoreController?madanhmuc=100001",
+                // url: "./LoadmoreController?madanhmuc=100001",
                 type: "get", //send it through get method
                 data: {
                     exits: amount
@@ -794,8 +794,8 @@
         function loadMore1() {
             var amount = document.getElementsByClassName('productCount1').length;
             jQuery.ajax({
-                <%--url: "<%=request.getContextPath()%>/LoadmoreController?madanhmuc=200001",--%>
-                url: "./LoadmoreController?madanhmuc=200001",
+                url: "<%=request.getContextPath()%>/LoadmoreController?madanhmuc=200001",
+                // url: "./LoadmoreController?madanhmuc=200001",
                 type: "get", //send it through get method
                 data: {
                     exits: amount
@@ -813,8 +813,8 @@
         function loadMore2() {
             var amount = document.getElementsByClassName('productCount2').length;
             jQuery.ajax({
-                <%--url: "<%=request.getContextPath()%>/LoadmoreController?madanhmuc=300001",--%>
-                url: "./LoadmoreController?madanhmuc=300001",
+                url: "<%=request.getContextPath()%>/LoadmoreController?madanhmuc=300001",
+                // url: "./LoadmoreController?madanhmuc=300001",
                 type: "get", //send it through get method
                 data: {
                     exits: amount

@@ -200,6 +200,9 @@
                                    placeholder="Nhập lại mật khẩu" required="" id="re_password"><br>
                             <p><font size="2" color="red" id="repassError"></font></p>
                         </div>
+                        <div class="form-group">
+
+                        </div>
                         <input type="hidden" name="step" value="3">
                         <div class="form-group">
                             <button type="submit">Xác nhận</button>

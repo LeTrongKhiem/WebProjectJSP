@@ -1,3 +1,4 @@
+
 <%@ page import="java.util.Map" %>
 <%@ page import="com.example.webproject.BEAN.User" %>
 <%@ page import="com.example.webproject.DAO.daoimpl.UserDAO" %>
@@ -200,9 +201,17 @@
                                    placeholder="Nhập lại mật khẩu" required="" id="re_password"><br>
                             <p><font size="2" color="red" id="repassError"></font></p>
                         </div>
+                        <div class="form-group">
+                            <div id="signature-pad" class="m-signature-pad">
+                                <div class="signature-pad--body">
+                                    <canvas></canvas>
+                                </div>
+                            </div>
+                        </div>
                         <input type="hidden" name="step" value="3">
                         <div class="form-group">
                             <button type="submit">Xác nhận</button>
+                            <s:hidden id="signature-data" path="signature"/>
                         </div>
                     </div>
                 </div>

@@ -377,7 +377,7 @@
         var amount = document.getElementsByClassName('productCount').length;
         jQuery.ajax({
             <%--url: <%=request.getContextPath()%> + "/LoadmoreController?madanhmuc=<%=request.getParameter("madanhmuc")%>",--%>
-            url: "/LoadmoreController?madanhmuc=<%=request.getParameter("madanhmuc")%>",
+            url: "/WebProject/LoadmoreController?madanhmuc=<%=request.getParameter("madanhmuc")%>",
             type: "get", //send it through get method
             data: {
                 exits: amount

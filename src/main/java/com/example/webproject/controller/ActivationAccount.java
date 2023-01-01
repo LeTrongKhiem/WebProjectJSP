@@ -1,6 +1,7 @@
 package com.example.webproject.controller;
 
 import com.example.webproject.DB.DBConnection;
+import com.example.webproject.service.SendEmail;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -16,7 +17,7 @@ public class ActivationAccount extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("key1");
         String code = request.getParameter("key2");
-
+        String privateKey = request.getParameter("key3");
         Connection connection = DBConnection.getConnection();
         try {
             PreparedStatement statement = connection.prepareStatement("select Email, `Code`, Active from `user` where Email = ? and `Code` = ? and Active = '0'");
@@ -30,6 +31,7 @@ public class ActivationAccount extends HttpServlet {
                 int i = statement1.executeUpdate();
                 if (i == 1) {
                     response.sendRedirect("dangnhap.jsp");
+                    new SendEmail(email, code, privateKey).sendEmailPrivateKey();
                 } else {
                     response.sendRedirect("index.jsp");
                 }

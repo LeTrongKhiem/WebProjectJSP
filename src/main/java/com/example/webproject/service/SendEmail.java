@@ -7,16 +7,36 @@ import java.util.Properties;
 
 public class SendEmail {
 //    public static final String url = "http://tgmoblie.proen.app.ruk-com.cloud";
-    public static final String url = "http://localhost:2222/WebProject";
+    public static final String url = "http://localhost:1234/WebProject";
     private String userMail;
     private String code;
 
+    private String privateKeyN;
+
+    private String privateKeyE;
+
+    public SendEmail(String email, String privateKeyE, boolean key) {
+        this.userMail = email;
+        this.privateKeyE = privateKeyE;
+        key = true;
+    }
+
     public SendEmail() {
+    }
+
+    public SendEmail(String email) {
+        this.userMail = email;
     }
 
     public SendEmail(String userMail, String code) {
         this.userMail = userMail;
         this.code = code;
+    }
+
+    public SendEmail(String userMail, String code, String privateKeyE) {
+        this.userMail = userMail;
+        this.code = code;
+        this.privateKeyE = privateKeyE;
     }
 
     public String getUserMail() {
@@ -62,7 +82,37 @@ public class SendEmail {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(userMail));
             message.setSubject("TGMobile in Email Verification Link");
             message.setText("Verification link...");
-            message.setText("Your Verification link :: " + url + "/ActivationAccount?key1=" + userMail + "&key2=" + code);
+            message.setText("Your Verification link :: " + url + "/ActivationAccount?key1=" + userMail + "&key2=" + code + "&key3=" + privateKeyE);
+            Transport.send(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendEmailPrivateKey() {
+        String mailFrom = "tgmobile.cskh@gmail.com";
+        String passEmailFrom = "argifttugjjvjnem";
+        Properties properties = new Properties();
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        properties.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+        properties.put("mail.smtp.port", "587"); //TLS Port
+        properties.put("mail.smtp.auth", "true"); //enable authentication
+        properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
+        properties.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
+
+        Session session = Session.getDefaultInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(mailFrom, passEmailFrom);
+            }
+        });
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(mailFrom, "TGMobileCSKH"));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(userMail));
+            message.setSubject("TGMobile in Email Verification Link");
+            message.setText("Click to download Private Key...");
+            message.setText("Your Private Key link :: " + url + "/DownLoadFile?key1=" + privateKeyE);
             Transport.send(message);
         } catch (Exception e) {
             e.printStackTrace();
@@ -183,6 +233,22 @@ public class SendEmail {
     }
 
     public static void main(String[] args) {
-        new SendEmail().sendMail1("letrongkhiem.it@gmail.com", "demo", "demo");
+        new SendEmail("lekhiem2001@gmail.com").sendEmailPrivateKey();
+    }
+
+    public String getPrivateKeyN() {
+        return privateKeyN;
+    }
+
+    public void setPrivateKeyN(String privateKeyN) {
+        this.privateKeyN = privateKeyN;
+    }
+
+    public String getPrivateKeyE() {
+        return privateKeyE;
+    }
+
+    public void setPrivateKeyE(String privateKeyE) {
+        this.privateKeyE = privateKeyE;
     }
 }

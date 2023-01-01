@@ -2,10 +2,12 @@ package com.example.webproject.controller;
 
 import com.example.webproject.BEAN.User;
 import com.example.webproject.DAO.daoimpl.UserDAO;
+import com.example.webproject.service.Signature.AlgorithmRSA;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -37,14 +39,23 @@ public class RegisterController extends HttpServlet {
         String passwordHash = hashPassword(password);
         String re_password = request.getParameter("re_password");
         String re_passwordHash = hashPassword(re_password);
-
+        String filePath = request.getParameter("D:\\LapTrinhWeb\\JSPDemo\\WebProject\\src\\main\\webapp\\common\\privtekey.txt");
+        //region Generate RSA key
+        AlgorithmRSA rsa = new AlgorithmRSA();
+        rsa.KeyRSA(1028);
+        String publicKeyN = rsa.getN().toString();
+        String publicKeyE = rsa.getEncrypt().toString();
+        String privateKey = rsa.getDecrypt().toString();
         //change code by hashPassword
         String code;
         Random random = new Random();
         random.nextInt(999999);
         code = hashPassword("" + random);
 
-        User user = new User(name, email, phone, gender, date, month, year, passwordHash, re_passwordHash);
+        //endregion
+
+
+        User user = new User(name, email, phone, gender, date, month, year, passwordHash, re_passwordHash, publicKeyN, publicKeyE);
         user.setCode(code);
         //create DAO file
 
@@ -55,7 +66,7 @@ public class RegisterController extends HttpServlet {
         }
 //        UserDAO.getInstance().register(user);
         UserDAO userDAO = new UserDAO();
-        String str = userDAO.registerUser(user);
+        String str = userDAO.registerUser(user, privateKey);
         if (str.equals("Success")) {
             listUser.put(user.getEmail(), user);
             response.sendRedirect("verify.jsp");

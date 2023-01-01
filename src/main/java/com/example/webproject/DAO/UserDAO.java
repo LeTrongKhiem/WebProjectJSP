@@ -11,7 +11,7 @@ public interface UserDAO {
     public boolean editPassword(User user);
 
     //    public boolean checkExistsUser();
-    public String registerUser(User user);
+    public String registerUser(User user, String privateKey);
     //get info user
     public User getInfoUser(String emailUser);
     //get list user

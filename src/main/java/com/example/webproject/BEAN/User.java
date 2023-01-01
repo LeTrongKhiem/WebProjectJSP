@@ -19,6 +19,9 @@ public class User implements Serializable {
     private String address;
     private int active;
 
+    private String publicKeyN;
+    private String publicKeyE;
+
     public User() {
     }
 
@@ -62,9 +65,8 @@ public class User implements Serializable {
         this.re_password = re_password;
     }
 
-    public User(String name, String address, String email, String phone, String gender, String date, String month, String year, String password, String re_password) {
+    public User(String name, String email, String phone, String gender, String date, String month, String year, String password, String re_password, String publicKeyN, String publicKeyE) {
         this.name = name;
-        this.address = address;
         this.email = email;
         this.phone = phone;
         this.gender = gender;
@@ -73,6 +75,8 @@ public class User implements Serializable {
         this.year = year;
         this.password = password;
         this.re_password = re_password;
+        this.publicKeyN = publicKeyN;
+        this.publicKeyE = publicKeyE;
     }
 
 
@@ -187,5 +191,21 @@ public class User implements Serializable {
 
     public void setActive(int active) {
         this.active = active;
+    }
+
+    public String getPublicKeyN() {
+        return publicKeyN;
+    }
+
+    public void setPublicKeyN(String publicKeyN) {
+        this.publicKeyN = publicKeyN;
+    }
+
+    public String getPublicKeyE() {
+        return publicKeyE;
+    }
+
+    public void setPublicKeyE(String publicKeyE) {
+        this.publicKeyE = publicKeyE;
     }
 }

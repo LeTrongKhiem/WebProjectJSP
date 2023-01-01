@@ -108,9 +108,34 @@ public class OrderDAO {
         }
         return 0;
     }
+
+    public Order getOrderDetail(int orderId) {
+        Order order = new Order();
+        OrderDetail orderDetail = new OrderDetail();
+        Connection connection = DBConnection.getConnection();
+        try {
+            String sql = "SELECT * FROM `order` join thongtinspgiohang on `order`.OrderId = thongtinspgiohang.OrderId\n" +
+                            "where `order`.OrderId = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, orderId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                order.setOrderID(resultSet.getInt("OrderId"));
+                order.setName(resultSet.getString("Customer_name"));
+                order.setAddress(resultSet.getString("Address"));
+                order.setEmail(resultSet.getString("Email"));
+                order.setPhoneNumber(resultSet.getString("PhoneNumber"));
+                order.setTotalPrice(resultSet.getDouble("total"));
+                order.setUser(resultSet.getString("UserId"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return order;
+    }
     public static void main(String[] args) {
         Order order = new Order("1", "2", "3", "4", "5", 6);
         OrderDAO dao = new OrderDAO();
-        System.out.println(dao.createOrder(order));
+        System.out.println(dao.getOrderDetail(17));
     }
 }

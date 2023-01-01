@@ -26,6 +26,7 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
         }
         return instance;
     }
+
     @Override
     public User getInfoUser(String emailUser) {
         User user = new User();
@@ -112,6 +113,7 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
         }
         return false;
     }
+
     @Override
     public Map<String, User> listUser() {
         Map<String, User> list = new HashMap<>();
@@ -139,6 +141,7 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
         }
         return list;
     }//get list user map database
+
     public String hashPassword(String password) {//method hash password
         try {
             MessageDigest sha256 = null;
@@ -150,6 +153,7 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
             return null;
         }
     }
+
     @Override
     public List<String> getListEmail() {
         List<String> listEmail = new ArrayList<>();
@@ -210,6 +214,22 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
             e.printStackTrace();
         }
         return user;
+    }
+
+    public boolean updatePublicKey(String userId, String newPublicKeyN, String newPublicKeyE) {
+        Connection connection = DBConnection.getConnection();
+        String sql = "update `user` set `user`.PublicKeyN = ?, `user`.PublicKeyE = ?\n" +
+                "where `user`.UserId = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, newPublicKeyN);
+            statement.setString(2, newPublicKeyE);
+            statement.setString(3, userId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public static void main(String[] args) {

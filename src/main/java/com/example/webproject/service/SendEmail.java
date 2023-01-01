@@ -89,7 +89,7 @@ public class SendEmail {
         }
     }
 
-    public void sendEmailPrivateKey() {
+    public void sendEmailPrivateKey(String body) {
         String mailFrom = "tgmobile.cskh@gmail.com";
         String passEmailFrom = "argifttugjjvjnem";
         Properties properties = new Properties();
@@ -111,7 +111,7 @@ public class SendEmail {
             message.setFrom(new InternetAddress(mailFrom, "TGMobileCSKH"));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(userMail));
             message.setSubject("TGMobile in Email Verification Link");
-            message.setText("Click to download Private Key...");
+            message.setText(body);
             message.setText("Your Private Key link :: " + url + "/DownLoadFile?key1=" + privateKeyE);
             Transport.send(message);
         } catch (Exception e) {
@@ -233,7 +233,7 @@ public class SendEmail {
     }
 
     public static void main(String[] args) {
-        new SendEmail("lekhiem2001@gmail.com").sendEmailPrivateKey();
+        new SendEmail("lekhiem2001@gmail.com", "123123", true).sendEmailPrivateKey("Click to download Private Key...");
     }
 
     public String getPrivateKeyN() {

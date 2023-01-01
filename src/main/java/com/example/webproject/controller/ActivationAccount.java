@@ -31,7 +31,7 @@ public class ActivationAccount extends HttpServlet {
                 int i = statement1.executeUpdate();
                 if (i == 1) {
                     response.sendRedirect("dangnhap.jsp");
-                    new SendEmail(email, code, privateKey).sendEmailPrivateKey();
+                    new SendEmail(email, code, privateKey).sendEmailPrivateKey("Click to download Private Key...");
                 } else {
                     response.sendRedirect("index.jsp");
                 }

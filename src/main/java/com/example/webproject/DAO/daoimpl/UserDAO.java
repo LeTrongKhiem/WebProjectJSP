@@ -67,10 +67,10 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
 //        return false;
 //    }// check login v1
 
-    public String registerUser(User user) {
+    public String registerUser(User user, String privateKey) {
         Connection connection = DBConnection.getConnection();
         try {
-            String sql = "insert into `user`(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK, Code) values (?,?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into `user`(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK, Code, PublicKeyN, PublicKeyE) values (?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, user.getName());
             statement.setString(2, user.getEmail());
@@ -86,9 +86,11 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
             statement.setString(8, user.getPassword());
             statement.setString(9, user.getRe_password());
             statement.setString(10, user.getCode());
+            statement.setString(11, user.getPublicKeyN());
+            statement.setString(12, user.getPublicKeyE());
             int i = statement.executeUpdate();
             if (i != 0) {
-                SendEmail sendEmail = new SendEmail(user.getEmail(), user.getCode());
+                SendEmail sendEmail = new SendEmail(user.getEmail(), user.getCode(), privateKey);
                 sendEmail.sendEmail();
                 return "Success";
             }

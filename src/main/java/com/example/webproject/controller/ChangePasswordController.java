@@ -28,7 +28,7 @@ public class ChangePasswordController extends HttpServlet {
         String confirmPass = request.getParameter("confirmPass");
         String confirmPassHash = hashPassword(confirmPass);
         String address = request.getParameter("address");
-        User updateUser = new User(user.getName(), address, user.getEmail(), user.getPhone(), user.getGender(), user.getDate(), user.getMonth(), user.getYear(), confirmPassHash, confirmPassHash);
+        User updateUser = new User(user.getName(), address, user.getEmail(), user.getPhone(), user.getGender(), user.getDate(), user.getMonth(), user.getYear(), confirmPassHash);
         if (UserDAO.getInstance().editPassword(updateUser)) {
             session.setAttribute("user", updateUser);
             request.setAttribute("changePass", "Cập nhật thông tin thành công. Vui lòng đăng xuất và đăng nhập lại bằng mật khẩu quý khách vừa thay đổi!");

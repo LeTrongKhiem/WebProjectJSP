@@ -1,8 +1,8 @@
 <%--
-  Created by LeTrongKhiem.
-  User: User
-  Date: 21-Feb-22
-  Time: 2:55 PM
+  Created by IntelliJ IDEA.
+  User: TANG MINH THUAN
+  Date: 0002, 02/01/2023
+  Time: 19:07:26
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -24,17 +24,15 @@
     <link rel="stylesheet" href="<c:url value= './assets/css/grid.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/responsive.css'/>">
 </head>
-<style>
-
-</style>
 <body>
 <%--  header  --%>
 <%@include file="/header.jsp" %>
 <%--  header  --%>
 <div style="margin: 200px 100px 300px 100px; text-align: center">
-    <span style="color: red; font-size: 30px">ĐÃ XẢY RA LỖI!!!</span>
-    <p style="font-size: 20px">TGMobile rất tiếc vì sự cố này<a href="<c:url value="/trang-chu"/>"
-                                                                 style="text-decoration: none; font-size: 20px; color: #0b4121">Quay trở
+    <span style="color: red; font-size: 30px">Cập nhật khóa không thành công!!!</span>
+    <p style="font-size: 20px">Vui lòng thử lại<br><br><a href="<c:url value="/trang-chu"/>"
+                                                              style="text-decoration: none; font-size: 20px; color: #0b4121">Quay
+        trở
         về trang chủ</a></p>
 </div>
 <%--    footer --%>

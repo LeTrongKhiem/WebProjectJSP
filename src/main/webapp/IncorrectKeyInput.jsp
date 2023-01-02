@@ -1,8 +1,8 @@
 <%--
-  Created by LeTrongKhiem.
-  User: User
-  Date: 21-Feb-22
-  Time: 2:55 PM
+  Created by IntelliJ IDEA.
+  User: TANG MINH THUAN
+  Date: 0002, 02/01/2023
+  Time: 19:24:19
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đã xảy ra lỗi</title>
+    <title>Nhập sai key</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
     <link rel="stylesheet" href="<c:url value='assets/font/fontawesome-free-5.15.3-web/css/all.min.css'/>">
@@ -24,17 +24,15 @@
     <link rel="stylesheet" href="<c:url value= './assets/css/grid.css'/>">
     <link rel="stylesheet" href="<c:url value= './assets/css/responsive.css'/>">
 </head>
-<style>
-
-</style>
 <body>
 <%--  header  --%>
 <%@include file="/header.jsp" %>
 <%--  header  --%>
 <div style="margin: 200px 100px 300px 100px; text-align: center">
-    <span style="color: red; font-size: 30px">ĐÃ XẢY RA LỖI!!!</span>
-    <p style="font-size: 20px">TGMobile rất tiếc vì sự cố này<a href="<c:url value="/trang-chu"/>"
-                                                                 style="text-decoration: none; font-size: 20px; color: #0b4121">Quay trở
+    <span style="color: red; font-size: 30px">Bạn đã nhập sai key!!!</span>
+    <p style="font-size: 20px">Vui lòng thử lại<br><br><a href="<c:url value="/trang-chu"/>"
+                                                                style="text-decoration: none; font-size: 20px; color: #0b4121">Quay
+        trở
         về trang chủ</a></p>
 </div>
 <%--    footer --%>

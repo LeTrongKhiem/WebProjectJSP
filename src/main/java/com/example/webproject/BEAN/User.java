@@ -208,4 +208,26 @@ public class User implements Serializable {
     public void setPublicKeyE(String publicKeyE) {
         this.publicKeyE = publicKeyE;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", gender='" + gender + '\'' +
+                ", date='" + date + '\'' +
+                ", month='" + month + '\'' +
+                ", year='" + year + '\'' +
+                ", password='" + password + '\'' +
+                ", re_password='" + re_password + '\'' +
+                ", role=" + role +
+                ", code='" + code + '\'' +
+                ", address='" + address + '\'' +
+                ", active=" + active +
+                ", publicKeyN='" + publicKeyN + '\'' +
+                ", publicKeyE='" + publicKeyE + '\'' +
+                '}';
+    }
 }

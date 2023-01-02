@@ -26,11 +26,12 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
         }
         return instance;
     }
+
     @Override
     public User getInfoUser(String emailUser) {
         User user = new User();
         try {
-            ResultSet resultSet = new DBConnection().selectData("select * from `user`(HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK, Role) where Email = '" + emailUser + "'");
+            ResultSet resultSet = new DBConnection().selectData("select HoTen, Email, Sdt, GioiTinh, Ngaysinh, Thang, Nam, MatKhau, NhapLaiMK, Role, PublicKeyN, PublicKeyE from `user` where Email = '" + emailUser + "'");
 
             while (resultSet.next()) {
                 String name = resultSet.getString(1);
@@ -42,8 +43,13 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
                 String year = resultSet.getString(7);
                 String password = resultSet.getString(8);
                 String re_password = resultSet.getString(9);
+                String publicKeyN = resultSet.getString(10);
+                String publicKeyE = resultSet.getString(11);
                 int role = resultSet.getInt("Role");
-                return new User(name, email, phone, gender, date, month, year, password, re_password, role);
+                user = new User(name, email, phone, gender, date, month, year, password, re_password, role);
+                user.setPublicKeyN(publicKeyN);
+                user.setPublicKeyE(publicKeyE);
+                return user;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -112,6 +118,7 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
         }
         return false;
     }
+
     @Override
     public Map<String, User> listUser() {
         Map<String, User> list = new HashMap<>();
@@ -139,6 +146,7 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
         }
         return list;
     }//get list user map database
+
     public String hashPassword(String password) {//method hash password
         try {
             MessageDigest sha256 = null;
@@ -150,6 +158,7 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
             return null;
         }
     }
+
     @Override
     public List<String> getListEmail() {
         List<String> listEmail = new ArrayList<>();
@@ -172,7 +181,7 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
         List<UserOrder> orders = new ArrayList<UserOrder>();
         Connection connection = DBConnection.getConnection();
         try {
-            String sql = "SELECT `order`.OrderId, `user`.Email,danhsachsp.Ten, thongtinspgiohang.CreateAt,thongtinspgiohang.SoLuong,thongtinspgiohang.TongGia\n" +
+            String sql = "SELECT `order`.OrderId, `user`.Email,danhsachsp.Ten, thongtinspgiohang.CreateAt,thongtinspgiohang.SoLuong,thongtinspgiohang.TongGia,`order`.IsCheckSingature\n" +
                     "FROM `user` INNER JOIN (`order` INNER JOIN (thongtinspgiohang INNER JOIN danhsachsp ON thongtinspgiohang.MaSP = danhsachsp.Id) ON `order`.OrderId = thongtinspgiohang.OrderId) ON `user`.Email = `order`.UserId\n" +
                     "where `user`.Email = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -186,6 +195,7 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
                 order.setProductName(resultSet.getString("Ten"));
                 order.setTotal(resultSet.getDouble("TongGia"));
                 order.setEmail(resultSet.getString("Email"));
+                order.setSignature(resultSet.getBoolean("IsCheckSingature"));
                 orders.add(order);
             }
         } catch (SQLException e) {
@@ -212,11 +222,27 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
         return user;
     }
 
+    public boolean updatePublicKey(String userId, String newPublicKeyN, String newPublicKeyE) {
+        Connection connection = DBConnection.getConnection();
+        String sql = "update `user` set `user`.PublicKeyN = ?, `user`.PublicKeyE = ?\n" +
+                "where `user`.UserId = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, newPublicKeyN);
+            statement.setString(2, newPublicKeyE);
+            statement.setString(3, userId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
 //        List<UserOrder> list = new UserDAO().getOrder("lekhiem2001@gmail.com");
 //        for (UserOrder u : list) {
-//            System.out.println(u.getProductName());
+//            System.out.println(u.toString());
 //        }
-        System.out.println(new UserDAO().getUserById("1").getEmail());
+        System.out.println(new UserDAO().getInfoUser("lekhiem2001@gmail.com").toString());
     }
 }

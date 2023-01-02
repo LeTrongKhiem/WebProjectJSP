@@ -33,7 +33,7 @@
 <%--  header  --%>
 <div style="margin: 200px 100px 300px 100px; text-align: center">
     <span style="color: red; font-size: 30px">ĐÃ XẢY RA LỖI!!!</span>
-    <p style="font-size: 20px">TGMobile rất tiếc vì sự cố này <a href="<c:url value="/trang-chu"/>"
+    <p style="font-size: 20px">TGMobile rất tiếc vì sự cố này<a href="<c:url value="/trang-chu"/>"
                                                                  style="text-decoration: none; font-size: 20px; color: #0b4121">Quay trở
         về trang chủ</a></p>
 </div>

@@ -31,7 +31,7 @@ public class UpdatePrivateKey extends HttpServlet {
             sendEmail.sendEmailPrivateKey("Update Private Key Your private key is: ");
             response.sendRedirect("successupdatekey.jsp");
         } else {
-            response.sendRedirect("errorupdatekey.jsp");
+            response.sendRedirect("ErrUpdateKey.jsp");
         }
     }
 

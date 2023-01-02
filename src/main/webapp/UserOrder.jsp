@@ -57,7 +57,7 @@
                       <td>${item.dinhDang(item.total)}</td>
                       <c:if test="${!item.isSignature}">
                           <td>Chưa xác nhận</td>
-                          <td><a href="">Xác thực đơn hàng</a></td>
+                          <td><a href="SignatureDigital?orderId=${item.orderId}">Xác thực đơn hàng</a></td>
                       </c:if>
                       <c:if test="${item.isSignature}">
                           <td>Đã xác thực chữ ký</td>

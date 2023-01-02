@@ -27,18 +27,18 @@ public class SHA1Algorithm {
         return new BigInteger(md.digest());
     }
 
-    public static BigInteger encrypt(String message) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public static String encrypt(String message) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 
         MessageDigest crypt = MessageDigest.getInstance("SHA-1");
         crypt.reset();
-        crypt.update(message.getBytes(StandardCharsets.UTF_8));
+        crypt.update(message.getBytes("UTF-8"));
 
-        return new BigInteger(1, crypt.digest());
+        return new BigInteger(1, crypt.digest()).toString(16);
     }
 
     public static void main(String[] args) {
         try {
-            System.out.println(encrypt("123456"));
+            System.out.println(encrypt("a//-"));
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }

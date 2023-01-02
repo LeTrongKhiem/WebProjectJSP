@@ -14,22 +14,25 @@ import java.io.IOException;
 public class UpdatePrivateKey extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        String userId = session.getAttribute("userId").toString();
-
+        HttpSession session = request.getSession();
+        User userSession = (User) session.getAttribute("user");
+        String userEmail = userSession.getEmail();
         AlgorithmRSA algorithmRSA = new AlgorithmRSA();
         algorithmRSA.KeyRSA(1028);
         String privateKey = algorithmRSA.getDecrypt().toString();
         String publicKey = algorithmRSA.getEncrypt().toString();
         String publicKeyN = algorithmRSA.getN().toString();
         UserDAO userDAO = new UserDAO();
-        User user = userDAO.getUserById(userId);
+        User user = userDAO.getInfoUser(userEmail);
         SendEmail sendEmail = new SendEmail(user.getEmail(), privateKey, true);
 
-        boolean check = userDAO.updatePublicKey(userId, publicKey, publicKeyN);
-        if (check)
+        boolean check = userDAO.updatePublicKey(userEmail, publicKeyN, publicKey);
+        if (check) {
             sendEmail.sendEmailPrivateKey("Update Private Key Your private key is: ");
-        response.sendRedirect("errorupdatekey.jsp");
+            response.sendRedirect("successupdatekey.jsp");
+        } else {
+            response.sendRedirect("ErrUpdateKey.jsp");
+        }
     }
 
     @Override

@@ -18,7 +18,9 @@ import java.security.NoSuchAlgorithmException;
 public class SignatureDigital extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        int orderId = Integer.parseInt(request.getParameter("orderId"));
+        request.setAttribute("orderId", orderId);
+        request.getRequestDispatcher("SignatureDigital.jsp").forward(request, response);
     }
 
     @Override
@@ -32,16 +34,25 @@ public class SignatureDigital extends HttpServlet {
         Order order = orderDAO.getOrderDetail(orderId);
         String hasingSHA1String = null;
         try {
-            BigInteger hashingSHA1 = SHA1Algorithm.encrypt(order.toString());
-            hasingSHA1String = new String(hashingSHA1.toByteArray());
+            hasingSHA1String = SHA1Algorithm.encrypt(order.toString());
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
         UserDAO userDAO = new UserDAO();
         User userInfo = userDAO.getInfoUser(user.getEmail());
         String cipherText = algorithmRSA.encrypt(hasingSHA1String, new BigInteger(privateKey), new BigInteger(userInfo.getPublicKeyN()));
-        request.setAttribute("cipherText", cipherText);
+//        request.setAttribute("cipherText", cipherText);
 
         String planText = algorithmRSA.decrypt(cipherText, new BigInteger(userInfo.getPublicKeyE()), new BigInteger(userInfo.getPublicKeyN()));
+
+//        request.setAttribute("planText", planText);
+
+        if (hasingSHA1String.equals(planText)) {
+            orderDAO.updateStatusSignature(orderId);
+            response.sendRedirect("SignatureSuccess.jsp");
+        } else {
+            request.setAttribute("message", "Chữ ký số không hợp lệ");
+            request.getRequestDispatcher("SignatureDigital.jsp").forward(request, response);
+        }
     }
 }

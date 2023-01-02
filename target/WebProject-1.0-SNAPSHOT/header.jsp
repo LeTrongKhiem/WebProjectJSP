@@ -101,7 +101,7 @@
                                                     <a href="" class="header-nav__log-link">Đơn đặt hàng</a>
                                                 </li>
                                                 <li class="header__navber-user-item">
-                                                    <a href="UserOrderController" class="header-nav__log-link">Lịch sử mua hàng</a>
+                                                    <a href="http://localhost:1234/WebProject/UserOrderController" class="header-nav__log-link">Lịch sử mua hàng</a>
                                                 </li>
                                                 <li class="header__navber-user-item">
                                                     <a href="" class="header-nav__log-link">Lịch sử sữa chữa</a>
@@ -150,10 +150,10 @@
                                                 <a href="" class="header-nav__log-link">Đơn đặt hàng</a>
                                             </li>
                                             <li class="header__navber-user-item">
-                                                <a href="" class="header-nav__log-link">Lịch sử mua hàng</a>
+                                                <a href="UserOrderController" class="header-nav__log-link">Lịch sử mua hàng</a>
                                             </li>
                                             <li class="header__navber-user-item">
-                                                <a href="" class="header-nav__log-link">Lịch sử sữa chữa</a>
+                                                <a href="UpdatePrivateKey" class="header-nav__log-link">Cập nhật khóa</a>
                                             </li>
                                             <li class="header__navber-user-item">
                                                 <a href="" class="header-nav__log-link">Sổ địa chỉ</a>

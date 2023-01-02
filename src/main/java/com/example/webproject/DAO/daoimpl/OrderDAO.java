@@ -109,6 +109,19 @@ public class OrderDAO {
         return 0;
     }
 
+    public void updateStatusSignature(int orderId) {
+        Connection connection = DBConnection.getConnection();
+        String sql = "update `order` set `order`.IsCheckSingature = 1\n" +
+                "where `order`.OrderId = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, orderId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Order getOrderDetail(int orderId) {
         Order order = new Order();
         OrderDetail orderDetail = new OrderDetail();

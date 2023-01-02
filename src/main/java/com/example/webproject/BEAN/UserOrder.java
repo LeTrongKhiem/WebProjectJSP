@@ -12,6 +12,8 @@ public class UserOrder implements Serializable {
     private int quantity;
     private double total;
 
+    private boolean isSignature;
+
     public UserOrder() {
     }
 
@@ -22,6 +24,16 @@ public class UserOrder implements Serializable {
         this.createDate = createDate;
         this.quantity = quantity;
         this.total = total;
+    }
+
+    public UserOrder(int orderId, String email, String productName, Date createDate, int quantity, double total, boolean isSignature) {
+        this.orderId = orderId;
+        this.email = email;
+        this.productName = productName;
+        this.createDate = createDate;
+        this.quantity = quantity;
+        this.total = total;
+        this.isSignature = isSignature;
     }
 
     public int getOrderId() {
@@ -74,5 +86,26 @@ public class UserOrder implements Serializable {
     public String dinhDang(long a) {
         DecimalFormat decimalFormat = new DecimalFormat("000,000 đ");
         return decimalFormat.format(a);
+    }
+
+    @Override
+    public String toString() {
+        return "UserOrder{" +
+                "orderId=" + orderId +
+                ", email='" + email + '\'' +
+                ", productName='" + productName + '\'' +
+                ", createDate=" + createDate +
+                ", quantity=" + quantity +
+                ", total=" + total +
+                ", isSignature=" + isSignature +
+                '}';
+    }
+
+    public boolean getIsSignature() {
+        return isSignature;
+    }
+
+    public void setSignature(boolean signature) {
+        isSignature = signature;
     }
 }

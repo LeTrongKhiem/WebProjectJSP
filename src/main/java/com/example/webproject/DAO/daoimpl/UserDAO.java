@@ -43,8 +43,8 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
                 String year = resultSet.getString(7);
                 String password = resultSet.getString(8);
                 String re_password = resultSet.getString(9);
-                String publicKeyN = resultSet.getString(10);
-                String publicKeyE = resultSet.getString(11);
+                String publicKeyN = resultSet.getString(11);
+                String publicKeyE = resultSet.getString(12);
                 int role = resultSet.getInt("Role");
                 user = new User(name, email, phone, gender, date, month, year, password, re_password, role);
                 user.setPublicKeyN(publicKeyN);
@@ -205,13 +205,13 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
     }
 
     @Override
-    public User getUserById(String id) {
+    public User getUserById(String email) {
         User user = new User();
         Connection connection = DBConnection.getConnection();
         try {
-            String sql = "select Email from `user` where UserId = ?";
+            String sql = "select Email from `user` where Email = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, id);
+            statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 user.setEmail(resultSet.getString("Email"));
@@ -222,16 +222,17 @@ public class UserDAO implements com.example.webproject.DAO.UserDAO {
         return user;
     }
 
-    public boolean updatePublicKey(String userId, String newPublicKeyN, String newPublicKeyE) {
+    public boolean updatePublicKey(String email, String newPublicKeyN, String newPublicKeyE) {
         Connection connection = DBConnection.getConnection();
         String sql = "update `user` set `user`.PublicKeyN = ?, `user`.PublicKeyE = ?\n" +
-                "where `user`.UserId = ?";
+                "where `user`.Email = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, newPublicKeyN);
             statement.setString(2, newPublicKeyE);
-            statement.setString(3, userId);
+            statement.setString(3, email);
             statement.executeUpdate();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }

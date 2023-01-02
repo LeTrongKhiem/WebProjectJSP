@@ -40,6 +40,8 @@
                   <th scope="col">Ngay Dat</th>
                   <th scope="col">So luong</th>
                   <th scope="col">Tong gia</th>
+                  <th scope="col">Tinh trang don hang</th>
+                  <th scope="col"></th>
               </tr>
               </thead>
 
@@ -53,6 +55,14 @@
                       <td>${item.createDate}</td>
                       <td>${item.quantity}</td>
                       <td>${item.dinhDang(item.total)}</td>
+                      <c:if test="${!item.isSignature}">
+                          <td>Chưa xác nhận</td>
+                          <td><a href="SignatureDigital?orderId=${item.orderId}">Xác thực đơn hàng</a></td>
+                      </c:if>
+                      <c:if test="${item.isSignature}">
+                          <td>Đã xác thực chữ ký</td>
+                          <td></td>
+                      </c:if>
                   </tr>
                   </tbody>
               </c:forEach>

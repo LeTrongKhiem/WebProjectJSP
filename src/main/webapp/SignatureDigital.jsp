@@ -41,7 +41,8 @@
         height: 120px;
         font-size: 35px;
     }
-    .form-signin-heading{
+
+    .form-signin-heading {
         text-align: center;
         width: 404px;
         display: flex;
@@ -49,17 +50,20 @@
         justify-content: center;
         margin: 0 auto;
     }
-    .input-showkey{
+
+    .input-showkey {
         font-size: 18px;
         display: flex;
         align-items: center;
         margin-top: 18px;
     }
-    .input-showkey input{
+
+    .input-showkey input {
 
         margin-right: 10px;
     }
-    .input-showkey input.key{
+
+    .input-showkey input.key {
         width: 20px;
     }
 </style>
@@ -74,18 +78,24 @@
     <%--        <button type="submit">Xác nhận</button>--%>
     <%--    </div>--%>
     <div class="v2-login-area">
-        <form class="form-signin" action="LoginController" method="post" name="formdn" id="formdn">
+        <form class="form-signin" action="SignatureDigital" method="post" name="formdn" id="formdn">
             <div class="form-signin-heading text-center">
-                <h1 class="sign-title">Nhập Private Key đã cấp khi đăng ký tài khoản</h1>
+                <h1 class="sign-title">Điền chữ ký điện tử</h1>
             </div>
             <div class="v2-login-wrap">
-<%--                <span class="text">Nhập Private Key đã cấp khi đăng ký tài khoản</span>--%>
-                <input class="inputkey" type="password" placeholder="" id="privateKey" name="privateKey"/>
+                <%--                <span class="text">Nhập Private Key đã cấp khi đăng ký tài khoản</span>--%>
+                <input type="hidden" id="orderId" name="orderId" value="${orderId}">
+                <input class="inputkey" type="password" placeholder="" id="privateKey" name="privateKey" required/>
                 <div class="input-showkey">
-                <input type="checkbox" onclick="showKey()" class="key">Show Key
+                    <input type="checkbox" onclick="showKey()" class="key">Show Key
                 </div>
                 <input type="file" style="font-size: 18px; margin-top: 10px" onchange="openFile(event)"/>
                 <button class="btn btn-lg btn-login" type="submit">Xác nhận</button>
+                <p id="errorLogin" style="color: red; font-size: 16px; text-align: center"><%
+                    if (request.getAttribute("message") != null) {
+                        out.print(request.getAttribute("message"));
+                    }
+                %></p>
             </div>
         </form>
     </div>
@@ -94,11 +104,11 @@
 </div>
 </body>
 <script>
-    var openFile = function(event) {
+    var openFile = function (event) {
         var input = event.target;
 
         var reader = new FileReader();
-        reader.onload = function() {
+        reader.onload = function () {
             var text = reader.result;
             var node = document.getElementById('privateKey');
             node.value = text;
@@ -106,6 +116,7 @@
         };
         reader.readAsText(input.files[0]);
     };
+
     function showKey() {
         var x = document.getElementById("privateKey");
         if (x.type === "password") {
